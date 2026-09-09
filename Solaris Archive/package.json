@@ -1,0 +1,10 @@
+{
+  "name": "wuthering-waves-portal-wiki",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "generate:assets": "node scripts/generate-assets.mjs"
+  }
+}
