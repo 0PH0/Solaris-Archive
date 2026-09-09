@@ -1,0 +1,3747 @@
+const app = document.querySelector("#app");
+const DEFAULT_LANG = "pt-BR";
+const SUPPORTED_LANGS = ["pt-BR", "en", "es"];
+const CHARACTER_FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%20320%20320%27%3E%3Crect%20width=%27320%27%20height=%27320%27%20fill=%27%2314171c%27/%3E%3Ccircle%20cx=%27160%27%20cy=%27150%27%20r=%2778%27%20fill=%27none%27%20stroke=%27%2341f1d5%27%20stroke-width=%2710%27%20opacity=%27.55%27/%3E%3Cpath%20d=%27M80%20250c25-45%20135-45%20160%200%27%20fill=%27none%27%20stroke=%27%23c7a45a%27%20stroke-width=%2712%27%20stroke-linecap=%27round%27%20opacity=%27.65%27/%3E%3C/svg%3E";
+const EVENT_FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%201280%20720%27%3E%3Crect%20width=%271280%27%20height=%27720%27%20fill=%27%2314171c%27/%3E%3Cpath%20d=%27M190%20500c180-240%20520-300%20900-150%27%20fill=%27none%27%20stroke=%27%2341f1d5%27%20stroke-width=%2724%27%20opacity=%27.45%27/%3E%3Ccircle%20cx=%27940%27%20cy=%27230%27%20r=%27110%27%20fill=%27none%27%20stroke=%27%23c7a45a%27%20stroke-width=%2718%27%20opacity=%27.65%27/%3E%3Ctext%20x=%27640%27%20y=%27380%27%20text-anchor=%27middle%27%20font-family=%27Arial%27%20font-size=%2758%27%20font-weight=%27700%27%20fill=%27%23eef8f6%27%3EEvento%20WuWa%3C/text%3E%3C/svg%3E";
+const ITEM_FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%20200%20200%27%3E%3Crect%20width=%27200%27%20height=%27200%27%20rx=%2728%27%20fill=%27%2314171c%27/%3E%3Cpath%20d=%27M52%20133L100%2037l48%2096H52z%27%20fill=%27none%27%20stroke=%27%23c7a45a%27%20stroke-width=%2710%27%20stroke-linejoin=%27round%27/%3E%3Ccircle%20cx=%27100%27%20cy=%27108%27%20r=%2730%27%20fill=%27none%27%20stroke=%27%2341f1d5%27%20stroke-width=%278%27/%3E%3C/svg%3E";
+const WUWA_ASSET_BASE_URL = "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images";
+const WUWA_WEAPON_ASSET_BASE_URL = `${WUWA_ASSET_BASE_URL}/weapons`;
+const characterAssetNameOverrides = {
+  "the-shorekeeper": "Shorekeeper",
+  "xiangli-yao": "XiangliYao",
+  "luuk-herssen": "LuukHerssen",
+  "yangyang-xuanling": "YangyangXuanling"
+};
+const itemAssetNameOverrides = {
+  "gusts-of-welkin": "GustsofWelkin",
+  "sun-sinking-eclipse": "SunSinkingEclipse"
+};
+const itemAssetExtensionOverrides = {
+  "empyrean-anthem": "png",
+  "gusts-of-welkin": "png",
+  "midnight-veil": "png",
+  "tidebreaking-courage": "png"
+};
+
+const copy = {
+  "pt-BR": {
+    navHome: "Home",
+    navCharacters: "Personagens",
+    navTier: "Tier List",
+    navEchoes: "Ecos",
+    navWeapons: "Armas",
+    navItems: "Itens",
+    navGuide: "Guia",
+    navCodes: "Codigos",
+    navBuilder: "Builder",
+    navEvents: "Eventos",
+    navNews: "Noticias",
+    searchPlaceholder: "Buscar personagem, arma, eco...",
+    database: "Base de dados",
+    favorites: "Favoritos",
+    liveNow: "Ao vivo",
+    comingSoon: "Em breve",
+    ended: "Encerrado",
+    activeEvents: "Eventos ativos",
+    currentConvenes: "Convocacoes atuais",
+    emptyConvenes: "Nenhuma convocacao ativa no momento.",
+    convenePageTitle: "Banners de personagem e arma",
+    convenePageDesc: "Convocacoes sincronizadas em endpoint proprio, independentes dos eventos in-game.",
+    categoryOverview: "Resumo por categoria",
+    activeNow: "Ativos agora",
+    nextEnd: "Proximo fim",
+    noActiveItems: "Sem itens ativos",
+    featuredItem: "Destaque",
+    conveneType: "Tipo",
+    updated: "Atualizado",
+    mockNotice: "Dados demonstrativos prontos para plugar em fontes reais.",
+    serverTime: "Servidor UTC+8",
+    localTime: "Horario local",
+    eventStartDate: "Data de inicio",
+    eventStartTime: "Hora de inicio",
+    eventEndDate: "Data de termino",
+    eventEndTime: "Hora de termino",
+    eventEndsIn: "Termina em",
+    eventStartsIn: "Comeca em",
+    details: "Detalhes",
+    copyCode: "Copiar",
+    copied: "Copiado",
+    justNow: "agora",
+    syncEvery: "Atualiza a cada",
+    emptyEvents: "Nenhum evento ativo no momento.",
+    all: "Todos",
+    banners: "Convocacoes",
+    inGame: "Eventos in-game",
+    webEvents: "Eventos web",
+    tower: "Torre da Adversidade",
+    codes: "Codigos",
+    damage: "Dano",
+    support: "Suporte",
+    exploration: "Exploracao",
+    mainDps: "Dano Principal",
+    subDps: "Sub-DPS",
+    healer: "Suporte",
+    controller: "Controle",
+    back: "Voltar",
+    rarity: "Raridade",
+    element: "Elemento",
+    weapon: "Arma",
+    role: "Papel",
+    recommendedBuild: "Build recomendada",
+    statTargets: "Metas de status",
+    statTargetsDesc: "Indicador sugerido para jogar esse personagem com boa consistencia.",
+    priorityStats: "Prioridade",
+    suggestedEnergy: "Recarga sugerida",
+    targetReached: "Ok",
+    targetMissing: "Ajustar",
+    stats: "Stats",
+    source: "Fonte",
+    reward: "Recompensas",
+    status: "Status",
+    routeNotFound: "Pagina nao encontrada",
+    routeNotFoundText: "A rota solicitada nao existe neste prototipo.",
+    noAffiliation: "Projeto de fa nao afiliado, endossado ou publicado pela Kuro Games/Guangzhou Kuro Technology.",
+    language: "Idioma",
+    menu: "Menu",
+    hideShowcase: "Fechar",
+    showShowcase: "Mostrar",
+    charactersHidden: "Personagens ocultos",
+    search: "Pesquisa",
+    searchButton: "Buscar",
+    primaryActions: "Acoes principais",
+    baseSummary: "Resumo da base",
+    officialSite: "Site oficial",
+    heroEyebrow: "Fan wiki PT-BR - i18n - eventos ao vivo",
+    heroCopy: "Portal wiki de Wuthering Waves com builds, ecos, armas, codigos e agenda de eventos em uma unica base navegavel.",
+    characterSearchPlaceholder: "Buscar por nome, elemento ou tag",
+    characterFiltersLabel: "Filtros de personagens",
+    noCharacterFoundTitle: "Nenhum personagem encontrado",
+    noCharacterFoundText: "Tente mudar a pesquisa ou limpar algum filtro.",
+    syncingCharacters: "Sincronizando personagens...",
+    characterCount: "personagens",
+    apiFallback: "API indisponivel, usando cache local",
+    sourceLabel: "Fonte",
+    updatedLabel: "Atualizado",
+    pageCharactersDesc: "Lista de Resonators com papel, elemento, arma, builds e pagina individual.",
+    pageTierDesc: "Classificacao por dano, suporte e exploracao com filtro por elemento.",
+    pageEchoesDesc: "Sonatas, efeitos de conjunto e monstros de origem para planejar farm.",
+    pageWeaponsDesc: "Armas por tipo, raridade, atributo secundario e usuarios recomendados.",
+    pageItemsDesc: "Materiais de ascensao, fontes de farm e calendario semanal.",
+    pageGuideTitle: "Guia do jogo",
+    pageGuideDesc: "Mecanicas centrais, rotacoes e rotas de progressao.",
+    pageCodesTitle: "Codigos de resgate",
+    pageCodesDesc: "Lista com codigos ativos e expirados, recompensas e copia em um clique.",
+    pageBuilderDesc: "Calculadora demonstrativa para comparar personagem, arma, eco e nivel.",
+    pageEventsTitle: "Eventos atuais",
+    pageEventsDesc: "Eventos ativos com banner oficial, periodo, horario e contagem regressiva em tempo real.",
+    pageNewsDesc: "Feed de anuncios, patch notes e atualizacoes editoriais.",
+    showcaseKicker: "Resonators",
+    showcaseTitle: "Showcase por papel de equipe",
+    showcaseDesc: "Abas para comparar funcoes de dano, suporte, ataques coordenados e controle de campo.",
+    tierPreviewTitle: "DPS meta atual",
+    tierPreviewDesc: "Baseado em rankings recentes de Prydwen, Wuthering.gg e Pocket Tactics.",
+    recentNewsTitle: "Patch notes e anuncios recentes",
+    recentNewsDesc: "Cards de feed preparados para receber RSS, CDN do launcher ou CMS.",
+    conveneSpotlightTitle: "Banners de Convene ativos",
+    conveneSpotlightDesc: "Fonte separada de /api/events, com arte oficial, destaque, periodo e contagem regressiva.",
+    redeemTitle: "Resgate em um clique",
+    redeemDesc: "Lista com status ativo/expirado, recompensas e data de validade.",
+    echoes: "Ecos",
+    mainStats: "Stats principais",
+    team: "Time",
+    skills: "Habilidades",
+    weaponAffinity: "Afinidade com armas",
+    substat: "Substat",
+    users: "Uso",
+    type: "Tipo",
+    days: "Dias",
+    item: "Item",
+    category: "Categoria",
+    listedItems: "itens listados nesta categoria.",
+    farmPriorities: "Prioridades de farm",
+    farmPrioritiesDesc: "Uma visao rapida para organizar ascensao, boss mats, XP e moeda sem perder eficiencia semanal.",
+    catalogedItems: "Itens catalogados",
+    resourceTypes: "Tipos de recurso",
+    universalUse: "Uso universal",
+    limitedTime: "Tempo limitado",
+    weeklyCalendar: "Calendario semanal",
+    guideBasics: "Fundamentos essenciais",
+    quickChecklist: "Checklist rapido",
+    readings: "Leituras",
+    detailedGuides: "Guias detalhados",
+    detailedGuidesDesc: "Textos curtos para consulta rapida e para dar contexto ao portal como wiki.",
+    term: "Termo",
+    searchCharacter: "Buscar personagem",
+    searchWeapon: "Buscar arma",
+    searchEcho: "Buscar echo",
+    builderEmpty: "Nada encontrado nesse filtro.",
+    options: "opcoes",
+    level: "Nivel",
+    currentMetaUpdated: "Meta DPS: atualizado manualmente em 02/09/2026",
+    tierSources: "Fontes: Prydwen, Wuthering.gg, Pocket Tactics"
+  },
+  en: {
+    navHome: "Home",
+    navCharacters: "Characters",
+    navTier: "Tier List",
+    navEchoes: "Echoes",
+    navWeapons: "Weapons",
+    navItems: "Items",
+    navGuide: "Guide",
+    navCodes: "Codes",
+    navBuilder: "Builder",
+    navEvents: "Events",
+    navNews: "News",
+    searchPlaceholder: "Search character, weapon, echo...",
+    database: "Database",
+    favorites: "Favorites",
+    liveNow: "Live",
+    comingSoon: "Soon",
+    ended: "Ended",
+    activeEvents: "Active events",
+    currentConvenes: "Current convenes",
+    emptyConvenes: "No active convenes right now.",
+    convenePageTitle: "Character and weapon banners",
+    convenePageDesc: "Convenes synced from their own endpoint, independent from in-game events.",
+    categoryOverview: "Category overview",
+    activeNow: "Active now",
+    nextEnd: "Next ending",
+    noActiveItems: "No active items",
+    featuredItem: "Featured",
+    conveneType: "Type",
+    updated: "Updated",
+    mockNotice: "Demo data ready to connect to real sources.",
+    serverTime: "Server UTC+8",
+    localTime: "Local time",
+    eventStartDate: "Start date",
+    eventStartTime: "Start time",
+    eventEndDate: "End date",
+    eventEndTime: "End time",
+    eventEndsIn: "Ends in",
+    eventStartsIn: "Starts in",
+    details: "Details",
+    copyCode: "Copy",
+    copied: "Copied",
+    justNow: "now",
+    syncEvery: "Updates every",
+    emptyEvents: "No active events right now.",
+    all: "All",
+    banners: "Banners",
+    inGame: "In-game",
+    webEvents: "Web events",
+    tower: "Tower of Adversity",
+    codes: "Codes",
+    damage: "Damage",
+    support: "Support",
+    exploration: "Exploration",
+    mainDps: "Main DPS",
+    subDps: "Sub-DPS",
+    healer: "Support",
+    controller: "Control",
+    back: "Back",
+    rarity: "Rarity",
+    element: "Element",
+    weapon: "Weapon",
+    role: "Role",
+    recommendedBuild: "Recommended build",
+    statTargets: "Stat targets",
+    statTargetsDesc: "Suggested indicator for playing this character with good consistency.",
+    priorityStats: "Priority",
+    suggestedEnergy: "Suggested Energy Regen",
+    targetReached: "OK",
+    targetMissing: "Tune",
+    stats: "Stats",
+    source: "Source",
+    reward: "Rewards",
+    status: "Status",
+    routeNotFound: "Page not found",
+    routeNotFoundText: "The requested route does not exist in this prototype.",
+    noAffiliation: "Fan project not affiliated with, endorsed by, or published by Kuro Games/Guangzhou Kuro Technology.",
+    language: "Language",
+    menu: "Menu",
+    hideShowcase: "Close",
+    showShowcase: "Show",
+    charactersHidden: "Characters hidden",
+    search: "Search",
+    searchButton: "Search",
+    primaryActions: "Primary actions",
+    baseSummary: "Database summary",
+    officialSite: "Official site",
+    heroEyebrow: "Fan wiki PT-BR - i18n - live events",
+    heroCopy: "Wuthering Waves wiki portal with builds, echoes, weapons, codes, and event schedule in one browsable database.",
+    characterSearchPlaceholder: "Search by name, element, or tag",
+    characterFiltersLabel: "Character filters",
+    noCharacterFoundTitle: "No character found",
+    noCharacterFoundText: "Try changing the search or clearing a filter.",
+    syncingCharacters: "Syncing characters...",
+    characterCount: "characters",
+    apiFallback: "API unavailable, using local cache",
+    sourceLabel: "Source",
+    updatedLabel: "Updated",
+    pageCharactersDesc: "Resonator list with role, element, weapon, builds, and individual pages.",
+    pageTierDesc: "Ranking by damage, support, and exploration with an element filter.",
+    pageEchoesDesc: "Sonatas, set effects, and source monsters for farming plans.",
+    pageWeaponsDesc: "Weapons by type, rarity, secondary stat, and recommended users.",
+    pageItemsDesc: "Ascension materials, farming sources, and weekly calendar.",
+    pageGuideTitle: "Game guide",
+    pageGuideDesc: "Core mechanics, rotations, and progression routes.",
+    pageCodesTitle: "Redeem codes",
+    pageCodesDesc: "Active and expired codes, rewards, and one-click copy.",
+    pageBuilderDesc: "Demo calculator to compare character, weapon, echo, and level.",
+    pageEventsTitle: "Current events",
+    pageEventsDesc: "Active events with official banners, schedule, time, and live countdown.",
+    pageNewsDesc: "Announcement feed, patch notes, and editorial updates.",
+    showcaseKicker: "Resonators",
+    showcaseTitle: "Team-role showcase",
+    showcaseDesc: "Tabs to compare damage, support, coordinated attacks, and field control roles.",
+    tierPreviewTitle: "Current DPS meta",
+    tierPreviewDesc: "Based on recent rankings from Prydwen, Wuthering.gg, and Pocket Tactics.",
+    recentNewsTitle: "Recent patch notes and announcements",
+    recentNewsDesc: "Feed cards ready to receive RSS, launcher CDN, or CMS data.",
+    conveneSpotlightTitle: "Active Convene banners",
+    conveneSpotlightDesc: "Separate source from /api/events, with official art, featured item, schedule, and countdown.",
+    redeemTitle: "One-click redeem",
+    redeemDesc: "List with active/expired status, rewards, and expiration date.",
+    echoes: "Echoes",
+    mainStats: "Main stats",
+    team: "Team",
+    skills: "Skills",
+    weaponAffinity: "Weapon affinity",
+    substat: "Substat",
+    users: "Users",
+    type: "Type",
+    days: "Days",
+    item: "Item",
+    category: "Category",
+    listedItems: "items listed in this category.",
+    farmPriorities: "Farm priorities",
+    farmPrioritiesDesc: "A quick view to organize ascension, boss mats, XP, and currency without wasting weekly efficiency.",
+    catalogedItems: "Cataloged items",
+    resourceTypes: "Resource types",
+    universalUse: "Universal use",
+    limitedTime: "Limited time",
+    weeklyCalendar: "Weekly calendar",
+    guideBasics: "Essential foundations",
+    quickChecklist: "Quick checklist",
+    readings: "Readings",
+    detailedGuides: "Detailed guides",
+    detailedGuidesDesc: "Short reference texts that give the portal more wiki context.",
+    term: "Term",
+    searchCharacter: "Search character",
+    searchWeapon: "Search weapon",
+    searchEcho: "Search echo",
+    builderEmpty: "Nothing found with this filter.",
+    options: "options",
+    level: "Level",
+    currentMetaUpdated: "DPS meta: manually updated on 09/02/2026",
+    tierSources: "Sources: Prydwen, Wuthering.gg, Pocket Tactics"
+  },
+  es: {
+    navHome: "Inicio",
+    navCharacters: "Personajes",
+    navTier: "Tier List",
+    navEchoes: "Ecos",
+    navWeapons: "Armas",
+    navItems: "Objetos",
+    navGuide: "Guia",
+    navCodes: "Codigos",
+    navBuilder: "Builder",
+    navEvents: "Eventos",
+    navNews: "Noticias",
+    searchPlaceholder: "Buscar personaje, arma, eco...",
+    database: "Base de datos",
+    favorites: "Favoritos",
+    liveNow: "En vivo",
+    comingSoon: "Pronto",
+    ended: "Finalizado",
+    activeEvents: "Eventos activos",
+    currentConvenes: "Convocatorias actuales",
+    emptyConvenes: "No hay convocatorias activas ahora.",
+    convenePageTitle: "Banners de personaje y arma",
+    convenePageDesc: "Convocatorias sincronizadas desde su propio endpoint, independientes de los eventos in-game.",
+    categoryOverview: "Resumen por categoria",
+    activeNow: "Activos ahora",
+    nextEnd: "Proximo final",
+    noActiveItems: "Sin items activos",
+    featuredItem: "Destacado",
+    conveneType: "Tipo",
+    updated: "Actualizado",
+    mockNotice: "Datos demo listos para conectar fuentes reales.",
+    serverTime: "Servidor UTC+8",
+    localTime: "Hora local",
+    eventStartDate: "Fecha de inicio",
+    eventStartTime: "Hora de inicio",
+    eventEndDate: "Fecha de fin",
+    eventEndTime: "Hora de fin",
+    eventEndsIn: "Termina en",
+    eventStartsIn: "Empieza en",
+    details: "Detalles",
+    copyCode: "Copiar",
+    copied: "Copiado",
+    justNow: "ahora",
+    syncEvery: "Actualiza cada",
+    emptyEvents: "No hay eventos activos ahora.",
+    all: "Todos",
+    banners: "Convocatorias",
+    inGame: "Eventos in-game",
+    webEvents: "Eventos web",
+    tower: "Torre de Adversidad",
+    codes: "Codigos",
+    damage: "Dano",
+    support: "Soporte",
+    exploration: "Exploracion",
+    mainDps: "Dano principal",
+    subDps: "Sub-DPS",
+    healer: "Soporte",
+    controller: "Control",
+    back: "Volver",
+    rarity: "Rareza",
+    element: "Elemento",
+    weapon: "Arma",
+    role: "Rol",
+    recommendedBuild: "Build recomendada",
+    statTargets: "Metas de stats",
+    statTargetsDesc: "Indicador sugerido para jugar este personaje con buena consistencia.",
+    priorityStats: "Prioridad",
+    suggestedEnergy: "Recarga sugerida",
+    targetReached: "Ok",
+    targetMissing: "Ajustar",
+    stats: "Stats",
+    source: "Fuente",
+    reward: "Recompensas",
+    status: "Estado",
+    routeNotFound: "Pagina no encontrada",
+    routeNotFoundText: "La ruta solicitada no existe en este prototipo.",
+    noAffiliation: "Proyecto de fan no afiliado, respaldado ni publicado por Kuro Games/Guangzhou Kuro Technology.",
+    language: "Idioma",
+    menu: "Menu",
+    hideShowcase: "Cerrar",
+    showShowcase: "Mostrar",
+    charactersHidden: "Personajes ocultos",
+    search: "Busqueda",
+    searchButton: "Buscar",
+    primaryActions: "Acciones principales",
+    baseSummary: "Resumen de la base",
+    officialSite: "Sitio oficial",
+    heroEyebrow: "Fan wiki PT-BR - i18n - eventos en vivo",
+    heroCopy: "Portal wiki de Wuthering Waves con builds, ecos, armas, codigos y agenda de eventos en una sola base navegable.",
+    characterSearchPlaceholder: "Buscar por nombre, elemento o etiqueta",
+    characterFiltersLabel: "Filtros de personajes",
+    noCharacterFoundTitle: "No se encontro ningun personaje",
+    noCharacterFoundText: "Prueba cambiar la busqueda o limpiar algun filtro.",
+    syncingCharacters: "Sincronizando personajes...",
+    characterCount: "personajes",
+    apiFallback: "API no disponible, usando cache local",
+    sourceLabel: "Fuente",
+    updatedLabel: "Actualizado",
+    pageCharactersDesc: "Lista de Resonators con rol, elemento, arma, builds y pagina individual.",
+    pageTierDesc: "Clasificacion por dano, soporte y exploracion con filtro por elemento.",
+    pageEchoesDesc: "Sonatas, efectos de conjunto y monstruos de origen para planear farmeo.",
+    pageWeaponsDesc: "Armas por tipo, rareza, atributo secundario y usuarios recomendados.",
+    pageItemsDesc: "Materiales de ascension, fuentes de farmeo y calendario semanal.",
+    pageGuideTitle: "Guia del juego",
+    pageGuideDesc: "Mecanicas centrales, rotaciones y rutas de progresion.",
+    pageCodesTitle: "Codigos de canje",
+    pageCodesDesc: "Codigos activos y expirados, recompensas y copia en un clic.",
+    pageBuilderDesc: "Calculadora demo para comparar personaje, arma, eco y nivel.",
+    pageEventsTitle: "Eventos actuales",
+    pageEventsDesc: "Eventos activos con banner oficial, periodo, horario y cuenta regresiva en tiempo real.",
+    pageNewsDesc: "Feed de anuncios, patch notes y actualizaciones editoriales.",
+    showcaseKicker: "Resonators",
+    showcaseTitle: "Showcase por rol de equipo",
+    showcaseDesc: "Pestanas para comparar funciones de dano, soporte, ataques coordinados y control de campo.",
+    tierPreviewTitle: "Meta DPS actual",
+    tierPreviewDesc: "Basado en rankings recientes de Prydwen, Wuthering.gg y Pocket Tactics.",
+    recentNewsTitle: "Patch notes y anuncios recientes",
+    recentNewsDesc: "Cards de feed preparados para recibir RSS, CDN del launcher o CMS.",
+    conveneSpotlightTitle: "Banners de Convene activos",
+    conveneSpotlightDesc: "Fuente separada de /api/events, con arte oficial, destacado, periodo y cuenta regresiva.",
+    redeemTitle: "Canje en un clic",
+    redeemDesc: "Lista con estado activo/expirado, recompensas y fecha de vencimiento.",
+    echoes: "Ecos",
+    mainStats: "Stats principales",
+    team: "Equipo",
+    skills: "Habilidades",
+    weaponAffinity: "Afinidad con armas",
+    substat: "Substat",
+    users: "Uso",
+    type: "Tipo",
+    days: "Dias",
+    item: "Item",
+    category: "Categoria",
+    listedItems: "items listados en esta categoria.",
+    farmPriorities: "Prioridades de farmeo",
+    farmPrioritiesDesc: "Una vista rapida para organizar ascension, boss mats, XP y moneda sin perder eficiencia semanal.",
+    catalogedItems: "Items catalogados",
+    resourceTypes: "Tipos de recurso",
+    universalUse: "Uso universal",
+    limitedTime: "Tiempo limitado",
+    weeklyCalendar: "Calendario semanal",
+    guideBasics: "Fundamentos esenciales",
+    quickChecklist: "Checklist rapido",
+    readings: "Lecturas",
+    detailedGuides: "Guias detalladas",
+    detailedGuidesDesc: "Textos cortos para consulta rapida y contexto de wiki.",
+    term: "Termino",
+    searchCharacter: "Buscar personaje",
+    searchWeapon: "Buscar arma",
+    searchEcho: "Buscar eco",
+    builderEmpty: "Nada encontrado con este filtro.",
+    options: "opciones",
+    level: "Nivel",
+    currentMetaUpdated: "Meta DPS: actualizado manualmente el 02/09/2026",
+    tierSources: "Fuentes: Prydwen, Wuthering.gg, Pocket Tactics"
+  }
+};
+
+const routes = [
+  { id: "home", slug: "", labelKey: "navHome", nav: true },
+  { id: "characters", slug: "personagens", labelKey: "navCharacters", nav: true },
+  { id: "tier", slug: "tier-list", labelKey: "navTier", nav: true },
+  { id: "echoes", slug: "ecos", labelKey: "navEchoes", nav: true },
+  { id: "weapons", slug: "armas", labelKey: "navWeapons", nav: true },
+  { id: "items", slug: "itens", labelKey: "navItems", nav: false },
+  { id: "guide", slug: "guia", labelKey: "navGuide", nav: false },
+  { id: "codes", slug: "codigos", labelKey: "navCodes", nav: false },
+  { id: "builder", slug: "builder", labelKey: "navBuilder", nav: true },
+  { id: "events", slug: "eventos", labelKey: "navEvents", nav: true },
+  { id: "news", slug: "noticias", labelKey: "navNews", nav: false }
+];
+
+const routeBySlug = new Map(routes.map((route) => [route.slug, route]));
+const routeById = new Map(routes.map((route) => [route.id, route]));
+routeBySlug.set("characters", routeById.get("characters"));
+
+const roleLabels = {
+  dps: "mainDps",
+  sub: "subDps",
+  support: "healer",
+  control: "controller"
+};
+
+const categoryLabels = {
+  all: "all",
+  banner: "banners",
+  evento_in_game: "inGame",
+  evento_web: "webEvents",
+  torre_adversidade: "tower",
+  codigo: "codes"
+};
+
+const characters = [
+  {
+    slug: "jinhsi",
+    name: "Jinhsi",
+    rarity: 5,
+    element: "Spectro",
+    weapon: "Broadblade",
+    role: "dps",
+    tags: ["Burst", "Forte Circuit", "Spectro"],
+    stats: { hp: 10825, atk: 438, def: 1258, crit: "24.2%" },
+    build: {
+      weapon: "Ages of Harvest",
+      echoes: "Celestial Light 5p",
+      mainStats: ["CRIT DMG", "Spectro DMG", "ATK%"],
+      rotation: "Intro > Skill > Forte Circuit > Liberation > Swap cancel",
+      team: ["Verina", "Yinlin", "Spectro Rover"]
+    },
+    skills: ["Eras in Unity", "Incarnation", "Purge of Light"],
+    affinity: ["Ages of Harvest", "Verdant Summit", "Autumntrace"],
+    tiers: { damage: "S+", support: "B", exploration: "A" }
+  },
+  {
+    slug: "jiyan",
+    name: "Jiyan",
+    rarity: 5,
+    element: "Aero",
+    weapon: "Broadblade",
+    role: "dps",
+    tags: ["Heavy Attack", "Liberation", "Aero"],
+    stats: { hp: 10488, atk: 437, def: 1186, crit: "22.0%" },
+    build: {
+      weapon: "Verdant Summit",
+      echoes: "Sierra Gale 5p",
+      mainStats: ["CRIT Rate", "Aero DMG", "ATK%"],
+      rotation: "Intro > Liberation > Heavy Attack chain > Skill",
+      team: ["Mortefi", "Verina", "Aalto"]
+    },
+    skills: ["Qingloong at War", "Windborne Strike", "Emerald Storm"],
+    affinity: ["Verdant Summit", "Ages of Harvest", "Broadblade of Night"],
+    tiers: { damage: "S", support: "C", exploration: "A" }
+  },
+  {
+    slug: "yinlin",
+    name: "Yinlin",
+    rarity: 5,
+    element: "Electro",
+    weapon: "Rectifier",
+    role: "sub",
+    tags: ["Coordinated Attack", "Electro", "Off-field"],
+    stats: { hp: 11000, atk: 400, def: 1283, crit: "18.0%" },
+    build: {
+      weapon: "Stringmaster",
+      echoes: "Void Thunder 5p",
+      mainStats: ["CRIT Rate", "Electro DMG", "ATK%"],
+      rotation: "Intro > Skill marks > Forte execution > Outro",
+      team: ["Jinhsi", "Calcharo", "Verina"]
+    },
+    skills: ["Zapstring", "Magnetic Roar", "Thundering Wrath"],
+    affinity: ["Stringmaster", "Cosmic Ripples", "Jinzhou Keeper"],
+    tiers: { damage: "S", support: "A", exploration: "B" }
+  },
+  {
+    slug: "verina",
+    name: "Verina",
+    rarity: 5,
+    element: "Spectro",
+    weapon: "Rectifier",
+    role: "support",
+    tags: ["Heal", "ATK Buff", "Revive"],
+    stats: { hp: 14237, atk: 338, def: 1100, crit: "5.0%" },
+    build: {
+      weapon: "Variation",
+      echoes: "Rejuvenating Glow 5p",
+      mainStats: ["Healing Bonus", "Energy Regen", "ATK%"],
+      rotation: "Intro > Skill > Liberation > Forte > Outro",
+      team: ["Jinhsi", "Jiyan", "Encore"]
+    },
+    skills: ["Botany Experiment", "Arboreal Flourish", "Grace of Life"],
+    affinity: ["Variation", "Comet Flare", "Rectifier of Voyage"],
+    tiers: { damage: "C", support: "S+", exploration: "A" }
+  },
+  {
+    slug: "mortefi",
+    name: "Mortefi",
+    rarity: 4,
+    element: "Fusion",
+    weapon: "Pistols",
+    role: "sub",
+    tags: ["Coordinated Attack", "Heavy Buff", "Fusion"],
+    stats: { hp: 10025, atk: 250, def: 1136, crit: "12.0%" },
+    build: {
+      weapon: "Static Mist",
+      echoes: "Moonlit Clouds 5p",
+      mainStats: ["CRIT Rate", "Fusion DMG", "Energy Regen"],
+      rotation: "Intro > Skill > Liberation > Outro to heavy attacker",
+      team: ["Jiyan", "Danjin", "Verina"]
+    },
+    skills: ["Impromptu Show", "Fury Fugue", "Dissonance"],
+    affinity: ["Static Mist", "Thunderbolt", "Undying Flame"],
+    tiers: { damage: "A", support: "A", exploration: "B" }
+  },
+  {
+    slug: "sanhua",
+    name: "Sanhua",
+    rarity: 4,
+    element: "Glacio",
+    weapon: "Sword",
+    role: "control",
+    tags: ["Basic Attack Buff", "Burst", "Glacio"],
+    stats: { hp: 10062, atk: 275, def: 941, crit: "12.0%" },
+    build: {
+      weapon: "Emerald of Genesis",
+      echoes: "Freezing Frost 5p",
+      mainStats: ["CRIT DMG", "Glacio DMG", "ATK%"],
+      rotation: "Intro > Skill > Detonate ice > Liberation > Outro",
+      team: ["Encore", "Lingyang", "Verina"]
+    },
+    skills: ["Frigid Light", "Eternal Frost", "Clarity of Mind"],
+    affinity: ["Emerald of Genesis", "Lunar Cutter", "Sword of Night"],
+    tiers: { damage: "A", support: "A", exploration: "B" }
+  }
+];
+
+const elementEchoSet = {
+  Aero: "Sierra Gale 5p",
+  Electro: "Void Thunder 5p",
+  Fusion: "Molten Rift 5p",
+  Glacio: "Freezing Frost 5p",
+  Havoc: "Sun-sinking Eclipse 5p",
+  Spectro: "Celestial Light 5p"
+};
+
+const roleTierTemplate = {
+  dps: { damage: "A", support: "C", exploration: "A" },
+  sub: { damage: "A", support: "A", exploration: "B" },
+  support: { damage: "C", support: "A", exploration: "A" },
+  control: { damage: "B", support: "A", exploration: "B" }
+};
+
+const tierSourceLinks = [
+  { label: "Prydwen", url: "https://www.prydwen.gg/wuthering-waves/team-tier-list" },
+  { label: "Wuthering.gg", url: "https://wuthering.gg/tier-list" },
+  { label: "Pocket Tactics", url: "https://www.pockettactics.com/wuthering-waves/tier-list" }
+];
+
+const currentMetaTierOverrides = {
+  "yangyang-xuanling": { damage: "SS", exploration: "S", damageRank: 1 },
+  aemeath: { damage: "SS", exploration: "A", damageRank: 2 },
+  hiyuki: { damage: "SS", exploration: "A", damageRank: 3 },
+  sigrika: { damage: "SS", exploration: "S", damageRank: 4 },
+  qingxiao: { damage: "SS", exploration: "A", damageRank: 5 },
+  "luuk-herssen": { damage: "SS", exploration: "A", damageRank: 6 },
+  cartethyia: { damage: "S+", exploration: "S", damageRank: 7 },
+  phrolova: { damage: "S+", exploration: "A", damageRank: 8 },
+  augusta: { damage: "S+", exploration: "A", damageRank: 9 },
+  galbrena: { damage: "S+", exploration: "A", damageRank: 10 },
+  iuno: { damage: "S+", exploration: "S", damageRank: 11 },
+  lucy: { damage: "S+", exploration: "A", damageRank: 12 },
+  carlotta: { damage: "S", exploration: "A", damageRank: 13 },
+  jiyan: { damage: "S", exploration: "A", damageRank: 14 },
+  zani: { damage: "S", exploration: "A", damageRank: 15 },
+  rebecca: { damage: "S", exploration: "A", damageRank: 16 },
+  lupa: { damage: "S", exploration: "A", damageRank: 17 },
+  changli: { damage: "A", exploration: "A", damageRank: 18 },
+  camellya: { damage: "A", exploration: "A", damageRank: 19 },
+  jinhsi: { damage: "A", exploration: "A", damageRank: 20 },
+  phoebe: { damage: "A", exploration: "A", damageRank: 21 },
+  encore: { damage: "A", exploration: "B", damageRank: 22 },
+  "xiangli-yao": { damage: "A", exploration: "B", damageRank: 23 },
+  calcharo: { damage: "B", exploration: "B", damageRank: 24 },
+  danjin: { damage: "B", exploration: "B", damageRank: 25 },
+  lingyang: { damage: "C", exploration: "B", damageRank: 26 },
+  chixia: { damage: "C", exploration: "B", damageRank: 27 }
+};
+
+const statByRole = {
+  dps: { hp: 10680, atk: 412, def: 1120, crit: "20.0%" },
+  sub: { hp: 10320, atk: 360, def: 1160, crit: "16.0%" },
+  support: { hp: 12600, atk: 318, def: 1210, crit: "8.0%" },
+  control: { hp: 11240, atk: 340, def: 1185, crit: "12.0%" }
+};
+
+const signatureByWeapon = {
+  Broadblade: "Lustrous Razor",
+  Sword: "Emerald of Genesis",
+  Pistols: "Static Mist",
+  Gauntlets: "Abyss Surges",
+  Rectifier: "Cosmic Ripples"
+};
+
+const compactCharacterData = [
+  ["Aalto", 4, "Aero", "Pistols", "sub"],
+  ["Aemeath", 5, "Fusion", "Sword", "dps"],
+  ["Augusta", 5, "Electro", "Broadblade", "dps"],
+  ["Baizhi", 4, "Glacio", "Rectifier", "support"],
+  ["Brant", 5, "Fusion", "Sword", "dps"],
+  ["Buling", 4, "Electro", "Gauntlets", "control"],
+  ["Calcharo", 5, "Electro", "Broadblade", "dps"],
+  ["Camellya", 5, "Havoc", "Sword", "dps"],
+  ["Cantarella", 5, "Havoc", "Rectifier", "sub"],
+  ["Carlotta", 5, "Glacio", "Pistols", "dps"],
+  ["Cartethyia", 5, "Aero", "Sword", "dps"],
+  ["Changli", 5, "Fusion", "Sword", "dps"],
+  ["Chisa", 4, "Spectro", "Sword", "control"],
+  ["Chixia", 4, "Fusion", "Pistols", "dps"],
+  ["Ciaccona", 5, "Aero", "Pistols", "sub"],
+  ["Danjin", 4, "Havoc", "Sword", "dps"],
+  ["Denia", 4, "Fusion", "Broadblade", "sub"],
+  ["Encore", 5, "Fusion", "Rectifier", "dps"],
+  ["Galbrena", 5, "Havoc", "Pistols", "dps"],
+  ["Hiyuki", 5, "Glacio", "Sword", "dps"],
+  ["Hsin", 5, "Spectro", "Broadblade", "dps"],
+  ["Iuno", 5, "Aero", "Gauntlets", "dps"],
+  ["Jianxin", 5, "Aero", "Gauntlets", "control"],
+  ["Jingran", 5, "Fusion", "Sword", "dps"],
+  ["Lingyang", 5, "Glacio", "Gauntlets", "dps"],
+  ["Lucilla", 4, "Glacio", "Sword", "sub"],
+  ["Lucy", 4, "Spectro", "Rectifier", "dps"],
+  ["Lumi", 4, "Electro", "Broadblade", "sub"],
+  ["Lupa", 5, "Fusion", "Broadblade", "dps"],
+  ["Luuk Herssen", 5, "Spectro", "Gauntlets", "dps"],
+  ["Lynae", 5, "Spectro", "Sword", "sub"],
+  ["Mornye", 4, "Fusion", "Pistols", "support"],
+  ["Phoebe", 5, "Spectro", "Rectifier", "dps"],
+  ["Phrolova", 5, "Havoc", "Rectifier", "dps"],
+  ["Qingxiao", 5, "Aero", "Sword", "dps"],
+  ["Qiuyuan", 5, "Aero", "Sword", "sub"],
+  ["Rebecca", 4, "Electro", "Rectifier", "sub"],
+  ["Roccia", 5, "Havoc", "Gauntlets", "control"],
+  ["Rover (Aero)", 5, "Aero", "Sword", "dps"],
+  ["Rover (Electro)", 5, "Electro", "Sword", "dps"],
+  ["Rover (Havoc)", 5, "Havoc", "Sword", "dps"],
+  ["Rover (Spectro)", 5, "Spectro", "Sword", "dps"],
+  ["Sigrika", 5, "Aero", "Gauntlets", "dps"],
+  ["Suisui", 5, "Glacio", "Rectifier", "support"],
+  ["Suoming", 5, "Spectro", "Rectifier", "support"],
+  ["Taoqi", 4, "Havoc", "Broadblade", "support"],
+  ["The Shorekeeper", 5, "Spectro", "Rectifier", "support"],
+  ["Xiangli Yao", 5, "Electro", "Gauntlets", "dps"],
+  ["Yangyang", 4, "Aero", "Sword", "control"],
+  ["Yangyang Xuanling", 5, "Havoc", "Sword", "dps"],
+  ["Youhu", 4, "Glacio", "Gauntlets", "support"],
+  ["Yuanwu", 4, "Electro", "Gauntlets", "support"],
+  ["Zani", 5, "Spectro", "Gauntlets", "dps"],
+  ["Zhezhi", 5, "Glacio", "Rectifier", "sub"]
+];
+
+function slugify(value) {
+  return value
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function characterAssetFileName(name = "") {
+  const slug = slugify(name);
+  if (characterAssetNameOverrides[slug]) return characterAssetNameOverrides[slug];
+
+  return String(name)
+    .replace(/\([^)]*\)/g, "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .split(/[^a-zA-Z0-9]+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join("");
+}
+
+function characterAssetUrl(name = "") {
+  const fileName = characterAssetFileName(name);
+  return fileName ? `${WUWA_ASSET_BASE_URL}/${fileName}.png` : "";
+}
+
+function itemAssetFileName(item = {}) {
+  if (itemAssetNameOverrides[item.slug]) return itemAssetNameOverrides[item.slug];
+
+  return String(item.name || "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/['’]/g, "")
+    .split(/[^a-zA-Z0-9]+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join("");
+}
+
+function itemAssetUrl(kind, item) {
+  const fileName = itemAssetFileName(item);
+  if (!fileName) return "";
+
+  const extension = itemAssetExtensionOverrides[item.slug] || (kind === "weapon" ? "png" : "webp");
+
+  return kind === "weapon"
+    ? `${WUWA_WEAPON_ASSET_BASE_URL}/${fileName}.${extension}`
+    : `${WUWA_ASSET_BASE_URL}/${fileName}.${extension}`;
+}
+
+function renderItemAssetImage(kind, item, className = "item-art") {
+  const imageUrl = item.iconUrl || item.imageUrl || itemAssetUrl(kind, item);
+  if (!imageUrl) return "";
+
+  return `
+    <div class="${className}" data-kind="${kind}">
+      <img
+        src="${escapeHtml(imageUrl)}"
+        alt="${escapeHtml(item.name)}"
+        loading="lazy"
+        decoding="async"
+        onerror="this.onerror=null;this.src='${ITEM_FALLBACK_IMAGE}';var p=this.parentElement;if(p)p.classList.add('is-fallback');"
+      />
+    </div>
+  `;
+}
+
+function createCharacter([name, rarity, element, weapon, role]) {
+  const baseStats = statByRole[role] || statByRole.dps;
+  const roleTag = role === "dps" ? "Main DPS" : role === "sub" ? "Sub-DPS" : role === "support" ? "Support" : "Control";
+  const assetUrl = characterAssetUrl(name);
+
+  return {
+    slug: slugify(name),
+    name,
+    rarity,
+    element,
+    weapon,
+    role,
+    tags: [roleTag, element, weapon],
+    stats: { ...baseStats },
+    build: {
+      weapon: signatureByWeapon[weapon] || "Emerald of Genesis",
+      echoes: elementEchoSet[element] || "Moonlit Clouds 5p",
+      mainStats: role === "support" ? ["Healing/ATK", "Energy Regen", "ATK%"] : ["CRIT", `${element} DMG`, "ATK%"],
+      rotation: "Intro > Skill > Forte Circuit > Liberation > Outro",
+      team: role === "support" ? ["Carry principal", "Sub-DPS", name] : [name, "Sub-DPS", "Suporte"]
+    },
+    skills: ["Ataque basico", "Resonance Skill", "Resonance Liberation"],
+    affinity: [signatureByWeapon[weapon] || "Emerald of Genesis", "Pioneer Podcast option", `${weapon} of Night`],
+    tiers: { ...(roleTierTemplate[role] || roleTierTemplate.dps) },
+    imageUrl: assetUrl,
+    portraitUrl: assetUrl,
+    iconUrl: assetUrl
+  };
+}
+
+function characterLookupKey(character) {
+  return slugify(character.name || character.id || character.slug || "").replace(/-/g, "");
+}
+
+function inferRole(character) {
+  if (character.weapon === "Rectifier" && ["Glacio", "Spectro"].includes(character.element)) return "support";
+  if (character.weapon === "Rectifier") return "sub";
+  if (character.weapon === "Gauntlets" && character.element === "Aero") return "control";
+  return "dps";
+}
+
+function hydrateApiCharacter(apiCharacter, localCharacter) {
+  const role = localCharacter?.role || inferRole(apiCharacter);
+  const base = localCharacter || createCharacter([
+    apiCharacter.name,
+    apiCharacter.rarity || 4,
+    apiCharacter.element,
+    apiCharacter.weapon,
+    role
+  ]);
+  const imageUrl = apiCharacter.imageUrl || base.imageUrl || characterAssetUrl(apiCharacter.name || apiCharacter.id);
+
+  return {
+    ...base,
+    id: apiCharacter.id,
+    slug: slugify(apiCharacter.name || apiCharacter.id),
+    name: apiCharacter.name,
+    originalName: apiCharacter.originalName,
+    yomi: apiCharacter.yomi,
+    rarity: apiCharacter.rarity || base.rarity,
+    element: apiCharacter.element || base.element,
+    weapon: apiCharacter.weapon || base.weapon,
+    version: apiCharacter.version,
+    imageUrl,
+    portraitUrl: apiCharacter.portraitUrl || imageUrl,
+    iconUrl: apiCharacter.iconUrl || imageUrl,
+    sourceUrl: apiCharacter.sourceUrl,
+    imageSourceUrl: apiCharacter.imageSourceUrl,
+    tags: [...new Set([...(base.tags || []), apiCharacter.element, apiCharacter.weapon, apiCharacter.version ? `v${apiCharacter.version}` : ""])]
+      .filter(Boolean)
+  };
+}
+
+const existingCharacterSlugs = new Set(characters.map((character) => character.slug));
+characters.push(
+  ...compactCharacterData
+    .map(createCharacter)
+    .filter((character) => !existingCharacterSlugs.has(character.slug))
+);
+characters.forEach((character) => {
+  const assetUrl = character.imageUrl || characterAssetUrl(character.name);
+  const metaOverride = currentMetaTierOverrides[character.slug];
+
+  if (metaOverride) {
+    const { damageRank, ...tiers } = metaOverride;
+    character.tiers = { ...character.tiers, ...tiers };
+    character.damageRank = damageRank;
+    character.metaSource = "Prydwen + Wuthering.gg + Pocket Tactics";
+  }
+
+  character.imageUrl = assetUrl;
+  character.portraitUrl = character.portraitUrl || assetUrl;
+  character.iconUrl = character.iconUrl || assetUrl;
+});
+
+const echoes = [
+  {
+    slug: "celestial-light",
+    name: "Celestial Light",
+    element: "Spectro",
+    effect2: "Aumenta o dano Spectro em 10%.",
+    effect5: "Apos Intro Skill, aumenta dano Spectro por uma janela curta.",
+    sources: ["Mourning Aix", "Lightcrusher", "Whiff Whaff"],
+    bestFor: ["Jinhsi", "Spectro Rover"]
+  },
+  {
+    slug: "sierra-gale",
+    name: "Sierra Gale",
+    element: "Aero",
+    effect2: "Aumenta o dano Aero em 10%.",
+    effect5: "Apos Intro Skill, fortalece dano Aero e rotacoes de burst.",
+    sources: ["Feilian Beringal", "Chaserazor", "Hoochief"],
+    bestFor: ["Jiyan", "Aalto"]
+  },
+  {
+    slug: "moonlit-clouds",
+    name: "Moonlit Clouds",
+    element: "Universal",
+    effect2: "Aumenta Recarga de Energia.",
+    effect5: "Apos Outro Skill, aumenta ATK do proximo personagem.",
+    sources: ["Impermanence Heron", "Stonewall Bracer", "Flautist"],
+    bestFor: ["Mortefi", "Sanhua", "Yinlin"]
+  },
+  {
+    slug: "rejuvenating-glow",
+    name: "Rejuvenating Glow",
+    element: "Support",
+    effect2: "Aumenta bonus de cura.",
+    effect5: "Ao curar aliados, aumenta ATK do time temporariamente.",
+    sources: ["Bell-Borne Geochelone", "Cruisewing", "Fission Junrock"],
+    bestFor: ["Verina", "Baizhi"]
+  },
+  {
+    slug: "void-thunder",
+    name: "Void Thunder",
+    element: "Electro",
+    effect2: "Aumenta dano Electro em 10%.",
+    effect5: "Apos Skill ou Heavy Attack, aumenta dano Electro.",
+    sources: ["Tempest Mephis", "Thundering Mephis", "Violet-Feathered Heron"],
+    bestFor: ["Yinlin", "Calcharo"]
+  },
+  {
+    slug: "sun-sinking-eclipse",
+    name: "Sun-sinking Eclipse",
+    element: "Havoc",
+    effect2: "Aumenta dano Havoc em 10%.",
+    effect5: "Ataques basicos e pesados acumulam bonus Havoc.",
+    sources: ["Crownless", "Dreamless", "Havoc Dreadmane"],
+    bestFor: ["Danjin", "Havoc Rover"]
+  }
+];
+
+const compactEchoData = [
+  ["Molten Rift", "Fusion", "Aumenta dano Fusion.", "Ao usar Skill, melhora janelas de dano Fusion.", ["Inferno Rider", "Fusion Dreadmane", "Violet-Feathered Heron"], ["Changli", "Encore", "Brant"]],
+  ["Freezing Frost", "Glacio", "Aumenta dano Glacio.", "Apos ataque basico ou pesado, melhora dano Glacio.", ["Lampylumen Myriad", "Glacio Predator", "Tambourinist"], ["Carlotta", "Lingyang", "Zhezhi"]],
+  ["Lingering Tunes", "Universal", "Aumenta ATK.", "Mantem bonus de ATK em campo e fortalece o eco principal.", ["Mech Abomination", "Spearback", "Chasm Guardian"], ["Calcharo", "Encore", "Lumi"]],
+  ["Empyrean Anthem", "Coordinated", "Aumenta Recarga de Energia.", "Fortalece ataques coordenados e dano fora de campo.", ["Nightmare Impermanence Heron", "Flautist", "Traffic Illuminator"], ["Yinlin", "Mortefi", "Zhezhi"]],
+  ["Midnight Veil", "Havoc", "Aumenta dano Havoc.", "Ao aplicar Outro, fortalece dano Havoc do time.", ["Nightmare Crownless", "Dreamless", "Havoc Warrior"], ["Camellya", "Phrolova", "Danjin"]],
+  ["Frosty Resolve", "Glacio", "Aumenta dano de Skill.", "Alternativa compacta para carries Glacio e rotacoes curtas.", ["Lampylumen Myriad", "Roseshroom", "Chirpuff"], ["Hiyuki", "Carlotta"]],
+  ["Tidebreaking Courage", "Aero", "Aumenta dano Aero.", "Recompensa janelas agressivas apos Intro e Liberation.", ["Nightmare Feilian Beringal", "Hoochief", "Chaserazor"], ["Cartethyia", "Qingxiao", "Jiyan"]],
+  ["Gusts of Welkin", "Aero", "Aumenta dano de coordenação.", "Ajuda suportes Aero a manter buffs e troca rapida.", ["Cyan-Feathered Heron", "Aero Predator", "Whiff Whaff"], ["Ciaccona", "Aalto", "Yangyang"]]
+];
+
+const existingEchoSlugs = new Set(echoes.map((echo) => echo.slug));
+echoes.push(
+  ...compactEchoData
+    .map(([name, element, effect2, effect5, sources, bestFor]) => ({
+      slug: slugify(name),
+      name,
+      element,
+      effect2,
+      effect5,
+      sources,
+      bestFor
+    }))
+    .filter((echo) => !existingEchoSlugs.has(echo.slug))
+);
+
+const weapons = [
+  {
+    slug: "ages-of-harvest",
+    name: "Ages of Harvest",
+    type: "Broadblade",
+    rarity: 5,
+    baseAtk: 587,
+    stat: "CRIT Rate",
+    passive: "Amplifica dano de Skill e janelas de burst.",
+    recommended: ["Jinhsi"]
+  },
+  {
+    slug: "verdant-summit",
+    name: "Verdant Summit",
+    type: "Broadblade",
+    rarity: 5,
+    baseAtk: 587,
+    stat: "CRIT DMG",
+    passive: "Fortalece Heavy Attack e dano apos Liberation.",
+    recommended: ["Jiyan"]
+  },
+  {
+    slug: "stringmaster",
+    name: "Stringmaster",
+    type: "Rectifier",
+    rarity: 5,
+    baseAtk: 500,
+    stat: "CRIT Rate",
+    passive: "Aumenta dano elemental e ATK apos Skill.",
+    recommended: ["Yinlin", "Encore"]
+  },
+  {
+    slug: "static-mist",
+    name: "Static Mist",
+    type: "Pistols",
+    rarity: 5,
+    baseAtk: 588,
+    stat: "CRIT Rate",
+    passive: "Gera energia e fortalece o proximo personagem.",
+    recommended: ["Mortefi"]
+  },
+  {
+    slug: "variation",
+    name: "Variation",
+    type: "Rectifier",
+    rarity: 4,
+    baseAtk: 337,
+    stat: "Energy Regen",
+    passive: "Restaura energia de concerto apos Skill.",
+    recommended: ["Verina", "Baizhi"]
+  },
+  {
+    slug: "emerald-of-genesis",
+    name: "Emerald of Genesis",
+    type: "Sword",
+    rarity: 5,
+    baseAtk: 587,
+    stat: "CRIT Rate",
+    passive: "Aumenta Recarga de Energia e ATK apos Skill.",
+    recommended: ["Sanhua", "Rover"]
+  }
+];
+
+const compactWeaponData = [
+  ["Lustrous Razor", "Broadblade", 5, 588, "ATK", ["Calcharo", "Lupa"]],
+  ["Abyss Surges", "Gauntlets", 5, 588, "ATK", ["Xiangli Yao", "Jianxin"]],
+  ["Cosmic Ripples", "Rectifier", 5, 500, "ATK", ["Encore", "Phoebe"]],
+  ["Blazing Brilliance", "Sword", 5, 588, "CRIT DMG", ["Changli", "Camellya"]],
+  ["Blazing Justice", "Gauntlets", 5, 588, "CRIT DMG", ["Zani", "Hiyuki"]],
+  ["Azure Oath", "Sword", 5, 588, "CRIT Rate", ["Cartethyia", "Qiuyuan"]],
+  ["Defier's Thorn", "Sword", 5, 588, "HP", ["Brant", "Taoqi"]],
+  ["Emerald Sentence", "Sword", 5, 588, "CRIT Rate", ["Lynae", "Rover"]],
+  ["Daybreaker's Spine", "Gauntlets", 5, 588, "CRIT Rate", ["Xiangli Yao", "Zani"]],
+  ["Everbright Polestar", "Broadblade", 5, 588, "CRIT Rate", ["Augusta", "Jinhsi"]],
+  ["Boson Astrolabe", "Rectifier", 5, 525, "Energy Regen", ["The Shorekeeper", "Suisui"]],
+  ["Whispers of Sirens", "Rectifier", 5, 500, "CRIT Rate", ["Cantarella", "Phrolova"]],
+  ["Rime-Draped Sprouts", "Rectifier", 5, 500, "CRIT DMG", ["Zhezhi", "Carlotta"]],
+  ["Verity's Handle", "Gauntlets", 5, 588, "CRIT Rate", ["Xiangli Yao"]],
+  ["Red Spring", "Sword", 5, 588, "CRIT Rate", ["Camellya"]],
+  ["Stellar Symphony", "Rectifier", 5, 413, "Energy Regen", ["The Shorekeeper", "Verina"]],
+  ["Unflickering Valor", "Broadblade", 5, 588, "CRIT Rate", ["Jinhsi", "Calcharo"]],
+  ["Bloodpact's Pledge", "Sword", 5, 588, "Energy Regen", ["Brant", "Sanhua"]],
+  ["Thunderflare Dominion", "Broadblade", 5, 588, "CRIT DMG", ["Lupa", "Augusta"]],
+  ["Aureate Zenith", "Gauntlets", 5, 588, "CRIT Rate", ["Zani", "Jianxin"]],
+  ["Discord", "Broadblade", 4, 338, "Energy Regen", ["Taoqi", "Lumi"]],
+  ["Scale: Slasher", "Sword", 4, 338, "Energy Regen", ["Yangyang", "Sanhua"]],
+  ["Cadenza", "Pistols", 4, 338, "Energy Regen", ["Aalto", "Mortefi"]],
+  ["Marcato", "Gauntlets", 4, 338, "Energy Regen", ["Yuanwu", "Youhu"]],
+  ["Broadblade of Night", "Broadblade", 3, 325, "ATK", ["Calcharo"]],
+  ["Sword of Night", "Sword", 3, 325, "ATK", ["Rover", "Danjin"]],
+  ["Pistols of Night", "Pistols", 3, 325, "ATK", ["Chixia"]],
+  ["Gauntlets of Night", "Gauntlets", 3, 325, "ATK", ["Lingyang"]],
+  ["Rectifier of Night", "Rectifier", 3, 325, "ATK", ["Baizhi"]],
+  ["Tyro Broadblade", "Broadblade", 2, 275, "ATK", ["Todos"]],
+  ["Tyro Sword", "Sword", 2, 275, "ATK", ["Todos"]],
+  ["Tyro Pistols", "Pistols", 2, 275, "ATK", ["Todos"]],
+  ["Tyro Gauntlets", "Gauntlets", 2, 275, "ATK", ["Todos"]],
+  ["Tyro Rectifier", "Rectifier", 2, 275, "ATK", ["Todos"]],
+  ["Training Broadblade", "Broadblade", 1, 250, "ATK", ["Todos"]],
+  ["Training Sword", "Sword", 1, 250, "ATK", ["Todos"]],
+  ["Training Pistols", "Pistols", 1, 250, "ATK", ["Todos"]],
+  ["Training Gauntlets", "Gauntlets", 1, 250, "ATK", ["Todos"]],
+  ["Training Rectifier", "Rectifier", 1, 250, "ATK", ["Todos"]],
+  ["Originite: Type I", "Broadblade", 3, 300, "DEF", ["Taoqi"]],
+  ["Originite: Type II", "Sword", 3, 325, "ATK", ["Rover"]],
+  ["Originite: Type III", "Pistols", 3, 325, "ATK", ["Chixia"]],
+  ["Originite: Type IV", "Gauntlets", 3, 300, "CRIT DMG", ["Lingyang"]],
+  ["Originite: Type V", "Rectifier", 3, 300, "HP", ["Baizhi"]],
+  ["Broadblade#41", "Broadblade", 4, 413, "Energy Regen", ["Lumi", "Taoqi"]],
+  ["Sword#18", "Sword", 4, 388, "ATK", ["Sanhua", "Yangyang"]],
+  ["Pistols#26", "Pistols", 4, 388, "ATK", ["Mortefi", "Aalto"]],
+  ["Gauntlets#21D", "Gauntlets", 4, 388, "Energy Regen", ["Yuanwu", "Jianxin"]],
+  ["Rectifier#25", "Rectifier", 4, 338, "Energy Regen", ["Baizhi", "Verina"]],
+  ["Dauntless Evernight", "Broadblade", 4, 338, "DEF", ["Taoqi"]],
+  ["Commando of Conviction", "Sword", 4, 413, "ATK", ["Danjin", "Sanhua"]],
+  ["Undying Flame", "Pistols", 4, 413, "ATK", ["Mortefi", "Chixia"]],
+  ["Amity Accord", "Gauntlets", 4, 338, "DEF", ["Yuanwu"]],
+  ["Jinzhou Keeper", "Rectifier", 4, 388, "ATK", ["Encore", "Yinlin"]],
+  ["Broadblade of Voyager", "Broadblade", 3, 300, "Energy Regen", ["Todos"]],
+  ["Sword of Voyager", "Sword", 3, 300, "Energy Regen", ["Todos"]],
+  ["Pistols of Voyager", "Pistols", 3, 300, "ATK", ["Todos"]],
+  ["Gauntlets of Voyager", "Gauntlets", 3, 325, "DEF", ["Todos"]],
+  ["Rectifier of Voyager", "Rectifier", 3, 300, "Energy Regen", ["Todos"]],
+  ["Guardian Broadblade", "Broadblade", 3, 325, "ATK", ["Todos"]],
+  ["Guardian Sword", "Sword", 3, 300, "HP", ["Todos"]],
+  ["Guardian Pistols", "Pistols", 3, 300, "ATK", ["Todos"]],
+  ["Guardian Gauntlets", "Gauntlets", 3, 300, "DEF", ["Todos"]],
+  ["Guardian Rectifier", "Rectifier", 3, 325, "ATK", ["Todos"]],
+  ["Helios Cleaver", "Broadblade", 4, 413, "ATK", ["Jiyan", "Calcharo"]],
+  ["Lunar Cutter", "Sword", 4, 413, "ATK", ["Sanhua", "Danjin"]],
+  ["Novaburst", "Pistols", 4, 413, "ATK", ["Chixia", "Mortefi"]],
+  ["Comet Flare", "Rectifier", 4, 413, "HP", ["Verina", "Baizhi"]],
+  ["Autumntrace", "Broadblade", 4, 413, "CRIT Rate", ["Jiyan", "Lumi"]],
+  ["Lumingloss", "Sword", 4, 388, "ATK", ["Sanhua", "Rover"]],
+  ["Thunderbolt", "Pistols", 4, 388, "ATK", ["Mortefi"]],
+  ["Stonard", "Gauntlets", 4, 413, "CRIT Rate", ["Lingyang", "Yuanwu"]],
+  ["Augment", "Rectifier", 4, 413, "CRIT Rate", ["Encore", "Yinlin"]],
+  ["Hollow Mirage", "Gauntlets", 4, 413, "ATK", ["Jianxin"]],
+  ["Glint of Clouds", "Broadblade", 4, 413, "Energy Regen", ["Lupa", "Taoqi"]],
+  ["Thousandfold Deliverance", "Sword", 5, 588, "CRIT DMG", ["Qiuyuan", "Cartethyia"]],
+  ["Firstlight's Herald", "Sword", 5, 588, "CRIT Rate", ["Lynae", "Rover"]],
+  ["Skull Thrasher", "Broadblade", 4, 413, "ATK", ["Calcharo", "Lupa"]],
+  ["Spectral Trigger", "Pistols", 5, 588, "CRIT Rate", ["Carlotta", "Chixia"]],
+  ["Freeze Frame", "Pistols", 5, 588, "CRIT DMG", ["Carlotta"]],
+  ["Forged Dwarf Star", "Gauntlets", 4, 413, "DEF", ["Yuanwu", "Jianxin"]],
+  ["Frostburn", "Sword", 5, 588, "CRIT DMG", ["Hiyuki"]],
+  ["Solsworn Ciphers", "Rectifier", 4, 413, "Energy Regen", ["Verina", "Suisui"]],
+  ["Pulsation Bracer", "Gauntlets", 4, 413, "ATK", ["Xiangli Yao", "Lingyang"]],
+  ["Spectrum Blaster", "Pistols", 4, 413, "ATK", ["Chixia", "Aalto"]],
+  ["Phasic Homogenizer", "Rectifier", 4, 413, "ATK", ["Encore", "Phoebe"]],
+  ["Laser Shearer", "Sword", 4, 413, "ATK", ["Danjin", "Sanhua"]],
+  ["Starfield Calibrator", "Rectifier", 5, 500, "CRIT Rate", ["Phoebe", "Zhezhi"]]
+];
+
+const existingWeaponSlugs = new Set(weapons.map((weapon) => weapon.slug));
+weapons.push(
+  ...compactWeaponData
+    .map(([name, type, rarity, baseAtk, stat, recommended]) => ({
+      slug: slugify(name),
+      name,
+      type,
+      rarity,
+      baseAtk,
+      stat,
+      passive: `${stat} como atributo secundario; use em builds que valorizam ${type} e rotacoes consistentes.`,
+      recommended
+    }))
+    .filter((weapon) => !existingWeaponSlugs.has(weapon.slug))
+);
+
+const items = [
+  { name: "Pecok Flower", type: "Ascensao", source: "Jinzhou outskirts", days: "Sempre", usedBy: ["Jiyan", "Rover"] },
+  { name: "Belle Poppy", type: "Ascensao", source: "Port City of Guixu", days: "Sempre", usedBy: ["Verina"] },
+  { name: "Lanternberry", type: "Ascensao", source: "Dim Forest", days: "Sempre", usedBy: ["Encore", "Mortefi"] },
+  { name: "Wintry Bell", type: "Ascensao", source: "Huanglong highlands", days: "Sempre", usedBy: ["Sanhua", "Lingyang"] },
+  { name: "Group Abomination Tacet Core", type: "Boss", source: "Mech Abomination", days: "Sempre", usedBy: ["Yinlin"] },
+  { name: "Unending Destruction", type: "Boss", source: "Dreamless", days: "Sempre", usedBy: ["Havoc Rover"] },
+  { name: "Thunder Wisp", type: "Boss", source: "Tempest Mephis", days: "Sempre", usedBy: ["Calcharo", "Yinlin"] },
+  { name: "Sentinel's Pillar", type: "Boss", source: "Bell-Borne Geochelone", days: "Sempre", usedBy: ["Verina"] },
+  { name: "Advanced Resonance Potion", type: "EXP", source: "Simulacao", days: "Seg-Sun", usedBy: ["Todos"] },
+  { name: "Shell Credit", type: "Moeda", source: "Treino e eventos", days: "Seg-Sun", usedBy: ["Todos"] },
+  { name: "Medium Energy Core", type: "EXP", source: "Forgery Challenge", days: "Seg, Qui, Dom", usedBy: ["Todos"] },
+  { name: "Tide-Sealed Bottle", type: "Evento", source: "Seasonal rewards", days: "Tempo limitado", usedBy: ["Todos"] }
+];
+
+items.push(
+  ...[
+    ["Coriolus", "Ascensao", "Dim Forest", "Sempre", ["Yinlin", "Lingyang"]],
+    ["Iris", "Ascensao", "Whining Aix's Mire", "Sempre", ["Calcharo", "Taoqi"]],
+    ["Terraspawn Fungus", "Ascensao", "Desorock Highland", "Sempre", ["Jianxin", "Yuanwu"]],
+    ["Violet Coral", "Ascensao", "Wuming Bay", "Sempre", ["Sanhua", "Baizhi"]],
+    ["Nova", "Ascensao", "Black Shores", "Sempre", ["The Shorekeeper", "Youhu"]],
+    ["Golden Fleece", "Ascensao", "Rinascita", "Sempre", ["Phoebe", "Brant"]],
+    ["Sword Acorus", "Ascensao", "Rinascita", "Sempre", ["Carlotta", "Roccia"]],
+    ["Topological Confinement", "Boss", "Fallacy of No Return", "Sempre", ["The Shorekeeper"]],
+    ["Monument Bell", "Boss", "Bell-Borne Geochelone", "Sempre", ["Verina", "Baizhi"]],
+    ["Roaring Rock Fist", "Boss", "Feilian Beringal", "Sempre", ["Jiyan", "Aalto"]],
+    ["Rage Tacet Core", "Boss", "Inferno Rider", "Sempre", ["Encore", "Changli"]],
+    ["Sound-Keeping Tacet Core", "Boss", "Lampylumen Myriad", "Sempre", ["Lingyang", "Carlotta"]],
+    ["Hidden Thunder Tacet Core", "Boss", "Tempest Mephis", "Sempre", ["Calcharo", "Yinlin"]],
+    ["Dreamless Feather", "Boss", "Dreamless", "Sempre", ["Havoc Rover", "Danjin"]],
+    ["LF Whisperin Core", "Inimigo", "Whisperin enemies", "Sempre", ["Todos"]],
+    ["MF Whisperin Core", "Inimigo", "Whisperin enemies", "Sempre", ["Todos"]],
+    ["HF Whisperin Core", "Inimigo", "Whisperin enemies", "Sempre", ["Todos"]],
+    ["FF Whisperin Core", "Inimigo", "Whisperin enemies", "Sempre", ["Todos"]],
+    ["LF Howler Core", "Inimigo", "Howler enemies", "Sempre", ["Todos"]],
+    ["MF Howler Core", "Inimigo", "Howler enemies", "Sempre", ["Todos"]],
+    ["HF Howler Core", "Inimigo", "Howler enemies", "Sempre", ["Todos"]],
+    ["FF Howler Core", "Inimigo", "Howler enemies", "Sempre", ["Todos"]],
+    ["Crude Ring", "Inimigo", "Exile enemies", "Sempre", ["Todos"]],
+    ["Basic Ring", "Inimigo", "Exile enemies", "Sempre", ["Todos"]],
+    ["Improved Ring", "Inimigo", "Exile enemies", "Sempre", ["Todos"]],
+    ["Tailored Ring", "Inimigo", "Exile enemies", "Sempre", ["Todos"]],
+    ["Basic Resonance Potion", "EXP", "Simulation Training", "Seg-Sun", ["Todos"]],
+    ["Medium Resonance Potion", "EXP", "Simulation Training", "Seg-Sun", ["Todos"]],
+    ["Premium Resonance Potion", "EXP", "Simulation Training", "Seg-Sun", ["Todos"]],
+    ["Basic Sealed Tube", "Echo EXP", "Tacet Field", "Seg-Sun", ["Todos"]],
+    ["Medium Sealed Tube", "Echo EXP", "Tacet Field", "Seg-Sun", ["Todos"]],
+    ["Advanced Sealed Tube", "Echo EXP", "Tacet Field", "Seg-Sun", ["Todos"]],
+    ["Premium Sealed Tube", "Echo EXP", "Tacet Field", "Seg-Sun", ["Todos"]],
+    ["Basic Tuner", "Echo", "Tacet Field", "Seg-Sun", ["Todos"]],
+    ["Advanced Tuner", "Echo", "Tacet Field", "Seg-Sun", ["Todos"]],
+    ["Premium Tuner", "Echo", "Tacet Field", "Seg-Sun", ["Todos"]],
+    ["Waveplate Crystal", "Energia", "Eventos e login", "Tempo limitado", ["Todos"]],
+    ["Astrite", "Moeda", "Eventos, baus e missoes", "Seg-Sun", ["Todos"]],
+    ["Lustrous Tide", "Convene", "Loja e recompensas", "Seg-Sun", ["Todos"]],
+    ["Radiant Tide", "Convene", "Eventos e loja", "Tempo limitado", ["Todos"]],
+    ["Forging Tide", "Convene", "Weapon Convene", "Tempo limitado", ["Todos"]]
+  ].map(([name, type, source, days, usedBy]) => ({ name, type, source, days, usedBy }))
+);
+
+const guides = [
+  {
+    title: "Rotacao basica de concerto",
+    tag: "Mecanica",
+    minutes: 6,
+    body: "Como alinhar Intro, Outro e Liberacao para reduzir janelas mortas em times de burst."
+  },
+  {
+    title: "Leitura de ecos: custo, substats e sonatas",
+    tag: "Build",
+    minutes: 8,
+    body: "Priorize custo 4 com Crit, dois custos 3 com bonus elemental e custos 1 com ATK%."
+  },
+  {
+    title: "Esquiva perfeita e contra-ataque",
+    tag: "Combate",
+    minutes: 5,
+    body: "Treine o timing de brilho do inimigo e use o contra-ataque para manter pressao sem perder concerto."
+  },
+  {
+    title: "Rota diaria eficiente",
+    tag: "Farm",
+    minutes: 7,
+    body: "Organize boss, Tacet Field e coleta regional pela prioridade do personagem em progresso."
+  },
+  {
+    title: "Tuning de ecos sem desperdicio",
+    tag: "Build",
+    minutes: 9,
+    body: "Defina custo 4, 3 e 1 antes de gastar materiais e preserve substats-chave para dano final."
+  },
+  {
+    title: "Montando times por sinergia",
+    tag: "Equipe",
+    minutes: 8,
+    body: "Escolha um carry, um aplicador off-field e um suporte que feche a janela de burst sem travar a rotação."
+  },
+  {
+    title: "Checklist semanal do jogador",
+    tag: "Rotina",
+    minutes: 5,
+    body: "Priorize bosses semanais, domínio de materiais, torre e resgate de códigos antes de farmar extras."
+  }
+];
+
+const news = [
+  {
+    title: "Resumo de patch notes demonstrativo",
+    date: "2026-08-21",
+    category: "Patch",
+    image: "/assets/event-web.png",
+    summary: "Modelo de card para notas de atualizacao, ajustes de personagens e correcoes."
+  },
+  {
+    title: "Calendario de eventos pronto para integracao",
+    date: "2026-08-18",
+    category: "Eventos",
+    image: "/assets/event-forge.png",
+    summary: "O hub consome /api/events com polling e schema normalizado."
+  },
+  {
+    title: "Guia rapido de sonatas recomendadas",
+    date: "2026-08-15",
+    category: "Guia",
+    image: "/assets/banner-resonance.png",
+    summary: "Comparacao entre conjuntos de dano, suporte e rotacoes de troca."
+  },
+  {
+    title: "Base de itens recebe catalogo expandido",
+    date: "2026-08-12",
+    category: "Dados",
+    image: "/assets/event-forge.png",
+    summary: "Protótipo de pontos filtraveis para baus, teleporte e materiais."
+  },
+  {
+    title: "Builder ganha simulacao de stats",
+    date: "2026-08-08",
+    category: "Builder",
+    image: "/assets/event-code.png",
+    summary: "Comparador simples calcula ATK, taxa critica e score de build."
+  },
+  {
+    title: "Base de personagens recebe filtros por papel",
+    date: "2026-08-01",
+    category: "Dados",
+    image: "/assets/banner-next.png",
+    summary: "Cards segmentados para DPS, Sub-DPS, suporte e controle."
+  },
+  {
+    title: "Hub de eventos ganha sincronizacao automatica",
+    date: "2026-07-28",
+    category: "Sistema",
+    image: "/assets/event-tower.png",
+    summary: "Atualizacao periodica com status, contagem regressiva e cache leve."
+  }
+];
+
+const codes = [
+  { code: "WAVEBUILDER", status: "active", rewards: ["Astrites x60", "Potion x5"], expiresAt: addClientDays(3) },
+  { code: "SOLARISGUIDE", status: "active", rewards: ["Shell Credit x20000"], expiresAt: addClientDays(9) },
+  { code: "ECHOARCHIVE", status: "active", rewards: ["Echo EXP x6"], expiresAt: addClientDays(14) },
+  { code: "OLDTACETFIELD", status: "expired", rewards: ["Shell Credit x10000"], expiresAt: "2026-01-20T03:00:00.000Z" }
+];
+
+const weeklyFarmPlan = [
+  { day: "Segunda", focus: "Bosses", note: "Tacet Cores e materiais de ascensao de dano." },
+  { day: "Terca", focus: "Weapon", note: "Farm de armas e rotação de domínio para builds." },
+  { day: "Quarta", focus: "Echo", note: "Custo 3/4 e ajuste de substats prioritarios." },
+  { day: "Quinta", focus: "Bosses", note: "Rotacao de boss semanal e materiais raros." },
+  { day: "Sexta", focus: "Support", note: "EXP, tuners e recursos para sustain." },
+  { day: "Sabado", focus: "Tower", note: "Revisar score e composições para a torre." }
+];
+
+const mapLegend = [
+  { label: "Coletaveis", detail: "Materiais de ascensao e rotas de exploração." },
+  { label: "Baus", detail: "Pontos de recompensa e caches de mapa." },
+  { label: "Teleportes", detail: "Nexos e beacons para mobilidade." }
+];
+
+function readShowcaseCollapsed() {
+  try {
+    return localStorage.getItem("solaris:showcase-collapsed") === "true";
+  } catch {
+    return false;
+  }
+}
+
+const state = {
+  lang: DEFAULT_LANG,
+  route: "home",
+  detail: "",
+  charactersLoading: false,
+  charactersUpdatedAt: "",
+  charactersSource: "fallback-local",
+  charactersApiError: false,
+  events: [],
+  eventError: false,
+  eventSource: "fallback-local",
+  convenes: [],
+  conveneError: false,
+  conveneSource: "fallback-local",
+  convenesUpdatedAt: "",
+  conveneSyncIntervalMinutes: 30,
+  updatedAt: "",
+  syncIntervalMinutes: 10,
+  eventFilter: "all",
+  timeMode: "server",
+  roleFilter: "all",
+  characterQuery: "",
+  characterElementFilter: "all",
+  characterWeaponFilter: "all",
+  characterRarityFilter: "all",
+  showcaseCollapsed: readShowcaseCollapsed(),
+  tierMode: "damage",
+  elementFilter: "all",
+  weaponFilter: "all",
+  builder: {
+    character: "jinhsi",
+    weapon: "ages-of-harvest",
+    echo: "celestial-light",
+    level: 90
+  },
+  builderSearch: {
+    character: "",
+    weapon: "",
+    echo: ""
+  },
+  builderFilter: {
+    character: "all",
+    weapon: "all",
+    echo: "all"
+  }
+};
+
+function addClientDays(days) {
+  const date = new Date();
+  date.setUTCDate(date.getUTCDate() + days);
+  date.setUTCHours(date.getUTCHours(), 0, 0, 0);
+  return date.toISOString();
+}
+
+function t(key) {
+  return copy[state.lang]?.[key] || copy[DEFAULT_LANG][key] || key;
+}
+
+function escapeHtml(value = "") {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function parseLocation() {
+  const segments = window.location.pathname.split("/").filter(Boolean);
+  let lang = DEFAULT_LANG;
+
+  if (SUPPORTED_LANGS.includes(segments[0])) {
+    lang = segments.shift();
+  }
+
+  const slug = segments[0] || "";
+  const route = routeBySlug.get(slug) || null;
+
+  state.lang = lang;
+  state.route = route ? route.id : "not-found";
+  state.detail = route ? segments[1] || "" : "";
+}
+
+function pathFor(routeId, lang = state.lang, detail = "") {
+  const route = routeById.get(routeId) || routeById.get("home");
+  const suffix = route.slug ? `/${route.slug}` : "/";
+  const detailSuffix = detail ? `/${detail}` : "";
+  return `/${lang}${suffix}${detailSuffix}`;
+}
+
+function navigateTo(url) {
+  window.history.pushState({}, "", url);
+  parseLocation();
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function getFavorites() {
+  try {
+    return JSON.parse(localStorage.getItem("solaris:favorites") || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function setFavorites(favorites) {
+  localStorage.setItem("solaris:favorites", JSON.stringify(favorites));
+}
+
+function isFavorite(slug) {
+  return getFavorites().includes(slug);
+}
+
+function toggleFavorite(slug) {
+  const favorites = getFavorites();
+  const next = favorites.includes(slug)
+    ? favorites.filter((item) => item !== slug)
+    : [...favorites, slug];
+  setFavorites(next);
+}
+
+function currentLocale() {
+  if (state.lang === "en") return "en-US";
+  if (state.lang === "es") return "es-ES";
+  return "pt-BR";
+}
+
+function formatDate(iso, mode = state.timeMode) {
+  const options = { dateStyle: "medium", timeStyle: "short" };
+  if (mode === "server") options.timeZone = "Asia/Shanghai";
+  return new Intl.DateTimeFormat(currentLocale(), options).format(new Date(iso));
+}
+
+function formatEventDate(iso, mode = state.timeMode) {
+  if (!iso) return "--";
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "--";
+  const options = { day: "2-digit", month: "2-digit", year: "numeric" };
+  if (mode === "server") options.timeZone = "Asia/Shanghai";
+  return new Intl.DateTimeFormat(currentLocale(), options).format(date);
+}
+
+function formatEventTime(iso, mode = state.timeMode) {
+  if (!iso) return "--";
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "--";
+  const options = { hour: "2-digit", minute: "2-digit" };
+  if (mode === "server") options.timeZone = "Asia/Shanghai";
+  return new Intl.DateTimeFormat(currentLocale(), options).format(date);
+}
+
+function getEventStatus(event) {
+  const now = Date.now();
+  const start = new Date(event.startAt).getTime();
+  const end = new Date(event.endAt).getTime();
+
+  if (now < start) return "em_breve";
+  if (now > end) return "encerrado";
+  return "ao_vivo";
+}
+
+function statusLabel(status) {
+  if (status === "ao_vivo") return t("liveNow");
+  if (status === "em_breve") return t("comingSoon");
+  return t("ended");
+}
+
+function activeEvents() {
+  return state.events.filter((event) => getEventStatus(event) === "ao_vivo");
+}
+
+function activeConvenes() {
+  return state.convenes.filter((convene) => getEventStatus(convene) === "ao_vivo");
+}
+
+function countdownLabel(event) {
+  const status = getEventStatus(event);
+  const target = status === "em_breve" ? new Date(event.startAt) : new Date(event.endAt);
+  const diff = target.getTime() - Date.now();
+
+  if (status === "encerrado" || diff <= 0) return t("ended");
+
+  const seconds = Math.floor(diff / 1000);
+  const days = Math.floor(seconds / 86400);
+  const hours = Math.floor((seconds % 86400) / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const secs = seconds % 60;
+
+  return `${days}d ${hours}h ${minutes}m ${secs}s`;
+}
+
+function timeAgo(iso) {
+  if (!iso) return "--";
+  const minutes = Math.max(0, Math.floor((Date.now() - new Date(iso).getTime()) / 60000));
+  if (minutes < 1) return t("justNow");
+  if (minutes < 60) return `${minutes} min`;
+  const hours = Math.floor(minutes / 60);
+  return `${hours} h`;
+}
+
+function stars(count) {
+  return "★".repeat(count);
+}
+
+function initials(name) {
+  return name.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase();
+}
+
+function searchIndex() {
+  return [
+    ...routes.filter((route) => route.id !== "home").map((route) => ({
+      label: t(route.labelKey),
+      title: t(route.labelKey),
+      meta: "Pagina",
+      route: route.id
+    })),
+    ...characters.map((character) => ({
+      label: `${character.name} ${character.element} ${character.weapon}`,
+      title: character.name,
+      meta: `${character.element} • ${character.weapon}`,
+      route: "characters",
+      detail: character.slug
+    })),
+    ...weapons.map((weapon) => ({
+      label: `${weapon.name} ${weapon.type}`,
+      title: weapon.name,
+      meta: weapon.type,
+      route: "weapons"
+    })),
+    ...echoes.map((echo) => ({
+      label: `${echo.name} ${echo.element}`,
+      title: echo.name,
+      meta: echo.element,
+      route: "echoes"
+    })),
+    ...items.map((item) => ({
+      label: `${item.name} ${item.type} ${item.source}`,
+      title: item.name,
+      meta: item.type,
+      route: "items"
+    })),
+    ...guides.map((guide) => ({
+      label: `${guide.title} ${guide.tag}`,
+      title: guide.title,
+      meta: guide.tag,
+      route: "guide"
+    })),
+    ...news.map((article) => ({
+      label: `${article.title} ${article.category}`,
+      title: article.title,
+      meta: article.category,
+      route: "news"
+    })),
+    ...codes.map((code) => ({
+      label: `${code.code} ${code.rewards.join(" ")}`,
+      title: code.code,
+      meta: t("codes"),
+      route: "codes"
+    })),
+    ...state.events.map((event) => ({
+      label: `${event.title} ${event.category}`,
+      title: event.title,
+      meta: t(categoryLabels[event.category]),
+      route: "events"
+    }))
+  ];
+}
+
+function renderSearchSuggestions() {
+  return `<div class="search-suggestions" data-search-suggestions hidden role="listbox"></div>`;
+}
+
+function searchMatches(query, limit = 6) {
+  const normalized = query.trim().toLowerCase();
+  if (normalized.length < 2) return [];
+
+  return searchIndex()
+    .filter((item) => item.label.toLowerCase().includes(normalized))
+    .sort((a, b) => {
+      const aTitle = a.title.toLowerCase();
+      const bTitle = b.title.toLowerCase();
+      const aStarts = aTitle.startsWith(normalized) ? 0 : 1;
+      const bStarts = bTitle.startsWith(normalized) ? 0 : 1;
+      if (aStarts !== bStarts) return aStarts - bStarts;
+      return aTitle.localeCompare(bTitle);
+    })
+    .slice(0, limit);
+}
+
+function hideSearchSuggestions(form) {
+  const suggestions = form?.querySelector("[data-search-suggestions]");
+  if (!suggestions) return;
+  suggestions.hidden = true;
+  suggestions.innerHTML = "";
+}
+
+function hideAllSearchSuggestions() {
+  app.querySelectorAll("[data-search-suggestions]").forEach((suggestions) => {
+    suggestions.hidden = true;
+    suggestions.innerHTML = "";
+  });
+}
+
+function updateSearchSuggestions(input) {
+  const form = input.closest("[data-search-form]");
+  const suggestions = form?.querySelector("[data-search-suggestions]");
+  if (!suggestions) return;
+
+  const matches = searchMatches(input.value);
+  if (!matches.length) {
+    hideSearchSuggestions(form);
+    return;
+  }
+
+  suggestions.innerHTML = matches.map((item) => `
+    <button
+      type="button"
+      role="option"
+      data-search-suggestion
+      data-route="${item.route}"
+      data-detail="${escapeHtml(item.detail || "")}"
+    >
+      <strong>${escapeHtml(item.title)}</strong>
+      <span>${escapeHtml(item.meta)}</span>
+    </button>
+  `).join("");
+  suggestions.hidden = false;
+}
+
+function renderTopbar() {
+  const favoriteCount = getFavorites().length;
+  const navItems = routes.filter((route) => route.nav);
+
+  return `
+    <header class="topbar">
+      <a class="brand" href="${pathFor("home")}" data-link aria-label="Solaris Archive">
+        <img class="brand-logo" src="/assets/site-logo.png" alt="" width="42" height="42">
+        <span>
+          <strong>Solaris Archive</strong>
+          <small>Wuthering Waves Wiki</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="${t("menu")}">
+        ${navItems.map((route) => `
+          <a class="${state.route === route.id ? "is-active" : ""}" href="${pathFor(route.id)}" data-link>
+            ${t(route.labelKey)}
+          </a>
+        `).join("")}
+      </nav>
+
+      <div class="top-actions">
+        <a class="compact-link" href="${pathFor("characters")}" data-link>
+          ${t("favorites")} <span>${favoriteCount}</span>
+        </a>
+        <a class="compact-link compact-link--gold" href="${pathFor("events")}" data-link>${t("database")}</a>
+        <label class="sr-only" for="language-select">${t("language")}</label>
+        <select id="language-select" class="language-select" data-language-select>
+          ${SUPPORTED_LANGS.map((lang) => `
+            <option value="${lang}" ${lang === state.lang ? "selected" : ""}>${lang}</option>
+          `).join("")}
+        </select>
+        <button class="menu-button" type="button" data-menu-toggle aria-label="${t("menu")}">☰</button>
+      </div>
+    </header>
+    <div class="mobile-nav" data-mobile-nav hidden>
+      ${routes.filter((route) => route.id !== "home").map((route) => `
+        <a href="${pathFor(route.id)}" data-link>${t(route.labelKey)}</a>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderFooter() {
+  return `
+    <footer class="site-footer">
+      <div>
+        <strong>Solaris Archive</strong>
+        <p>${t("noAffiliation")}</p>
+      </div>
+      <div class="footer-links">
+        <a href="${pathFor("events")}" data-link>${t("navEvents")}</a>
+        <a href="${pathFor("codes")}" data-link>${t("navCodes")}</a>
+        <a href="${pathFor("news")}" data-link>${t("navNews")}</a>
+        <a href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noreferrer">${t("officialSite")}</a>
+      </div>
+    </footer>
+  `;
+}
+
+function renderLiveTicker() {
+  const events = state.events
+    .filter((event) => ["ao_vivo", "em_breve"].includes(getEventStatus(event)));
+
+  return `
+    <section class="live-ticker" aria-label="${t("activeEvents")}">
+      <div class="ticker-inner">
+        <span class="ticker-label">${t("activeEvents")}</span>
+        <div class="ticker-track">
+          ${events.length ? events.map((event) => `
+            <a href="${pathFor("events")}" data-link class="ticker-item">
+              <span class="status-dot status-dot--${getEventStatus(event)}"></span>
+              <strong>${escapeHtml(event.title)}</strong>
+              <span data-countdown data-start="${event.startAt}" data-end="${event.endAt}">${countdownLabel(event)}</span>
+            </a>
+          `).join("") : `<span class="ticker-empty">${t("emptyEvents")}</span>`}
+        </div>
+        <span class="ticker-sync">${t("updated")} ${timeAgo(state.updatedAt)}</span>
+      </div>
+    </section>
+  `;
+}
+
+function renderHero() {
+  return `
+    <section class="hero">
+      <div class="hero-backdrop" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow">${t("heroEyebrow")}</p>
+        <h1>Solaris Archive</h1>
+        <p class="hero-copy">
+          ${t("heroCopy")}
+        </p>
+        <form class="search-panel" data-search-form>
+          <label class="sr-only" for="global-search">${t("searchPlaceholder")}</label>
+          <input id="global-search" name="query" type="search" placeholder="${t("searchPlaceholder")}" autocomplete="off" data-global-search aria-autocomplete="list">
+          <button type="submit">${t("searchButton")}</button>
+          ${renderSearchSuggestions()}
+        </form>
+        <div class="hero-actions" aria-label="${t("primaryActions")}">
+          <a href="${pathFor("characters")}" data-link>${t("navCharacters")}</a>
+          <a href="${pathFor("events")}" data-link>${t("navEvents")}</a>
+          <a href="${pathFor("builder")}" data-link>${t("navBuilder")}</a>
+        </div>
+      </div>
+      <div class="hero-metrics" aria-label="${t("baseSummary")}">
+        <span><strong>${characters.length}</strong> Resonators</span>
+        <span><strong>${echoes.length}</strong> ${t("echoes")}</span>
+        <span><strong>${weapons.length}</strong> ${t("navWeapons")}</span>
+      </div>
+    </section>
+  `;
+}
+
+function renderSectionHeader(kicker, title, description, action = "") {
+  return `
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">${kicker}</p>
+        <h2>${title}</h2>
+        <p>${description}</p>
+      </div>
+      ${action}
+    </div>
+  `;
+}
+
+function renderSearchHero() {
+  return `
+    <section class="hero hero--search">
+      <div class="hero-backdrop" aria-hidden="true"></div>
+      <div class="hero-content hero-content--search">
+        <p class="eyebrow">Wuthering Waves Wiki</p>
+        <h1>Solaris Archive</h1>
+        <form class="search-panel search-panel--clean" data-search-form>
+          <label class="sr-only" for="global-search">${t("searchPlaceholder")}</label>
+          <input id="global-search" name="query" type="search" placeholder="${t("searchPlaceholder")}" autocomplete="off" data-global-search aria-autocomplete="list">
+          <button type="submit">${t("searchButton")}</button>
+          ${renderSearchSuggestions()}
+        </form>
+      </div>
+    </section>
+  `;
+}
+
+function renderBannerSpotlight() {
+  const cards = activeConvenes();
+
+  return `
+    <section class="page-band">
+      <div class="container">
+        ${renderSectionHeader(
+          t("currentConvenes"),
+          t("conveneSpotlightTitle"),
+          t("conveneSpotlightDesc"),
+          `<a class="text-link" href="${pathFor("events")}" data-link>${t("navEvents")}</a>`
+        )}
+        ${cards.length ? `
+          <div class="banner-grid">
+            ${cards.map((convene) => renderConveneCard(convene, true)).join("")}
+          </div>
+        ` : `<div class="empty-state">${t("emptyConvenes")}</div>`}
+      </div>
+    </section>
+  `;
+}
+
+function renderCharacterAvatar(character, variant = "card") {
+  const imageUrl = variant === "detail"
+    ? character.portraitUrl || character.imageUrl || character.iconUrl || characterAssetUrl(character.name)
+    : character.imageUrl || character.iconUrl || character.portraitUrl || characterAssetUrl(character.name);
+
+  return `
+    <div class="avatar avatar--${variant} avatar--${character.element.toLowerCase()}">
+      <span>${initials(character.name)}</span>
+      ${imageUrl ? `
+        <img
+          src="${escapeHtml(imageUrl)}"
+          alt="${escapeHtml(character.name)}"
+          loading="lazy"
+          decoding="async"
+          onerror="this.onerror=null;this.src='${CHARACTER_FALLBACK_IMAGE}';var avatar=this.closest('.avatar');if(avatar)avatar.classList.add('avatar--fallback');"
+        >
+      ` : ""}
+    </div>
+  `;
+}
+
+function renderCharacterCard(character) {
+  const favorite = isFavorite(character.slug);
+
+  return `
+    <article class="data-card character-card">
+      <div class="card-topline">
+        <span class="pill pill--${character.element.toLowerCase()}">${character.element}</span>
+        <button class="icon-button ${favorite ? "is-on" : ""}" type="button" data-fav="${character.slug}" aria-label="${t("favorites")}">
+          ${favorite ? "★" : "☆"}
+        </button>
+      </div>
+      <a href="${pathFor("characters", state.lang, character.slug)}" data-link class="avatar-link">
+        ${renderCharacterAvatar(character)}
+      </a>
+      <div class="card-body">
+        <h3><a href="${pathFor("characters", state.lang, character.slug)}" data-link>${character.name}</a></h3>
+        <p>${stars(character.rarity)} • ${character.weapon} • ${t(roleLabels[character.role])}</p>
+        <div class="tag-row">
+          ${character.tags.map((tag) => `<span>${tag}</span>`).join("")}
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function renderRoleTabs() {
+  return `
+    <div class="segmented" role="tablist" aria-label="${t("role")}">
+      <button type="button" class="${state.roleFilter === "all" ? "is-active" : ""}" data-role-filter="all">
+        ${t("all")}
+      </button>
+      ${Object.entries(roleLabels).map(([role, label]) => `
+        <button type="button" class="${state.roleFilter === role ? "is-active" : ""}" data-role-filter="${role}">
+          ${t(label)}
+        </button>
+      `).join("")}
+    </div>
+  `;
+}
+
+function characterFilterOptions(field) {
+  return [...new Set(characters.map((character) => character[field]).filter(Boolean))]
+    .sort((a, b) => String(a).localeCompare(String(b), "pt-BR"));
+}
+
+function rarityFilterOptions() {
+  return [...new Set(characters.map((character) => String(character.rarity)).filter(Boolean))]
+    .sort((a, b) => Number(b) - Number(a));
+}
+
+function renderSelectOptions(options, current, allLabel) {
+  return `
+    <option value="all">${allLabel}</option>
+    ${options.map((option) => `
+      <option value="${escapeHtml(option)}" ${String(current) === String(option) ? "selected" : ""}>
+        ${escapeHtml(option)}
+      </option>
+    `).join("")}
+  `;
+}
+
+function getFilteredCharacters() {
+  const query = state.characterQuery.trim().toLowerCase();
+
+  return characters.filter((character) => {
+    const searchable = [
+      character.name,
+      character.originalName,
+      character.element,
+      character.weapon,
+      character.role,
+      ...(character.tags || [])
+    ].filter(Boolean).join(" ").toLowerCase();
+
+    const matchesQuery = !query || searchable.includes(query);
+    const matchesRole = state.roleFilter === "all" || character.role === state.roleFilter;
+    const matchesElement = state.characterElementFilter === "all" || character.element === state.characterElementFilter;
+    const matchesWeapon = state.characterWeaponFilter === "all" || character.weapon === state.characterWeaponFilter;
+    const matchesRarity = state.characterRarityFilter === "all" || String(character.rarity) === state.characterRarityFilter;
+
+    return matchesQuery && matchesRole && matchesElement && matchesWeapon && matchesRarity;
+  });
+}
+
+function renderCharacterFilters() {
+  return `
+    <div class="wiki-filters" aria-label="${t("characterFiltersLabel")}">
+      <label>
+        <span>${t("search")}</span>
+        <input
+          type="search"
+          value="${escapeHtml(state.characterQuery)}"
+          placeholder="${t("characterSearchPlaceholder")}"
+          data-character-search
+        >
+      </label>
+      <label>
+        <span>${t("element")}</span>
+        <select data-character-element-filter>
+          ${renderSelectOptions(characterFilterOptions("element"), state.characterElementFilter, t("all"))}
+        </select>
+      </label>
+      <label>
+        <span>${t("weapon")}</span>
+        <select data-character-weapon-filter>
+          ${renderSelectOptions(characterFilterOptions("weapon"), state.characterWeaponFilter, t("all"))}
+        </select>
+      </label>
+      <label>
+        <span>${t("rarity")}</span>
+        <select data-character-rarity-filter>
+          ${renderSelectOptions(rarityFilterOptions(), state.characterRarityFilter, t("all"))}
+        </select>
+      </label>
+    </div>
+  `;
+}
+
+function renderCharacterResults(filtered) {
+  if (!filtered.length) {
+    return `
+      <div class="empty-state">
+        <h3>${t("noCharacterFoundTitle")}</h3>
+        <p>${t("noCharacterFoundText")}</p>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="character-grid character-grid--wide">
+      ${filtered.map(renderCharacterCard).join("")}
+    </div>
+  `;
+}
+
+function updateCharacterResults() {
+  const results = app.querySelector("[data-character-results]");
+  const count = app.querySelector("[data-character-count]");
+  if (!results || state.route !== "characters" || state.detail) {
+    render();
+    return;
+  }
+
+  const filtered = getFilteredCharacters();
+  results.innerHTML = renderCharacterResults(filtered);
+  if (count) count.textContent = state.charactersLoading ? t("syncingCharacters") : `${filtered.length} / ${characters.length} ${t("characterCount")}`;
+}
+
+function renderCharacterShowcase() {
+  const featured = state.roleFilter === "all"
+    ? characters
+    : characters.filter((character) => character.role === state.roleFilter);
+  const toggleLabel = state.showcaseCollapsed ? t("showShowcase") : t("hideShowcase");
+
+  return `
+    <section class="page-band page-band--deep">
+      <div class="container">
+        ${renderSectionHeader(
+          t("showcaseKicker"),
+          t("showcaseTitle"),
+          t("showcaseDesc"),
+          `<button class="section-toggle" type="button" data-showcase-toggle aria-expanded="${!state.showcaseCollapsed}" aria-controls="home-resonators-content">
+            <span aria-hidden="true">${state.showcaseCollapsed ? "+" : "-"}</span>
+            ${toggleLabel}
+          </button>`
+        )}
+        <div id="home-resonators-content">
+          ${state.showcaseCollapsed ? `
+            <div class="collapsed-note">${t("charactersHidden")}</div>
+          ` : `
+            ${renderRoleTabs()}
+            <div class="character-grid">
+              ${featured.map(renderCharacterCard).join("")}
+            </div>
+          `}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function tierWeight(tier) {
+  return { SS: 7, "S+": 6, S: 5, A: 4, B: 3, C: 2, D: 1 }[tier] || 0;
+}
+
+function compareDamageMeta(a, b) {
+  const tierDiff = tierWeight(b.tiers.damage) - tierWeight(a.tiers.damage);
+  if (tierDiff !== 0) return tierDiff;
+  return (a.damageRank || 999) - (b.damageRank || 999);
+}
+
+function renderTierPreview() {
+  const top = [...characters]
+    .filter((character) => character.role === "dps")
+    .sort(compareDamageMeta)
+    .slice(0, 6);
+
+  return `
+    <section class="page-band">
+      <div class="container split-layout">
+        <div>
+          ${renderSectionHeader(
+            "Tier list",
+            t("tierPreviewTitle"),
+            t("tierPreviewDesc"),
+            `<a class="text-link" href="${pathFor("tier")}" data-link>${t("navTier")}</a>`
+          )}
+          <div class="source-links">
+            ${tierSourceLinks.map((source) => `<a href="${source.url}" target="_blank" rel="noreferrer">${source.label}</a>`).join("")}
+          </div>
+        </div>
+        <div class="tier-preview">
+          ${top.map((character, index) => `
+            <a href="${pathFor("characters", state.lang, character.slug)}" data-link class="tier-row">
+              <span>${index + 1}</span>
+              <strong>${character.name}</strong>
+              <em>${character.tiers.damage}</em>
+            </a>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderNewsGrid(limit = 6) {
+  return `
+    <div class="news-grid">
+      ${news.slice(0, limit).map((item) => `
+        <article class="data-card news-card">
+          <img src="${item.image}" alt="" loading="lazy">
+          <div class="card-body">
+            <span class="pill">${item.category}</span>
+            <h3>${item.title}</h3>
+            <time datetime="${item.date}">${formatNewsDate(item.date)}</time>
+            <p>${item.summary}</p>
+          </div>
+        </article>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderCodesWidget(full = false) {
+  const list = full ? codes : codes.filter((code) => code.status === "active").slice(0, 3);
+
+  return `
+    <div class="codes-widget">
+      ${list.map((code) => `
+        <article class="code-row ${code.status === "expired" ? "is-expired" : ""}">
+          <div>
+            <strong>${code.code}</strong>
+            <span>${code.rewards.join(" • ")}</span>
+          </div>
+          <div>
+            <small>${formatDate(code.expiresAt)}</small>
+            <button type="button" data-copy="${code.code}" ${code.status === "expired" ? "disabled" : ""}>
+              ${code.status === "expired" ? t("ended") : t("copyCode")}
+            </button>
+          </div>
+        </article>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderHome() {
+  return `
+    ${renderSearchHero()}
+    ${renderLiveTicker()}
+    ${renderBannerSpotlight()}
+    ${renderCharacterShowcase()}
+    ${renderTierPreview()}
+    <section class="page-band page-band--deep">
+      <div class="container">
+        ${renderSectionHeader(
+          t("navNews"),
+          t("recentNewsTitle"),
+          t("recentNewsDesc"),
+          `<a class="text-link" href="${pathFor("news")}" data-link>${t("navNews")}</a>`
+        )} 
+        ${renderNewsGrid(6)}
+      </div>
+    </section>
+    <section class="page-band">
+      <div class="container compact-section">
+        ${renderSectionHeader(
+          t("codes"),
+          t("redeemTitle"),
+          t("redeemDesc"),
+          `<a class="text-link" href="${pathFor("codes")}" data-link>${t("navCodes")}</a>`
+        )}
+        ${renderCodesWidget()}
+      </div>
+    </section>
+  `;
+}
+
+function renderPageHero(title, description, kicker = "Wiki") {
+  return `
+    <section class="subhero">
+      <div class="container">
+        <p class="eyebrow">${kicker}</p>
+        <h1>${title}</h1>
+        <p>${description}</p>
+      </div>
+    </section>
+    ${renderLiveTicker()}
+  `;
+}
+
+function renderCharactersPage() {
+  if (state.detail) {
+    return renderCharacterDetail(state.detail);
+  }
+
+  const filtered = getFilteredCharacters();
+
+  return `
+    ${renderPageHero(t("navCharacters"), t("pageCharactersDesc"), t("database"))}
+    <section class="page-band">
+      <div class="container">
+        <div class="module-status">
+          <span data-character-count>${state.charactersLoading ? t("syncingCharacters") : `${filtered.length} / ${characters.length} ${t("characterCount")}`}</span>
+          <span>${t("sourceLabel")}: ${state.charactersSource}</span>
+          <span>${state.charactersApiError ? t("apiFallback") : `${t("updatedLabel")} ${timeAgo(state.charactersUpdatedAt)}`}</span>
+        </div>
+        ${renderCharacterFilters()}
+        ${renderRoleTabs()}
+        <div data-character-results>
+          ${renderCharacterResults(filtered)}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderCharacterDetail(slug) {
+  const character = characters.find((item) => item.slug === slug);
+  if (!character) return renderNotFound();
+
+  return `
+    ${renderPageHero(character.name, `${character.element} • ${character.weapon} • ${t(roleLabels[character.role])}`, "Resonator")}
+    <section class="page-band">
+      <div class="container detail-layout">
+        <aside class="detail-aside">
+          ${renderCharacterAvatar(character, "detail")}
+          <button class="favorite-wide ${isFavorite(character.slug) ? "is-on" : ""}" type="button" data-fav="${character.slug}">
+            ${isFavorite(character.slug) ? "★" : "☆"} ${t("favorites")}
+          </button>
+          <a class="text-link" href="${pathFor("characters")}" data-link>${t("back")}</a>
+        </aside>
+        <div class="detail-main">
+          <div class="stat-grid">
+            ${Object.entries(character.stats).map(([label, value]) => `
+              <div class="stat-tile">
+                <span>${label.toUpperCase()}</span>
+                <strong>${value}</strong>
+              </div>
+            `).join("")}
+          </div>
+          <article class="panel">
+            <h2>${t("recommendedBuild")}</h2>
+            <div class="build-grid">
+              <div><span>${t("weapon")}</span><strong>${character.build.weapon}</strong></div>
+              <div><span>${t("echoes")}</span><strong>${character.build.echoes}</strong></div>
+              <div><span>${t("mainStats")}</span><strong>${character.build.mainStats.join(" / ")}</strong></div>
+              <div><span>${t("team")}</span><strong>${character.build.team.join(" • ")}</strong></div>
+            </div>
+            <p>${character.build.rotation}</p>
+          </article>
+          ${renderCharacterStatTargetSummary(character)}
+          <article class="panel">
+            <h2>${t("skills")}</h2>
+            <div class="skill-tree">
+              ${character.skills.map((skill) => `<span>${skill}</span>`).join("")}
+            </div>
+          </article>
+          <article class="panel">
+            <h2>${t("weaponAffinity")}</h2>
+            <ol class="ranked-list">
+              ${character.affinity.map((weapon, index) => `<li><span>${index + 1}</span>${weapon}</li>`).join("")}
+            </ol>
+          </article>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderTierPage() {
+  const elements = ["all", ...new Set(characters.map((character) => character.element))];
+  const filtered = state.elementFilter === "all"
+    ? characters
+    : characters.filter((character) => character.element === state.elementFilter);
+  const sorted = [...filtered].sort((a, b) => {
+    const tierDiff = tierWeight(b.tiers[state.tierMode]) - tierWeight(a.tiers[state.tierMode]);
+    if (tierDiff !== 0) return tierDiff;
+    return state.tierMode === "damage"
+      ? (a.damageRank || 999) - (b.damageRank || 999)
+      : a.name.localeCompare(b.name);
+  });
+  const groups = ["SS", "S+", "S", "A", "B", "C", "D"].map((tier) => ({
+    tier,
+    entries: sorted.filter((character) => character.tiers[state.tierMode] === tier)
+  })).filter((group) => group.entries.length);
+
+  return `
+    ${renderPageHero(t("navTier"), t("pageTierDesc"), "Meta")}
+    <section class="page-band">
+      <div class="container">
+        <div class="module-status">
+          <span>${t("currentMetaUpdated")}</span>
+          <span>${t("tierSources")}</span>
+        </div>
+        <div class="toolbar">
+          <div class="segmented">
+            ${["damage", "support", "exploration"].map((mode) => `
+              <button type="button" data-tier-mode="${mode}" class="${state.tierMode === mode ? "is-active" : ""}">
+                ${t(mode)}
+              </button>
+            `).join("")}
+          </div>
+          <label>
+            <span>${t("element")}</span>
+            <select data-element-filter>
+              ${elements.map((element) => `
+                <option value="${element}" ${state.elementFilter === element ? "selected" : ""}>
+                  ${element === "all" ? t("all") : element}
+                </option>
+              `).join("")}
+            </select>
+          </label>
+        </div>
+        <div class="tier-board">
+          ${groups.map((group) => `
+            <section class="tier-group">
+              <strong>${group.tier}</strong>
+              <div>
+                ${group.entries.map((character) => `
+                  <a href="${pathFor("characters", state.lang, character.slug)}" data-link class="tier-token">
+                    ${renderCharacterAvatar(character)}
+                    <span>${character.name}</span>
+                  </a>
+                `).join("")}
+              </div>
+            </section>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderEchoesPage() {
+  return `
+    ${renderPageHero(t("navEchoes"), t("pageEchoesDesc"), t("database"))}
+    <section class="page-band">
+      <div class="container">
+        <div class="echo-grid">
+          ${echoes.map((echo) => `
+            <article class="data-card echo-card">
+              ${renderItemAssetImage("echo", echo)}
+              <div class="card-topline">
+                <span class="pill">${echo.element}</span>
+                <strong>${echo.bestFor.join(" • ")}</strong>
+              </div>
+              <div class="card-body">
+                <h3>${echo.name}</h3>
+                <p><strong>2p:</strong> ${echo.effect2}</p>
+                <p><strong>5p:</strong> ${echo.effect5}</p>
+                <div class="tag-row">
+                  ${echo.sources.map((source) => `<span>${source}</span>`).join("")}
+                </div>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderWeaponsPage() {
+  const types = ["all", ...new Set(weapons.map((weapon) => weapon.type))];
+  const filtered = state.weaponFilter === "all"
+    ? weapons
+    : weapons.filter((weapon) => weapon.type === state.weaponFilter);
+
+  return `
+    ${renderPageHero(t("navWeapons"), t("pageWeaponsDesc"), t("database"))}
+    <section class="page-band">
+      <div class="container">
+        <div class="toolbar">
+          <label>
+            <span>${t("weapon")}</span>
+            <select data-weapon-filter>
+              ${types.map((type) => `
+                <option value="${type}" ${state.weaponFilter === type ? "selected" : ""}>
+                  ${type === "all" ? t("all") : type}
+                </option>
+              `).join("")}
+            </select>
+          </label>
+        </div>
+        <div class="weapon-grid">
+          ${filtered.map((weapon) => `
+            <article class="data-card weapon-card">
+              ${renderItemAssetImage("weapon", weapon)}
+              <div class="card-topline">
+                <span class="pill">${weapon.type}</span>
+                <span>${stars(weapon.rarity)}</span>
+              </div>
+              <div class="card-body">
+                <h3>${weapon.name}</h3>
+                <dl class="mini-dl">
+                  <div><dt>ATK</dt><dd>${weapon.baseAtk}</dd></div>
+                  <div><dt>${t("substat")}</dt><dd>${weapon.stat}</dd></div>
+                </dl>
+                <p>${weapon.passive}</p>
+                <div class="tag-row">
+                  ${weapon.recommended.map((name) => `<span>${name}</span>`).join("")}
+                </div>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderItemsPage() {
+  const grouped = [...new Set(items.map((item) => item.type))].map((type) => ({
+    type,
+    items: items.filter((item) => item.type === type)
+  }));
+
+  return `
+    ${renderPageHero(t("navItems"), t("pageItemsDesc"), "Farm")}
+    <section class="page-band page-band--deep">
+      <div class="container split-layout">
+        <article class="panel">
+          <h2>${t("farmPriorities")}</h2>
+          <p>${t("farmPrioritiesDesc")}</p>
+          <div class="stat-grid">
+            <div class="stat-tile">
+              <span>${t("catalogedItems")}</span>
+              <strong>${items.length}</strong>
+            </div>
+            <div class="stat-tile">
+              <span>${t("resourceTypes")}</span>
+              <strong>${grouped.length}</strong>
+            </div>
+            <div class="stat-tile">
+              <span>${t("universalUse")}</span>
+              <strong>${items.filter((item) => item.usedBy.includes("Todos")).length}</strong>
+            </div>
+            <div class="stat-tile">
+              <span>${t("limitedTime")}</span>
+              <strong>${items.filter((item) => item.days === "Tempo limitado").length}</strong>
+            </div>
+          </div>
+        </article>
+        <article class="panel">
+          <h2>${t("weeklyCalendar")}</h2>
+          <ol class="ranked-list">
+            ${weeklyFarmPlan.map((slot) => `
+              <li>
+                <span>${slot.day.slice(0, 2)}</span>
+                <div>
+                  <strong>${slot.focus}</strong>
+                  <small>${slot.note}</small>
+                </div>
+              </li>
+            `).join("")}
+          </ol>
+        </article>
+      </div>
+    </section>
+    <section class="page-band">
+      <div class="container">
+        ${grouped.map((group) => `
+          <section class="panel" style="margin-bottom: 16px;">
+            <div class="section-header" style="margin-bottom: 16px;">
+              <div>
+                <p class="eyebrow">${t("category")}</p>
+                <h2>${group.type}</h2>
+                <p>${group.items.length} ${t("listedItems")}</p>
+              </div>
+            </div>
+            <div class="guide-grid">
+              ${group.items.map((item) => `
+                <article class="data-card">
+                  <div class="card-topline">
+                    <span class="pill">${item.type}</span>
+                    <strong>${item.days}</strong>
+                  </div>
+                  <div class="card-body">
+                    <h3>${item.name}</h3>
+                    <p><strong>${t("source")}:</strong> ${item.source}</p>
+                    <div class="tag-row">
+                      ${item.usedBy.map((name) => `<span>${name}</span>`).join("")}
+                    </div>
+                  </div>
+                </article>
+              `).join("")}
+            </div>
+          </section>
+        `).join("")}
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>${t("item")}</th>
+                <th>${t("type")}</th>
+                <th>${t("source")}</th>
+                <th>${t("days")}</th>
+                <th>${t("users")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${items.map((item) => `
+                <tr>
+                  <td>${item.name}</td>
+                  <td>${item.type}</td>
+                  <td>${item.source}</td>
+                  <td>${item.days}</td>
+                  <td>${item.usedBy.join(" â€¢ ")}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  `;
+
+  return `
+    ${renderPageHero(t("navItems"), t("pageItemsDesc"), "Farm")}
+    <section class="page-band">
+      <div class="container">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>${t("item")}</th>
+                <th>${t("type")}</th>
+                <th>${t("source")}</th>
+                <th>${t("days")}</th>
+                <th>${t("users")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${items.map((item) => `
+                <tr>
+                  <td>${item.name}</td>
+                  <td>${item.type}</td>
+                  <td>${item.source}</td>
+                  <td>${item.days}</td>
+                  <td>${item.usedBy.join(" • ")}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderGuidePage() {
+  const glossary = [
+    ["Intro Skill", "Entrada que prepara buffs e gera energia"],
+    ["Outro Skill", "Troca que fortalece o proximo personagem"],
+    ["Forte Circuit", "Mecanica central de dano e recursos"],
+    ["Tacet Field", "Dominios de farm para eco e materiais"],
+    ["Tower", "Conteudo endgame com score e rotacoes"]
+  ];
+
+  const foundationCards = [
+    {
+      title: "Loop de combate",
+      body: "Intro > aplicacao > janela de burst > troca segura. Esse fluxo evita tempo ocioso e facilita o empilhamento de buffs."
+    },
+    {
+      title: "Papéis de equipe",
+      body: "Monte sempre um carry principal, um personagem de suporte e um sub-DPS que mantenha pressao enquanto o carry recarrega."
+    },
+    {
+      title: "Prioridade de progresso",
+      body: "Boss semanal, material ascensao, domínios de eco e depois otimização de substats. Isso acelera conta nova e recicla stamina bem."
+    }
+  ];
+
+  return `
+    ${renderPageHero(t("pageGuideTitle"), t("pageGuideDesc"), t("navGuide"))}
+    <section class="page-band page-band--deep">
+      <div class="container split-layout">
+        <article class="panel">
+          <h2>${t("guideBasics")}</h2>
+          <div class="guide-grid">
+            ${foundationCards.map((card) => `
+              <article class="data-card">
+                <div class="card-body">
+                  <span class="pill">Core</span>
+                  <h3>${card.title}</h3>
+                  <p>${card.body}</p>
+                </div>
+              </article>
+            `).join("")}
+          </div>
+        </article>
+        <article class="panel">
+          <h2>${t("quickChecklist")}</h2>
+          <ol class="ranked-list">
+            ${guides.slice(-3).map((guide) => `
+              <li>
+                <span>${guide.minutes}</span>
+                <div>
+                  <strong>${guide.title}</strong>
+                  <small>${guide.tag} - ${guide.body}</small>
+                </div>
+              </li>
+            `).join("")}
+          </ol>
+        </article>
+      </div>
+    </section>
+    <section class="page-band">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">${t("readings")}</p>
+            <h2>${t("detailedGuides")}</h2>
+            <p>${t("detailedGuidesDesc")}</p>
+          </div>
+        </div>
+        <div class="guide-grid">
+          ${guides.map((guide) => `
+            <article class="data-card guide-card">
+              <div class="card-body">
+                <span class="pill">${guide.tag}</span>
+                <h3>${guide.title}</h3>
+                <p>${guide.body}</p>
+                <small>${guide.minutes} min</small>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+        <div class="table-wrap" style="margin-top: 16px;">
+          <table>
+            <thead>
+              <tr>
+                <th>${t("term")}</th>
+                <th>${t("users")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${glossary.map(([term, meaning]) => `
+                <tr>
+                  <td>${term}</td>
+                  <td>${meaning}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  `;
+
+  return `
+    ${renderPageHero(t("pageGuideTitle"), t("pageGuideDesc"), t("navGuide"))}
+    <section class="page-band">
+      <div class="container guide-grid">
+        ${guides.map((guide) => `
+          <article class="data-card guide-card">
+            <div class="card-body">
+              <span class="pill">${guide.tag}</span>
+              <h3>${guide.title}</h3>
+              <p>${guide.body}</p>
+              <small>${guide.minutes} min</small>
+            </div>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderCodesPage() {
+  return `
+    ${renderPageHero(t("pageCodesTitle"), t("pageCodesDesc"), "Rewards")}
+    <section class="page-band">
+      <div class="container compact-section">
+        <p class="notice">${t("mockNotice")}</p>
+        ${renderCodesWidget(true)}
+      </div>
+    </section>
+  `;
+}
+
+function selectedBuilderCharacter() {
+  return characters.find((item) => item.slug === state.builder.character) || characters[0];
+}
+
+function compatibleBuilderWeapons(character = selectedBuilderCharacter()) {
+  if (!character?.weapon) return weapons;
+  const compatible = weapons.filter((weapon) => weapon.type === character.weapon);
+  return compatible.length ? compatible : weapons;
+}
+
+function normalizeBuilderWeapon(character = selectedBuilderCharacter()) {
+  const compatible = compatibleBuilderWeapons(character);
+  const current = compatible.find((weapon) => weapon.slug === state.builder.weapon);
+  if (current) return current;
+
+  state.builder.weapon = compatible[0]?.slug || state.builder.weapon;
+  state.builderFilter.weapon = "all";
+  return compatible[0] || weapons[0];
+}
+
+function builderItems(kind) {
+  if (kind === "weapon") return compatibleBuilderWeapons();
+  if (kind === "echo") return echoes;
+  return characters;
+}
+
+function builderSelectedSlug(kind) {
+  return state.builder[kind];
+}
+
+function builderFilterValue(kind, item) {
+  if (kind === "character") return item.role;
+  if (kind === "weapon") return item.type;
+  return item.element;
+}
+
+function builderFilterLabel(kind, value) {
+  if (value === "all") return t("all");
+  if (kind === "character") return t(roleLabels[value] || value);
+  return value;
+}
+
+function builderFilterOptions(kind) {
+  return ["all", ...new Set(builderItems(kind).map((item) => builderFilterValue(kind, item)).filter(Boolean))];
+}
+
+function effectiveBuilderFilter(kind) {
+  const options = builderFilterOptions(kind);
+  return options.includes(state.builderFilter[kind]) ? state.builderFilter[kind] : "all";
+}
+
+function builderSearchText(kind, item) {
+  if (kind === "character") return [item.name, item.element, item.weapon, item.role, ...(item.tags || [])].join(" ");
+  if (kind === "weapon") return [item.name, item.type, item.stat, ...(item.recommended || [])].join(" ");
+  return [item.name, item.element, item.effect2, item.effect5, ...(item.bestFor || [])].join(" ");
+}
+
+function filteredBuilderItems(kind) {
+  const query = state.builderSearch[kind].trim().toLowerCase();
+  const filter = effectiveBuilderFilter(kind);
+
+  return builderItems(kind).filter((item) => {
+    const matchesSearch = !query || builderSearchText(kind, item).toLowerCase().includes(query);
+    const matchesFilter = filter === "all" || builderFilterValue(kind, item) === filter;
+    return matchesSearch && matchesFilter;
+  });
+}
+
+function renderBuilderItemIcon(kind, item) {
+  const imageUrl = item.iconUrl || item.imageUrl || itemAssetUrl(kind, item);
+  const fallbackLabel = kind === "weapon" ? item.type.slice(0, 2) : item.element.slice(0, 2);
+
+  if (!imageUrl) {
+    return `<span class="builder-option-mark">${escapeHtml(fallbackLabel)}</span>`;
+  }
+
+  return `
+    <span class="builder-option-icon" data-kind="${kind}">
+      <img
+        src="${escapeHtml(imageUrl)}"
+        alt="${escapeHtml(item.name)}"
+        loading="lazy"
+        decoding="async"
+        onerror="this.onerror=null;this.src='${ITEM_FALLBACK_IMAGE}';var p=this.parentElement;if(p)p.classList.add('is-fallback');"
+      />
+    </span>
+  `;
+}
+
+function builderStatTargets(character, weapon, echo) {
+  const templates = {
+    dps: { atk: 1800, hp: 12000, crit: 78, energy: "120% - 140%" },
+    sub: { atk: 1600, hp: 11500, crit: 68, energy: "140% - 170%" },
+    support: { atk: 1350, hp: 15000, crit: 45, energy: "180% - 220%" },
+    control: { atk: 1500, hp: 12500, crit: 58, energy: "130% - 160%" }
+  };
+  const base = templates[character.role] || templates.dps;
+  const needsEnergy = [...(character.build.mainStats || []), weapon.stat, echo.effect2]
+    .join(" ")
+    .toLowerCase()
+    .includes("energy");
+
+  return {
+    ...base,
+    energy: needsEnergy ? base.energy : base.energy.replace("140%", "130%").replace("170%", "150%"),
+    priority: character.build.mainStats.join(" > ")
+  };
+}
+
+function renderTargetBar(label, value, target) {
+  const percent = Math.min(100, Math.round((value / target) * 100));
+  const reached = value >= target;
+
+  return `
+    <div class="target-row ${reached ? "is-ready" : ""}">
+      <div>
+        <span>${label}</span>
+        <strong>${value} / ${target}</strong>
+        <small>${reached ? t("targetReached") : t("targetMissing")}</small>
+      </div>
+      <span class="target-bar"><i style="width:${percent}%"></i></span>
+    </div>
+  `;
+}
+
+function renderBuilderStatTargets(character, weapon, echo, stats) {
+  const targets = builderStatTargets(character, weapon, echo);
+
+  return `
+    <article class="panel stat-target-panel">
+      <h3>${t("statTargets")}</h3>
+      <p>${t("statTargetsDesc")}</p>
+      <div class="target-grid">
+        ${renderTargetBar("ATK", stats.atk, targets.atk)}
+        ${renderTargetBar("HP", stats.hp, targets.hp)}
+        ${renderTargetBar("Crit Score", stats.crit, targets.crit)}
+      </div>
+      <dl class="mini-dl">
+        <div><dt>${t("suggestedEnergy")}</dt><dd>${targets.energy}</dd></div>
+        <div><dt>${t("priorityStats")}</dt><dd>${escapeHtml(targets.priority)}</dd></div>
+      </dl>
+    </article>
+  `;
+}
+
+function renderCharacterStatTargetSummary(character) {
+  const weapon = weapons.find((item) => item.name === character.build.weapon) || weapons.find((item) => item.type === character.weapon) || weapons[0];
+  const echoName = character.build.echoes.replace(" 5p", "");
+  const echo = echoes.find((item) => item.name === echoName) || echoes[0];
+  const targets = builderStatTargets(character, weapon, echo);
+
+  return `
+    <article class="panel stat-target-panel">
+      <h2>${t("statTargets")}</h2>
+      <p>${t("statTargetsDesc")}</p>
+      <div class="target-summary-grid">
+        <div><span>ATK</span><strong>${targets.atk}+</strong></div>
+        <div><span>HP</span><strong>${targets.hp}+</strong></div>
+        <div><span>Crit Score</span><strong>${targets.crit}+</strong></div>
+        <div><span>${t("suggestedEnergy")}</span><strong>${targets.energy}</strong></div>
+      </div>
+      <dl class="mini-dl">
+        <div><dt>${t("priorityStats")}</dt><dd>${escapeHtml(targets.priority)}</dd></div>
+        <div><dt>${t("echoes")}</dt><dd>${escapeHtml(character.build.echoes)}</dd></div>
+      </dl>
+    </article>
+  `;
+}
+
+function renderBuilderOption(kind, item) {
+  const isSelected = item.slug === builderSelectedSlug(kind);
+  const meta = kind === "character"
+    ? `${stars(item.rarity)} - ${item.element} - ${item.weapon}`
+    : kind === "weapon"
+      ? `${stars(item.rarity)} - ${item.type} - ${item.stat}`
+      : `${item.element} - ${item.effect2}`;
+
+  return `
+    <button class="builder-option ${isSelected ? "is-active" : ""}" type="button" data-builder-pick="${kind}" data-value="${item.slug}">
+      ${kind === "character" ? renderCharacterAvatar(item) : renderBuilderItemIcon(kind, item)}
+      <span>
+        <strong>${escapeHtml(item.name)}</strong>
+        <small>${escapeHtml(meta)}</small>
+      </span>
+    </button>
+  `;
+}
+
+function renderBuilderOptions(kind) {
+  const items = filteredBuilderItems(kind);
+  if (!items.length) return `<div class="empty-state builder-empty">${t("builderEmpty")}</div>`;
+  return items.map((item) => renderBuilderOption(kind, item)).join("");
+}
+
+function renderBuilderPicker(kind, title, placeholder) {
+  const options = builderFilterOptions(kind);
+  const currentFilter = effectiveBuilderFilter(kind);
+  const current = builderItems(kind).find((item) => item.slug === builderSelectedSlug(kind));
+
+  return `
+    <section class="builder-picker" data-builder-picker="${kind}">
+      <div class="builder-picker-head">
+        <div>
+          <span>${title}</span>
+          <strong>${escapeHtml(current?.name || "--")}</strong>
+        </div>
+        <small data-builder-count="${kind}">${filteredBuilderItems(kind).length} ${t("options")}</small>
+      </div>
+      <div class="builder-picker-tools">
+        <input type="search" value="${escapeHtml(state.builderSearch[kind])}" placeholder="${placeholder}" data-builder-search="${kind}">
+        <select data-builder-filter="${kind}">
+          ${options.map((value) => `<option value="${value}" ${currentFilter === value ? "selected" : ""}>${builderFilterLabel(kind, value)}</option>`).join("")}
+        </select>
+      </div>
+      <div class="builder-option-grid" data-builder-options="${kind}">
+        ${renderBuilderOptions(kind)}
+      </div>
+    </section>
+  `;
+}
+
+function updateBuilderPicker(kind) {
+  const picker = app.querySelector(`[data-builder-picker="${kind}"]`);
+  if (!picker || state.route !== "builder") {
+    render();
+    return;
+  }
+
+  const options = picker.querySelector(`[data-builder-options="${kind}"]`);
+  const count = picker.querySelector(`[data-builder-count="${kind}"]`);
+  const items = filteredBuilderItems(kind);
+  if (options) options.innerHTML = items.length
+    ? items.map((item) => renderBuilderOption(kind, item)).join("")
+    : `<div class="empty-state builder-empty">${t("builderEmpty")}</div>`;
+  if (count) count.textContent = `${items.length} ${t("options")}`;
+}
+
+function renderBuilderPage() {
+  const character = selectedBuilderCharacter();
+  const weapon = normalizeBuilderWeapon(character);
+  const echo = echoes.find((item) => item.slug === state.builder.echo) || echoes[0];
+  const levelRatio = state.builder.level / 90;
+  const atk = Math.round((character.stats.atk + weapon.baseAtk) * (0.58 + levelRatio * 0.52));
+  const hp = Math.round(character.stats.hp * (0.62 + levelRatio * 0.42));
+  const crit = Math.round((weapon.stat.includes("CRIT") ? 68 : 52) + levelRatio * 12);
+  const score = Math.round((atk / 18) + crit * 1.4 + (echo.name === character.build.echoes.replace(" 5p", "") ? 40 : 18));
+
+  return `
+    ${renderPageHero(t("navBuilder"), t("pageBuilderDesc"), "Tools")}
+    <section class="page-band">
+      <div class="container builder-layout">
+        <div class="builder-panel builder-panel--cards" data-builder-form>
+          ${renderBuilderPicker("character", t("navCharacters"), t("searchCharacter"))}
+          ${renderBuilderPicker("weapon", t("weapon"), t("searchWeapon"))}
+          ${renderBuilderPicker("echo", t("echoes"), t("searchEcho"))}
+          <label>
+            <span>${t("level")} ${state.builder.level}</span>
+            <input type="range" min="1" max="90" value="${state.builder.level}" data-builder-level>
+          </label>
+        </div>
+        <div class="builder-results">
+          <article class="panel">
+            <h2>${character.name} + ${weapon.name}</h2>
+            <p>${echo.name} • ${echo.effect2}</p>
+            ${renderBar("ATK", atk, 1600)}
+            ${renderBar("HP", hp, 18000)}
+            ${renderBar("Crit Score", crit, 100)}
+            ${renderBar("Build Score", score, 220)}
+          </article>
+          ${renderBuilderStatTargets(character, weapon, echo, { atk, hp, crit, score })}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderBar(label, value, max) {
+  const width = Math.min(100, Math.round((value / max) * 100));
+  return `
+    <div class="bar-row">
+      <div><span>${label}</span><strong>${value}</strong></div>
+      <span class="bar"><i style="width:${width}%"></i></span>
+    </div>
+  `;
+}
+
+function nextEndingLabel(items) {
+  const upcomingEnd = items
+    .map((item) => new Date(item.endAt).getTime())
+    .filter((time) => Number.isFinite(time) && time >= Date.now())
+    .sort((a, b) => a - b)[0];
+
+  return upcomingEnd ? formatEventDateTime(new Date(upcomingEnd).toISOString()) : t("noActiveItems");
+}
+
+function eventCategoryItems(category, events, convenes) {
+  if (category === "convenes") return convenes;
+  if (category === "all") return [...convenes, ...events];
+  return events.filter((event) => event.category === category);
+}
+
+function renderEventCategoryOverview(filters, events, convenes) {
+  return `
+    <section class="event-overview" aria-label="${t("categoryOverview")}">
+      ${filters.map((filter) => {
+        const category = filter === "banner" ? "convenes" : filter;
+        const items = eventCategoryItems(category, events, convenes);
+
+        return `
+          <button type="button" class="event-overview-card ${state.eventFilter === filter ? "is-active" : ""}" data-event-filter="${filter}">
+            <span>${t(categoryLabels[filter])}</span>
+            <strong>${items.length}</strong>
+            <small>${t("nextEnd")}: ${nextEndingLabel(items)}</small>
+          </button>
+        `;
+      }).join("")}
+    </section>
+  `;
+}
+
+function eventSourceLabel(filter) {
+  if (filter === "banner") return state.conveneSource;
+  if (filter === "all") return `${state.eventSource} + ${state.conveneSource}`;
+  return state.eventSource;
+}
+
+function eventUpdatedAt(filter) {
+  return filter === "banner" ? state.convenesUpdatedAt : state.updatedAt;
+}
+
+function eventSyncMinutes(filter) {
+  return filter === "banner" ? state.conveneSyncIntervalMinutes : state.syncIntervalMinutes;
+}
+
+function renderEventGroup(title, cards, className) {
+  if (!cards.length) return "";
+
+  return `
+    <section class="event-group">
+      <h2>${title}</h2>
+      <div class="${className}">
+        ${cards.join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderFilteredEventContent(filter, events, convenes) {
+  if (filter === "banner") {
+    return convenes.length
+      ? renderEventGroup(t("currentConvenes"), convenes.map((convene) => renderConveneCard(convene)), "banner-grid")
+      : `<div class="empty-state">${t("emptyConvenes")}</div>`;
+  }
+
+  if (filter === "all") {
+    const content = [
+      renderEventGroup(t("currentConvenes"), convenes.map((convene) => renderConveneCard(convene)), "banner-grid"),
+      renderEventGroup(t("activeEvents"), events.map((event) => renderEventCard(event)), "events-grid")
+    ].filter(Boolean).join("");
+
+    return content || `<div class="empty-state">${t("emptyEvents")}</div>`;
+  }
+
+  return events.length
+    ? renderEventGroup(t(categoryLabels[filter]), events.map((event) => renderEventCard(event)), "events-grid")
+    : `<div class="empty-state">${t("emptyEvents")}</div>`;
+}
+
+function renderEventsPage() {
+  const filters = ["all", "banner", "evento_in_game", "evento_web", "torre_adversidade", "codigo"];
+  const currentEvents = activeEvents();
+  const currentConvenes = activeConvenes();
+  const events = state.eventFilter === "all"
+    ? currentEvents
+    : state.eventFilter === "banner"
+      ? []
+    : currentEvents.filter((event) => event.category === state.eventFilter);
+
+  return `
+    ${renderPageHero(t("pageEventsTitle"), t("pageEventsDesc"), "Live API")}
+    <section class="page-band">
+      <div class="container">
+        <div class="module-status">
+          <span>${eventCategoryItems(state.eventFilter === "banner" ? "convenes" : state.eventFilter, currentEvents, currentConvenes).length} ${t("activeNow").toLowerCase()}</span>
+          <span>${t("updated")} ${timeAgo(eventUpdatedAt(state.eventFilter))}</span>
+          <span>${t("syncEvery")} ${eventSyncMinutes(state.eventFilter)} min</span>
+          <span>${t("sourceLabel")}: ${eventSourceLabel(state.eventFilter)}</span>
+        </div>
+        ${renderEventCategoryOverview(filters, currentEvents, currentConvenes)}
+        <div class="toolbar">
+          <div class="segmented segmented--wrap">
+            ${filters.map((filter) => `
+              <button type="button" data-event-filter="${filter}" class="${state.eventFilter === filter ? "is-active" : ""}">
+                ${t(categoryLabels[filter])}
+              </button>
+            `).join("")}
+          </div>
+          <div class="segmented">
+            <button type="button" data-time-mode="local" class="${state.timeMode === "local" ? "is-active" : ""}">${t("localTime")}</button>
+            <button type="button" data-time-mode="server" class="${state.timeMode === "server" ? "is-active" : ""}">${t("serverTime")}</button>
+          </div>
+        </div>
+        ${renderFilteredEventContent(state.eventFilter, events, currentConvenes)}
+      </div>
+    </section>
+  `;
+}
+
+function renderConvenesSection() {
+  const convenes = activeConvenes();
+
+  return `
+    <section class="page-band page-band--deep">
+      <div class="container">
+        ${renderSectionHeader(
+          t("currentConvenes"),
+          t("convenePageTitle"),
+          t("convenePageDesc")
+        )}
+        <div class="module-status">
+          <span>${convenes.length} ${t("currentConvenes").toLowerCase()}</span>
+          <span>${t("updated")} ${timeAgo(state.convenesUpdatedAt)}</span>
+          <span>${t("syncEvery")} ${state.conveneSyncIntervalMinutes} min</span>
+          <span>${t("sourceLabel")}: ${state.conveneSource}</span>
+        </div>
+        ${convenes.length ? `
+          <div class="banner-grid">
+            ${convenes.map((convene) => renderConveneCard(convene)).join("")}
+          </div>
+        ` : `<div class="empty-state">${t("emptyConvenes")}</div>`}
+      </div>
+    </section>
+  `;
+}
+
+function renderConveneCard(convene, compact = false) {
+  const status = getEventStatus(convene);
+  const imageUrl = convene.imageUrl || EVENT_FALLBACK_IMAGE;
+  const featured = [convene.featuredName, convene.featuredDetail].filter(Boolean).join(" - ");
+
+  return `
+    <article class="data-card event-card convene-card ${compact ? "event-card--compact" : ""}">
+      <img
+        src="${escapeHtml(imageUrl)}"
+        alt="${escapeHtml(convene.title)}"
+        loading="lazy"
+        decoding="async"
+        onerror="this.onerror=null;this.src='${EVENT_FALLBACK_IMAGE}';"
+      >
+      <div class="card-body">
+        <div class="card-topline">
+          <span class="pill pill--${status}">${statusLabel(status)}</span>
+          <span>${escapeHtml(convene.type || "convene")}</span>
+        </div>
+        <h3>${escapeHtml(convene.title)}</h3>
+        <dl class="mini-dl">
+          <div><dt>${t("featuredItem")}</dt><dd>${escapeHtml(featured || "--")}</dd></div>
+          <div><dt>${t("conveneType")}</dt><dd>${escapeHtml(convene.type || "--")}</dd></div>
+        </dl>
+        <p class="event-count" aria-label="${t("eventEndsIn")}">
+          <small>${t("eventEndsIn")}</small>
+          <span data-countdown data-start="${convene.startAt}" data-end="${convene.endAt}">${countdownLabel(convene)}</span>
+        </p>
+        <dl class="event-times">
+          <div><dt>${t("eventStartDate")}</dt><dd>${convene.startLabel || formatEventDate(convene.startAt)}</dd></div>
+          <div><dt>${t("eventStartTime")}</dt><dd>${convene.startTimeLabel || (convene.estimatedStart ? "--" : formatEventTime(convene.startAt))}</dd></div>
+          <div><dt>${t("eventEndDate")}</dt><dd>${formatEventDate(convene.endAt)}</dd></div>
+          <div><dt>${t("eventEndTime")}</dt><dd>${formatEventTime(convene.endAt)}</dd></div>
+        </dl>
+        <div class="tag-row">
+          ${(convene.highlights || []).map((highlight) => `<span>${escapeHtml(highlight)}</span>`).join("")}
+        </div>
+        <a class="text-link" href="${convene.sourceUrl}" target="_blank" rel="noreferrer">${t("details")}</a>
+      </div>
+    </article>
+  `;
+}
+
+function renderEventCard(event, compact = false) {
+  const status = getEventStatus(event);
+  const imageUrl = event.imageUrl || EVENT_FALLBACK_IMAGE;
+  return `
+    <article class="data-card event-card ${compact ? "event-card--compact" : ""}">
+      <img
+        src="${escapeHtml(imageUrl)}"
+        alt="${escapeHtml(event.title)}"
+        loading="lazy"
+        decoding="async"
+        onerror="this.onerror=null;this.src='${EVENT_FALLBACK_IMAGE}';"
+      >
+      <div class="card-body">
+        <div class="card-topline">
+          <span class="pill pill--${status}">${statusLabel(status)}</span>
+          <span>${t(categoryLabels[event.category])}</span>
+        </div>
+        <h3>${escapeHtml(event.title)}</h3>
+        <p class="event-count" aria-label="${status === "em_breve" ? t("eventStartsIn") : t("eventEndsIn")}">
+          <small>${status === "em_breve" ? t("eventStartsIn") : t("eventEndsIn")}</small>
+          <span data-countdown data-start="${event.startAt}" data-end="${event.endAt}">${countdownLabel(event)}</span>
+        </p>
+        <dl class="event-times">
+          <div><dt>${t("eventStartDate")}</dt><dd>${formatEventDate(event.startAt)}</dd></div>
+          <div><dt>${t("eventStartTime")}</dt><dd>${formatEventTime(event.startAt)}</dd></div>
+          <div><dt>${t("eventEndDate")}</dt><dd>${formatEventDate(event.endAt)}</dd></div>
+          <div><dt>${t("eventEndTime")}</dt><dd>${formatEventTime(event.endAt)}</dd></div>
+        </dl>
+        <div class="tag-row">
+          ${(event.rewards || []).map((reward) => `<span>${escapeHtml(reward)}</span>`).join("")}
+        </div>
+        <a class="text-link" href="${event.sourceUrl}" target="_blank" rel="noreferrer">${t("details")}</a>
+      </div>
+    </article>
+  `;
+}
+
+function renderNewsPage() {
+  const featured = [...news].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+  const archive = [...news].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const categoryCounts = [...new Set(news.map((item) => item.category))].map((category) => ({
+    category,
+    count: news.filter((item) => item.category === category).length
+  }));
+
+  return `
+    ${renderPageHero(t("navNews"), t("pageNewsDesc"), "Feed")}
+    <section class="page-band page-band--deep">
+      <div class="container split-layout">
+        <article class="panel">
+          <h2>Destaque editorial</h2>
+          <div class="data-card" style="overflow: hidden;">
+            <img src="${featured.image}" alt="" loading="lazy">
+            <div class="card-body">
+              <span class="pill">${featured.category}</span>
+              <h3>${featured.title}</h3>
+              <time datetime="${featured.date}">${formatNewsDate(featured.date)}</time>
+              <p>${featured.summary}</p>
+            </div>
+          </div>
+        </article>
+        <article class="panel">
+          <h2>Resumo do feed</h2>
+          <ol class="ranked-list">
+            ${archive.map((item) => `
+              <li>
+                <span>${String(new Date(item.date).getUTCDate()).padStart(2, "0")}</span>
+                <div>
+                  <strong>${item.title}</strong>
+                  <small>${item.category} - ${item.summary}</small>
+                </div>
+              </li>
+            `).join("")}
+          </ol>
+          <div class="stat-grid" style="margin-top: 16px;">
+            ${categoryCounts.map((entry) => `
+              <div class="stat-tile">
+                <span>${entry.category}</span>
+                <strong>${entry.count}</strong>
+              </div>
+            `).join("")}
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="page-band">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Arquivo</p>
+            <h2>${t("recentNewsTitle")}</h2>
+            <p>Cards prontos para receber RSS, launcher feed ou CMS futuramente.</p>
+          </div>
+        </div>
+        ${renderNewsGrid(news.length)}
+      </div>
+    </section>
+  `;
+
+  return `
+    ${renderPageHero(t("navNews"), t("pageNewsDesc"), "Feed")}
+    <section class="page-band">
+      <div class="container">
+        ${renderNewsGrid(news.length)}
+      </div>
+    </section>
+  `;
+}
+
+function renderNotFound() {
+  return `
+    ${renderPageHero(t("routeNotFound"), t("routeNotFoundText"), "404")}
+    <section class="page-band">
+      <div class="container">
+        <a class="text-link" href="${pathFor("home")}" data-link>${t("navHome")}</a>
+      </div>
+    </section>
+  `;
+}
+
+function formatNewsDate(date) {
+  return new Intl.DateTimeFormat(currentLocale(), { dateStyle: "medium" }).format(new Date(`${date}T12:00:00Z`));
+}
+
+function renderRoute() {
+  switch (state.route) {
+    case "home":
+      return renderHome();
+    case "characters":
+      return renderCharactersPage();
+    case "tier":
+      return renderTierPage();
+    case "echoes":
+      return renderEchoesPage();
+    case "weapons":
+      return renderWeaponsPage();
+    case "items":
+      return renderItemsPage();
+    case "guide":
+      return renderGuidePage();
+    case "codes":
+      return renderCodesPage();
+    case "builder":
+      return renderBuilderPage();
+    case "events":
+      return renderEventsPage();
+    case "news":
+      return renderNewsPage();
+    default:
+      return renderNotFound();
+  }
+}
+
+function updateSeo() {
+  const route = routeById.get(state.route);
+  const label = route ? t(route.labelKey) : t("routeNotFound");
+  const title = state.route === "home"
+    ? "Solaris Archive - Portal Wiki de Wuthering Waves"
+    : `${label} - Solaris Archive`;
+  document.title = title;
+  document.documentElement.lang = state.lang;
+
+  const meta = document.querySelector("meta[name='description']");
+  if (meta) {
+    meta.setAttribute(
+      "content",
+      `${label}: wiki fan-made de Wuthering Waves com dados de exemplo, i18n e modulo de eventos.`
+    );
+  }
+
+  const oldJsonLd = document.querySelector("#json-ld");
+  if (oldJsonLd) oldJsonLd.remove();
+
+  const jsonLd = document.createElement("script");
+  jsonLd.type = "application/ld+json";
+  jsonLd.id = "json-ld";
+  jsonLd.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": state.route === "characters" && state.detail ? "VideoGameCharacter" : "WebSite",
+    name: state.detail
+      ? characters.find((character) => character.slug === state.detail)?.name || title
+      : title,
+    inLanguage: state.lang,
+    isPartOf: "Solaris Archive",
+    about: "Wuthering Waves"
+  });
+  document.head.appendChild(jsonLd);
+}
+
+function render() {
+  updateSeo();
+  app.innerHTML = `${renderTopbar()}<main>${renderRoute()}</main>${renderFooter()}`;
+  updateDynamicTimes();
+}
+
+function updateDynamicTimes() {
+  let hasEndedVisibleEvent = false;
+
+  document.querySelectorAll("[data-countdown]").forEach((node) => {
+    const event = {
+      startAt: node.getAttribute("data-start"),
+      endAt: node.getAttribute("data-end")
+    };
+    node.textContent = countdownLabel(event);
+    if (getEventStatus(event) === "encerrado") hasEndedVisibleEvent = true;
+  });
+
+  document.querySelectorAll(".ticker-sync").forEach((node) => {
+    node.textContent = `${t("updated")} ${timeAgo(state.updatedAt)}`;
+  });
+
+  if (hasEndedVisibleEvent) {
+    state.events = activeEvents();
+    state.convenes = activeConvenes();
+    render();
+  }
+}
+
+async function loadConvenes() {
+  try {
+    const response = await fetch("/api/convenes", { headers: { Accept: "application/json" } });
+    const payload = await response.json();
+    state.convenes = payload.convenes || [];
+    state.convenesUpdatedAt = payload.updatedAt || new Date().toISOString();
+    state.conveneSyncIntervalMinutes = payload.syncIntervalMinutes || 30;
+    state.conveneSource = payload.imageSource || payload.source || "/api/convenes";
+    state.conveneError = Boolean(payload.externalError);
+  } catch {
+    state.conveneError = true;
+    state.conveneSource = "erro ao sincronizar";
+    state.convenes = [];
+  }
+  render();
+}
+
+async function loadEvents() {
+  try {
+    const response = await fetch("/api/events", { headers: { Accept: "application/json" } });
+    const payload = await response.json();
+    state.events = payload.events || [];
+    state.updatedAt = payload.updatedAt || new Date().toISOString();
+    state.syncIntervalMinutes = payload.syncIntervalMinutes || 10;
+    state.eventSource = payload.imageSource || payload.source || "/api/events";
+    state.eventError = false;
+  } catch {
+    state.eventError = true;
+    state.eventSource = "erro ao sincronizar";
+    state.events = [];
+  }
+  render();
+}
+
+async function loadCharacters() {
+  state.charactersLoading = true;
+  render();
+
+  try {
+    const localByKey = new Map(characters.map((character) => [characterLookupKey(character), character]));
+    const response = await fetch("/api/characters", { headers: { Accept: "application/json" } });
+    const payload = await response.json();
+
+    if (!response.ok) throw new Error(payload.message || "Characters API unavailable");
+
+    const apiCharacters = (payload.characters || [])
+      .map((character) => hydrateApiCharacter(character, localByKey.get(characterLookupKey(character))))
+      .filter((character) => character.name);
+
+    if (apiCharacters.length) {
+      characters.splice(0, characters.length, ...apiCharacters);
+      state.builder.character = characters.some((character) => character.slug === state.builder.character)
+        ? state.builder.character
+        : characters[0].slug;
+    }
+
+    state.charactersUpdatedAt = payload.updatedAt || new Date().toISOString();
+    state.charactersSource = payload.source || "/api/characters";
+    state.charactersApiError = false;
+  } catch {
+    state.charactersApiError = true;
+  }
+
+  state.charactersLoading = false;
+  render();
+}
+
+function copyToClipboard(text, button) {
+  const done = () => {
+    const original = button.textContent;
+    button.textContent = t("copied");
+    window.setTimeout(() => {
+      button.textContent = original;
+    }, 1400);
+  };
+
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+
+function fallbackCopy(text, done) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  textarea.remove();
+  done();
+}
+
+function runSearch(form) {
+  const value = new FormData(form).get("query")?.toString().trim();
+  if (!value) return;
+
+  const result = searchMatches(value, 1)[0];
+  if (result) {
+    navigateTo(pathFor(result.route, state.lang, result.detail || ""));
+    return;
+  }
+
+  navigateTo(pathFor("characters"));
+}
+
+app.addEventListener("click", (event) => {
+  const searchSuggestion = event.target.closest("[data-search-suggestion]");
+  if (searchSuggestion) {
+    navigateTo(pathFor(
+      searchSuggestion.getAttribute("data-route"),
+      state.lang,
+      searchSuggestion.getAttribute("data-detail") || ""
+    ));
+    return;
+  }
+
+  const link = event.target.closest("a[data-link]");
+  if (link) {
+    event.preventDefault();
+    navigateTo(link.getAttribute("href"));
+    return;
+  }
+
+  const favoriteButton = event.target.closest("[data-fav]");
+  if (favoriteButton) {
+    toggleFavorite(favoriteButton.getAttribute("data-fav"));
+    render();
+    return;
+  }
+
+  const copyButton = event.target.closest("[data-copy]");
+  if (copyButton && !copyButton.disabled) {
+    copyToClipboard(copyButton.getAttribute("data-copy"), copyButton);
+    return;
+  }
+
+  const builderPick = event.target.closest("[data-builder-pick]");
+  if (builderPick) {
+    const kind = builderPick.getAttribute("data-builder-pick");
+    if (["character", "weapon", "echo"].includes(kind)) {
+      state.builder[kind] = builderPick.getAttribute("data-value");
+      if (kind === "character") {
+        const character = selectedBuilderCharacter();
+        normalizeBuilderWeapon(character);
+        state.builderSearch.weapon = "";
+      }
+      render();
+    }
+    return;
+  }
+
+  const showcaseButton = event.target.closest("[data-showcase-toggle]");
+  if (showcaseButton) {
+    state.showcaseCollapsed = !state.showcaseCollapsed;
+    try {
+      localStorage.setItem("solaris:showcase-collapsed", String(state.showcaseCollapsed));
+    } catch {
+      // Preference storage can fail in private contexts; the in-memory state still works.
+    }
+    render();
+    return;
+  }
+
+  const roleButton = event.target.closest("[data-role-filter]");
+  if (roleButton) {
+    state.roleFilter = roleButton.getAttribute("data-role-filter");
+    render();
+    return;
+  }
+
+  const tierButton = event.target.closest("[data-tier-mode]");
+  if (tierButton) {
+    state.tierMode = tierButton.getAttribute("data-tier-mode");
+    render();
+    return;
+  }
+
+  const eventButton = event.target.closest("[data-event-filter]");
+  if (eventButton) {
+    state.eventFilter = eventButton.getAttribute("data-event-filter");
+    render();
+    return;
+  }
+
+  const timeButton = event.target.closest("[data-time-mode]");
+  if (timeButton) {
+    state.timeMode = timeButton.getAttribute("data-time-mode");
+    render();
+    return;
+  }
+
+  const menuButton = event.target.closest("[data-menu-toggle]");
+  if (menuButton) {
+    const nav = app.querySelector("[data-mobile-nav]");
+    if (nav) nav.hidden = !nav.hidden;
+    return;
+  }
+
+  if (!event.target.closest("[data-search-form]")) hideAllSearchSuggestions();
+});
+
+app.addEventListener("submit", (event) => {
+  const form = event.target.closest("[data-search-form]");
+  if (form) {
+    event.preventDefault();
+    runSearch(form);
+  }
+});
+
+app.addEventListener("focusin", (event) => {
+  const globalSearch = event.target.closest("[data-global-search]");
+  if (globalSearch) updateSearchSuggestions(globalSearch);
+});
+
+app.addEventListener("keydown", (event) => {
+  const globalSearch = event.target.closest("[data-global-search]");
+  if (globalSearch && event.key === "Escape") {
+    hideSearchSuggestions(globalSearch.closest("[data-search-form]"));
+  }
+});
+
+app.addEventListener("change", (event) => {
+  const language = event.target.closest("[data-language-select]");
+  if (language) {
+    navigateTo(pathFor(state.route === "not-found" ? "home" : state.route, language.value, state.detail));
+    return;
+  }
+
+  const element = event.target.closest("[data-element-filter]");
+  if (element) {
+    state.elementFilter = element.value;
+    render();
+    return;
+  }
+
+  const weapon = event.target.closest("[data-weapon-filter]");
+  if (weapon) {
+    state.weaponFilter = weapon.value;
+    render();
+    return;
+  }
+
+  const characterElement = event.target.closest("[data-character-element-filter]");
+  if (characterElement) {
+    state.characterElementFilter = characterElement.value;
+    updateCharacterResults();
+    return;
+  }
+
+  const characterWeapon = event.target.closest("[data-character-weapon-filter]");
+  if (characterWeapon) {
+    state.characterWeaponFilter = characterWeapon.value;
+    updateCharacterResults();
+    return;
+  }
+
+  const characterRarity = event.target.closest("[data-character-rarity-filter]");
+  if (characterRarity) {
+    state.characterRarityFilter = characterRarity.value;
+    updateCharacterResults();
+    return;
+  }
+
+  const builderFilter = event.target.closest("[data-builder-filter]");
+  if (builderFilter) {
+    const kind = builderFilter.getAttribute("data-builder-filter");
+    if (state.builderFilter[kind] !== undefined) {
+      state.builderFilter[kind] = builderFilter.value;
+      updateBuilderPicker(kind);
+    }
+    return;
+  }
+
+  const builderCharacter = event.target.closest("[data-builder-character]");
+  if (builderCharacter) {
+    state.builder.character = builderCharacter.value;
+    render();
+    return;
+  }
+
+  const builderWeapon = event.target.closest("[data-builder-weapon]");
+  if (builderWeapon) {
+    state.builder.weapon = builderWeapon.value;
+    render();
+    return;
+  }
+
+  const builderEcho = event.target.closest("[data-builder-echo]");
+  if (builderEcho) {
+    state.builder.echo = builderEcho.value;
+    render();
+  }
+});
+
+app.addEventListener("input", (event) => {
+  const globalSearch = event.target.closest("[data-global-search]");
+  if (globalSearch) {
+    updateSearchSuggestions(globalSearch);
+    return;
+  }
+
+  const characterSearch = event.target.closest("[data-character-search]");
+  if (characterSearch) {
+    state.characterQuery = characterSearch.value;
+    updateCharacterResults();
+    return;
+  }
+
+  const builderSearch = event.target.closest("[data-builder-search]");
+  if (builderSearch) {
+    const kind = builderSearch.getAttribute("data-builder-search");
+    if (state.builderSearch[kind] !== undefined) {
+      state.builderSearch[kind] = builderSearch.value;
+      updateBuilderPicker(kind);
+    }
+    return;
+  }
+
+  const level = event.target.closest("[data-builder-level]");
+  if (level) {
+    state.builder.level = Number(level.value);
+    render();
+  }
+});
+
+app.addEventListener("wheel", (event) => {
+  const track = event.target.closest(".ticker-track");
+  if (!track || track.scrollWidth <= track.clientWidth) return;
+
+  event.preventDefault();
+  track.scrollLeft += event.deltaY || event.deltaX;
+}, { passive: false });
+
+window.addEventListener("popstate", () => {
+  parseLocation();
+  render();
+});
+
+parseLocation();
+render();
+loadCharacters();
+loadConvenes();
+loadEvents();
+window.setInterval(updateDynamicTimes, 1000);
+window.setInterval(loadConvenes, 5 * 60 * 1000);
+window.setInterval(loadEvents, 5 * 60 * 1000);
