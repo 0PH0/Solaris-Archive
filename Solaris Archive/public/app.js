@@ -1473,7 +1473,9 @@ function navigateTo(url) {
   window.history.pushState({}, "", url);
   parseLocation();
   render();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  // Instantaneo: com scroll suave, sair de uma pagina longa deixa a nova pagina
+  // fora da viewport durante a animacao e a tela parece vazia.
+  window.scrollTo({ top: 0, behavior: "auto" });
 }
 
 function getFavorites() {

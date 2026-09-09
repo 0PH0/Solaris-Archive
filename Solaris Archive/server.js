@@ -299,7 +299,7 @@ function parseOfficialConveneFeed(xml) {
 function buildAssetMap(files) {
   const map = new Map();
 
-  for (const file of files) {
+  for (const file of Array.isArray(files) ? files : []) {
     if (file.type !== "file" || !file.download_url || !/\.(png|webp|jpg|jpeg)$/i.test(file.name)) {
       continue;
     }
@@ -365,7 +365,10 @@ async function createCharactersPayload() {
 
   const [characters, assets] = await Promise.all([
     fetchJson(characterSourceUrl),
-    fetchJson(characterAssetsUrl)
+    // A listagem de imagens usa a API publica do GitHub, que e limitada por IP
+    // (403 quando a cota acaba). Ela e opcional: sem ela o cliente monta a URL
+    // do raw.githubusercontent a partir do nome do personagem.
+    fetchJson(characterAssetsUrl).catch(() => [])
   ]);
   const assetMap = buildAssetMap(assets);
   const normalized = characters
