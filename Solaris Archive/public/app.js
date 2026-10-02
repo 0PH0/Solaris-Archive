@@ -2,6 +2,22 @@ import {loadWeaponCatalog, loadWeaponDetail} from './weapon-catalog.js';
 import {loadCharacterDetail, getCharacterDetail} from './character-catalog.js';
 import { readEchoCatalogCache, loadEchoCatalog, ECHO_CACHE_TTL } from "./echo-catalog.js";
 const app = document.querySelector("#app");
+let gacha = { revision: 0 };
+let renderGacha = () => renderPageHero(t("navGacha"), state.lang === "en" ? "Loading…" : state.lang === "es" ? "Cargando…" : "Carregando…");
+let handleGacha = () => false;
+let isConvenePlaying = () => false;
+let gachaModuleRequest, gachaModuleLoaded = false, gachaModuleError = false;
+async function loadGachaModule() {
+  if (gachaModuleLoaded || gachaModuleError || gachaModuleRequest) return gachaModuleRequest;
+  gachaModuleRequest = import('./gacha.js').then(module => {
+    ({ gacha, renderGacha, handleGacha, isConvenePlaying } = module);
+    gachaModuleLoaded = true;
+  }).catch(() => { gachaModuleError = true; }).finally(() => {
+    gachaModuleRequest = null;
+    scheduleRender();
+  });
+  return gachaModuleRequest;
+}
 const DEFAULT_LANG = "pt-BR";
 const SUPPORTED_LANGS = ["pt-BR", "en", "es"];
 const label = (pt, en, es) => state.lang === 'en' ? en : state.lang === 'es' ? es : pt;
@@ -82,6 +98,7 @@ const copy = {
     navGuide: "Guia",
     navCodes: "Codigos",
     navBuilder: "Builder",
+    navGacha: "Convocações",
     navEvents: "Eventos",
     navNews: "Noticias",
     searchPlaceholder: "Buscar personagem, arma, eco...",
@@ -261,6 +278,7 @@ const copy = {
     navGuide: "Guide",
     navCodes: "Codes",
     navBuilder: "Builder",
+    navGacha: "Convenes",
     navEvents: "Events",
     navNews: "News",
     searchPlaceholder: "Search character, weapon, echo...",
@@ -440,6 +458,7 @@ const copy = {
     navGuide: "Guia",
     navCodes: "Codigos",
     navBuilder: "Builder",
+    navGacha: "Convocatorias",
     navEvents: "Eventos",
     navNews: "Noticias",
     searchPlaceholder: "Buscar personaje, arma, eco...",
@@ -620,6 +639,7 @@ const routes = [
   { id: "items", slug: "itens", labelKey: "navItems", nav: false },
   { id: "guide", slug: "guia", labelKey: "navGuide", nav: false },
   { id: "codes", slug: "codigos", labelKey: "navCodes", nav: false },
+  { id: "gacha", slug: "convocacoes", labelKey: "navGacha", nav: true },
   { id: "builder", slug: "builder", labelKey: "navBuilder", nav: true },
   { id: "events", slug: "eventos", labelKey: "navEvents", nav: true },
   { id: "news", slug: "noticias", labelKey: "navNews", nav: false }
@@ -627,6 +647,7 @@ const routes = [
 
 const routeBySlug = new Map(routes.map((route) => [route.slug, route]));
 const routeById = new Map(routes.map((route) => [route.id, route]));
+routeBySlug.set("gacha", routeById.get("gacha"));
 routeBySlug.set("characters", routeById.get("characters"));
 
 const roleLabels = {
@@ -3812,6 +3833,38 @@ function formatNewsDate(date) {
   return new Intl.DateTimeFormat(currentLocale(), { dateStyle: "medium", timeZone: "UTC" }).format(timestamp);
 }
 
+function gachaItems() {
+  return [...characters.map(item=>({...item,kind:'character',image:item.iconUrl || item.imageUrl || characterAssetUrl(item.name)})),...weapons.map(item=>({...item,kind:'weapon',image:item.iconUrl || item.imageUrl || itemAssetUrl('weapon',item)}))];
+}
+function gachaFeatured(banner) {
+  const norm=value=>String(value).toLowerCase().replace(/[^a-z0-9]/g,'');
+  return gachaItems().find(item=>item.kind===(banner.type==='weapon'?'weapon':'character') && norm(item.name)===norm(banner.featuredName));
+}
+function gachaContext() {
+  return {
+    lang: state.lang, banners: activeConvenes(), escape: escapeHtml,
+    imageUrl: conveneImageUrl, date: iso => formatEventDate(iso, "server"),
+    time: iso => formatEventTime(iso, "server"), countdown: countdownLabel,
+    loading: !dataRequests.convenesLoaded || Boolean(dataRequests.convenes), error: state.conveneError,
+    catalogPending: !weaponsReady,
+    catalogError: weaponError,
+    canDraw: banner => weaponsReady && !!gachaFeatured(banner),
+    drawItem: (banner,result,type) => {
+      const featured=gachaFeatured(banner);
+      const candidates=gachaItems().filter(item=>item.rarity===result.rarity && (result.rarity!==3 || item.kind==='weapon') && (result.rarity!==5 || item.kind===(type==='weapon'?'weapon':'character')) && !(item.kind===featured?.kind && item.slug===featured?.slug));
+      const item=result.featured?featured:candidates[Math.floor(Math.random()*candidates.length)];
+      return {name:item.name,slug:item.slug,kind:item.kind};
+    },
+    resultItem: result => {
+      const item=gachaItems().find(item=>item.kind===result.kind && item.slug===result.slug);
+      return {image:item?.image || '',href:pathFor(result.kind==='character'?'characters':'weapons',state.lang,result.slug)};
+    },
+    root: routePanels.get(routeCacheKey()) || app, render,
+    refresh: () => { if(weaponError){weaponError=false;weaponsReady=false;ensureWeapons();} loadConvenes({force: true}); scheduleRender(); }, notify: notifyAccessibility
+  };
+}
+
+function renderRoute(routeId = state.route, detail = state.detail) {
 function renderRoute() {
   switch (state.route) {
     case "home":
@@ -4067,6 +4120,8 @@ function runSearch(form) {
 app.addEventListener("click", (event) => {
   const characterRetry = event.target.closest('[data-character-retry]');
   if (characterRetry) {characterDetailFailures.delete(characterRetry.dataset.characterRetry);upgradeCharacterImages(characterRetry.dataset.characterRetry);characterDetailRevision++;scheduleRender();return;}
+  if (event.target.closest('[data-gacha-module-retry]')) { gachaModuleError = false; loadGachaModule(); return; }
+  if (state.route === "gacha" && handleGacha(event, gachaContext())) return;
   const searchSuggestion = event.target.closest("[data-search-suggestion]");
   if (searchSuggestion) {
     navigateTo(pathFor(
@@ -4217,6 +4272,7 @@ app.addEventListener("keydown", (event) => {
 });
 
 app.addEventListener("change", (event) => {
+  if (state.route === "gacha" && handleGacha(event, gachaContext())) return;
   if (event.target.matches('[data-builder-set-filter]')) {
     builderUI.set = event.target.value;
     updateBuilderPicker("echo");

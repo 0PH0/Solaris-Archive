@@ -6,6 +6,115 @@
 .weapon-stats-scroll { overflow:auto; }
 .weapon-stats-scroll table { width:100%; min-width:0; table-layout:fixed; border-collapse:collapse; font-size:13px; }
 .weapon-stats-scroll th,.weapon-stats-scroll td { padding:10px 14px; border-bottom:1px solid var(--line); text-align:left; }
+.gacha-result:hover { border-color:var(--teal); }
+.gacha-result:focus-visible { outline:2px solid var(--teal); outline-offset:3px; }
+.convene-opening { position:relative; width:100%; aspect-ratio:16/9; min-height:240px; margin:0; padding:0; border:0; background:#03080f; color:#eefaff; overflow:hidden; opacity:1; transition:opacity .18s ease; }
+.gacha-banner.is-convening>.gacha-banner-art { display:none; }
+.gacha-results[hidden] { display:none; }
+.convene-video { position:absolute; inset:0; }
+.convene-play { pointer-events:auto; padding:10px 16px; min-height:44px; color:var(--bg); background:var(--teal); border:0; border-radius:6px; }
+.convene-play[hidden] { display:none; }
+.convene-opening-caption p { font-size:clamp(12px,2vw,18px)!important; }
+.convene-opening::backdrop { background:#03080f; }
+.convene-opening.is-ending { opacity:0; }
+.convene-video { display:block; width:100%; height:100%; object-fit:contain; }
+.convene-opening-caption { position:absolute; bottom:14%; left:20px; right:20px; text-align:center; pointer-events:none; }
+.convene-opening-caption>span { font-size:11px; letter-spacing:.3em; color:#c3d4dc; }
+.convene-opening-caption p { font-size:20px; }
+.convene-opening.is-playing .convene-opening-caption { opacity:0; }
+.convene-media-controls { position:absolute; top:max(16px,env(safe-area-inset-top)); right:max(16px,env(safe-area-inset-right)); left:16px; display:flex; justify-content:flex-end; gap:10px; flex-wrap:wrap; }
+.convene-skip,.convene-audio { min-height:44px; padding:10px 16px; color:#edf8ff; background:#101e2bdd; border:1px solid #78909b; border-radius:6px; font-size:13px; }
+.convene-credit { position:absolute; bottom:max(12px,env(safe-area-inset-bottom)); left:16px; font-size:11px; color:#d1dce3; background:#03080fcc; padding:4px 8px; border-radius:4px; }
+.gacha-results { scroll-margin-top:90px; }
+@media(prefers-reduced-motion:reduce) { .convene-opening { transition:none; } }
+
+/* Convene uses the existing Wiki palette and layout primitives. */
+.gacha-page { padding: 38px 0 64px; }
+.gacha-heading,.gacha-featured,.gacha-section-heading { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.gacha-heading h1 { font-size:clamp(30px,4vw,48px); margin:6px 0; }
+.gacha-heading p,.gacha-banner-body p { margin:6px 0; }
+.gacha-heading>div>p:last-child,.gacha-disclaimer { color:var(--muted); }
+.gacha-disclaimer { font-size:13px; margin:20px 0; }
+.gacha-tabs { display:flex; gap:8px; margin:24px 0; }
+.gacha-tabs button { padding:12px 22px; border:1px solid var(--line); background:var(--panel); color:var(--text); border-radius:8px; }
+.gacha-tabs button span { margin-left:12px; color:var(--muted); }
+.gacha-tabs button.is-active { border-color:var(--teal); color:var(--teal); background:rgba(65,241,213,.06); }
+.gacha-workspace { display:grid; grid-template-columns:225px minmax(0,1fr); gap:24px; align-items:start; }
+.gacha-banner-list { display:grid; gap:10px; }
+.gacha-banner-list h2 { font-size:14px; color:var(--muted); margin:0 0 6px; }
+.gacha-banner-list>button[data-gacha-banner] { overflow:hidden; text-align:left; padding:0; border:1px solid var(--line); background:var(--panel); color:var(--text); border-radius:10px; }
+.gacha-banner-list>button.is-active { border-color:var(--gold-bright); box-shadow:inset 3px 0 var(--gold-bright); }
+.gacha-banner-list img { width:100%; aspect-ratio:2.6; object-fit:cover; display:block; }
+.gacha-banner-list button>span { display:grid; padding:12px 15px; gap:4px; }
+.gacha-banner-list small { color:var(--muted); font-size:11px; }
+.gacha-stage { min-width:0; }
+.gacha-banner,.gacha-results,.gacha-calculator,.gacha-history { border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--panel); }
+.gacha-banner-art { display:block; width:100%; max-height:390px; object-fit:contain; background:var(--bg-deep); }
+.gacha-banner-body { padding:24px; background:linear-gradient(120deg,rgba(199,164,90,.07),transparent); }
+.gacha-featured h2 { margin:6px 0; font-size:30px; }
+.gacha-featured p:not(.eyebrow) { font-size:13px; color:var(--muted); }
+.gacha-countdown { text-align:right; flex-shrink:0; }
+.gacha-countdown small,.gacha-countdown strong { display:block; }
+.gacha-countdown strong { color:var(--gold-bright); font-size:18px; font-variant-numeric:tabular-nums; }
+.gacha-dates { display:flex; gap:32px; margin:22px 0 8px; flex-wrap:wrap; font-size:13px; }
+.gacha-dates dt { color:var(--muted); }
+.gacha-dates dd { margin:4px 0; }
+.gacha-banner-body>a { display:block; margin-top:12px; }
+.gacha-pity { display:grid; grid-template-columns:1fr 1fr 1.3fr; gap:20px; padding:24px 0; }
+.gacha-pity>div { display:flex; flex-direction:column; gap:8px; }
+.gacha-pity span { color:var(--muted); font-size:12px; }
+.gacha-pity strong { font-size:26px; }
+.gacha-pity strong small { color:var(--muted); font-size:14px; font-weight:400; }
+.gacha-pity strong.gacha-guarantee { font-size:16px; color:var(--gold-bright); }
+.gacha-pity progress { width:100%; height:5px; accent-color:var(--gold-bright); }
+.gacha-pull-actions { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.gacha-pull-actions>span { grid-column:1/-1; color:var(--muted); font-size:12px; }
+.gacha-pull-actions .builder-button--primary { background:var(--gold-bright); color:var(--bg-deep); border-color:var(--gold-bright); }
+.gacha-pull-actions button { flex:1; min-height:54px; }
+.gacha-page button:disabled { opacity:.45; cursor:not-allowed; }
+.gacha-tuning,.gacha-method { margin-top:20px; padding:16px 0; border-top:1px solid var(--line); font-size:13px; }
+.gacha-page summary { cursor:pointer; color:var(--muted); }
+.gacha-form { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:18px 0; }
+.gacha-form label { display:grid; gap:7px; font-size:12px; color:var(--muted); }
+.gacha-form input[type=number] { width:100%; min-width:0; border:1px solid var(--line); border-radius:7px; padding:10px 12px; background:var(--bg-deep); color:var(--text); }
+.gacha-form .gacha-check { grid-column:1/-1; display:flex; align-items:center; gap:9px; }
+.gacha-check input { accent-color:var(--teal); }
+.gacha-results { margin-top:28px; padding:24px; }
+.gacha-section-heading h2,.gacha-bottom h2 { margin:0; font-size:20px; }
+.gacha-section-heading>span { color:var(--muted); font-size:12px; }
+.gacha-result-grid { display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); gap:10px; margin-top:18px; }
+.gacha-result-grid>p { grid-column:1/-1; }
+.gacha-result { display:flex; flex-direction:column; align-items:center; text-align:center; padding:12px 6px; min-width:0; border:1px solid var(--line); border-bottom:2px solid var(--blue); border-radius:8px; background:linear-gradient(0deg,rgba(114,185,246,.09),transparent); }
+.gacha-result.rarity-4 { border-bottom-color:var(--violet); background:linear-gradient(0deg,rgba(169,125,216,.14),transparent); }
+.gacha-result.rarity-5 { border-bottom-color:var(--gold-bright); background:linear-gradient(0deg,rgba(199,164,90,.2),transparent); }
+.gacha-result img,.gacha-result-symbol { width:70px; height:85px; object-fit:contain; }
+.gacha-result-symbol { display:grid; place-items:center; font-size:38px; color:var(--muted); }
+.gacha-result-stars { color:var(--gold-bright); font-size:10px; }
+.gacha-result strong { font-size:11px; overflow-wrap:anywhere; }
+.gacha-result small { margin-top:auto; padding-top:8px; color:var(--muted); font-size:10px; }
+.gacha-bottom { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:24px; }
+.gacha-calculator,.gacha-history { padding:24px; min-width:0; }
+.gacha-odds { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:20px 0; }
+.gacha-odds span { display:block; color:var(--muted); font-size:12px; }
+.gacha-odds strong { display:block; font-size:30px; color:var(--teal); margin-top:6px; }
+.gacha-history-scroll { max-height:370px; overflow:auto; }
+.gacha-history table { width:100%; border-collapse:collapse; font-size:12px; text-align:left; }
+.gacha-history th,.gacha-history td { padding:10px 8px; border-bottom:1px solid var(--line); overflow-wrap:anywhere; }
+.gacha-history th { color:var(--muted); }
+.rarity-text-5 { color:var(--gold-bright); }.rarity-text-4 { color:var(--violet); }.rarity-text-3 { color:var(--blue); }
+@media(max-width:1100px) { .gacha-result-grid { grid-template-columns:repeat(5,minmax(0,1fr)); } }
+@media(max-width:760px) {
+  .gacha-workspace,.gacha-bottom { grid-template-columns:1fr; }
+  .gacha-banner-list { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .gacha-banner-list h2,.gacha-banner-list>.builder-text-button { grid-column:1/-1; }
+  .gacha-heading,.gacha-featured,.gacha-section-heading { align-items:flex-start; flex-direction:column; gap:12px; }
+  .gacha-countdown { text-align:left; }
+  .gacha-banner-body,.gacha-results,.gacha-calculator,.gacha-history { padding:18px; }
+  .gacha-pity { gap:12px; grid-template-columns:1fr 1fr; }.gacha-pity>div:last-child { grid-column:1/-1; }
+  .gacha-dates { gap:14px; }.gacha-result-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .gacha-tabs button { padding:10px 14px; }.gacha-heading>.pill { align-self:flex-start; }
+}
+
 :root {
   color-scheme: dark;
   --bg: #0b0d10;
