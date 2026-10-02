@@ -2,6 +2,7 @@ import {loadWeaponCatalog, loadWeaponDetail} from './weapon-catalog.js';
 import {loadCharacterDetail, getCharacterDetail} from './character-catalog.js';
 import {loadTierSnapshot, getTierSnapshot, selectTierEntries, tierCharacterKey, tierProfileSlug, TIER_ORDER, TIER_ROLES, TIER_SOURCE} from './tier-list.js';
 import { readEchoCatalogCache, loadEchoCatalog, ECHO_CACHE_TTL } from "./echo-catalog.js";
+import { settingsButton, applyAccessibility, notifyAccessibility, captionParameters, reducedMotion } from "./settings-accessibility.js";
 const app = document.querySelector("#app");
 let gacha = { revision: 0 };
 let renderGacha = () => renderPageHero(t("navGacha"), state.lang === "en" ? "Loading…" : state.lang === "es" ? "Cargando…" : "Carregando…");
@@ -1696,7 +1697,10 @@ function getFavorites() {
 }
 
 function setFavorites(favorites) {
-  localStorage.setItem("solaris:favorites", JSON.stringify(favorites));
+  favoriteCache = favorites;
+  try { localStorage.setItem("solaris:favorites", JSON.stringify(favorites)); } catch {
+    // Keep favorites usable when browser storage is unavailable.
+  }
 }
 
 function isFavorite(slug) {
@@ -1942,6 +1946,7 @@ function renderTopbar() {
       </nav>
 
       <div class="top-actions">
+        ${settingsButton(state.lang)}
         <a class="compact-link" href="${pathFor("characters")}" data-link>
           ${t("favorites")} <span>${favoriteCount}</span>
         </a>
@@ -1971,6 +1976,7 @@ function renderFooter() {
         <p>${t("noAffiliation")}</p>
       </div>
       <div class="footer-links">
+        ${settingsButton(state.lang)}
         <a href="${pathFor("events")}" data-link>${t("navEvents")}</a>
         <a href="${pathFor("codes")}" data-link>${t("navCodes")}</a>
         <a href="${pathFor("news")}" data-link>${t("navNews")}</a>
@@ -2275,6 +2281,8 @@ function updateCharacterResults() {
   const filtered = getFilteredCharacters();
   results.innerHTML = renderCharacterResults(filtered);
   observeCharacterImages();
+  applyAccessibility(app, state.lang);
+  notifyAccessibility(`${filtered.length} ${t("characterCount")}`, true);
   if (count) count.textContent = state.charactersLoading ? t("syncingCharacters") : `${filtered.length} / ${characters.length} ${t("characterCount")}`;
 }
 
@@ -3958,6 +3966,7 @@ function render() {
   updateSeo();
   app.innerHTML = `${renderTopbar()}<main>${renderRoute()}</main>${renderFooter()}`;
   updateDynamicTimes();
+  applyAccessibility(app, state.lang);
   observeCharacterImages();
 }
 
@@ -4104,6 +4113,7 @@ function copyToClipboard(text, button) {
   const done = () => {
     const original = button.textContent;
     button.textContent = t("copied");
+    notifyAccessibility('copied');
     window.setTimeout(() => {
       button.textContent = original;
     }, 1400);
@@ -4123,9 +4133,11 @@ function fallbackCopy(text, done) {
   textarea.style.left = "-9999px";
   document.body.appendChild(textarea);
   textarea.select();
-  document.execCommand("copy");
-  textarea.remove();
-  done();
+  try {
+    if (!document.execCommand("copy")) throw new Error("Copy failed");
+    done();
+  } catch { notifyAccessibility('copyError'); }
+  finally { textarea.remove(); }
 }
 
 function runSearch(form) {
@@ -4172,7 +4184,24 @@ app.addEventListener("click", (event) => {
   const favoriteButton = event.target.closest("[data-fav]");
   if (favoriteButton) {
     toggleFavorite(favoriteButton.getAttribute("data-fav"));
+    notifyAccessibility(isFavorite(favoriteButton.getAttribute("data-fav")) ? 'added' : 'removed');
     render();
+    return;
+  }
+
+  const videoButton = event.target.closest("[data-video-id]");
+  if (videoButton) {
+    const frame = document.createElement("iframe");
+    const videoId = videoButton.dataset.videoId;
+    if (!/^[\w-]{11}$/.test(videoId)) return;
+    frame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}${captionParameters(state.lang)}`;
+    frame.title = videoButton.dataset.videoTitle;
+    frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    frame.allowFullscreen = true;
+    frame.referrerPolicy = "strict-origin-when-cross-origin";
+    frame.dataset.videoFrame = "";
+    videoButton.replaceWith(frame);
+    frame.focus();
     return;
   }
 

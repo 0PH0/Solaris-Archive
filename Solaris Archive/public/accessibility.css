@@ -1,0 +1,79 @@
+/* Settings owns all optional accessibility presentation. */
+.settings-button { display:inline-flex; align-items:center; gap:6px; min-height:38px; padding:6px 10px; border:1px solid var(--line); border-radius:7px; background:var(--panel); color:var(--text); font:inherit; cursor:pointer; }
+.settings-button span:last-child { font-size:.75rem; }
+.settings-dialog,.access-image-dialog { box-sizing:border-box; width:min(680px,calc(100% - 24px)); max-height:88dvh; overflow:auto; padding:24px; border:1px solid var(--line); border-radius:12px; color:var(--text); background:var(--bg,#14191e); }
+dialog::backdrop { background:#020609cc; }
+.settings-dialog header,.access-image-dialog header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.settings-dialog h2,.access-image-dialog h2 { margin:0; font-size:1.35rem; overflow-wrap:anywhere; }
+.settings-dialog h3 { color:var(--teal); font-size:1.15rem; }
+.settings-dialog p { color:var(--muted); font-size:.875rem; line-height:1.6; }
+.settings-dialog button,.access-image-dialog button,.access-notice button,.access-zoom-button { min-height:40px; padding:8px 12px; border:1px solid var(--line); border-radius:6px; background:var(--panel); color:var(--text); font:inherit; cursor:pointer; }
+.settings-dialog fieldset { min-width:0; margin:18px 0 8px; padding:12px; border:1px solid var(--line); border-radius:8px; }
+.settings-dialog legend { padding:0 8px; font-weight:700; }
+.access-profiles { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+.access-profiles button { text-align:left; display:grid; gap:8px; align-content:start; }
+.access-profiles span { font-size:.8rem; line-height:1.5; }
+.access-profiles [aria-pressed=true] { border:2px solid var(--teal); }
+.access-profiles [aria-pressed=true] strong::before { content:'✓ '; }
+.access-option { display:flex; align-items:center; gap:12px; min-height:44px; padding:6px; cursor:pointer; overflow-wrap:anywhere; }
+.access-option input { width:20px; height:20px; flex-shrink:0; accent-color:var(--teal); }
+.access-option select { min-width:0; max-width:100%; padding:8px; font:inherit; color:var(--text); background:var(--panel); border:1px solid var(--line); border-radius:6px; }
+.access-notice { position:fixed; bottom:16px; right:16px; z-index:200; max-width:min(420px,calc(100% - 32px)); padding:16px; border:2px solid var(--teal); border-radius:10px; background:var(--bg,#14191e); color:var(--text); box-shadow:0 8px 30px #0008; }
+.access-notice p { margin:0 0 10px; }
+[hidden] { display:none !important; }
+:is(button,a,input,select,textarea,summary,[tabindex]):focus-visible { outline:2px solid var(--teal); outline-offset:3px; }
+.access-focus :focus-visible { outline:4px solid #ffdf00 !important; outline-offset:4px; box-shadow:0 0 0 7px #000 !important; }
+.access-skip { position:fixed; left:12px; top:-200px; z-index:500; padding:12px 18px; color:#fff; background:#080c10; border:2px solid #fff; }
+.access-skip:focus { top:12px; }
+.access-hint,.access-favorite { display:none; }
+.access-plain [data-access-hint=plain],.access-transcripts [data-access-hint=transcript] { display:block; font-size:.95rem; line-height:1.6; color:var(--text); grid-column:1/-1; }
+.access-colorLabels .access-favorite { display:inline; font-size:.8rem; }
+.access-colorLabels [data-fav] { width:auto; height:auto; min-height:38px; display:inline-flex; gap:6px; padding:6px; }
+.access-colorLabels .card-topline { flex-wrap:wrap; }
+.access-colorLabels [aria-pressed=true]:not([data-fav]):not([data-access-profile]) { border-style:double; border-width:3px; }
+.access-text { font-size:20px; }
+.access-text :is(p,a,button,input,select,textarea,label,td,th,li,small,summary) { font-size:1rem !important; line-height:1.6; }
+.access-text :is(.pill,.eyebrow,.card-role,.card-subtitle) { font-size:.9rem !important; }
+.access-interface body { zoom:1.15; min-width:0; }
+.access-interface :is(.settings-dialog,.access-image-dialog) { max-height:75dvh; }
+.access-targets :is(button,select,input:not([type=checkbox]):not([type=radio]):not([type=range]),summary),.access-targets a:not(.access-skip) { min-height:44px; min-width:44px; }
+.access-targets a:not(.access-skip) { display:inline-flex; align-items:center; }
+.access-targets :is(.icon-button,.builder-icon-button) { width:auto; height:auto; padding:10px; }
+.access-targets :is(.top-actions,.footer-links) { flex-wrap:wrap; }
+.access-contrast { --bg:#050505; --bg-deep:#000; --panel:#101010; --text:#fff; --muted:#eee; --line:#aaa; --teal:#6ffff0; --gold-bright:#ffe38a; color-scheme:dark; }
+.access-contrast :is(.data-card,.panel,.topbar,.settings-dialog,.access-image-dialog,.builder-dialog,input,select,button) { color:#fff; background-color:#101010; border-color:#aaa; }
+.access-contrast :is(p,small,td,th,label,.eyebrow) { color:#fff; }
+.access-imageContrast :is(.hero-backdrop,.hero::before) { opacity:.15; }
+.access-imageContrast :is(.hero-content,.hero-metrics,.convene-opening-caption) { background:#080c10; color:#fff; padding:16px; border-radius:8px; }
+.access-imageContrast :is(.avatar,[data-kind],.gacha-result) { background-color:#151b23; }
+.access-imageContrast :is(.avatar,[data-kind],.gacha-result) img { filter:contrast(1.15); }
+/* Distinct semantic palettes, not filters simulating a color-vision deficiency. */
+[data-access-color=protanopia] { --teal:#78cfff; --gold-bright:#ffe39a; --line:#69859a; --red:#ffcf78; --green:#78cfff; --blue:#a7b5ff; --violet:#ffd6e8; }
+[data-access-color=deuteranopia] { --teal:#83caff; --gold-bright:#ffce79; --line:#778ba4; --red:#ffc078; --green:#83caff; --blue:#d4ddff; --violet:#f0b6e5; }
+[data-access-color=tritanopia] { --teal:#79e4b6; --gold-bright:#ffb3c7; --line:#889c91; --red:#ffb3c7; --green:#79e4b6; --blue:#d8eee5; --violet:#efa0b5; }
+[data-access-color]:not([data-access-color=none]) :is(.pill,.status-chip,.badge) { background:#15212b; color:#fff; border:1px solid var(--teal); }
+[data-access-color]:not([data-access-color=none]) :is(.rarity-5,.rarity-4,.rarity-3) { border-color:var(--gold-bright); }
+.access-simple :is(.hero-metrics,.live-ticker,.hero-backdrop,.hero::before) { display:none; }
+.access-simple :is(.hero,.subhero) { min-height:0; padding-block:24px; background:var(--bg); }
+.access-simple :is(.data-card,.panel) { box-shadow:none; background-image:none; }
+.access-simple .character-grid { gap:24px; }
+.access-text :is(.gacha-heading,.gacha-featured,.gacha-section-heading) { flex-wrap:wrap; }
+.access-text :is(.segmented,.toolbar,.module-status) { flex-wrap:wrap; min-width:0; max-width:100%; overflow-wrap:anywhere; }
+.access-text .event-overview-card { min-width:0; }
+.access-text .event-overview-card small { white-space:normal; overflow-wrap:anywhere; }
+.access-text .segmented button { white-space:normal; min-width:0; overflow-wrap:anywhere; }
+.access-text :is(.gacha-pull-actions,.gacha-form,.gacha-pity,.gacha-odds) { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.access-text :is(.gacha-page,.builder-page) :is(button,span,strong) { overflow-wrap:anywhere; white-space:normal; min-width:0; }
+@media(max-width:480px) { .access-text :is(.gacha-pull-actions,.gacha-form,.gacha-pity,.gacha-odds) { grid-template-columns:minmax(0,1fr); } }
+.access-motion *,.access-motion *::before,.access-motion *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+.access-visual .convene-opening.is-playing .convene-opening-caption { opacity:1; }
+.access-zoom-button { display:block; position:relative; z-index:1; margin:6px 0; font-size:.8rem; max-width:100%; }
+.access-image-dialog { width:min(960px,calc(100% - 24px)); }
+.access-image-dialog label { display:flex; align-items:center; flex-wrap:wrap; gap:12px; margin:20px 0; }
+.access-image-dialog input { flex:1; min-width:100px; }
+.access-image-viewport { overflow:auto; max-height:58dvh; background:#080c10; }
+.access-image-viewport img { display:block; width:100%; max-width:none; height:auto; object-fit:contain; }
+@media(max-width:1350px) { .top-actions .settings-button span:last-child { display:none; } }
+@media(max-width:760px) { .settings-dialog,.access-image-dialog { padding:16px; } .access-profiles { grid-template-columns:1fr; } .access-option:has(select) { flex-wrap:wrap; } .top-actions .settings-button { display:inline-flex; } }
+@media(max-width:480px) { .settings-dialog header,.access-image-dialog header { flex-wrap:wrap; } .settings-dialog header button,.access-image-dialog header button { flex-shrink:0; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; } }
