@@ -1,13 +1,58 @@
 import {loadWeaponCatalog, loadWeaponDetail} from './weapon-catalog.js';
+import {loadCharacterDetail, getCharacterDetail} from './character-catalog.js';
 import { readEchoCatalogCache, loadEchoCatalog, ECHO_CACHE_TTL } from "./echo-catalog.js";
 const app = document.querySelector("#app");
 const DEFAULT_LANG = "pt-BR";
 const SUPPORTED_LANGS = ["pt-BR", "en", "es"];
+const label = (pt, en, es) => state.lang === 'en' ? en : state.lang === 'es' ? es : pt;
 const CHARACTER_FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%20320%20320%27%3E%3Crect%20width=%27320%27%20height=%27320%27%20fill=%27%2314171c%27/%3E%3Ccircle%20cx=%27160%27%20cy=%27150%27%20r=%2778%27%20fill=%27none%27%20stroke=%27%2341f1d5%27%20stroke-width=%2710%27%20opacity=%27.55%27/%3E%3Cpath%20d=%27M80%20250c25-45%20135-45%20160%200%27%20fill=%27none%27%20stroke=%27%23c7a45a%27%20stroke-width=%2712%27%20stroke-linecap=%27round%27%20opacity=%27.65%27/%3E%3C/svg%3E";
 const EVENT_FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%201280%20720%27%3E%3Crect%20width=%271280%27%20height=%27720%27%20fill=%27%2314171c%27/%3E%3Cpath%20d=%27M190%20500c180-240%20520-300%20900-150%27%20fill=%27none%27%20stroke=%27%2341f1d5%27%20stroke-width=%2724%27%20opacity=%27.45%27/%3E%3Ccircle%20cx=%27940%27%20cy=%27230%27%20r=%27110%27%20fill=%27none%27%20stroke=%27%23c7a45a%27%20stroke-width=%2718%27%20opacity=%27.65%27/%3E%3Ctext%20x=%27640%27%20y=%27380%27%20text-anchor=%27middle%27%20font-family=%27Arial%27%20font-size=%2758%27%20font-weight=%27700%27%20fill=%27%23eef8f6%27%3EEvento%20WuWa%3C/text%3E%3C/svg%3E";
 const ITEM_FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%20200%20200%27%3E%3Crect%20width=%27200%27%20height=%27200%27%20rx=%2728%27%20fill=%27%2314171c%27/%3E%3Cpath%20d=%27M52%20133L100%2037l48%2096H52z%27%20fill=%27none%27%20stroke=%27%23c7a45a%27%20stroke-width=%2710%27%20stroke-linejoin=%27round%27/%3E%3Ccircle%20cx=%27100%27%20cy=%27108%27%20r=%2730%27%20fill=%27none%27%20stroke=%27%2341f1d5%27%20stroke-width=%278%27/%3E%3C/svg%3E";
 const WUWA_ASSET_BASE_URL = "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images";
 const WUWA_WEAPON_ASSET_BASE_URL = `${WUWA_ASSET_BASE_URL}/weapons`;
+// Verified videos from https://www.youtube.com/@WutheringWaves.
+// No player is rendered for characters without a confirmed official video.
+const characterTrailers = {
+  hsin: "a3zMk49qpwI",
+  jinhsi: "0caRWqAQFMc",
+  jiyan: "wnxtQsHOy1k",
+  yinlin: "TImtNKeNk78",
+  changli: "jYjxjy1l6Co",
+  "the-shorekeeper": "FQEyNpQnK60",
+  aemeath: "H8gGJgMvr9w",
+  augusta: "w0CQyx13-EI",
+  brant: "znvMDCFfnDo",
+  camellya: "UNMERR4tets",
+  cantarella: "aKOfEX8QkyA",
+  carlotta: "wTUUln5M8vA",
+  cartethyia: "optr9r9VkoQ",
+  chisa: "7MsJ7mk8x5g",
+  ciaccona: "G6P_AEmaQL8",
+  denia: "rtMnPOV3DO8",
+  encore: "u_hHNpp6qs0",
+  galbrena: "7tFW4r7XYxk",
+  hiyuki: "qUD2e2OS1zw",
+  iuno: "hbF8kygJepE",
+  jianxin: "CmsxifCqkPY",
+  jingran: "djzijQBFN4A",
+  lingyang: "ptSvUTfGmNI",
+  lucilla: "LSzq1f6P_z4",
+  lupa: "M3LygU8gCDg",
+  "luuk-herssen": "gF7Ff_YbU0E",
+  lynae: "PtwtqTqVB3o",
+  mornye: "ziAGnHy-gUQ",
+  phoebe: "h05YzRGOk2M",
+  phrolova: "Hi1z3nFl0Ls",
+  qingxiao: "mT86JXY6oEw",
+  qiuyuan: "8o12Z2ejpBc",
+  roccia: "UtY1jxPeKlQ",
+  sigrika: "C_amj23Ucys",
+  suisui: "c6njTc7ySiU",
+  "xiangli-yao": "eTkkBkUvi0Q",
+  "yangyang-xuanling": "GSmZaEASKjU",
+  zani: "6tZfkFCz6qI",
+  zhezhi: "GPaHYat18DI"
+};
 const characterAssetNameOverrides = {
   "the-shorekeeper": "Shorekeeper",
   "xiangli-yao": "XiangliYao",
@@ -42,6 +87,9 @@ const copy = {
     searchPlaceholder: "Buscar personagem, arma, eco...",
     database: "Base de dados",
     favorites: "Favoritos",
+    characterSort: "Ordenar personagens",
+    defaultOrder: "Ordem padrão",
+    favoritesFirst: "Favoritos primeiro",
     liveNow: "Ao vivo",
     comingSoon: "Em breve",
     ended: "Encerrado",
@@ -217,6 +265,9 @@ const copy = {
     searchPlaceholder: "Search character, weapon, echo...",
     database: "Database",
     favorites: "Favorites",
+    characterSort: "Sort characters",
+    defaultOrder: "Default order",
+    favoritesFirst: "Favorites first",
     liveNow: "Live",
     comingSoon: "Soon",
     ended: "Ended",
@@ -392,6 +443,9 @@ const copy = {
     searchPlaceholder: "Buscar personaje, arma, eco...",
     database: "Base de datos",
     favorites: "Favoritos",
+    characterSort: "Ordenar personajes",
+    defaultOrder: "Orden predeterminado",
+    favoritesFirst: "Favoritos primero",
     liveNow: "En vivo",
     comingSoon: "Pronto",
     ended: "Finalizado",
@@ -799,7 +853,7 @@ const compactCharacterData = [
   ["Encore", 5, "Fusion", "Rectifier", "dps"],
   ["Galbrena", 5, "Havoc", "Pistols", "dps"],
   ["Hiyuki", 5, "Glacio", "Sword", "dps"],
-  ["Hsin", 5, "Spectro", "Broadblade", "dps"],
+  ["Hsin", 5, "Electro", "Rectifier", "dps"],
   ["Iuno", 5, "Aero", "Gauntlets", "dps"],
   ["Jianxin", 5, "Aero", "Gauntlets", "control"],
   ["Jingran", 5, "Fusion", "Sword", "dps"],
@@ -971,6 +1025,12 @@ function hydrateApiCharacter(apiCharacter, localCharacter) {
     iconUrl: apiCharacter.iconUrl || imageUrl,
     sourceUrl: apiCharacter.sourceUrl,
     imageSourceUrl: apiCharacter.imageSourceUrl,
+    encoreId: apiCharacter.encoreId,
+    newRelease: apiCharacter.newRelease,
+    signatureWeapon: apiCharacter.signatureWeapon || base.signatureWeapon,
+    videoId: apiCharacter.videoId || base.videoId,
+    apiOnly: Boolean(apiCharacter.useApiDetails) || (localCharacter?.apiOnly ?? !localCharacter),
+    build: apiCharacter.signatureWeapon ? {...base.build, weapon: apiCharacter.signatureWeapon.name} : base.build,
     tags: [...new Set([...(base.tags || []), apiCharacter.element, apiCharacter.weapon, apiCharacter.version ? `v${apiCharacter.version}` : ""])]
       .filter(Boolean)
   };
@@ -983,6 +1043,7 @@ characters.push(
     .filter((character) => !existingCharacterSlugs.has(character.slug))
 );
 characters.forEach((character) => {
+  if (character.slug === 'hsin') {character.apiOnly = true; character.encoreId = 1311;}
   const assetUrl = character.imageUrl || characterAssetUrl(character.name);
   const metaOverride = currentMetaTierOverrides[character.slug];
 
@@ -1588,6 +1649,7 @@ const state = {
   timeMode: "server",
   roleFilter: "all",
   characterQuery: "",
+  characterSort: "default",
   characterElementFilter: "all",
   characterWeaponFilter: "all",
   characterRarityFilter: "all",
@@ -2062,9 +2124,10 @@ function renderBannerSpotlight() {
 }
 
 function renderCharacterAvatar(character, variant = "card") {
-  const imageUrl = variant === "detail"
+  const detail = getCharacterDetail(character.encoreId);
+  const imageUrl = (variant === "detail" ? detail?.portraitUrl : detail?.imageUrl) || (variant === "detail"
     ? character.portraitUrl || character.imageUrl || character.iconUrl || characterAssetUrl(character.name)
-    : character.imageUrl || character.iconUrl || character.portraitUrl || characterAssetUrl(character.name);
+    : character.imageUrl || character.iconUrl || character.portraitUrl || characterAssetUrl(character.name));
 
   return `
     <div class="avatar avatar--${variant} avatar--${character.element.toLowerCase()}">
@@ -2075,6 +2138,7 @@ function renderCharacterAvatar(character, variant = "card") {
           alt="${escapeHtml(character.name)}"
           loading="lazy"
           decoding="async"
+          ${character.encoreId ? `data-character-image="${Number(character.encoreId)}" data-image-variant="${variant}"` : ""}
           onerror="this.onerror=null;this.src='${CHARACTER_FALLBACK_IMAGE}';var avatar=this.closest('.avatar');if(avatar)avatar.classList.add('avatar--fallback');"
         >
       ` : ""}
@@ -2146,7 +2210,7 @@ function renderSelectOptions(options, current, allLabel) {
 function getFilteredCharacters() {
   const query = state.characterQuery.trim().toLowerCase();
 
-  return characters.filter((character) => {
+  const filtered = characters.filter((character) => {
     const searchable = [
       character.name,
       character.originalName,
@@ -2164,19 +2228,33 @@ function getFilteredCharacters() {
 
     return matchesQuery && matchesRole && matchesElement && matchesWeapon && matchesRarity;
   });
+  if (state.characterSort === "favorites") {
+    const favorites = new Set(getFavorites());
+    filtered.sort((a, b) => Number(favorites.has(b.slug)) - Number(favorites.has(a.slug)));
+  }
+  return filtered;
 }
 
 function renderCharacterFilters() {
   return `
-    <div class="wiki-filters" aria-label="${t("characterFiltersLabel")}">
-      <label>
-        <span>${t("search")}</span>
+    <div class="wiki-filters wiki-filters--characters" aria-label="${t("characterFiltersLabel")}">
+      <label class="character-search-field">
+        <span class="sr-only">${t("search")}</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5" stroke-linecap="round"/></svg>
         <input
           type="search"
           value="${escapeHtml(state.characterQuery)}"
           placeholder="${t("characterSearchPlaceholder")}"
           data-character-search
         >
+      </label>
+      <label class="character-sort-field ${state.characterSort === "favorites" ? "is-active" : ""}">
+        <span class="sr-only">${t("characterSort")}</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18l-7 8v6l-4 2v-8Z"/></svg>
+        <select data-character-sort>
+          <option value="default" ${state.characterSort === "default" ? "selected" : ""}>${t("defaultOrder")}</option>
+          <option value="favorites" ${state.characterSort === "favorites" ? "selected" : ""}>${t("favoritesFirst")}</option>
+        </select>
       </label>
       <label>
         <span>${t("element")}</span>
@@ -2210,9 +2288,14 @@ function renderCharacterResults(filtered) {
     `;
   }
 
+  const versions = characters.map(character => character.version).filter(version => /^\d+\.\d+$/.test(version || ""));
+  const latest = versions.sort((a,b) => Number(b.split('.')[0]) - Number(a.split('.')[0]) || Number(b.split('.')[1]) - Number(a.split('.')[1]))[0];
+  const featured = filtered.filter(character => (latest && character.version === latest) || character.newRelease);
+  const previous = filtered.filter(character => !featured.includes(character));
   return `
+    ${featured.length ? `<section class="new-resonators" aria-label="${label('Novos personagens','New characters','Nuevos personajes')}"><h2>${label('Novos personagens','New characters','Nuevos personajes')} ${latest && featured.every(character=>character.version===latest) ? `<span class="pill">v${escapeHtml(latest)}</span>` : ""}</h2><div class="character-grid character-grid--wide">${featured.map(renderCharacterCard).join('')}</div></section>` : ""}
     <div class="character-grid character-grid--wide">
-      ${filtered.map(renderCharacterCard).join("")}
+      ${previous.map(renderCharacterCard).join("")}
     </div>
   `;
 }
@@ -2227,6 +2310,7 @@ function updateCharacterResults() {
 
   const filtered = getFilteredCharacters();
   results.innerHTML = renderCharacterResults(filtered);
+  observeCharacterImages();
   if (count) count.textContent = state.charactersLoading ? t("syncingCharacters") : `${filtered.length} / ${characters.length} ${t("characterCount")}`;
 }
 
@@ -2519,7 +2603,7 @@ function renderCharactersPage() {
   return `
     ${renderPageHero(t("navCharacters"), t("pageCharactersDesc"), t("database"))}
     <section class="page-band">
-      <div class="container">
+      <div class="container characters-catalog">
         <div class="module-status">
           <span data-character-count>${state.charactersLoading ? t("syncingCharacters") : `${filtered.length} / ${characters.length} ${t("characterCount")}`}</span>
           <span>${t("sourceLabel")}: ${state.charactersSource}</span>
@@ -2538,6 +2622,9 @@ function renderCharactersPage() {
 function renderCharacterDetail(slug) {
   const character = characters.find((item) => item.slug === slug);
   if (!character) return renderNotFound();
+  const details = getCharacterDetail(character.encoreId);
+  const trailer = character.videoId || characterTrailers[character.slug];
+  const detailFailed = (characterDetailFailures.get(String(character.encoreId)) || 0) > Date.now();
 
   return `
     ${renderPageHero(character.name, `${character.element} • ${character.weapon} • ${t(roleLabels[character.role])}`, "Resonator")}
@@ -2551,6 +2638,8 @@ function renderCharacterDetail(slug) {
           <a class="text-link" href="${pathFor("characters")}" data-link>${t("back")}</a>
         </aside>
         <div class="detail-main">
+          ${details?.introduction ? `<article class="panel"><h2>${label('Perfil','Profile','Perfil')}</h2><p>${escapeHtml(details.introduction)}</p><a class="text-link" href="${escapeHtml(details.sourceUrl)}" target="_blank" rel="noreferrer">Encore · ${label('Fonte dos dados','Data source','Fuente de datos')}</a></article>` : ""}
+          ${character.apiOnly ? `<article class="panel"><h2>${label('Atributos','Attributes','Atributos')} ${details?.maxLevel ? `· Lv. ${details.maxLevel}` : ""}</h2>${details ? `<div class="stat-grid">${Object.entries(details.stats).map(([name,value]) => `<div class="stat-tile"><span>${escapeHtml(name)}</span><strong>${escapeHtml(value)}</strong></div>`).join('')}</div>` : `<p role="status">${detailFailed ? label('Não foi possível carregar os dados agora.','Unable to load data right now.','No se pudieron cargar los datos ahora.') : label('Carregando informações da API…','Loading API information…','Cargando información de la API…')}</p>${detailFailed ? `<button type="button" class="favorite-wide" data-character-retry="${Number(character.encoreId)}">${label('Tentar novamente','Try again','Reintentar')}</button>` : ""}`}</article>` : `
           <div class="stat-grid">
             ${Object.entries(character.stats).map(([label, value]) => `
               <div class="stat-tile">
@@ -2570,18 +2659,21 @@ function renderCharacterDetail(slug) {
             <p>${character.build.rotation}</p>
           </article>
           ${renderCharacterStatTargetSummary(character)}
+          `}
+          ${character.signatureWeapon ? `<article class="panel"><h2>${label('Arma associada','Associated weapon','Arma asociada')}</h2><a class="text-link" data-link href="${pathFor('weapons',state.lang,character.signatureWeapon.slug)}">${escapeHtml(character.signatureWeapon.name)} ↗</a>${character.signatureWeaponSource ? `<p><a class="text-link" href="${escapeHtml(character.signatureWeaponSource)}" target="_blank" rel="noreferrer">${label('Guia oficial','Official guide','Guía oficial')}</a></p>` : ""}</article>` : ""}
+          ${trailer ? renderOfficialVideo(trailer, `${character.name} — Resonator Showcase`) : ""}
           <article class="panel">
             <h2>${t("skills")}</h2>
             <div class="skill-tree">
-              ${character.skills.map((skill) => `<span>${skill}</span>`).join("")}
+              ${(details?.skills || []).length && character.apiOnly ? details.skills.map(skill => `<details class="character-skill"><summary>${escapeHtml(skill.name)} · ${escapeHtml(skill.type)}</summary><p>${escapeHtml(skill.description)}</p></details>`).join('') : (character.apiOnly ? [] : character.skills).map((skill) => `<span>${escapeHtml(skill)}</span>`).join("")}
             </div>
           </article>
-          <article class="panel">
+          ${character.apiOnly ? "" : `<article class="panel">
             <h2>${t("weaponAffinity")}</h2>
             <ol class="ranked-list">
               ${character.affinity.map((weapon, index) => `<li><span>${index + 1}</span>${weapon}</li>`).join("")}
             </ol>
-          </article>
+          </article>`}
         </div>
       </div>
     </section>
@@ -3044,6 +3136,12 @@ function compatibleBuilderWeapons(character = selectedBuilderCharacter()) {
 }
 
 function normalizeBuilderWeapon(character = selectedBuilderCharacter()) {
+  // Preserve saved API equipment until its catalogs finish loading.
+  const awaitingCharacter = !dataRequests.charactersLoaded && !characters.some(item => item.slug === state.builder.character);
+  const awaitingWeapon = !weaponsReady && !weapons.some(item => item.slug === state.builder.weapon);
+  if (awaitingCharacter || awaitingWeapon) {
+    return weapons.find(item => item.slug === state.builder.weapon) || {slug: state.builder.weapon, name: label('Carregando arma…','Loading weapon…','Cargando arma…'), type: character.weapon, rarity: 0, baseAtk: 0, stat: '—', passive: '', recommended: []};
+  }
   const compatible = compatibleBuilderWeapons(character);
   const current = compatible.find((weapon) => weapon.slug === state.builder.weapon);
   if (current) return current;
@@ -3776,6 +3874,7 @@ function render() {
   updateSeo();
   app.innerHTML = `${renderTopbar()}<main>${renderRoute()}</main>${renderFooter()}`;
   updateDynamicTimes();
+  observeCharacterImages();
 }
 
 function updateDynamicTimes() {
@@ -3835,37 +3934,72 @@ async function loadEvents() {
   render();
 }
 
-async function loadCharacters() {
+async function loadCharacters({ force = false } = {}) {
+  if (dataRequests.characters) return dataRequests.characters;
+  if (dataRequests.charactersLoaded && !force) return characters;
+
   state.charactersLoading = true;
-  render();
+  scheduleRender();
 
-  try {
-    const localByKey = new Map(characters.map((character) => [characterLookupKey(character), character]));
-    const response = await fetch("/api/characters", { headers: { Accept: "application/json" } });
-    const payload = await response.json();
+  dataRequests.characters = (async () => {
+    try {
+      const localByKey = new Map(characters.map((character) => [characterLookupKey(character), character]));
+      const response = await fetch("/api/characters", { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(20000) });
+      const payload = await response.json();
 
-    if (!response.ok) throw new Error(payload.message || "Characters API unavailable");
+      if (!response.ok) throw new Error(payload.message || "Characters API unavailable");
 
-    const apiCharacters = (payload.characters || [])
-      .map((character) => hydrateApiCharacter(character, localByKey.get(characterLookupKey(character))))
-      .filter((character) => character.name);
+      const apiCharacters = (Array.isArray(payload.characters) ? payload.characters : [])
+        .map((character) => hydrateApiCharacter(character, localByKey.get(characterLookupKey(character))))
+        .filter((character) => character.name);
 
-    if (apiCharacters.length) {
-      characters.splice(0, characters.length, ...apiCharacters);
-      state.builder.character = characters.some((character) => character.slug === state.builder.character)
-        ? state.builder.character
-        : characters[0].slug;
+      if (apiCharacters.length) {
+        const received = new Set(apiCharacters.map(characterLookupKey));
+        const previous = characters.filter(character => !received.has(characterLookupKey(character)));
+        characters.splice(0, characters.length, ...apiCharacters, ...previous);
+        state.builder.character = characters.some((character) => character.slug === state.builder.character)
+          ? state.builder.character
+          : characters[0].slug;
+      }
+
+      state.charactersUpdatedAt = payload.updatedAt || new Date().toISOString();
+      state.charactersSource = payload.source || "/api/characters";
+      state.charactersSyncIntervalMinutes = Number(payload.syncIntervalMinutes) || 360;
+      state.charactersApiError = Boolean(payload.externalError);
+    } catch {
+      state.charactersApiError = true;
+    } finally {
+      state.charactersLoading = false;
+      dataRequests.charactersLoaded = true;
+      dataRequests.characters = null;
+      preloadAppAssets();
+      scheduleRender();
     }
 
-    state.charactersUpdatedAt = payload.updatedAt || new Date().toISOString();
-    state.charactersSource = payload.source || "/api/characters";
-    state.charactersApiError = false;
-  } catch {
-    state.charactersApiError = true;
-  }
+    return characters;
+  })();
 
-  state.charactersLoading = false;
-  render();
+  return dataRequests.characters;
+}
+
+function preloadAppData() {
+  if (["home","tier"].includes(state.route)) ensureTierData();
+  if (state.route === 'gacha') loadGachaModule();
+  if(['gacha','weapons','builder'].includes(state.route) && !weaponsReady)ensureWeapons();
+  if(state.route==='weapons' && state.detail && weaponsReady)ensureWeaponDetail();
+  if (state.route === "builder" && (!builderCatalogLoaded || Date.now() >= builderCatalogExpiresAt)) loadBuilderEchoes();
+  // The ticker needs events everywhere. Other catalogs load on first use.
+  if (!dataRequests.eventsLoaded) loadEvents();
+  if (["home", "events", "gacha"].includes(state.route) && !dataRequests.convenesLoaded) loadConvenes();
+  if (["home", "intro", "characters", "tier", "builder", "gacha"].includes(state.route) && !dataRequests.charactersLoaded) loadCharacters();
+  if (state.route === 'characters' && dataRequests.charactersLoaded) {
+    loadCharacterMedia();
+    if (state.detail) {
+      const character = characters.find(record => record.slug === state.detail);
+      loadAssociatedCharacterWeapon(character);
+      if (character?.encoreId && !getCharacterDetail(character.encoreId)) upgradeCharacterImages(String(character.encoreId));
+    }
+  }
 }
 
 function copyToClipboard(text, button) {
@@ -3910,6 +4044,8 @@ function runSearch(form) {
 }
 
 app.addEventListener("click", (event) => {
+  const characterRetry = event.target.closest('[data-character-retry]');
+  if (characterRetry) {characterDetailFailures.delete(characterRetry.dataset.characterRetry);upgradeCharacterImages(characterRetry.dataset.characterRetry);characterDetailRevision++;scheduleRender();return;}
   const searchSuggestion = event.target.closest("[data-search-suggestion]");
   if (searchSuggestion) {
     navigateTo(pathFor(
@@ -4083,6 +4219,14 @@ app.addEventListener("change", (event) => {
   if (weapon) {
     state.weaponFilter = weapon.value;
     render();
+    return;
+  }
+
+  const characterSort = event.target.closest("[data-character-sort]");
+  if (characterSort) {
+    state.characterSort = characterSort.value === "favorites" ? "favorites" : "default";
+    characterSort.closest("label").classList.toggle("is-active", state.characterSort === "favorites");
+    updateCharacterResults();
     return;
   }
 

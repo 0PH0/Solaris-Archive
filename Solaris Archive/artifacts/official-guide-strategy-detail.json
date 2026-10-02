@@ -1,0 +1,1622 @@
+{
+  "code": 200,
+  "message": "ok",
+  "data": {
+    "id": 14133,
+    "role": {
+      "roleGbId": "1311",
+      "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/2bd0b218329cc047e2b294056dcc5181/0e707e81e4a7c7b133dbf5c962baeed0.png",
+      "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/7b5a66c0c4ca3336063357e160453fa3/0e707e81e4a7c7b133dbf5c962baeed0.png",
+      "star": 5,
+      "texts": [
+        {
+          "language": "en",
+          "name": "Hsin",
+          "skillDisplay": "Basic Combo：\nUnison Combo：Union Response → Basic Attack*2 → Enhanced Heavy Attack → Resonance Liberation → Union Response → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill\nElectro Flare Combo：Intro Skill → Basic Attack → Enhanced Heavy Attack → Resonance Liberation → Basic Attack → Resonance Skill → Enhanced Resonance Skill → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill"
+        }
+      ],
+      "element": {
+        "gbId": "3",
+        "pictureUrl": "https://guide-res.aki-game.net/introduction/material/06654bfa76703f8ad1315e583b8d8194/10fb15c77258a991b0028080a64fb42d.png",
+        "secondPictureUrl": "https://guide-res.aki-game.net/introduction/material/cab15a2f14837cde9f0433e272cc0536/10fb15c77258a991b0028080a64fb42d.png"
+      },
+      "rolePlays": [
+        {
+          "gbId": "2",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/fb5c81ed3a220004b71069645f112867.png",
+          "secondPictureUrl": null
+        },
+        {
+          "gbId": "6",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/f19c9085129709ee14d013be869df69b.png",
+          "secondPictureUrl": null
+        },
+        {
+          "gbId": "39",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/42303566d316007d4fef207f10b72fda/68d0e004a2309c47ef0ecd99811e99f0.png",
+          "secondPictureUrl": null
+        },
+        {
+          "gbId": "25",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/a969aaab995e4aaddbfe5fc3781fa63b.png",
+          "secondPictureUrl": null
+        },
+        {
+          "gbId": "9",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/7afbb1602613ec52b265d7a54ad27330.png",
+          "secondPictureUrl": null
+        }
+      ]
+    },
+    "baseTexts": [
+      {
+        "language": "en",
+        "introductionName": "Hsin: Moonlit Mechanism",
+        "introductionSource": "Void Enigma",
+        "roleDescription": "<p>Hsin is the Moon Fox and Sentinel of Mengzhou, a guardian who deeply cherishes the joys of mortal life. With her power of Fractal Proliferation and exceptional mastery of mechanisms, Hsin has helped guide and protect Mengzhou throughout its history.</p>",
+        "introductionSynopsis": "<p>Hsin is an Electro Rectifier Resonator whose primary damage is considered Resonance Skill DMG. She is a Main DPS with two distinct gameplay modes: Unison and Electro Flare.</p>",
+        "introductionDescription": "<p>Sample Rotation: Team builds Electro Rage &rarr; Intro Hsin &rarr; Resonance Skill &rarr; Fill Forte&rarr; Heavy Attack &rarr; Formshift &rarr; Build Forte &rarr; Pillars Aligned &rarr; Spam Basics to 0 &rarr; Hold Basic &rarr; Pillars Across Heaven.</p>",
+        "introductionDetail": "<p>Hsin has two main gameplay modes, Unison and Electro Flare. Her Unison Mode allows her to trigger her Outro Skill without consuming Concerto Energy, enabling frequent swaps and team buffs, meanwhile her Electro Flare Mode allows her to utilize the Electro Flare debuff to overwhelm enemies.<br><br>Hsin gains stacks of Heart of Thunder by utilizing the team to inflict the Electro Rage debuff. Heart of Thunder can stack up to 100. Upon using Hsin's Intro Skill, she will begin in Answering Form. Her Intro Skill contributes to her Forte Gauge, Answering Heart, and also inflicts Electro Flare.<br><br>Using her Resonance Skill: Heartward by Moon triggers additional Electro Flare DMG based on Hsin's Heart of Thunder stacks and the target's current Electro Flare stacks. Continue attacking to fill Answering Heart and unlock her Enhanced Heavy Attack.<br><br>Utilizing her Enhanced Heavy Attack unlocks her Resonance Liberation, allowing Hsin to enter Illumining Form while immediately inflicting 5 Electro Flare stacks on nearby targets.<br><br>In Illumining Form, use Basic Attacks and Resonance Skill to fill her new Forte Gauge. After Formshift, collapsing the Modular Heartlock grants 150 Illumining Heart, greatly speeding up this process. Once the gauge is full, Resonance Skill: Pillars Aligned becomes available, allowing Hsin to enter Mechanism Dominion.<br><br>Continue using Basic Attacks to drain the Forte Gaugewhile applying additional Electro Flare. Once the Forte Gauge is depleted, use Hsin's Heavy Attack to cast Beholding All Horizons, unlocking her Enhanced Resonance Liberation. Finish the rotation by collapsing the world with Resonance Liberation: Pillars Across Heaven.</p>",
+        "skillDisplayDescription": "<div>\n<div data-zone-id=\"0\" data-line-index=\"0\" data-line=\"true\">Basic Combo：</div>\n<div data-zone-id=\"0\" data-line-index=\"1\" data-line=\"true\">Unison Combo：Union Response &rarr; Basic Attack*2 &rarr; Enhanced Heavy Attack &rarr; Resonance Liberation &rarr; Union Response &rarr; Basic Attack*4 &rarr; Enhanced Heavy Attack &rarr; Resonance Liberation &rarr; Outro Skill</div>\n<div data-zone-id=\"0\" data-line-index=\"2\" data-line=\"true\">Electro Flare Combo：Intro Skill &rarr; Basic Attack &rarr; Enhanced Heavy Attack &rarr; Resonance Liberation &rarr; Basic Attack &rarr; Resonance Skill &rarr; Enhanced Resonance Skill &rarr; Basic Attack*4 &rarr; Enhanced Heavy Attack &rarr; Resonance Liberation &rarr; Outro Skill</div>\n</div>"
+      }
+    ],
+    "displayVideoUrl": null,
+    "roleAttribute": {
+      "items": [
+        {
+          "gbId": "8-2",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/e53083b543f0bc7daf7a1ab06e50486f/010c99bb1c2d524ba20fc04878a3ae87.png",
+          "attachmentType": "2",
+          "texts": [
+            {
+              "language": "en",
+              "name": "Crit. Rate"
+            }
+          ],
+          "recommendAmount": "75.0%",
+          "operation": 6,
+          "currentAmount": "0.0%",
+          "isFinished": false
+        },
+        {
+          "gbId": "9-2",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/e53083b543f0bc7daf7a1ab06e50486f/5df14d26f9f055fbae519b370db8f18f.png",
+          "attachmentType": "2",
+          "texts": [
+            {
+              "language": "en",
+              "name": "Crit. DMG"
+            }
+          ],
+          "recommendAmount": "265.0%",
+          "operation": 6,
+          "currentAmount": "0.0%",
+          "isFinished": false
+        },
+        {
+          "gbId": "11-2",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/e53083b543f0bc7daf7a1ab06e50486f/90b1c8a1d3c8d4d6065aee893213bab5.png",
+          "attachmentType": "2",
+          "texts": [
+            {
+              "language": "en",
+              "name": "Energy Regen"
+            }
+          ],
+          "recommendAmount": "118.0%",
+          "operation": 6,
+          "currentAmount": "0.0%",
+          "isFinished": false
+        }
+      ],
+      "isFinished": false
+    },
+    "echo": {
+      "current": {
+        "echoProps": null,
+        "echoSetEffects": [],
+        "echoAttributes": []
+      },
+      "main": {
+        "echoProps": {
+          "gbId": "60002255",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/1c27ce1fe7e633679092f5e5500e55c5/cbd6adafcc618566b3afa059291c182b.png",
+          "monsterTypeGameBusinessId": "6000225",
+          "star": 5,
+          "cost": 4,
+          "texts": [
+            {
+              "language": "en",
+              "name": "Reminiscence: Suhsin the Inevitable",
+              "skillDescription": "Cast Echo Skill to deal 4 instances of 27.36% Electro DMG and 1 instance of 164.16% Electro DMG.\nWhen equipped by Hsin, the Echo Skill instead deals 5 instances of 8.20% Electro DMG and 1 instance of 232.56% Electro DMG to targets within a larger range.\nThe Resonator with this Echo equipped in their main slot gains 10.00% Electro DMG Bonus. Inflicting Electro Flare, gaining Unison, or triggering Unison Response grants the Resonator an extra 10.00% Electro DMG Bonus for 30s.\nCD: 20s"
+            }
+          ]
+        },
+        "echoSetEffects": [
+          {
+            "gbId": "365",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/54923d0a0299b1b1cc566702fe83d5ba/bf3f4bcaaae68f8f30591b653e55e5c4.png",
+            "echoSetGroupGameBusinessId": "36",
+            "echoSet": 5,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Heart of Sworn Vigil",
+                "description": "Inflicting Electro Flare on the target, obtaining Unison, or triggering Unison Response increases the Resonator's Crit. Rate by 15% and grants them 22.5% Electro DMG for 30s."
+              }
+            ]
+          },
+          {
+            "gbId": "362",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/54923d0a0299b1b1cc566702fe83d5ba/bf3f4bcaaae68f8f30591b653e55e5c4.png",
+            "echoSetGroupGameBusinessId": "36",
+            "echoSet": 2,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Heart of Sworn Vigil",
+                "description": "Electro DMG + 10%"
+              }
+            ]
+          }
+        ],
+        "echoAttributes": [
+          {
+            "cost": 4,
+            "isFinishedMaxLevel": null,
+            "currentLevel": null,
+            "isFinished": null,
+            "attribute": {
+              "gbId": "81",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/602e8f042f463dc47ebfdf6a94ed5a6d.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": true,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "Crit. Rate"
+                }
+              ]
+            },
+            "attribute2": {
+              "gbId": "100071",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": false,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "ATK"
+                }
+              ]
+            }
+          },
+          {
+            "cost": 3,
+            "isFinishedMaxLevel": null,
+            "currentLevel": null,
+            "isFinished": null,
+            "attribute": {
+              "gbId": "241",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/2484a7df36877a14689574eebda6dd7c.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": true,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "Electro DMG Bonus"
+                }
+              ]
+            },
+            "attribute2": {
+              "gbId": "100071",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": false,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "ATK"
+                }
+              ]
+            }
+          },
+          {
+            "cost": 3,
+            "isFinishedMaxLevel": null,
+            "currentLevel": null,
+            "isFinished": null,
+            "attribute": {
+              "gbId": "241",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/2484a7df36877a14689574eebda6dd7c.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": true,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "Electro DMG Bonus"
+                }
+              ]
+            },
+            "attribute2": {
+              "gbId": "100071",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": false,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "ATK"
+                }
+              ]
+            }
+          },
+          {
+            "cost": 1,
+            "isFinishedMaxLevel": null,
+            "currentLevel": null,
+            "isFinished": null,
+            "attribute": {
+              "gbId": "100072",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+              "attachmentGameBusinessId": "2",
+              "isCalculate": true,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "ATK%"
+                }
+              ]
+            },
+            "attribute2": {
+              "gbId": "100021",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/a4600fee5ab6d36a45edd0002f6d0564.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": false,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "HP"
+                }
+              ]
+            }
+          },
+          {
+            "cost": 1,
+            "isFinishedMaxLevel": null,
+            "currentLevel": null,
+            "isFinished": null,
+            "attribute": {
+              "gbId": "100072",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+              "attachmentGameBusinessId": "2",
+              "isCalculate": true,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "ATK%"
+                }
+              ]
+            },
+            "attribute2": {
+              "gbId": "100021",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/a4600fee5ab6d36a45edd0002f6d0564.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": false,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "HP"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "spare": {
+        "echoProps": {
+          "gbId": "60000895",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/526f4dcd93bf086e215372c967ae67b5/33ba5a1e0aa32d8d51546cdecba97340.png",
+          "monsterTypeGameBusinessId": "6000089",
+          "star": 5,
+          "cost": 4,
+          "texts": [
+            {
+              "language": "en",
+              "name": "Nightmare: Tempest Mephis",
+              "skillDescription": "Transform into Nightmare: Tempest Mephis and attack surrounding enemies, dealing 405.00% Electro DMG.\n\nThe Resonator with this Echo equipped in their main slot gains 12.00% Electro DMG Bonus and 12.00% Resonance Skill DMG Bonus.\n\nCD: 25s."
+            }
+          ]
+        },
+        "echoSetEffects": [
+          {
+            "gbId": "6",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/c4d88a047905cdb485c0e9abcca20348/10fb15c77258a991b0028080a64fb42d.png",
+            "echoSetGroupGameBusinessId": "3",
+            "echoSet": 5,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Void Thunder",
+                "description": "Electro DMG + 15% after releasing Heavy Attack or Resonance Skill. This effect stacks up to 2 times, each stack lasts 15s."
+              }
+            ]
+          },
+          {
+            "gbId": "5",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/c4d88a047905cdb485c0e9abcca20348/10fb15c77258a991b0028080a64fb42d.png",
+            "echoSetGroupGameBusinessId": "3",
+            "echoSet": 2,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Void Thunder",
+                "description": "Electro DMG + 10%."
+              }
+            ]
+          }
+        ],
+        "echoAttributes": [
+          {
+            "cost": 4,
+            "isFinishedMaxLevel": null,
+            "currentLevel": null,
+            "isFinished": null,
+            "attribute": {
+              "gbId": "81",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/602e8f042f463dc47ebfdf6a94ed5a6d.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": true,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "Crit. Rate"
+                }
+              ]
+            },
+            "attribute2": {
+              "gbId": "100071",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": false,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "ATK"
+                }
+              ]
+            }
+          },
+          {
+            "cost": 3,
+            "isFinishedMaxLevel": null,
+            "currentLevel": null,
+            "isFinished": null,
+            "attribute": {
+              "gbId": "241",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/2484a7df36877a14689574eebda6dd7c.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": true,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "Electro DMG Bonus"
+                }
+              ]
+            },
+            "attribute2": {
+              "gbId": "100071",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": false,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "ATK"
+                }
+              ]
+            }
+          },
+          {
+            "cost": 3,
+            "isFinishedMaxLevel": null,
+            "currentLevel": null,
+            "isFinished": null,
+            "attribute": {
+              "gbId": "241",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/2484a7df36877a14689574eebda6dd7c.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": true,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "Electro DMG Bonus"
+                }
+              ]
+            },
+            "attribute2": {
+              "gbId": "100071",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": false,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "ATK"
+                }
+              ]
+            }
+          },
+          {
+            "cost": 1,
+            "isFinishedMaxLevel": null,
+            "currentLevel": null,
+            "isFinished": null,
+            "attribute": {
+              "gbId": "100072",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+              "attachmentGameBusinessId": "2",
+              "isCalculate": true,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "ATK%"
+                }
+              ]
+            },
+            "attribute2": {
+              "gbId": "100021",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/a4600fee5ab6d36a45edd0002f6d0564.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": false,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "HP"
+                }
+              ]
+            }
+          },
+          {
+            "cost": 1,
+            "isFinishedMaxLevel": null,
+            "currentLevel": null,
+            "isFinished": null,
+            "attribute": {
+              "gbId": "100072",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+              "attachmentGameBusinessId": "2",
+              "isCalculate": true,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "ATK%"
+                }
+              ]
+            },
+            "attribute2": {
+              "gbId": "100021",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/a4600fee5ab6d36a45edd0002f6d0564.png",
+              "attachmentGameBusinessId": "1",
+              "isCalculate": false,
+              "calculationRatio": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "HP"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "isFinished": false
+    },
+    "echoTexts": [
+      {
+        "language": "en",
+        "recommendDescription": "<p>Energy Regen &gt;= 118% &gt; Crit DMG / Crit Rate &gt; ATK &gt; Resonance Skill DMG Bonus</p>"
+      }
+    ],
+    "roleSkill": {
+      "fixedSkills": [
+        {
+          "gbId": "1017-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/25f737c1b543d85481f9bc7974b692a7.png",
+          "videoUrl": null,
+          "skillType": {
+            "gbId": "4-1",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Inherent Skill"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Tides of Succession",
+              "description": "While in Resonance Mode - Unison, when Hsin casts Intro Skill - Answering Form: Manifold Unison or Intro Skill - Illumining Form: Manifold Unison, Her ATK is increased by 50% for 8s. Switching to another Resonator or Resonance Mode ends this effect.\n\nWhile in Resonance Mode - Electro Flare, after Resonators in the team inflict Electro Flare, Hsin gains 25% Electro DMG Bonus, stacking up to 2 times. Each Resonator can trigger this effect only once. In addition, if Rover: Electro is in the same team, when Rover: Electro casts Intro Skill - Thunderous Fury, both Hsin and Rover: Electro gain 20% Electro DMG Bonus for 30s.\nThis effect resets when a Resonator is added to the team or when Hsin switches Resonance Mode."
+            }
+          ]
+        },
+        {
+          "gbId": "1018-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/bf17fd18ae2515d84b57af1885101d1d.png",
+          "videoUrl": null,
+          "skillType": {
+            "gbId": "4-2",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Inherent Skill"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Gleaning Simple Joys",
+              "description": "While in Resonance Mode - Unison, the maximum stacks of the Unison Boon effect on Resonators in the team are increased by 1. When a Resonator in the team triggers Unison Response, all Resonators in the team gain 1 {Cus:Sap,S=stack P=stacks SapTag=0} of Unison Boon for 30s. This effect does not stack.\n\nWhile in Resonance Mode - Electro Flare and Hsin is not in the Heart Manifest state, after Resonators in the team other than Hsin inflict Electro Flare on a target, every 1 stack of Electro Flare inflicted grants Hisn 1 stack of Thunderglow, stacking up to 10 times.\nWhile Hsin is in the Heart Manifest state, when targets within a certain range have 0 stacks of Electro Flare, inflict 1 stack of Electro Flare on the targets. If Thunderglow on Hsin reaches the stack limit, Hsin also inflicts Fleeting Thunder on the targets:\n- When Hsin inflicts Fleeting Thunder on the target, She also inflicts Electro Flare on the target to the stack limit, up to 16 stacks of Electro Flare.\n- When Fleeting Thunder is active, if the maximum stacks of Electro Flare on the target is increased, Hsin will inflict Electro Flare on the target to the stack limit again, up to 16 stacks of Electro Flare.\n- Fleeting Thunder will be removed when the target leaves the designated range around Hsin.\nExiting the Heart Manifest state or switching Resonance Mode removes the aforementioned effects."
+            }
+          ]
+        }
+      ],
+      "keynoteSkill": {
+        "gbId": "1021-1311",
+        "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/505878b72871026430374ca10c6b56f5.png",
+        "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/292bd89e1fbe75c143a1b8db56e55241.mp4",
+        "skillType": {
+          "gbId": "11",
+          "pictureUrl": null,
+          "secondPictureUrl": null,
+          "texts": [
+            {
+              "language": "en",
+              "name": "Outro Skill"
+            }
+          ]
+        },
+        "texts": [
+          {
+            "language": "en",
+            "name": "Herself a Thousand Lanterns",
+            "description": "Attack the target, dealing Electro DMG equal to 100% of Hsin's ATK.\nHsin gains Nightglow upon entering combat or casting Resonance Liberation - Pillars Across Heaven. When Hsin casts Outro Skill, Nightglow is consumed to trigger various effects depending on the Resonance Mode She is in:\n- While in Resonance Mode - Unison, Resonators in the team other than Hsin gain Shared Light when they gain Unison. After Hsin casts Outro Skill, Resonators with Shared Light gain 20% All DMG Amplification for 30s.\n- While in Resonance Mode - Electro Flare, Resonators in the team other than Hsin gain 20% Electro DMG Amplification for 20s.\nThe above effects end early when Hsin switches Resonance Mode."
+          }
+        ]
+      },
+      "keynoteSkills": [
+        {
+          "gbId": "1021-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/505878b72871026430374ca10c6b56f5.png",
+          "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/292bd89e1fbe75c143a1b8db56e55241.mp4",
+          "skillType": {
+            "gbId": "11",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Outro Skill"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Herself a Thousand Lanterns",
+              "description": "Attack the target, dealing Electro DMG equal to 100% of Hsin's ATK.\nHsin gains Nightglow upon entering combat or casting Resonance Liberation - Pillars Across Heaven. When Hsin casts Outro Skill, Nightglow is consumed to trigger various effects depending on the Resonance Mode She is in:\n- While in Resonance Mode - Unison, Resonators in the team other than Hsin gain Shared Light when they gain Unison. After Hsin casts Outro Skill, Resonators with Shared Light gain 20% All DMG Amplification for 30s.\n- While in Resonance Mode - Electro Flare, Resonators in the team other than Hsin gain 20% Electro DMG Amplification for 20s.\nThe above effects end early when Hsin switches Resonance Mode."
+            }
+          ]
+        },
+        {
+          "gbId": "1030-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/f52b32d4f3bcd48dd722b90b942a309b.png",
+          "videoUrl": null,
+          "skillType": {
+            "gbId": "12",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Tune Break"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Tune Break: Rectifier",
+              "description": "When the target's Off-Tune Level is full, the Resonator may cast Tune Break on the target."
+            }
+          ]
+        }
+      ],
+      "addPointTarget": [
+        {
+          "gbId": "1014-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/f63100f5cef5373ac53595900af031c7.png",
+          "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/dbef155c188b0801ac786303bd6e97e5.mp4",
+          "skillType": {
+            "gbId": "1",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Normal Attack"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Manifold Bloom",
+              "description": "Basic Attack - Answering Form\nWhile in Answering Form, perform up to 4 consecutive attacks, dealing Electro DMG.\n\nHeavy Attack - Answering Form\nWhile in Answering Form, consume STA to deal Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 2.\n\nMid-air Attack - Answering Form\nWhile in Answering Form and in mid-air, Normal Attack to perform a Plunging Attack at the cost of STA, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 2.\n\nHeavy Attack - Answering Form: Reign at Ease\nWhile in Answering Form and in mid-air, hold Normal Attack to cast Heavy Attack - Answering Form: Reign at Ease, continuously consuming STA and dealing Electro DMG to the target.\nDepleting all STA or switching to another Resonator ends the skill action early.\n\nMid-air Attack - Answering Form: Reign at Ease\nWhen the Normal Attack button is released during Heavy Attack - Answering Form: Reign at Ease, Hsin casts Mid-air Attack - Answering Form: Reign at Ease, consuming STA to perform a Plunging Attack, transforming into the Moon Fox upon landing and dealing Electro DMG.\nAfter casting Mid-air Attack - Answering Form: Reign at Ease, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 2.\n\nDodge Counter - Answering Form\nWhile in Answering Form, Normal Attack within a short time after a successful Dodge to attack the target, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 3.\n\nBasic Attack - Illumining Form\nWhile in Illumining Form and not in the Mechanism Dominion state, command Xuanfang Mechanisms to perform up to 3 consecutive attacks, dealing Electro DMG.\nCasting Basic Attack - Illumining Form Stage 1 generates a Modular Heartlock at the target's position. Casting Basic Attack - Illumining Form Stage 2, Heavy Attack - Illumining Form, Dodge Counter - Illumining Form, or Resonance Skill - Illumining Form causes the Modular Heartlock to collapse, dealing Electro DMG.\nCasting this skill consumes STA when Hsin is in mid-air.\n\nHeavy Attack - Illumining Form\nWhile in Illumining Form, consume STA to command Xuanfang Mechanisms, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Illumining Form Stage 3.\n\nUpward Cut - Illumining Form\nWhile in Illumining Form and on the ground, Jump to cast this skill, dealing Electro DMG.\n\nMid-air Attack - Illumining Form\nWhile in Illumining Form and Hsin is in mid-air, Resonance Skill - Illumining Form is replaced with Mid-air Attack - Illumining Form.\nConsume STA to perform a Plunging Attack, dealing Electro DMG.\n\nDodge Counter - Illumining Form\nWhile in Illumining Form, Normal Attack within a short time after a successful Dodge to attack the target, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Illumining Form Stage 3.\n\nBasic Attack - Illumining Form: Pillars Aligned\nWhile in Illumining Form and in the Mechanism Dominion state, command Xuanfang Mechanisms to perform up to 4 consecutive attacks, dealing Electro DMG.\n\nDodge Counter - Illumining Form: Pillars Aligned\nWhile in Illumining Form and in the Mechanism Dominion state, Normal Attack within a short time after a successful Dodge to attack the target, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Illumining Form: Pillars Aligned Stage 3."
+            }
+          ],
+          "recommendLevel": 10,
+          "currentLevel": 0
+        },
+        {
+          "gbId": "1015-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/4577e8d25a52715902d5c0de65d77510.png",
+          "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/9cf9f7933bba4d0c732ea4f081be0946.mp4",
+          "skillType": {
+            "gbId": "2",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Resonance Skill"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Heartward by Moon",
+              "description": "Resonance Skill - Answering Form\nWhile in Answering Form, Resonance Skill to deal Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 4.\nCan be cast in mid-air.\n\nIf Hsin moves while on the ground within a short time after casting this skill, she turns into the Moon Fox. \n- While in the Moon Fox form and out of combat, Hsin gains Dustless Tread. With Dustless Tread, Hsin can enter the target's aggro range without triggering combat. Dustless Tread is removed when Hsin enters combat, is switched out, or ends the Moon Fox form by having environmental, gameplay, or feature interactions.\n- While in the Moon Fox form and out of combat, Hsin restores 6% of Max HP every 3s.\n- Taking damage, failing to perform a Dodge with directional input while on the ground, or Dodging in mid-air will end the Moon Fox form. Switching to another Resonator or Resonance Skill also ends the Moon Fox form. Normal Attack to cast Basic Attack - Answering Form Stage 4, which also ends the Moon Fox form.\n- The Dash state continuously consumes STA when Hsin is in the Moon Fox form.\n- Resonance Liberation is disabled when Hsin is in the Moon Fox form.\n\nResonance Skill - Illumining Form\nWhile in Illumining Form and Hsin is on the ground, Resonance Skill to have Hsin command a Colossal Xuanfang Mechanism, dealing Electro DMG."
+            }
+          ],
+          "recommendLevel": 8,
+          "currentLevel": 0
+        },
+        {
+          "gbId": "1020-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/4fa3c856578e673fec98876859cab3ab.png",
+          "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/ca80b8d19a7205411592c154524cdf5d.mp4",
+          "skillType": {
+            "gbId": "6",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Forte Circuit"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Forms Turn, Heart Abides",
+              "description": "Forms Born of Heart\nWhile in Answering Form, Hsin can gain and consume Answering Heart.\nWhile in Illumining Form, Hsin can gain and consume Illumining Heart.\n\nHeavy Attack - Answering Form: Realm Wanderer\nWhile in Answering Form, when Hsin's Answering Heart reaches 100 points, Heavy Attack - Answering Form is replaced with Heavy Attack - Answering Form: Realm Wanderer.\nHold Normal Attack to cast the skill at the cost of STA and 100 points of Answering Heart. Hsin is immune to interruption during the action, and deals Electro DMG to the target, considered Resonance Skill DMG.\nCasting Heavy Attack - Answering Form: Realm Wanderer grants Hsin Resolution of Wishes. This Heavy Attack - Answering Form: Realm Wanderer consumes Resolution of Wishes to become Heavy Attack - Answering Form: Realm Protector, dealing greater DMG. Resolution of Wishes can only be gained once every 24s.\nWhile casting Heavy Attack - Answering Form: Realm Wanderer or Heavy Attack - Answering Form: Realm Protector, if Hsin is not in the Heart Manifest state, unlock Resonance Liberation - Formshift.\n\nHeavy Attack - Illumining Form: Beholding All Horizons\nWhile in Illumining Form, when Hsin's Illumining Heart reaches 0 during the Mechanism Dominion state, Heavy Attack - Illumining Form is replaced with Heavy Attack - Illumining Form: Beholding All Horizons.\nHold Normal Attack to cast the skill at the cost of STA, dealing Electro DMG to the target, considered Resonance Skill DMG.\nCasting Heavy Attack - Illumining Form: Beholding All Horizons grants Hsin Law of Heaven. This Heavy Attack - Illumining Form: Beholding All Horizons consumes Law of Heaven to become Heavy Attack - Illumining Form: Stilling All Horizons, dealing greater DMG. Law of Heaven can only be gained once every 24s.\nCasting Heavy Attack - Illumining Form: Beholding All Horizons or Heavy Attack - Illumining Form: Stilling All Horizons ends the Mechanism Dominion state and unlocks Resonance Liberation - Pillars Across Heaven.\nCan be cast in mid-air.\n\nResonance Skill - Illumining Form: Pillars Aligned\nWhile in Illumining Form, when Hsin's Illumining Heart reaches 300 points and She is on the ground, Resonance Skill is replaced with Resonance Skill - Illumining Form: Pillars Aligned.\nWhen Hsin is on the ground, Resonance Skill to deal Electro DMG to surrounding targets, considered Resonance Skill DMG.\nCasting Resonance Skill - Illumining Form: Pillars Aligned sends Hsin into the Mechanism Dominion state.\n\nMechanism Dominion\nThe Mechanism Dominion state lasts 13s.\nWhile this state is active, Basic Attack - Illumining Form is replaced with Basic Attack - Illumining Form: Pillars Aligned, and Dodge Counter - Illumining Form is replaced with Dodge Counter - Illumining Form: Pillars Aligned.\nWhen Basic Attack - Illumining Form: Pillars Aligned or Dodge Counter - Illumining Form: Pillars Aligned hits a target, Illumining Heart is consumed if Hsin is the active Resonator.\nExiting Mechanism Dominion clears Illumining Heart.\n\nResonance Mode - Unison\nWhile in Resonance Mode - Unison, Hsin gains the following effects:\n- Hsin can trigger Unison Response, but not in Co-op Mode.\n- After casting Intro Skill - Answering Form or Intro Skill - Answering Form: Manifold Unison, the next Resonance Liberation - Formshift grants Hsin Unison for 5s.\n- When Hsin triggers Unison Response, She gains Source Intent, and this cast of Intro Skill is replaced with Intro Skill - Manifold Unison, dealing greater DMG.\nWhen Hsin casts an Intro Skill without triggering Unison Response while holding Source Intent, She consumes Source Intent instead, and the Intro Skill is replaced with Intro Skill - Manifold Unison, dealing greater DMG.\n- The aforementioned effects are removed when Hsin switches Resonance Mode.\n- Casting Intro Skill - Illumining Form or Intro Skill - Illumining Form: Manifold Unison sends Hsin directly into the Mechanism Dominion state.\n\nResonance Mode - Electro Flare\nWhile in Resonance Mode - Electro Flare, Hsin gains the following effects:\n- When Hsin enters combat, targets within a certain range do not lose Electro Flare stacks when it's triggered.\n- After Resonators in the team inflict Electro Rage to a target, every 1 of Electro Rage inflicted grants Hsin 1 of Heart of Thunder, stacking up to 100 times, and consumes all Electro Rage stacks from that target. Heart of Thunder is removed when Hsin switches Resonance Mode.\n- At the last stage of Resonance Skill - Heartward by Moon, Hsin actively triggers 1 instance of Electro Flare DMG on the targets. Its DMG Multiplier is equal to 35% x (the number of Heart of Thunder stacks on Hsin) x (the Electro Flare DMG Multiplier corresponding to the target's current Electro Flare stacks).\nWhile casting Resonance Skill - Heartward by Moon, switching to another Resonator or ending the skill early removes the above effects.\nSome time after casting Resonance Skill - Heartward by Moon, Hsin consumes all remaining stacks of Heart of Thunder.\nWhen Hsin has at least 50 stacks of Heart of Thunder, Resonance Skill - Illumining Form stagnates nearby targets during the action.\n- After casting Resonance Liberation - Formshift, inflict 5 of Electro Flare on nearby targets within a certain range. It also makes Basic Attack - Illumining Form: Pillars Aligned or Dodge Counter - Illumining Form: Pillars Aligned inflict Electro Flare on hit targets, up to 5 . Casting Resonance Liberation - Formshift again resets this count. Switching Resonance Mode removes it.\nResonance Skill - Illumining Form: Pillars Aligned and Heavy Attack - Illumining Form: Stilling All Horizons inflict 5 of Electro Flare on the target hit. Intro Skill - Illumining Form, Intro Skill - Answering Form, and Heavy Attack - Answering Form: Realm Protector inflict 1 of Electro Flare on the target hit.\n\nUnison\nWhile Hsin is in Resonance Mode - Unison with Unison, switching to another Resonator will remove Hsin's Unison to trigger Hsin's Outro Skill and the incoming Resonator's Intro Skill. If Hsin has full Concerto Energy and Unison at the same time, only Unison is consumed to trigger the effect.\n\nUnison Response\nWhile Hsin is in Resonance Mode - Unison and the active Resonator in the team has Unison, Hsin triggers Unison Response after She is switched in and casts Intro Skill, granting 1 of Unison Boon to all Resonators in the team for 30s.\nHsin can only grant up to 1 of Unison Boon in this way.\n\nUnison Boon\nOnly the Resonators who can trigger Unison Response can gain this effect. Each stack of Unison Boon increases the total DMG dealt by Resonators who can trigger Unison Response in the team by 3%, stacking up to 2 times.\n\nAnswering Heart\nCan hold up to 100 points of Answering Heart.\nWhile in Answering Form, when Normal Attack - Answering Form, Resonance Skill - Answering Form, Intro Skill - Answering Form, or Intro Skill - Answering Form: Manifold Unison hits a target, Hsin gains Answering Heart if She is the active Resonator.\nCasting Intro Skill - Answering Form or Intro Skill - Answering Form: Manifold Unison grants 60 points of Answering Heart.\n\nIllumining Heart\nCan hold up to 300 points of Illumining Heart.\nWhile in Illumining Form and not in the Mechanism Dominion state, when Normal Attack - Illumining Form, Resonance Skill - Illumining Form, or Intro Skill - Illumining Form hits a target, Hsin gains Illumining Heart if She is the active Resonator.\n- While in Resonance Mode - Unison, casting Intro Skill - Illumining Form or Intro Skill - Illumining Form: Manifold Unison directly sends Hsin into the Mechanism Dominion state and grants 300 points of Illumining Heart.\n- While in Resonance Mode - Electro Flare, after casting Resonance Liberation - Formshift, when the Modular Heartlock generated by Basic Attack - Illumining Form Stage 1 is collapsed by Basic Attack - Illumining Form Stage 2, Heavy Attack - Illumining Form, Dodge Counter - Illumining Form, or Resonance Skill - Illumining Form, additionally gain 150 points of Illumining Heart if Hsin is the active Resonator in Illumining Form but not in the Mechanism Dominion state. This effect can only be triggered once before the next cast of Resonance Liberation - Formshift resets it, and is disabled when switched to the other Resonance Mode."
+            }
+          ],
+          "recommendLevel": 10,
+          "currentLevel": 0
+        },
+        {
+          "gbId": "1016-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/cd564f9896f466c0b23e34fca9c10eac.png",
+          "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/84b96a7f5cd86f68eb3366c50cac37da.mp4",
+          "skillType": {
+            "gbId": "3",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Resonance Liberation"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Nexus Alight",
+              "description": "Formshift\nCasting Heavy Attack - Answering Form: Realm Wanderer unlocks Formshift.\nCast Formshift to unfurl the Manifold Sanctum. Hsin switches to Illumining Form, unlocking a new set of combat abilities, and enters the Heart Manifest state.\nCan be cast in mid-air close to the ground.\nWhile in Illumining Form, engaging in quest dialogue, performing an environmental interaction with an animation, or using a Utility switches Hsin back to Answering Form to perform the corresponding action.\nWhile in Illumining Form, Hsin can walk on the surface of water, and will continuously consume STA in deep water areas. In Walking Mode, Hsin in Illumining Form can step off a cliff into the air and walk slowly in mid-air, continuously consuming STA in this state. Hsin cannot restore STA while in Illumining Form and in mid-air.\n\nPillars Across Heaven\nCasting Heavy Attack - Illumining Form: Beholding All Horizons unlocks Pillars Across Heaven.\nCast Pillars Across Heaven to bring the Manifold Sanctum crashing down, dealing Electro DMG to the target, considered Resonance Skill DMG.\nCan be cast in mid-air close to the ground.\nHsin returns to Answering Form and exits the Heart Manifest state.\n\nEdict\nCasting Formshift grants Hsin 21 of Edict for 45s. The effect cannot exceed 21 and all stacks are removed when the duration ends.\nAfter the active Resonator in the team deals DMG, Hsin automatically consumes Edict in the following 3s to trigger the following effect up to once per second. Retriggering the effect resets the duration:\n- When Edict is consumed, summon a Soaring Pillar from the Manifold Sanctum as a Coordinated Attack to strike the target once, dealing Electro DMG. \n- Edict can be automatically consumed up to 1 stack per second.\n- Damage dealt by Soaring Pillar does not trigger this effect.\n- When Hsin is knocked out, all Edict stacks are removed.\n\nHeart Manifest\nIncreases Hsin's resistance to interruption for 45s.\nEntering the Heart Manifest state resets Hsin's Illumining Form.\nWhile in the Heart Manifest state and in Illumining Form, if Pillars Across Heaven is locked, Resonance Liberation to have Hsin cast Invoked Form: Answering. While in Answering Form, Resonance Liberation to have Hsin cast Invoked Form: Illumining.\n\nInvoked Form: Answering\nHsin temporarily reverts to Answering Form. When this skill is cast, if Hsin is on the ground, She casts Basic Attack - Answering Form Stage 2; if She is in mid-air, She casts Mid-air Attack - Answering Form.\n\nInvoked Form: Illumining\nHsin turns back into Illumining Form. When this skill is cast, if Hsin is on the ground, She casts Upward Cut - Illumining Form; if She is in mid-air, She casts Mid-air Attack - Illumining Form."
+            }
+          ],
+          "recommendLevel": 10,
+          "currentLevel": 0
+        },
+        {
+          "gbId": "1019-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/314e7522947024a15f6e5dea10f3b4ce.png",
+          "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/eb1d95518879cd56b18c76045d08af7a.mp4",
+          "skillType": {
+            "gbId": "5",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Intro Skill"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Glance on a Whim",
+              "description": "Intro Skill - Answering Form\nThis skill becomes available while in Answering Form. Attack the target, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 3 (when in Resonance Mode - Unison) or Basic Attack - Answering Form Stage 4 (when in Resonance Mode - Electro Flare).\n\nIntro Skill - Answering Form: Manifold Unison\nThis skill becomes available while in Answering Form. Attack the target, dealing greater Electro DMG, considered Resonance Skill DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 3.\n\nIntro Skill - Illumining Form\nThis skill becomes available while in Illumining Form. Attack the target, dealing Electro DMG.\n\nIntro Skill - Illumining Form: Manifold Unison\nThis skill becomes available while in Illumining Form. Attack the target, dealing greater Electro DMG, considered Resonance Skill DMG."
+            }
+          ],
+          "recommendLevel": 8,
+          "currentLevel": 0
+        }
+      ],
+      "addPointSequence": [
+        {
+          "gbId": "1016-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/cd564f9896f466c0b23e34fca9c10eac.png",
+          "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/84b96a7f5cd86f68eb3366c50cac37da.mp4",
+          "skillType": {
+            "gbId": "3",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Resonance Liberation"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Nexus Alight",
+              "description": "Formshift\nCasting Heavy Attack - Answering Form: Realm Wanderer unlocks Formshift.\nCast Formshift to unfurl the Manifold Sanctum. Hsin switches to Illumining Form, unlocking a new set of combat abilities, and enters the Heart Manifest state.\nCan be cast in mid-air close to the ground.\nWhile in Illumining Form, engaging in quest dialogue, performing an environmental interaction with an animation, or using a Utility switches Hsin back to Answering Form to perform the corresponding action.\nWhile in Illumining Form, Hsin can walk on the surface of water, and will continuously consume STA in deep water areas. In Walking Mode, Hsin in Illumining Form can step off a cliff into the air and walk slowly in mid-air, continuously consuming STA in this state. Hsin cannot restore STA while in Illumining Form and in mid-air.\n\nPillars Across Heaven\nCasting Heavy Attack - Illumining Form: Beholding All Horizons unlocks Pillars Across Heaven.\nCast Pillars Across Heaven to bring the Manifold Sanctum crashing down, dealing Electro DMG to the target, considered Resonance Skill DMG.\nCan be cast in mid-air close to the ground.\nHsin returns to Answering Form and exits the Heart Manifest state.\n\nEdict\nCasting Formshift grants Hsin 21 of Edict for 45s. The effect cannot exceed 21 and all stacks are removed when the duration ends.\nAfter the active Resonator in the team deals DMG, Hsin automatically consumes Edict in the following 3s to trigger the following effect up to once per second. Retriggering the effect resets the duration:\n- When Edict is consumed, summon a Soaring Pillar from the Manifold Sanctum as a Coordinated Attack to strike the target once, dealing Electro DMG. \n- Edict can be automatically consumed up to 1 stack per second.\n- Damage dealt by Soaring Pillar does not trigger this effect.\n- When Hsin is knocked out, all Edict stacks are removed.\n\nHeart Manifest\nIncreases Hsin's resistance to interruption for 45s.\nEntering the Heart Manifest state resets Hsin's Illumining Form.\nWhile in the Heart Manifest state and in Illumining Form, if Pillars Across Heaven is locked, Resonance Liberation to have Hsin cast Invoked Form: Answering. While in Answering Form, Resonance Liberation to have Hsin cast Invoked Form: Illumining.\n\nInvoked Form: Answering\nHsin temporarily reverts to Answering Form. When this skill is cast, if Hsin is on the ground, She casts Basic Attack - Answering Form Stage 2; if She is in mid-air, She casts Mid-air Attack - Answering Form.\n\nInvoked Form: Illumining\nHsin turns back into Illumining Form. When this skill is cast, if Hsin is on the ground, She casts Upward Cut - Illumining Form; if She is in mid-air, She casts Mid-air Attack - Illumining Form."
+            }
+          ],
+          "recommendLevel": 10,
+          "currentLevel": 0,
+          "linkNextType": 4
+        },
+        {
+          "gbId": "1020-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/4fa3c856578e673fec98876859cab3ab.png",
+          "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/ca80b8d19a7205411592c154524cdf5d.mp4",
+          "skillType": {
+            "gbId": "6",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Forte Circuit"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Forms Turn, Heart Abides",
+              "description": "Forms Born of Heart\nWhile in Answering Form, Hsin can gain and consume Answering Heart.\nWhile in Illumining Form, Hsin can gain and consume Illumining Heart.\n\nHeavy Attack - Answering Form: Realm Wanderer\nWhile in Answering Form, when Hsin's Answering Heart reaches 100 points, Heavy Attack - Answering Form is replaced with Heavy Attack - Answering Form: Realm Wanderer.\nHold Normal Attack to cast the skill at the cost of STA and 100 points of Answering Heart. Hsin is immune to interruption during the action, and deals Electro DMG to the target, considered Resonance Skill DMG.\nCasting Heavy Attack - Answering Form: Realm Wanderer grants Hsin Resolution of Wishes. This Heavy Attack - Answering Form: Realm Wanderer consumes Resolution of Wishes to become Heavy Attack - Answering Form: Realm Protector, dealing greater DMG. Resolution of Wishes can only be gained once every 24s.\nWhile casting Heavy Attack - Answering Form: Realm Wanderer or Heavy Attack - Answering Form: Realm Protector, if Hsin is not in the Heart Manifest state, unlock Resonance Liberation - Formshift.\n\nHeavy Attack - Illumining Form: Beholding All Horizons\nWhile in Illumining Form, when Hsin's Illumining Heart reaches 0 during the Mechanism Dominion state, Heavy Attack - Illumining Form is replaced with Heavy Attack - Illumining Form: Beholding All Horizons.\nHold Normal Attack to cast the skill at the cost of STA, dealing Electro DMG to the target, considered Resonance Skill DMG.\nCasting Heavy Attack - Illumining Form: Beholding All Horizons grants Hsin Law of Heaven. This Heavy Attack - Illumining Form: Beholding All Horizons consumes Law of Heaven to become Heavy Attack - Illumining Form: Stilling All Horizons, dealing greater DMG. Law of Heaven can only be gained once every 24s.\nCasting Heavy Attack - Illumining Form: Beholding All Horizons or Heavy Attack - Illumining Form: Stilling All Horizons ends the Mechanism Dominion state and unlocks Resonance Liberation - Pillars Across Heaven.\nCan be cast in mid-air.\n\nResonance Skill - Illumining Form: Pillars Aligned\nWhile in Illumining Form, when Hsin's Illumining Heart reaches 300 points and She is on the ground, Resonance Skill is replaced with Resonance Skill - Illumining Form: Pillars Aligned.\nWhen Hsin is on the ground, Resonance Skill to deal Electro DMG to surrounding targets, considered Resonance Skill DMG.\nCasting Resonance Skill - Illumining Form: Pillars Aligned sends Hsin into the Mechanism Dominion state.\n\nMechanism Dominion\nThe Mechanism Dominion state lasts 13s.\nWhile this state is active, Basic Attack - Illumining Form is replaced with Basic Attack - Illumining Form: Pillars Aligned, and Dodge Counter - Illumining Form is replaced with Dodge Counter - Illumining Form: Pillars Aligned.\nWhen Basic Attack - Illumining Form: Pillars Aligned or Dodge Counter - Illumining Form: Pillars Aligned hits a target, Illumining Heart is consumed if Hsin is the active Resonator.\nExiting Mechanism Dominion clears Illumining Heart.\n\nResonance Mode - Unison\nWhile in Resonance Mode - Unison, Hsin gains the following effects:\n- Hsin can trigger Unison Response, but not in Co-op Mode.\n- After casting Intro Skill - Answering Form or Intro Skill - Answering Form: Manifold Unison, the next Resonance Liberation - Formshift grants Hsin Unison for 5s.\n- When Hsin triggers Unison Response, She gains Source Intent, and this cast of Intro Skill is replaced with Intro Skill - Manifold Unison, dealing greater DMG.\nWhen Hsin casts an Intro Skill without triggering Unison Response while holding Source Intent, She consumes Source Intent instead, and the Intro Skill is replaced with Intro Skill - Manifold Unison, dealing greater DMG.\n- The aforementioned effects are removed when Hsin switches Resonance Mode.\n- Casting Intro Skill - Illumining Form or Intro Skill - Illumining Form: Manifold Unison sends Hsin directly into the Mechanism Dominion state.\n\nResonance Mode - Electro Flare\nWhile in Resonance Mode - Electro Flare, Hsin gains the following effects:\n- When Hsin enters combat, targets within a certain range do not lose Electro Flare stacks when it's triggered.\n- After Resonators in the team inflict Electro Rage to a target, every 1 of Electro Rage inflicted grants Hsin 1 of Heart of Thunder, stacking up to 100 times, and consumes all Electro Rage stacks from that target. Heart of Thunder is removed when Hsin switches Resonance Mode.\n- At the last stage of Resonance Skill - Heartward by Moon, Hsin actively triggers 1 instance of Electro Flare DMG on the targets. Its DMG Multiplier is equal to 35% x (the number of Heart of Thunder stacks on Hsin) x (the Electro Flare DMG Multiplier corresponding to the target's current Electro Flare stacks).\nWhile casting Resonance Skill - Heartward by Moon, switching to another Resonator or ending the skill early removes the above effects.\nSome time after casting Resonance Skill - Heartward by Moon, Hsin consumes all remaining stacks of Heart of Thunder.\nWhen Hsin has at least 50 stacks of Heart of Thunder, Resonance Skill - Illumining Form stagnates nearby targets during the action.\n- After casting Resonance Liberation - Formshift, inflict 5 of Electro Flare on nearby targets within a certain range. It also makes Basic Attack - Illumining Form: Pillars Aligned or Dodge Counter - Illumining Form: Pillars Aligned inflict Electro Flare on hit targets, up to 5 . Casting Resonance Liberation - Formshift again resets this count. Switching Resonance Mode removes it.\nResonance Skill - Illumining Form: Pillars Aligned and Heavy Attack - Illumining Form: Stilling All Horizons inflict 5 of Electro Flare on the target hit. Intro Skill - Illumining Form, Intro Skill - Answering Form, and Heavy Attack - Answering Form: Realm Protector inflict 1 of Electro Flare on the target hit.\n\nUnison\nWhile Hsin is in Resonance Mode - Unison with Unison, switching to another Resonator will remove Hsin's Unison to trigger Hsin's Outro Skill and the incoming Resonator's Intro Skill. If Hsin has full Concerto Energy and Unison at the same time, only Unison is consumed to trigger the effect.\n\nUnison Response\nWhile Hsin is in Resonance Mode - Unison and the active Resonator in the team has Unison, Hsin triggers Unison Response after She is switched in and casts Intro Skill, granting 1 of Unison Boon to all Resonators in the team for 30s.\nHsin can only grant up to 1 of Unison Boon in this way.\n\nUnison Boon\nOnly the Resonators who can trigger Unison Response can gain this effect. Each stack of Unison Boon increases the total DMG dealt by Resonators who can trigger Unison Response in the team by 3%, stacking up to 2 times.\n\nAnswering Heart\nCan hold up to 100 points of Answering Heart.\nWhile in Answering Form, when Normal Attack - Answering Form, Resonance Skill - Answering Form, Intro Skill - Answering Form, or Intro Skill - Answering Form: Manifold Unison hits a target, Hsin gains Answering Heart if She is the active Resonator.\nCasting Intro Skill - Answering Form or Intro Skill - Answering Form: Manifold Unison grants 60 points of Answering Heart.\n\nIllumining Heart\nCan hold up to 300 points of Illumining Heart.\nWhile in Illumining Form and not in the Mechanism Dominion state, when Normal Attack - Illumining Form, Resonance Skill - Illumining Form, or Intro Skill - Illumining Form hits a target, Hsin gains Illumining Heart if She is the active Resonator.\n- While in Resonance Mode - Unison, casting Intro Skill - Illumining Form or Intro Skill - Illumining Form: Manifold Unison directly sends Hsin into the Mechanism Dominion state and grants 300 points of Illumining Heart.\n- While in Resonance Mode - Electro Flare, after casting Resonance Liberation - Formshift, when the Modular Heartlock generated by Basic Attack - Illumining Form Stage 1 is collapsed by Basic Attack - Illumining Form Stage 2, Heavy Attack - Illumining Form, Dodge Counter - Illumining Form, or Resonance Skill - Illumining Form, additionally gain 150 points of Illumining Heart if Hsin is the active Resonator in Illumining Form but not in the Mechanism Dominion state. This effect can only be triggered once before the next cast of Resonance Liberation - Formshift resets it, and is disabled when switched to the other Resonance Mode."
+            }
+          ],
+          "recommendLevel": 10,
+          "currentLevel": 0,
+          "linkNextType": 4
+        },
+        {
+          "gbId": "1014-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/f63100f5cef5373ac53595900af031c7.png",
+          "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/dbef155c188b0801ac786303bd6e97e5.mp4",
+          "skillType": {
+            "gbId": "1",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Normal Attack"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Manifold Bloom",
+              "description": "Basic Attack - Answering Form\nWhile in Answering Form, perform up to 4 consecutive attacks, dealing Electro DMG.\n\nHeavy Attack - Answering Form\nWhile in Answering Form, consume STA to deal Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 2.\n\nMid-air Attack - Answering Form\nWhile in Answering Form and in mid-air, Normal Attack to perform a Plunging Attack at the cost of STA, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 2.\n\nHeavy Attack - Answering Form: Reign at Ease\nWhile in Answering Form and in mid-air, hold Normal Attack to cast Heavy Attack - Answering Form: Reign at Ease, continuously consuming STA and dealing Electro DMG to the target.\nDepleting all STA or switching to another Resonator ends the skill action early.\n\nMid-air Attack - Answering Form: Reign at Ease\nWhen the Normal Attack button is released during Heavy Attack - Answering Form: Reign at Ease, Hsin casts Mid-air Attack - Answering Form: Reign at Ease, consuming STA to perform a Plunging Attack, transforming into the Moon Fox upon landing and dealing Electro DMG.\nAfter casting Mid-air Attack - Answering Form: Reign at Ease, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 2.\n\nDodge Counter - Answering Form\nWhile in Answering Form, Normal Attack within a short time after a successful Dodge to attack the target, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 3.\n\nBasic Attack - Illumining Form\nWhile in Illumining Form and not in the Mechanism Dominion state, command Xuanfang Mechanisms to perform up to 3 consecutive attacks, dealing Electro DMG.\nCasting Basic Attack - Illumining Form Stage 1 generates a Modular Heartlock at the target's position. Casting Basic Attack - Illumining Form Stage 2, Heavy Attack - Illumining Form, Dodge Counter - Illumining Form, or Resonance Skill - Illumining Form causes the Modular Heartlock to collapse, dealing Electro DMG.\nCasting this skill consumes STA when Hsin is in mid-air.\n\nHeavy Attack - Illumining Form\nWhile in Illumining Form, consume STA to command Xuanfang Mechanisms, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Illumining Form Stage 3.\n\nUpward Cut - Illumining Form\nWhile in Illumining Form and on the ground, Jump to cast this skill, dealing Electro DMG.\n\nMid-air Attack - Illumining Form\nWhile in Illumining Form and Hsin is in mid-air, Resonance Skill - Illumining Form is replaced with Mid-air Attack - Illumining Form.\nConsume STA to perform a Plunging Attack, dealing Electro DMG.\n\nDodge Counter - Illumining Form\nWhile in Illumining Form, Normal Attack within a short time after a successful Dodge to attack the target, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Illumining Form Stage 3.\n\nBasic Attack - Illumining Form: Pillars Aligned\nWhile in Illumining Form and in the Mechanism Dominion state, command Xuanfang Mechanisms to perform up to 4 consecutive attacks, dealing Electro DMG.\n\nDodge Counter - Illumining Form: Pillars Aligned\nWhile in Illumining Form and in the Mechanism Dominion state, Normal Attack within a short time after a successful Dodge to attack the target, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Illumining Form: Pillars Aligned Stage 3."
+            }
+          ],
+          "recommendLevel": 10,
+          "currentLevel": 0,
+          "linkNextType": 4
+        },
+        {
+          "gbId": "1015-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/4577e8d25a52715902d5c0de65d77510.png",
+          "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/9cf9f7933bba4d0c732ea4f081be0946.mp4",
+          "skillType": {
+            "gbId": "2",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Resonance Skill"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Heartward by Moon",
+              "description": "Resonance Skill - Answering Form\nWhile in Answering Form, Resonance Skill to deal Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 4.\nCan be cast in mid-air.\n\nIf Hsin moves while on the ground within a short time after casting this skill, she turns into the Moon Fox. \n- While in the Moon Fox form and out of combat, Hsin gains Dustless Tread. With Dustless Tread, Hsin can enter the target's aggro range without triggering combat. Dustless Tread is removed when Hsin enters combat, is switched out, or ends the Moon Fox form by having environmental, gameplay, or feature interactions.\n- While in the Moon Fox form and out of combat, Hsin restores 6% of Max HP every 3s.\n- Taking damage, failing to perform a Dodge with directional input while on the ground, or Dodging in mid-air will end the Moon Fox form. Switching to another Resonator or Resonance Skill also ends the Moon Fox form. Normal Attack to cast Basic Attack - Answering Form Stage 4, which also ends the Moon Fox form.\n- The Dash state continuously consumes STA when Hsin is in the Moon Fox form.\n- Resonance Liberation is disabled when Hsin is in the Moon Fox form.\n\nResonance Skill - Illumining Form\nWhile in Illumining Form and Hsin is on the ground, Resonance Skill to have Hsin command a Colossal Xuanfang Mechanism, dealing Electro DMG."
+            }
+          ],
+          "recommendLevel": 8,
+          "currentLevel": 0,
+          "linkNextType": 4
+        },
+        {
+          "gbId": "1019-1311",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/314e7522947024a15f6e5dea10f3b4ce.png",
+          "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/eb1d95518879cd56b18c76045d08af7a.mp4",
+          "skillType": {
+            "gbId": "5",
+            "pictureUrl": null,
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Intro Skill"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Glance on a Whim",
+              "description": "Intro Skill - Answering Form\nThis skill becomes available while in Answering Form. Attack the target, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 3 (when in Resonance Mode - Unison) or Basic Attack - Answering Form Stage 4 (when in Resonance Mode - Electro Flare).\n\nIntro Skill - Answering Form: Manifold Unison\nThis skill becomes available while in Answering Form. Attack the target, dealing greater Electro DMG, considered Resonance Skill DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 3.\n\nIntro Skill - Illumining Form\nThis skill becomes available while in Illumining Form. Attack the target, dealing Electro DMG.\n\nIntro Skill - Illumining Form: Manifold Unison\nThis skill becomes available while in Illumining Form. Attack the target, dealing greater Electro DMG, considered Resonance Skill DMG."
+            }
+          ],
+          "recommendLevel": 8,
+          "currentLevel": 0,
+          "linkNextType": 0
+        }
+      ],
+      "isFinished": false
+    },
+    "roleResonance": {
+      "items": [
+        {
+          "gbId": "1311-1",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/4d1a07531e46184891f74f4e9840e9f8/b0e47b35e2a230e3809ca9541177d7df.png",
+          "resonanceSequence": 1,
+          "texts": [
+            {
+              "language": "en",
+              "name": "A Boat to Cross the Rising Tide",
+              "description": "Casting Resonance Liberation - Formshift grants Hsin 2 stacks of Radiance Ward, stacking up to 2 times. Switching to Answering Form clears all stacks. When Hsin takes DMG from an enemy target's attack, 1 stack of Radiance Ward can be consumed to make Her immune to interruption and reduce DMG taken by 60% for 1s. This effect can be triggered once every 1s.\n\nWhile in Resonance Mode - Unison:\nThe DMG Multipliers of Intro Skill - Answering Form: Manifold Unison and Intro Skill - Illumining Form: Manifold Unison are increased by 15%, and each stack of Unison Boon additionally increases the DMG Multipliers of Intro Skill - Answering Form: Manifold Unison and Intro Skill - Illumining Form: Manifold Unison by 10%, up to a total 4 stacks.\n\nWhile in Resonance Mode - Electro Flare:\nWhen Hsin enters combat, if Heart of Thunder is below 50 stacks, it is increased to 50 stacks, triggered once every 12s.\nThe DMG Multiplier of the Electro Flare DMG triggered by Resonance Skill - Heartward by Moon is increased to 42% x (the number of Heart of Thunder stacks on Hsin) x (the Electro Flare DMG Multiplier corresponding to the target's current Electro Flare stacks)."
+            }
+          ],
+          "status": 2,
+          "isAcquired": false
+        },
+        {
+          "gbId": "1311-2",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/4d1a07531e46184891f74f4e9840e9f8/be73b3cb6ba5fb495e47f0f7db30b8cc.png",
+          "resonanceSequence": 2,
+          "texts": [
+            {
+              "language": "en",
+              "name": "To Wake Is to Wonder What I Am",
+              "description": "The DMG Multipliers of Heavy Attack - Answering Form: Realm Wanderer and Heavy Attack - Answering Form: Realm Protector are increased by 60%.\nThe DMG Multipliers of Heavy Attack - Illumining Form: Beholding All Horizons and Heavy Attack - Illumining Form: Stilling All Horizons are increased by 60%.\n\nWhen Hsin enters combat, reset the Cooldowns for Hsin to gain Resolution of Wishes and Law of Heaven, and restore 100 additional points of Answering Heart. This effect can be triggered once every 12s."
+            }
+          ],
+          "status": 1,
+          "isAcquired": false
+        },
+        {
+          "gbId": "1311-3",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/4d1a07531e46184891f74f4e9840e9f8/78459fb974f6e1a6d9b885714c5cdb2d.png",
+          "resonanceSequence": 3,
+          "texts": [
+            {
+              "language": "en",
+              "name": "A Dream of Return Among the Hills",
+              "description": "The DMG Multiplier of Resonance Liberation - Pillars Across Heaven is increased by 70%.\n\nWhile in Resonance Mode - Unison:\nThe Crit. DMG of Resonance Liberation - Pillars Across Heaven is increased by 20%, and each stack of Unison Boon additionally increases its Crit. DMG by 15%, stacking up to 4 times.\n\nWhile in Resonance Mode - Electro Flare:\nWhen the last stage of Resonance Liberation - Pillars Across Heaven hits a target inflicted with Electro Flare, it triggers 1 instance of Electro Flare DMG, with its DMG Multiplier equal to 1500% times the Electro Flare DMG Multiplier corresponding to the current Electro Flare stacks on the target."
+            }
+          ],
+          "status": 1,
+          "isAcquired": false
+        },
+        {
+          "gbId": "1311-4",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/4d1a07531e46184891f74f4e9840e9f8/8e667171862745423b81697663f1d1a1.png",
+          "resonanceSequence": 4,
+          "texts": [
+            {
+              "language": "en",
+              "name": "A River of Lanterns, a River of Wishes",
+              "description": "All Resonators in the team gain 20% All-Attribute DMG Bonus for 30s when a Resonator in the team triggers any of the following actions:\n- Inflict Electro Flare or Electro Rage on a target.\n- Gain Unison while not having the effect.\n- Trigger Unison Response."
+            }
+          ],
+          "status": 2,
+          "isAcquired": false
+        },
+        {
+          "gbId": "1311-5",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/4d1a07531e46184891f74f4e9840e9f8/5038a1acf7dab788e3b8248896bb3ba4.png",
+          "resonanceSequence": 5,
+          "texts": [
+            {
+              "language": "en",
+              "name": "Forms Turn as the Heart Wills",
+              "description": "While in Illumining Form, DMG taken by Hsin is reduced by 20%.\nWhen Hsin takes a fatal blow, She will not be knocked out, but instead restores 100% of Max HP and becomes immune to DMG and interruption for 1s. This effect can be triggered once every 10 {Cus:Sap,S=minute P=minutes SapTag=3}."
+            }
+          ],
+          "status": 2,
+          "isAcquired": false
+        },
+        {
+          "gbId": "1311-6",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/4d1a07531e46184891f74f4e9840e9f8/043219c3808c0ec519334962a4b004bd.png",
+          "resonanceSequence": 6,
+          "texts": [
+            {
+              "language": "en",
+              "name": "The Moon Owes Its Light to the Living",
+              "description": "Targets take 40% more Resonance Skill DMG from Hsin.\n\nResonance Skill DMG dealt by Hsin ignores 20% of the target's DEF.\n\nWhile in Resonance Mode - Unison:\nThe maximum stacks of the Unison Boon effect on Resonators in the team are additionally increased by 1. When a Resonator in the team triggers Unison Response, all Resonators in the team additionally gain 1 {Cus:Sap,S=stack P=stacks SapTag=1} of Unison Boon for 30s. This effect does not stack.\n\nWhile in Resonance Mode - Electro Flare:\nWhile in combat, Electro Flare DMG taken by targets within a certain range around Hsin can be Critical, with Crit. Rate fixed at 80% and Crit. DMG fixed at 230%."
+            }
+          ],
+          "status": 1,
+          "isAcquired": false
+        }
+      ],
+      "isFinished": false
+    },
+    "roleResonanceTexts": [
+      {
+        "language": "en",
+        "recommendDescription": "<p>S2: Great early stopping point. Boosts both of Hsin's enhanced Heavy Attacks by 60%, and when she enters combat she gets 100 Answering Heart immediately, letting you reach Formshift much faster.<br><br>S3: Massive Liberation upgrade. Pillars Across Heaven gets 70% more DMG. Unison gains extra CRIT DMG on the finisher, while Electro Flare makes the final hit trigger a huge extra Electro Flare proc.<br><br>S6: Huge overall damage capstone. Enemies take 40% more Resonance Skill DMG from Hsin, and her Resonance Skill DMG ignores 20% DEF. Unison gets stronger Unison Boon stacking, while Electro Flare damage can CRIT.</p>"
+      }
+    ],
+    "weapon": {
+      "current": null,
+      "items": [
+        {
+          "gbId": "21050116",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/ad03590323a97804c7ddb800a7ecf1e2/a7174bcea14ad301b0c81e45597ced9d.png",
+          "star": 5,
+          "weaponType": {
+            "gbId": "5",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d27ac36725815b69dcc8f1e9da3c5b07/8266e4bfeda1bd42d8f9794eb4ea0a13.png",
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Rectifier"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Blooming Jadehaven",
+              "effectName": "Hundredfold Artifice",
+              "effectDescription": "Grants (12%/15%/18%/21%/24%) All-Attribute DMG Bonus. After the wielder inflicts Electro Flare or triggers Unison Response, Resonance Skill DMG is Amplified by (36%/45%/54%/63%/72%) and ignores (10%/13.5%/17%/20.5%/24%) of the target's Electro RES. While the wielder is the active Resonator, Electro Flare DMG taken by targets within a certain range is Amplified by (30%/37.5%/45%/52.5%/60%) for (30/30/30/30/30)s, triggered (1/1/1/1/1) {Cus:Sap,S=time P=times SapTag=6} every (0.1/0.1/0.1/0.1/0.1)s. Only the strongest effect of the same name applies."
+            }
+          ],
+          "status": 1,
+          "isAcquired": false,
+          "isFinished": false
+        },
+        {
+          "gbId": "21050066",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/4bfffd28c3712b45b39e16d149bfc6cc/27cd8d2f5a66a50d6cb2c4f06419131d.png",
+          "star": 5,
+          "weaponType": {
+            "gbId": "5",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d27ac36725815b69dcc8f1e9da3c5b07/8266e4bfeda1bd42d8f9794eb4ea0a13.png",
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Rectifier"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Lethean Elegy",
+              "effectName": "Underworld Requiem",
+              "effectDescription": "ATK is increased by (12%/15%/18%/21%/24%). Within (12/12/12/12/12)s after dealing Echo Skill DMG, gain (32%/40%/48%/56%/64%) Resonance Skill DMG Bonus and (32%/40%/48%/56%/64%) Echo Skill DMG Amplification, and ignore (8%/10%/12%/14%/16%) of the target's DEF when dealing damage."
+            }
+          ],
+          "status": 2,
+          "isAcquired": false,
+          "isFinished": false
+        },
+        {
+          "gbId": "21050016",
+          "pictureUrl": "https://guide-res.aki-game.net/introduction/material/49510458d2254a5c31ac68faa3c89e5b/f393e95a01ba94d084822996d25c5fa4.png",
+          "star": 5,
+          "weaponType": {
+            "gbId": "5",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d27ac36725815b69dcc8f1e9da3c5b07/8266e4bfeda1bd42d8f9794eb4ea0a13.png",
+            "secondPictureUrl": null,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Rectifier"
+              }
+            ]
+          },
+          "texts": [
+            {
+              "language": "en",
+              "name": "Stringmaster",
+              "effectName": "Electric Amplification",
+              "effectDescription": "Grants (12%/15%/18%/21%/24%) Attribute DMG Bonus. When dealing Resonance Skill DMG, increases ATK by (12%/15%/18%/21%/24%), stacking up to (2/2/2/2/2) times. This effect lasts for (5/5/5/5/5)s. When the wielder is not on the field, increases their ATK by an additional (12%/15%/18%/21%/24%)."
+            }
+          ],
+          "status": 2,
+          "isAcquired": false,
+          "isFinished": false
+        }
+      ],
+      "isFinished": false
+    },
+    "weaponTexts": [
+      {
+        "language": "en",
+        "recommendDescription": "<p>Blooming Jadehaven is Hsin's signature weapon. It grants substantial boost to Hsin's Resonance Skill DMG and Electro Flare DMG when Hsin is on the field. This is her best option.<br><br>Lethean Elegy is a great secondary option for Hsin. She can utilize the powerful buff for 12 seconds when she cast her Echo skill to amplify her Resonance Skill DMG.<br><br>Stringmaster is an exceptional weapon as well, granting overall great damage and Hsin can easily use the passive.</p>"
+      }
+    ],
+    "teammate": {
+      "items": [
+        {
+          "main": {
+            "roleGbId": "1309",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/46a2036c6e6e5a89133570f18abe6d7f/7bb61d835380e06fad688a778964e88a.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/55b3b96fcdfc9942bff4bf963ce2bf96/7bb61d835380e06fad688a778964e88a.png",
+            "star": 5,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Rover: Electro",
+                "skillDisplay": "Basic Combo：\nSupport Combo：Intro Skill → Resonance Skill → Basic Attack*5 → Enhanced Resonance Skill → Resonance Liberation → Outro Skill\nDPS Combo：Intro Skill → Resonance Skill → Basic Attack*5 → Hold - Enhanced Resonance Skill → Resonance Liberation → Resonance Skill*7 → Outro Skill"
+              }
+            ],
+            "element": {
+              "gbId": "3",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/06654bfa76703f8ad1315e583b8d8194/10fb15c77258a991b0028080a64fb42d.png",
+              "secondPictureUrl": "https://guide-res.aki-game.net/introduction/material/cab15a2f14837cde9f0433e272cc0536/10fb15c77258a991b0028080a64fb42d.png"
+            },
+            "rolePlays": [
+              {
+                "gbId": "3",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/10fb15c77258a991b0028080a64fb42d.png",
+                "secondPictureUrl": null
+              },
+              {
+                "gbId": "6",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/f19c9085129709ee14d013be869df69b.png",
+                "secondPictureUrl": null
+              },
+              {
+                "gbId": "25",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/a969aaab995e4aaddbfe5fc3781fa63b.png",
+                "secondPictureUrl": null
+              }
+            ],
+            "isAcquired": false
+          },
+          "spares": [
+            {
+              "roleGbId": "1508",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/ba81bbe33358b2f73201b58f51df43bb.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/ba81bbe33358b2f73201b58f51df43bb.png",
+              "star": 5,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "Chisa",
+                  "skillDisplay": "Basic Combo：Intro Skill → Echo Skill → Resonance Liberation → Resonance Skill → Basic Attack*4 → Enhanced Resonance Skill → Hold - Basic Attack → Outro Skill"
+                }
+              ],
+              "element": {
+                "gbId": "6",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/06654bfa76703f8ad1315e583b8d8194/f19c9085129709ee14d013be869df69b.png",
+                "secondPictureUrl": "https://guide-res.aki-game.net/introduction/material/cab15a2f14837cde9f0433e272cc0536/f19c9085129709ee14d013be869df69b.png"
+              },
+              "rolePlays": [
+                {
+                  "gbId": "1",
+                  "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/4a47a0db6e60853dedfcfdf08a5ca249.png",
+                  "secondPictureUrl": null
+                },
+                {
+                  "gbId": "7",
+                  "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/9eb9cd58b9ea5e04c890326b5c1f471f.png",
+                  "secondPictureUrl": null
+                },
+                {
+                  "gbId": "29",
+                  "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/5004a2bbca35d7d745207c2f34e2b909.png",
+                  "secondPictureUrl": null
+                }
+              ],
+              "isAcquired": false
+            },
+            {
+              "roleGbId": "1304",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/f0f853fc28b06aab285db5ab274bec52.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/f0f853fc28b06aab285db5ab274bec52.png",
+              "star": 5,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "Jinhsi",
+                  "skillDisplay": "Basic Combo：Intro Skill → Resonance Skill*2 → Basic Attack*3 → Echo Skill → Enhanced Resonance Skill → Outro Skill"
+                }
+              ],
+              "element": {
+                "gbId": "5",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/06654bfa76703f8ad1315e583b8d8194/8266e4bfeda1bd42d8f9794eb4ea0a13.png",
+                "secondPictureUrl": "https://guide-res.aki-game.net/introduction/material/cab15a2f14837cde9f0433e272cc0536/8266e4bfeda1bd42d8f9794eb4ea0a13.png"
+              },
+              "rolePlays": [
+                {
+                  "gbId": "2",
+                  "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/fb5c81ed3a220004b71069645f112867.png",
+                  "secondPictureUrl": null
+                },
+                {
+                  "gbId": "6",
+                  "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/f19c9085129709ee14d013be869df69b.png",
+                  "secondPictureUrl": null
+                }
+              ],
+              "isAcquired": false
+            }
+          ],
+          "weapon": {
+            "gbId": "21020015",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/49510458d2254a5c31ac68faa3c89e5b/c57dd8a05bb1b1ebafa80d13d2584ec6.png",
+            "star": 5,
+            "weaponType": {
+              "gbId": "2",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d27ac36725815b69dcc8f1e9da3c5b07/fb5c81ed3a220004b71069645f112867.png",
+              "secondPictureUrl": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "Sword"
+                }
+              ]
+            },
+            "texts": [
+              {
+                "language": "en",
+                "name": "Emerald of Genesis",
+                "effectName": "Stormy Resolution",
+                "effectDescription": "Increases Energy Regen by (12.8%/16%/19.2%/22.4%/25.6%). When Resonance Skill is cast, increases ATK by (6%/7.5%/9%/10.5%/12%), stacking up to (2/2/2/2/2) time(s). This effect lasts for (10/10/10/10/10)s."
+              }
+            ],
+            "status": 1,
+            "isAcquired": false,
+            "isFinished": null
+          },
+          "echoProps": {
+            "gbId": "60002245",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/1c27ce1fe7e633679092f5e5500e55c5/0f75360b3ebd90369120dfe630d42e03.png",
+            "monsterTypeGameBusinessId": "6000224",
+            "star": 5,
+            "cost": 3,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Soulfrayer",
+                "skillDescription": "Use Echo Skill to summon a Soulfrayer, dealing 91.18% Electro DMG 3 times.\nCasting Outro Skill within 15s after summoning Soulfrayer grants 12.00% Electro DMG Bonus to the incoming Resonator for 15s.\nCD: 20s"
+              }
+            ]
+          },
+          "echoSetEffect2": {
+            "gbId": "375",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/54923d0a0299b1b1cc566702fe83d5ba/878db57f016bde338e41fca2c358bbde.png",
+            "echoSetGroupGameBusinessId": "37",
+            "echoSet": 5,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Flash of Electric Reflection",
+                "description": "When the Resonator inflicts Electro Flare on enemies, they gain the following effects: Gain 10% Electro DMG Bonus for 15s. While this effect is active, casting Outro Skill grants the incoming Resonator 25% Electro DMG Bonus for 15s."
+              }
+            ]
+          },
+          "echoSetEffect5": null,
+          "echoAttributes": [
+            {
+              "cost": 3,
+              "isFinishedMaxLevel": null,
+              "currentLevel": null,
+              "isFinished": null,
+              "attribute": {
+                "gbId": "241",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/2484a7df36877a14689574eebda6dd7c.png",
+                "attachmentGameBusinessId": "1",
+                "isCalculate": true,
+                "calculationRatio": null,
+                "texts": [
+                  {
+                    "language": "en",
+                    "name": "Electro DMG Bonus"
+                  }
+                ]
+              },
+              "attribute2": null
+            },
+            {
+              "cost": 4,
+              "isFinishedMaxLevel": null,
+              "currentLevel": null,
+              "isFinished": null,
+              "attribute": {
+                "gbId": "81",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/602e8f042f463dc47ebfdf6a94ed5a6d.png",
+                "attachmentGameBusinessId": "1",
+                "isCalculate": true,
+                "calculationRatio": null,
+                "texts": [
+                  {
+                    "language": "en",
+                    "name": "Crit. Rate"
+                  }
+                ]
+              },
+              "attribute2": null
+            },
+            {
+              "cost": 3,
+              "isFinishedMaxLevel": null,
+              "currentLevel": null,
+              "isFinished": null,
+              "attribute": {
+                "gbId": "241",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/2484a7df36877a14689574eebda6dd7c.png",
+                "attachmentGameBusinessId": "1",
+                "isCalculate": true,
+                "calculationRatio": null,
+                "texts": [
+                  {
+                    "language": "en",
+                    "name": "Electro DMG Bonus"
+                  }
+                ]
+              },
+              "attribute2": null
+            },
+            {
+              "cost": 1,
+              "isFinishedMaxLevel": null,
+              "currentLevel": null,
+              "isFinished": null,
+              "attribute": {
+                "gbId": "100072",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+                "attachmentGameBusinessId": "2",
+                "isCalculate": true,
+                "calculationRatio": null,
+                "texts": [
+                  {
+                    "language": "en",
+                    "name": "ATK%"
+                  }
+                ]
+              },
+              "attribute2": null
+            },
+            {
+              "cost": 1,
+              "isFinishedMaxLevel": null,
+              "currentLevel": null,
+              "isFinished": null,
+              "attribute": {
+                "gbId": "100072",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+                "attachmentGameBusinessId": "2",
+                "isCalculate": true,
+                "calculationRatio": null,
+                "texts": [
+                  {
+                    "language": "en",
+                    "name": "ATK%"
+                  }
+                ]
+              },
+              "attribute2": null
+            }
+          ]
+        },
+        {
+          "main": {
+            "roleGbId": "1307",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/2fdb664642d57f6fe3a444c595821059.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/2fdb664642d57f6fe3a444c595821059.png",
+            "star": 4,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Buling",
+                "skillDisplay": "Basic Combo：Intro Skill → Basic Attack*4 → Hold - Basic Attack → Resonance Skill → Basic Attack → Hold - Basic Attack → Resonance Liberation"
+              }
+            ],
+            "element": {
+              "gbId": "3",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/06654bfa76703f8ad1315e583b8d8194/10fb15c77258a991b0028080a64fb42d.png",
+              "secondPictureUrl": "https://guide-res.aki-game.net/introduction/material/cab15a2f14837cde9f0433e272cc0536/10fb15c77258a991b0028080a64fb42d.png"
+            },
+            "rolePlays": [
+              {
+                "gbId": "1",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/4a47a0db6e60853dedfcfdf08a5ca249.png",
+                "secondPictureUrl": null
+              },
+              {
+                "gbId": "13",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/c00b57557743e709b8b96933432e0dfa.png",
+                "secondPictureUrl": null
+              },
+              {
+                "gbId": "22",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/75c168b671d4ce827fca23907d85f114.png",
+                "secondPictureUrl": null
+              },
+              {
+                "gbId": "25",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/a969aaab995e4aaddbfe5fc3781fa63b.png",
+                "secondPictureUrl": null
+              }
+            ],
+            "isAcquired": false
+          },
+          "spares": [
+            {
+              "roleGbId": "1110",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/5776bc9b9fe180db76ecf76add47bf44/6941a971665e80a206db56b0ad3c59b7.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/a86ded28e834a8be7a7a8b74c2ce7bfa/6941a971665e80a206db56b0ad3c59b7.png",
+              "star": 5,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "Suisui",
+                  "skillDisplay": "Basic Combo：Intro Skill → Echo Skill → Plunging Attack → Enhanced Basic Attack*4 → Resonance Liberation → Outro Skill"
+                }
+              ],
+              "element": {
+                "gbId": "1",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/06654bfa76703f8ad1315e583b8d8194/4a47a0db6e60853dedfcfdf08a5ca249.png",
+                "secondPictureUrl": "https://guide-res.aki-game.net/introduction/material/cab15a2f14837cde9f0433e272cc0536/4a47a0db6e60853dedfcfdf08a5ca249.png"
+              },
+              "rolePlays": [
+                {
+                  "gbId": "1",
+                  "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/4a47a0db6e60853dedfcfdf08a5ca249.png",
+                  "secondPictureUrl": null
+                },
+                {
+                  "gbId": "13",
+                  "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/c00b57557743e709b8b96933432e0dfa.png",
+                  "secondPictureUrl": null
+                },
+                {
+                  "gbId": "26",
+                  "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/258f63b9448490d648948081e23d86db.png",
+                  "secondPictureUrl": null
+                }
+              ],
+              "isAcquired": false
+            }
+          ],
+          "weapon": {
+            "gbId": "21050024",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/49510458d2254a5c31ac68faa3c89e5b/ab48e86c1f806763539a4c3cbe831866.png",
+            "star": 4,
+            "weaponType": {
+              "gbId": "5",
+              "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d27ac36725815b69dcc8f1e9da3c5b07/8266e4bfeda1bd42d8f9794eb4ea0a13.png",
+              "secondPictureUrl": null,
+              "texts": [
+                {
+                  "language": "en",
+                  "name": "Rectifier"
+                }
+              ]
+            },
+            "texts": [
+              {
+                "language": "en",
+                "name": "Variation",
+                "effectName": "Ceaseless Aria",
+                "effectDescription": "When Resonance Skill is cast, restores (8/10/12/14/16) Concerto Energy. This effect can be triggered (1/1/1/1/1) times every (20/20/20/20/20)s."
+              }
+            ],
+            "status": 1,
+            "isAcquired": false,
+            "isFinished": null
+          },
+          "echoProps": {
+            "gbId": "60000605",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/526f4dcd93bf086e215372c967ae67b5/d908f5ddd741a499100fe82a8e54a021.png",
+            "monsterTypeGameBusinessId": "6000060",
+            "star": 5,
+            "cost": 4,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Fallacy of No Return",
+                "skillDescription": "Activate the Echo Skill to summon a fraction of the Fallacy of No Return's power and deal a blast to the surrounding area, inflicting Spectro DMG equal to 15.86% of max HP, after which the Resonator gains 10% bonus Energy Regen and all team members 10% bonus ATK for 20s.\n\nHold Echo Skill to unleash a series of flurry assaults at the cost of STA, each dealing Spectro DMG equal to 1.58% of max HP; Release to end the assail in a powerful blow, dealing Spectro DMG equal to 19.82% of max HP.\n\nCD: 20s"
+              }
+            ]
+          },
+          "echoSetEffect2": {
+            "gbId": "14",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/c4d88a047905cdb485c0e9abcca20348/9eb9cd58b9ea5e04c890326b5c1f471f.png",
+            "echoSetGroupGameBusinessId": "7",
+            "echoSet": 5,
+            "texts": [
+              {
+                "language": "en",
+                "name": "Rejuvenating Glow",
+                "description": "Increases the ATK of all party members by 15% for 30s upon healing allies."
+              }
+            ]
+          },
+          "echoSetEffect5": null,
+          "echoAttributes": [
+            {
+              "cost": 4,
+              "isFinishedMaxLevel": null,
+              "currentLevel": null,
+              "isFinished": null,
+              "attribute": {
+                "gbId": "351",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/c17243d1bddcafcb27f283da47bd7f3c.png",
+                "attachmentGameBusinessId": "1",
+                "isCalculate": true,
+                "calculationRatio": null,
+                "texts": [
+                  {
+                    "language": "en",
+                    "name": "Healing Bonus"
+                  }
+                ]
+              },
+              "attribute2": null
+            },
+            {
+              "cost": 3,
+              "isFinishedMaxLevel": null,
+              "currentLevel": null,
+              "isFinished": null,
+              "attribute": {
+                "gbId": "111",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/59b2900aa03cb2182a51cdb520b535b6.png",
+                "attachmentGameBusinessId": "1",
+                "isCalculate": true,
+                "calculationRatio": null,
+                "texts": [
+                  {
+                    "language": "en",
+                    "name": "Energy Regen"
+                  }
+                ]
+              },
+              "attribute2": null
+            },
+            {
+              "cost": 3,
+              "isFinishedMaxLevel": null,
+              "currentLevel": null,
+              "isFinished": null,
+              "attribute": {
+                "gbId": "100072",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+                "attachmentGameBusinessId": "2",
+                "isCalculate": true,
+                "calculationRatio": null,
+                "texts": [
+                  {
+                    "language": "en",
+                    "name": "ATK%"
+                  }
+                ]
+              },
+              "attribute2": null
+            },
+            {
+              "cost": 1,
+              "isFinishedMaxLevel": null,
+              "currentLevel": null,
+              "isFinished": null,
+              "attribute": {
+                "gbId": "100072",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+                "attachmentGameBusinessId": "2",
+                "isCalculate": true,
+                "calculationRatio": null,
+                "texts": [
+                  {
+                    "language": "en",
+                    "name": "ATK%"
+                  }
+                ]
+              },
+              "attribute2": null
+            },
+            {
+              "cost": 1,
+              "isFinishedMaxLevel": null,
+              "currentLevel": null,
+              "isFinished": null,
+              "attribute": {
+                "gbId": "100072",
+                "pictureUrl": "https://guide-res.aki-game.net/introduction/material/d49229931a97b6d33c5dc85440b2d299/d5fea7b32f8c3e63d4204d983c2da704.png",
+                "attachmentGameBusinessId": "2",
+                "isCalculate": true,
+                "calculationRatio": null,
+                "texts": [
+                  {
+                    "language": "en",
+                    "name": "ATK%"
+                  }
+                ]
+              },
+              "attribute2": null
+            }
+          ]
+        }
+      ]
+    },
+    "likeCount": 1653,
+    "isLiked": false,
+    "collectCount": 3144,
+    "isCollected": false,
+    "grade": null,
+    "calculationData": null
+  }
+}

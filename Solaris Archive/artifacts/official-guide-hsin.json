@@ -1,0 +1,167 @@
+{
+  "code": 200,
+  "message": "ok",
+  "data": {
+    "roleGbId": "1311",
+    "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/2bd0b218329cc047e2b294056dcc5181/0e707e81e4a7c7b133dbf5c962baeed0.png",
+    "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/7b5a66c0c4ca3336063357e160453fa3/0e707e81e4a7c7b133dbf5c962baeed0.png",
+    "star": 5,
+    "texts": [
+      {
+        "language": "en",
+        "name": "Hsin",
+        "skillDisplay": "Basic Combo：\nUnison Combo：Union Response → Basic Attack*2 → Enhanced Heavy Attack → Resonance Liberation → Union Response → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill\nElectro Flare Combo：Intro Skill → Basic Attack → Enhanced Heavy Attack → Resonance Liberation → Basic Attack → Resonance Skill → Enhanced Resonance Skill → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill"
+      }
+    ],
+    "element": {
+      "gbId": "3",
+      "pictureUrl": "https://guide-res.aki-game.net/introduction/material/06654bfa76703f8ad1315e583b8d8194/10fb15c77258a991b0028080a64fb42d.png",
+      "secondPictureUrl": "https://guide-res.aki-game.net/introduction/material/cab15a2f14837cde9f0433e272cc0536/10fb15c77258a991b0028080a64fb42d.png"
+    },
+    "rolePlays": [
+      {
+        "gbId": "2",
+        "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/fb5c81ed3a220004b71069645f112867.png",
+        "secondPictureUrl": null
+      },
+      {
+        "gbId": "6",
+        "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/f19c9085129709ee14d013be869df69b.png",
+        "secondPictureUrl": null
+      },
+      {
+        "gbId": "39",
+        "pictureUrl": "https://guide-res.aki-game.net/introduction/material/42303566d316007d4fef207f10b72fda/68d0e004a2309c47ef0ecd99811e99f0.png",
+        "secondPictureUrl": null
+      },
+      {
+        "gbId": "25",
+        "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/a969aaab995e4aaddbfe5fc3781fa63b.png",
+        "secondPictureUrl": null
+      },
+      {
+        "gbId": "9",
+        "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/7afbb1602613ec52b265d7a54ad27330.png",
+        "secondPictureUrl": null
+      }
+    ],
+    "mayRoleGbId": null,
+    "skills": [
+      {
+        "gbId": "1014-1311",
+        "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/f63100f5cef5373ac53595900af031c7.png",
+        "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/dbef155c188b0801ac786303bd6e97e5.mp4",
+        "skillType": {
+          "gbId": "1",
+          "pictureUrl": null,
+          "secondPictureUrl": null,
+          "texts": [
+            {
+              "language": "en",
+              "name": "Normal Attack"
+            }
+          ]
+        },
+        "texts": [
+          {
+            "language": "en",
+            "name": "Manifold Bloom",
+            "description": "Basic Attack - Answering Form\nWhile in Answering Form, perform up to 4 consecutive attacks, dealing Electro DMG.\n\nHeavy Attack - Answering Form\nWhile in Answering Form, consume STA to deal Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 2.\n\nMid-air Attack - Answering Form\nWhile in Answering Form and in mid-air, Normal Attack to perform a Plunging Attack at the cost of STA, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 2.\n\nHeavy Attack - Answering Form: Reign at Ease\nWhile in Answering Form and in mid-air, hold Normal Attack to cast Heavy Attack - Answering Form: Reign at Ease, continuously consuming STA and dealing Electro DMG to the target.\nDepleting all STA or switching to another Resonator ends the skill action early.\n\nMid-air Attack - Answering Form: Reign at Ease\nWhen the Normal Attack button is released during Heavy Attack - Answering Form: Reign at Ease, Hsin casts Mid-air Attack - Answering Form: Reign at Ease, consuming STA to perform a Plunging Attack, transforming into the Moon Fox upon landing and dealing Electro DMG.\nAfter casting Mid-air Attack - Answering Form: Reign at Ease, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 2.\n\nDodge Counter - Answering Form\nWhile in Answering Form, Normal Attack within a short time after a successful Dodge to attack the target, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 3.\n\nBasic Attack - Illumining Form\nWhile in Illumining Form and not in the Mechanism Dominion state, command Xuanfang Mechanisms to perform up to 3 consecutive attacks, dealing Electro DMG.\nCasting Basic Attack - Illumining Form Stage 1 generates a Modular Heartlock at the target's position. Casting Basic Attack - Illumining Form Stage 2, Heavy Attack - Illumining Form, Dodge Counter - Illumining Form, or Resonance Skill - Illumining Form causes the Modular Heartlock to collapse, dealing Electro DMG.\nCasting this skill consumes STA when Hsin is in mid-air.\n\nHeavy Attack - Illumining Form\nWhile in Illumining Form, consume STA to command Xuanfang Mechanisms, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Illumining Form Stage 3.\n\nUpward Cut - Illumining Form\nWhile in Illumining Form and on the ground, Jump to cast this skill, dealing Electro DMG.\n\nMid-air Attack - Illumining Form\nWhile in Illumining Form and Hsin is in mid-air, Resonance Skill - Illumining Form is replaced with Mid-air Attack - Illumining Form.\nConsume STA to perform a Plunging Attack, dealing Electro DMG.\n\nDodge Counter - Illumining Form\nWhile in Illumining Form, Normal Attack within a short time after a successful Dodge to attack the target, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Illumining Form Stage 3.\n\nBasic Attack - Illumining Form: Pillars Aligned\nWhile in Illumining Form and in the Mechanism Dominion state, command Xuanfang Mechanisms to perform up to 4 consecutive attacks, dealing Electro DMG.\n\nDodge Counter - Illumining Form: Pillars Aligned\nWhile in Illumining Form and in the Mechanism Dominion state, Normal Attack within a short time after a successful Dodge to attack the target, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Illumining Form: Pillars Aligned Stage 3."
+          }
+        ]
+      },
+      {
+        "gbId": "1015-1311",
+        "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/4577e8d25a52715902d5c0de65d77510.png",
+        "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/9cf9f7933bba4d0c732ea4f081be0946.mp4",
+        "skillType": {
+          "gbId": "2",
+          "pictureUrl": null,
+          "secondPictureUrl": null,
+          "texts": [
+            {
+              "language": "en",
+              "name": "Resonance Skill"
+            }
+          ]
+        },
+        "texts": [
+          {
+            "language": "en",
+            "name": "Heartward by Moon",
+            "description": "Resonance Skill - Answering Form\nWhile in Answering Form, Resonance Skill to deal Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 4.\nCan be cast in mid-air.\n\nIf Hsin moves while on the ground within a short time after casting this skill, she turns into the Moon Fox. \n- While in the Moon Fox form and out of combat, Hsin gains Dustless Tread. With Dustless Tread, Hsin can enter the target's aggro range without triggering combat. Dustless Tread is removed when Hsin enters combat, is switched out, or ends the Moon Fox form by having environmental, gameplay, or feature interactions.\n- While in the Moon Fox form and out of combat, Hsin restores 6% of Max HP every 3s.\n- Taking damage, failing to perform a Dodge with directional input while on the ground, or Dodging in mid-air will end the Moon Fox form. Switching to another Resonator or Resonance Skill also ends the Moon Fox form. Normal Attack to cast Basic Attack - Answering Form Stage 4, which also ends the Moon Fox form.\n- The Dash state continuously consumes STA when Hsin is in the Moon Fox form.\n- Resonance Liberation is disabled when Hsin is in the Moon Fox form.\n\nResonance Skill - Illumining Form\nWhile in Illumining Form and Hsin is on the ground, Resonance Skill to have Hsin command a Colossal Xuanfang Mechanism, dealing Electro DMG."
+          }
+        ]
+      },
+      {
+        "gbId": "1020-1311",
+        "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/4fa3c856578e673fec98876859cab3ab.png",
+        "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/ca80b8d19a7205411592c154524cdf5d.mp4",
+        "skillType": {
+          "gbId": "6",
+          "pictureUrl": null,
+          "secondPictureUrl": null,
+          "texts": [
+            {
+              "language": "en",
+              "name": "Forte Circuit"
+            }
+          ]
+        },
+        "texts": [
+          {
+            "language": "en",
+            "name": "Forms Turn, Heart Abides",
+            "description": "Forms Born of Heart\nWhile in Answering Form, Hsin can gain and consume Answering Heart.\nWhile in Illumining Form, Hsin can gain and consume Illumining Heart.\n\nHeavy Attack - Answering Form: Realm Wanderer\nWhile in Answering Form, when Hsin's Answering Heart reaches 100 points, Heavy Attack - Answering Form is replaced with Heavy Attack - Answering Form: Realm Wanderer.\nHold Normal Attack to cast the skill at the cost of STA and 100 points of Answering Heart. Hsin is immune to interruption during the action, and deals Electro DMG to the target, considered Resonance Skill DMG.\nCasting Heavy Attack - Answering Form: Realm Wanderer grants Hsin Resolution of Wishes. This Heavy Attack - Answering Form: Realm Wanderer consumes Resolution of Wishes to become Heavy Attack - Answering Form: Realm Protector, dealing greater DMG. Resolution of Wishes can only be gained once every 24s.\nWhile casting Heavy Attack - Answering Form: Realm Wanderer or Heavy Attack - Answering Form: Realm Protector, if Hsin is not in the Heart Manifest state, unlock Resonance Liberation - Formshift.\n\nHeavy Attack - Illumining Form: Beholding All Horizons\nWhile in Illumining Form, when Hsin's Illumining Heart reaches 0 during the Mechanism Dominion state, Heavy Attack - Illumining Form is replaced with Heavy Attack - Illumining Form: Beholding All Horizons.\nHold Normal Attack to cast the skill at the cost of STA, dealing Electro DMG to the target, considered Resonance Skill DMG.\nCasting Heavy Attack - Illumining Form: Beholding All Horizons grants Hsin Law of Heaven. This Heavy Attack - Illumining Form: Beholding All Horizons consumes Law of Heaven to become Heavy Attack - Illumining Form: Stilling All Horizons, dealing greater DMG. Law of Heaven can only be gained once every 24s.\nCasting Heavy Attack - Illumining Form: Beholding All Horizons or Heavy Attack - Illumining Form: Stilling All Horizons ends the Mechanism Dominion state and unlocks Resonance Liberation - Pillars Across Heaven.\nCan be cast in mid-air.\n\nResonance Skill - Illumining Form: Pillars Aligned\nWhile in Illumining Form, when Hsin's Illumining Heart reaches 300 points and She is on the ground, Resonance Skill is replaced with Resonance Skill - Illumining Form: Pillars Aligned.\nWhen Hsin is on the ground, Resonance Skill to deal Electro DMG to surrounding targets, considered Resonance Skill DMG.\nCasting Resonance Skill - Illumining Form: Pillars Aligned sends Hsin into the Mechanism Dominion state.\n\nMechanism Dominion\nThe Mechanism Dominion state lasts 13s.\nWhile this state is active, Basic Attack - Illumining Form is replaced with Basic Attack - Illumining Form: Pillars Aligned, and Dodge Counter - Illumining Form is replaced with Dodge Counter - Illumining Form: Pillars Aligned.\nWhen Basic Attack - Illumining Form: Pillars Aligned or Dodge Counter - Illumining Form: Pillars Aligned hits a target, Illumining Heart is consumed if Hsin is the active Resonator.\nExiting Mechanism Dominion clears Illumining Heart.\n\nResonance Mode - Unison\nWhile in Resonance Mode - Unison, Hsin gains the following effects:\n- Hsin can trigger Unison Response, but not in Co-op Mode.\n- After casting Intro Skill - Answering Form or Intro Skill - Answering Form: Manifold Unison, the next Resonance Liberation - Formshift grants Hsin Unison for 5s.\n- When Hsin triggers Unison Response, She gains Source Intent, and this cast of Intro Skill is replaced with Intro Skill - Manifold Unison, dealing greater DMG.\nWhen Hsin casts an Intro Skill without triggering Unison Response while holding Source Intent, She consumes Source Intent instead, and the Intro Skill is replaced with Intro Skill - Manifold Unison, dealing greater DMG.\n- The aforementioned effects are removed when Hsin switches Resonance Mode.\n- Casting Intro Skill - Illumining Form or Intro Skill - Illumining Form: Manifold Unison sends Hsin directly into the Mechanism Dominion state.\n\nResonance Mode - Electro Flare\nWhile in Resonance Mode - Electro Flare, Hsin gains the following effects:\n- When Hsin enters combat, targets within a certain range do not lose Electro Flare stacks when it's triggered.\n- After Resonators in the team inflict Electro Rage to a target, every 1 of Electro Rage inflicted grants Hsin 1 of Heart of Thunder, stacking up to 100 times, and consumes all Electro Rage stacks from that target. Heart of Thunder is removed when Hsin switches Resonance Mode.\n- At the last stage of Resonance Skill - Heartward by Moon, Hsin actively triggers 1 instance of Electro Flare DMG on the targets. Its DMG Multiplier is equal to 35% x (the number of Heart of Thunder stacks on Hsin) x (the Electro Flare DMG Multiplier corresponding to the target's current Electro Flare stacks).\nWhile casting Resonance Skill - Heartward by Moon, switching to another Resonator or ending the skill early removes the above effects.\nSome time after casting Resonance Skill - Heartward by Moon, Hsin consumes all remaining stacks of Heart of Thunder.\nWhen Hsin has at least 50 stacks of Heart of Thunder, Resonance Skill - Illumining Form stagnates nearby targets during the action.\n- After casting Resonance Liberation - Formshift, inflict 5 of Electro Flare on nearby targets within a certain range. It also makes Basic Attack - Illumining Form: Pillars Aligned or Dodge Counter - Illumining Form: Pillars Aligned inflict Electro Flare on hit targets, up to 5 . Casting Resonance Liberation - Formshift again resets this count. Switching Resonance Mode removes it.\nResonance Skill - Illumining Form: Pillars Aligned and Heavy Attack - Illumining Form: Stilling All Horizons inflict 5 of Electro Flare on the target hit. Intro Skill - Illumining Form, Intro Skill - Answering Form, and Heavy Attack - Answering Form: Realm Protector inflict 1 of Electro Flare on the target hit.\n\nUnison\nWhile Hsin is in Resonance Mode - Unison with Unison, switching to another Resonator will remove Hsin's Unison to trigger Hsin's Outro Skill and the incoming Resonator's Intro Skill. If Hsin has full Concerto Energy and Unison at the same time, only Unison is consumed to trigger the effect.\n\nUnison Response\nWhile Hsin is in Resonance Mode - Unison and the active Resonator in the team has Unison, Hsin triggers Unison Response after She is switched in and casts Intro Skill, granting 1 of Unison Boon to all Resonators in the team for 30s.\nHsin can only grant up to 1 of Unison Boon in this way.\n\nUnison Boon\nOnly the Resonators who can trigger Unison Response can gain this effect. Each stack of Unison Boon increases the total DMG dealt by Resonators who can trigger Unison Response in the team by 3%, stacking up to 2 times.\n\nAnswering Heart\nCan hold up to 100 points of Answering Heart.\nWhile in Answering Form, when Normal Attack - Answering Form, Resonance Skill - Answering Form, Intro Skill - Answering Form, or Intro Skill - Answering Form: Manifold Unison hits a target, Hsin gains Answering Heart if She is the active Resonator.\nCasting Intro Skill - Answering Form or Intro Skill - Answering Form: Manifold Unison grants 60 points of Answering Heart.\n\nIllumining Heart\nCan hold up to 300 points of Illumining Heart.\nWhile in Illumining Form and not in the Mechanism Dominion state, when Normal Attack - Illumining Form, Resonance Skill - Illumining Form, or Intro Skill - Illumining Form hits a target, Hsin gains Illumining Heart if She is the active Resonator.\n- While in Resonance Mode - Unison, casting Intro Skill - Illumining Form or Intro Skill - Illumining Form: Manifold Unison directly sends Hsin into the Mechanism Dominion state and grants 300 points of Illumining Heart.\n- While in Resonance Mode - Electro Flare, after casting Resonance Liberation - Formshift, when the Modular Heartlock generated by Basic Attack - Illumining Form Stage 1 is collapsed by Basic Attack - Illumining Form Stage 2, Heavy Attack - Illumining Form, Dodge Counter - Illumining Form, or Resonance Skill - Illumining Form, additionally gain 150 points of Illumining Heart if Hsin is the active Resonator in Illumining Form but not in the Mechanism Dominion state. This effect can only be triggered once before the next cast of Resonance Liberation - Formshift resets it, and is disabled when switched to the other Resonance Mode."
+          }
+        ]
+      },
+      {
+        "gbId": "1016-1311",
+        "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/cd564f9896f466c0b23e34fca9c10eac.png",
+        "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/84b96a7f5cd86f68eb3366c50cac37da.mp4",
+        "skillType": {
+          "gbId": "3",
+          "pictureUrl": null,
+          "secondPictureUrl": null,
+          "texts": [
+            {
+              "language": "en",
+              "name": "Resonance Liberation"
+            }
+          ]
+        },
+        "texts": [
+          {
+            "language": "en",
+            "name": "Nexus Alight",
+            "description": "Formshift\nCasting Heavy Attack - Answering Form: Realm Wanderer unlocks Formshift.\nCast Formshift to unfurl the Manifold Sanctum. Hsin switches to Illumining Form, unlocking a new set of combat abilities, and enters the Heart Manifest state.\nCan be cast in mid-air close to the ground.\nWhile in Illumining Form, engaging in quest dialogue, performing an environmental interaction with an animation, or using a Utility switches Hsin back to Answering Form to perform the corresponding action.\nWhile in Illumining Form, Hsin can walk on the surface of water, and will continuously consume STA in deep water areas. In Walking Mode, Hsin in Illumining Form can step off a cliff into the air and walk slowly in mid-air, continuously consuming STA in this state. Hsin cannot restore STA while in Illumining Form and in mid-air.\n\nPillars Across Heaven\nCasting Heavy Attack - Illumining Form: Beholding All Horizons unlocks Pillars Across Heaven.\nCast Pillars Across Heaven to bring the Manifold Sanctum crashing down, dealing Electro DMG to the target, considered Resonance Skill DMG.\nCan be cast in mid-air close to the ground.\nHsin returns to Answering Form and exits the Heart Manifest state.\n\nEdict\nCasting Formshift grants Hsin 21 of Edict for 45s. The effect cannot exceed 21 and all stacks are removed when the duration ends.\nAfter the active Resonator in the team deals DMG, Hsin automatically consumes Edict in the following 3s to trigger the following effect up to once per second. Retriggering the effect resets the duration:\n- When Edict is consumed, summon a Soaring Pillar from the Manifold Sanctum as a Coordinated Attack to strike the target once, dealing Electro DMG. \n- Edict can be automatically consumed up to 1 stack per second.\n- Damage dealt by Soaring Pillar does not trigger this effect.\n- When Hsin is knocked out, all Edict stacks are removed.\n\nHeart Manifest\nIncreases Hsin's resistance to interruption for 45s.\nEntering the Heart Manifest state resets Hsin's Illumining Form.\nWhile in the Heart Manifest state and in Illumining Form, if Pillars Across Heaven is locked, Resonance Liberation to have Hsin cast Invoked Form: Answering. While in Answering Form, Resonance Liberation to have Hsin cast Invoked Form: Illumining.\n\nInvoked Form: Answering\nHsin temporarily reverts to Answering Form. When this skill is cast, if Hsin is on the ground, She casts Basic Attack - Answering Form Stage 2; if She is in mid-air, She casts Mid-air Attack - Answering Form.\n\nInvoked Form: Illumining\nHsin turns back into Illumining Form. When this skill is cast, if Hsin is on the ground, She casts Upward Cut - Illumining Form; if She is in mid-air, She casts Mid-air Attack - Illumining Form."
+          }
+        ]
+      },
+      {
+        "gbId": "1019-1311",
+        "pictureUrl": "https://guide-res.aki-game.net/introduction/material/231a2815f358129022528ee83f1c435c/314e7522947024a15f6e5dea10f3b4ce.png",
+        "videoUrl": "https://guide-res.aki-game.net/introduction/material/126addd9109272f4e549c74aabe8af01/eb1d95518879cd56b18c76045d08af7a.mp4",
+        "skillType": {
+          "gbId": "5",
+          "pictureUrl": null,
+          "secondPictureUrl": null,
+          "texts": [
+            {
+              "language": "en",
+              "name": "Intro Skill"
+            }
+          ]
+        },
+        "texts": [
+          {
+            "language": "en",
+            "name": "Glance on a Whim",
+            "description": "Intro Skill - Answering Form\nThis skill becomes available while in Answering Form. Attack the target, dealing Electro DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 3 (when in Resonance Mode - Unison) or Basic Attack - Answering Form Stage 4 (when in Resonance Mode - Electro Flare).\n\nIntro Skill - Answering Form: Manifold Unison\nThis skill becomes available while in Answering Form. Attack the target, dealing greater Electro DMG, considered Resonance Skill DMG.\nAfter casting this skill, Normal Attack within a short time to cast Basic Attack - Answering Form Stage 3.\n\nIntro Skill - Illumining Form\nThis skill becomes available while in Illumining Form. Attack the target, dealing Electro DMG.\n\nIntro Skill - Illumining Form: Manifold Unison\nThis skill becomes available while in Illumining Form. Attack the target, dealing greater Electro DMG, considered Resonance Skill DMG."
+          }
+        ]
+      }
+    ]
+  }
+}

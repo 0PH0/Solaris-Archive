@@ -1003,6 +1003,12 @@ img {
   aspect-ratio: 4 / 5;
 }
 
+.new-resonators { margin-bottom: 32px; }
+.new-resonators > h2 { color: var(--gold-bright); display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.character-skill { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+.character-skill summary { cursor: pointer; min-height: 32px; overflow-wrap: anywhere; }
+.character-skill p { line-height: 1.7; white-space: pre-line; overflow-wrap: anywhere; }
+
 .avatar--fallback img {
   object-fit: contain;
   padding: 34px;
@@ -1873,6 +1879,34 @@ dd {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+/* Character search and sorting reuse the existing filter controls. */
+.characters-catalog .module-status > span { min-width: 0; overflow-wrap: anywhere; }
+.wiki-filters.wiki-filters--characters {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  padding: 18px;
+  gap: 16px 12px;
+  background: linear-gradient(135deg, rgba(65, 241, 213, .025), transparent), var(--panel);
+  box-shadow: none;
+  border-radius: 12px;
+}
+.wiki-filters--characters > label { grid-column: span 2; min-width: 0; }
+.wiki-filters--characters .character-search-field { grid-column: span 4; }
+.wiki-filters--characters :is(.character-search-field, .character-sort-field) { position: relative; align-items: center; }
+.wiki-filters--characters svg { position: absolute; left: 16px; width: 20px; height: 20px; color: var(--muted); pointer-events: none; }
+.wiki-filters--characters .character-search-field input,
+.wiki-filters--characters .character-sort-field select { min-height: 52px; padding-left: 46px; font: inherit; font-size: .9rem; background-color: rgba(0, 0, 0, .2); border-radius: 9px; }
+.wiki-filters--characters input::placeholder { color: var(--muted); opacity: .8; }
+.wiki-filters--characters :is(input, select):focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+.wiki-filters--characters .character-search-field:focus-within svg { color: var(--teal); }
+.wiki-filters--characters .character-sort-field.is-active select { border-color: var(--gold); color: var(--gold-bright); background-color: rgba(199, 164, 90, .07); }
+.wiki-filters--characters .character-sort-field.is-active svg { color: var(--gold-bright); }
+.wiki-filters--characters select option { background: #14171c; color: var(--text); }
+@media (max-width: 760px) {
+  .wiki-filters.wiki-filters--characters { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 14px; }
+  .wiki-filters--characters > label { grid-column: span 1; }
+  .wiki-filters--characters :is(.character-search-field, .character-sort-field) { grid-column: 1 / -1; }
 }
 
 .table-wrap {

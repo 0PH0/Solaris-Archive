@@ -1,0 +1,24 @@
+{
+  "report": [
+    {
+      "width": 390,
+      "portraitWidth": 2048,
+      "skills": 10,
+      "scrollWidth": 390
+    },
+    {
+      "width": 768,
+      "portraitWidth": 2048,
+      "skills": 10,
+      "scrollWidth": 753
+    },
+    {
+      "width": 1440,
+      "portraitWidth": 2048,
+      "skills": 10,
+      "scrollWidth": 1425
+    }
+  ],
+  "errors": [],
+  "detailRequests": 1
+}

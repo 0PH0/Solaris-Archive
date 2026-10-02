@@ -1,0 +1,1451 @@
+{
+  "code": 200,
+  "message": "ok",
+  "data": [
+    {
+      "id": 14133,
+      "role": {
+        "roleGbId": "1311",
+        "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/2bd0b218329cc047e2b294056dcc5181/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/7b5a66c0c4ca3336063357e160453fa3/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "star": 5,
+        "texts": [
+          {
+            "language": "de",
+            "name": "Hsin",
+            "skillDisplay": "Basis-Kombo: \nUnisono：Unisono-Reaktion → Standardangriff*2 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Unisono-Reaktion → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill\nElektroflamme：Intro-Skill → Standardangriff → Verstärkter Schwerer Angriff → Resonanzbefreiung → Standardangriff → Resonanz-Skill → Verstärkter Resonanzskill → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill"
+          },
+          {
+            "language": "en",
+            "name": "Hsin",
+            "skillDisplay": "Basic Combo：\nUnison Combo：Union Response → Basic Attack*2 → Enhanced Heavy Attack → Resonance Liberation → Union Response → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill\nElectro Flare Combo：Intro Skill → Basic Attack → Enhanced Heavy Attack → Resonance Liberation → Basic Attack → Resonance Skill → Enhanced Resonance Skill → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill"
+          },
+          {
+            "language": "es",
+            "name": "Hsin",
+            "skillDisplay": "Combo básico：\nUnísono：Respuesta al Unísono → Ataque básico*2 → Ataque cargado mejorado → Liberación de resonancia → Respuesta al Unísono → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro\nLlamarada eléctrica：Habilidad Intro → Ataque básico → Ataque cargado mejorado → Liberación de resonancia → Ataque básico → Habilidad de resonancia → Habilidad de resonancia mejorada → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro"
+          },
+          {
+            "language": "fr",
+            "name": "Hsin",
+            "skillDisplay": "Combo de base :\nUnisson：Réponse à l'Unisson → Attaque normale*2 → Attaque lourde renforcée → Libération résonatrice → Réponse à l'Unisson → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro\nElectromagnétique：Compétence d'Intro → Attaque normale → Attaque lourde renforcée → Libération résonatrice → Attaque normale → Compétence résonatrice → Compétence résonatrice renforcée → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro"
+          },
+          {
+            "language": "ja",
+            "name": "心",
+            "skillDisplay": "基本コンボ：\n同奏：同奏レスポンス → 通常攻撃*2 → 強化重撃 → 共鳴解放 → 同奏レスポンス → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル\n電磁効果：変奏スキル → 通常攻撃 → 強化重撃 → 共鳴解放 → 通常攻撃 → 共鳴スキル → 強化共鳴スキル → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル"
+          },
+          {
+            "language": "ko",
+            "name": "여우의 별자리",
+            "skillDisplay": "기본 콤보：\n합일：합일 대응 → 일반 공격*2 → 강화된 강공격 → 공명 해방 → 합일 대응 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬\n전자：변주 스킬 → 일반 공격 → 강화된 강공격 → 공명 해방 → 일반 공격 → 공명 스킬 → 강화된 공명 스킬 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬"
+          },
+          {
+            "language": "zh-Hans",
+            "name": "心",
+            "skillDisplay": "基础连招：\n同奏：响应同奏→普攻*2→强化重击→共鸣解放→响应同奏→普攻*4→强化重击→共鸣解放→延奏离场\n电磁：变奏入场→普攻→强化重击→共鸣解放→普攻→共鸣技能→强化共鸣技能→普攻*4→强化重击→共鸣解放→延奏离场"
+          },
+          {
+            "language": "zh-Hant",
+            "name": "心",
+            "skillDisplay": "基礎連招：\n同奏：響應同奏 → 普攻*2 → 強化重擊 → 共鳴解放 → 響應同奏 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能\n電磁：變奏技能 → 普攻 → 強化重擊 → 共鳴解放 → 普攻 → 共鳴技能 → 強化共鳴技能 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能"
+          }
+        ],
+        "rolePlays": [
+          {
+            "gbId": "2",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/fb5c81ed3a220004b71069645f112867.png",
+            "secondPictureUrl": null
+          },
+          {
+            "gbId": "6",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/f19c9085129709ee14d013be869df69b.png",
+            "secondPictureUrl": null
+          }
+        ]
+      },
+      "texts": [
+        {
+          "language": "de",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "en",
+          "introductionName": "Hsin: Moonlit Mechanism",
+          "introductionSource": "Void Enigma",
+          "introductionDescription": "<p>Sample Rotation: Team builds Electro Rage &rarr; Intro Hsin &rarr; Resonance Skill &rarr; Fill Forte&rarr; Heavy Attack &rarr; Formshift &rarr; Build Forte &rarr; Pillars Aligned &rarr; Spam Basics to 0 &rarr; Hold Basic &rarr; Pillars Across Heaven.</p>"
+        },
+        {
+          "language": "es",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "fr",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ja",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ko",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "zh-Hans",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "zh-Hant",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        }
+      ],
+      "likeCount": 1651,
+      "isLiked": false,
+      "collectCount": 3138,
+      "isCollected": false,
+      "teammateRecommends": [
+        {
+          "main": {
+            "roleGbId": "1309",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/46a2036c6e6e5a89133570f18abe6d7f/7bb61d835380e06fad688a778964e88a.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/55b3b96fcdfc9942bff4bf963ce2bf96/7bb61d835380e06fad688a778964e88a.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1508",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/ba81bbe33358b2f73201b58f51df43bb.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/ba81bbe33358b2f73201b58f51df43bb.png",
+              "star": 5,
+              "texts": null
+            },
+            {
+              "roleGbId": "1304",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/f0f853fc28b06aab285db5ab274bec52.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/f0f853fc28b06aab285db5ab274bec52.png",
+              "star": 5,
+              "texts": null
+            }
+          ]
+        },
+        {
+          "main": {
+            "roleGbId": "1307",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/2fdb664642d57f6fe3a444c595821059.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/2fdb664642d57f6fe3a444c595821059.png",
+            "star": 4,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1110",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/5776bc9b9fe180db76ecf76add47bf44/6941a971665e80a206db56b0ad3c59b7.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/a86ded28e834a8be7a7a8b74c2ce7bfa/6941a971665e80a206db56b0ad3c59b7.png",
+              "star": 5,
+              "texts": null
+            }
+          ]
+        }
+      ],
+      "modifiedAt": 1790731554
+    },
+    {
+      "id": 11096,
+      "role": {
+        "roleGbId": "1311",
+        "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/2bd0b218329cc047e2b294056dcc5181/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/7b5a66c0c4ca3336063357e160453fa3/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "star": 5,
+        "texts": [
+          {
+            "language": "de",
+            "name": "Hsin",
+            "skillDisplay": "Basis-Kombo: \nUnisono：Unisono-Reaktion → Standardangriff*2 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Unisono-Reaktion → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill\nElektroflamme：Intro-Skill → Standardangriff → Verstärkter Schwerer Angriff → Resonanzbefreiung → Standardangriff → Resonanz-Skill → Verstärkter Resonanzskill → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill"
+          },
+          {
+            "language": "en",
+            "name": "Hsin",
+            "skillDisplay": "Basic Combo：\nUnison Combo：Union Response → Basic Attack*2 → Enhanced Heavy Attack → Resonance Liberation → Union Response → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill\nElectro Flare Combo：Intro Skill → Basic Attack → Enhanced Heavy Attack → Resonance Liberation → Basic Attack → Resonance Skill → Enhanced Resonance Skill → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill"
+          },
+          {
+            "language": "es",
+            "name": "Hsin",
+            "skillDisplay": "Combo básico：\nUnísono：Respuesta al Unísono → Ataque básico*2 → Ataque cargado mejorado → Liberación de resonancia → Respuesta al Unísono → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro\nLlamarada eléctrica：Habilidad Intro → Ataque básico → Ataque cargado mejorado → Liberación de resonancia → Ataque básico → Habilidad de resonancia → Habilidad de resonancia mejorada → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro"
+          },
+          {
+            "language": "fr",
+            "name": "Hsin",
+            "skillDisplay": "Combo de base :\nUnisson：Réponse à l'Unisson → Attaque normale*2 → Attaque lourde renforcée → Libération résonatrice → Réponse à l'Unisson → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro\nElectromagnétique：Compétence d'Intro → Attaque normale → Attaque lourde renforcée → Libération résonatrice → Attaque normale → Compétence résonatrice → Compétence résonatrice renforcée → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro"
+          },
+          {
+            "language": "ja",
+            "name": "心",
+            "skillDisplay": "基本コンボ：\n同奏：同奏レスポンス → 通常攻撃*2 → 強化重撃 → 共鳴解放 → 同奏レスポンス → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル\n電磁効果：変奏スキル → 通常攻撃 → 強化重撃 → 共鳴解放 → 通常攻撃 → 共鳴スキル → 強化共鳴スキル → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル"
+          },
+          {
+            "language": "ko",
+            "name": "여우의 별자리",
+            "skillDisplay": "기본 콤보：\n합일：합일 대응 → 일반 공격*2 → 강화된 강공격 → 공명 해방 → 합일 대응 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬\n전자：변주 스킬 → 일반 공격 → 강화된 강공격 → 공명 해방 → 일반 공격 → 공명 스킬 → 강화된 공명 스킬 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬"
+          },
+          {
+            "language": "zh-Hans",
+            "name": "心",
+            "skillDisplay": "基础连招：\n同奏：响应同奏→普攻*2→强化重击→共鸣解放→响应同奏→普攻*4→强化重击→共鸣解放→延奏离场\n电磁：变奏入场→普攻→强化重击→共鸣解放→普攻→共鸣技能→强化共鸣技能→普攻*4→强化重击→共鸣解放→延奏离场"
+          },
+          {
+            "language": "zh-Hant",
+            "name": "心",
+            "skillDisplay": "基礎連招：\n同奏：響應同奏 → 普攻*2 → 強化重擊 → 共鳴解放 → 響應同奏 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能\n電磁：變奏技能 → 普攻 → 強化重擊 → 共鳴解放 → 普攻 → 共鳴技能 → 強化共鳴技能 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能"
+          }
+        ],
+        "rolePlays": [
+          {
+            "gbId": "2",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/fb5c81ed3a220004b71069645f112867.png",
+            "secondPictureUrl": null
+          },
+          {
+            "gbId": "6",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/f19c9085129709ee14d013be869df69b.png",
+            "secondPictureUrl": null
+          }
+        ]
+      },
+      "texts": [
+        {
+          "language": "de",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "en",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "es",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "fr",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ja",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ko",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "zh-Hans",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "zh-Hant",
+          "introductionName": "【心】雙模態兩種不同連招輕鬆看懂！聲骸有什麼要注意？配隊該如何搭配？",
+          "introductionSource": "Kin",
+          "introductionDescription": "<p>心不同模態下連招也不同？隊伍如何搭配？輕鬆看懂心！</p>"
+        }
+      ],
+      "likeCount": 221,
+      "isLiked": false,
+      "collectCount": 0,
+      "isCollected": false,
+      "teammateRecommends": [
+        {
+          "main": {
+            "roleGbId": "1309",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/46a2036c6e6e5a89133570f18abe6d7f/7bb61d835380e06fad688a778964e88a.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/55b3b96fcdfc9942bff4bf963ce2bf96/7bb61d835380e06fad688a778964e88a.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1509",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/acd70405164cb93b7dffe29fb3f6acb8.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/acd70405164cb93b7dffe29fb3f6acb8.png",
+              "star": 5,
+              "texts": null
+            },
+            {
+              "roleGbId": "1304",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/f0f853fc28b06aab285db5ab274bec52.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/f0f853fc28b06aab285db5ab274bec52.png",
+              "star": 5,
+              "texts": null
+            }
+          ]
+        },
+        {
+          "main": {
+            "roleGbId": "1110",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/5776bc9b9fe180db76ecf76add47bf44/6941a971665e80a206db56b0ad3c59b7.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/a86ded28e834a8be7a7a8b74c2ce7bfa/6941a971665e80a206db56b0ad3c59b7.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1307",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/2fdb664642d57f6fe3a444c595821059.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/2fdb664642d57f6fe3a444c595821059.png",
+              "star": 4,
+              "texts": null
+            }
+          ]
+        }
+      ],
+      "modifiedAt": 1790731554
+    },
+    {
+      "id": 13151,
+      "role": {
+        "roleGbId": "1311",
+        "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/2bd0b218329cc047e2b294056dcc5181/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/7b5a66c0c4ca3336063357e160453fa3/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "star": 5,
+        "texts": [
+          {
+            "language": "de",
+            "name": "Hsin",
+            "skillDisplay": "Basis-Kombo: \nUnisono：Unisono-Reaktion → Standardangriff*2 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Unisono-Reaktion → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill\nElektroflamme：Intro-Skill → Standardangriff → Verstärkter Schwerer Angriff → Resonanzbefreiung → Standardangriff → Resonanz-Skill → Verstärkter Resonanzskill → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill"
+          },
+          {
+            "language": "en",
+            "name": "Hsin",
+            "skillDisplay": "Basic Combo：\nUnison Combo：Union Response → Basic Attack*2 → Enhanced Heavy Attack → Resonance Liberation → Union Response → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill\nElectro Flare Combo：Intro Skill → Basic Attack → Enhanced Heavy Attack → Resonance Liberation → Basic Attack → Resonance Skill → Enhanced Resonance Skill → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill"
+          },
+          {
+            "language": "es",
+            "name": "Hsin",
+            "skillDisplay": "Combo básico：\nUnísono：Respuesta al Unísono → Ataque básico*2 → Ataque cargado mejorado → Liberación de resonancia → Respuesta al Unísono → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro\nLlamarada eléctrica：Habilidad Intro → Ataque básico → Ataque cargado mejorado → Liberación de resonancia → Ataque básico → Habilidad de resonancia → Habilidad de resonancia mejorada → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro"
+          },
+          {
+            "language": "fr",
+            "name": "Hsin",
+            "skillDisplay": "Combo de base :\nUnisson：Réponse à l'Unisson → Attaque normale*2 → Attaque lourde renforcée → Libération résonatrice → Réponse à l'Unisson → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro\nElectromagnétique：Compétence d'Intro → Attaque normale → Attaque lourde renforcée → Libération résonatrice → Attaque normale → Compétence résonatrice → Compétence résonatrice renforcée → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro"
+          },
+          {
+            "language": "ja",
+            "name": "心",
+            "skillDisplay": "基本コンボ：\n同奏：同奏レスポンス → 通常攻撃*2 → 強化重撃 → 共鳴解放 → 同奏レスポンス → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル\n電磁効果：変奏スキル → 通常攻撃 → 強化重撃 → 共鳴解放 → 通常攻撃 → 共鳴スキル → 強化共鳴スキル → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル"
+          },
+          {
+            "language": "ko",
+            "name": "여우의 별자리",
+            "skillDisplay": "기본 콤보：\n합일：합일 대응 → 일반 공격*2 → 강화된 강공격 → 공명 해방 → 합일 대응 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬\n전자：변주 스킬 → 일반 공격 → 강화된 강공격 → 공명 해방 → 일반 공격 → 공명 스킬 → 강화된 공명 스킬 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬"
+          },
+          {
+            "language": "zh-Hans",
+            "name": "心",
+            "skillDisplay": "基础连招：\n同奏：响应同奏→普攻*2→强化重击→共鸣解放→响应同奏→普攻*4→强化重击→共鸣解放→延奏离场\n电磁：变奏入场→普攻→强化重击→共鸣解放→普攻→共鸣技能→强化共鸣技能→普攻*4→强化重击→共鸣解放→延奏离场"
+          },
+          {
+            "language": "zh-Hant",
+            "name": "心",
+            "skillDisplay": "基礎連招：\n同奏：響應同奏 → 普攻*2 → 強化重擊 → 共鳴解放 → 響應同奏 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能\n電磁：變奏技能 → 普攻 → 強化重擊 → 共鳴解放 → 普攻 → 共鳴技能 → 強化共鳴技能 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能"
+          }
+        ],
+        "rolePlays": [
+          {
+            "gbId": "2",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/fb5c81ed3a220004b71069645f112867.png",
+            "secondPictureUrl": null
+          },
+          {
+            "gbId": "6",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/f19c9085129709ee14d013be869df69b.png",
+            "secondPictureUrl": null
+          }
+        ]
+      },
+      "texts": [
+        {
+          "language": "de",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "en",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "es",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "fr",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ja",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ko",
+          "introductionName": "[입문] 여우의 별자리 원스톱 육성 가이드 | 세팅&공명 체인&파티 추천",
+          "introductionSource": "WW Echoes",
+          "introductionDescription": "<p>1. 공명 모드 &middot; 합일 운용 팁: 변주 입장 후 일반 공격 3/4단을 사용해 [마음의 화응]을 풀충하고, 강화된 강공격을 사용합니다. 이후 공명 해방을 해금해 발동하고 전환한 뒤, 합일 파티원으로 교체합니다. 파티원이 합일을 획득하면 여우의 별자리로 교체해 변주 입장으로 합일에 대응하고 [기관 통솔] 상태에 진입하며 [마음의 비춤] 300pt를 획득합니다. 강화된 일반 공격을 사용해 [마음의 비춤]을 모두 소모한 후 강화된 강공격을 사용하고, 강화된 공명 해방을 해금해 사용한 뒤 퇴장하면 됩니다. <br>기본 사이클: 변주 스킬로 등장-평평-강화 강공-R-파티원 교체-변주 스킬 등장-강화 평*4-강화 강공-강화 R-반주 스킬로 퇴장<br><br>2. 공명 모드 &middot; 전자 운용 팁: 변주 입장 후 일반 공격 4단을 사용하고, 강화된 강공격을 발동합니다. 이후 공명 해방을 해금하고 발동해 모드를 전환한 다음, 일반 공격과 공명 스킬을 사용해 [마음의 비춤]을 풀충합니다. 강화된 공명 스킬을 발동해 [기관 통솔] 상태에 진입한 후, 강화된 일반 공격으로 [마음의 비춤]을 모두 소모하고 강화된 강공격을 발동하여 강화된 공명 해방을 해금해 발동한 뒤 퇴장하면 됩니다. <br>기본 사이클: 변주 스킬로 등장-평-강화 강공-R-평E-강화E-강화 평*4-강화 강공-강화 R-반주 스킬로 퇴장<br><br>3.파티 소개: 공명 스킬 피해를 증가할 수 있는 합일 혹은 전자 계열 파티원과의 조합이 적합합니다.<br><br>4.에코 세트: [꿈으로 세상을 비추는 마음] 5세트</p>"
+        },
+        {
+          "language": "zh-Hans",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "zh-Hant",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        }
+      ],
+      "likeCount": 79,
+      "isLiked": false,
+      "collectCount": 0,
+      "isCollected": false,
+      "teammateRecommends": [
+        {
+          "main": {
+            "roleGbId": "1309",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/46a2036c6e6e5a89133570f18abe6d7f/7bb61d835380e06fad688a778964e88a.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/55b3b96fcdfc9942bff4bf963ce2bf96/7bb61d835380e06fad688a778964e88a.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1304",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/f0f853fc28b06aab285db5ab274bec52.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/f0f853fc28b06aab285db5ab274bec52.png",
+              "star": 5,
+              "texts": null
+            }
+          ]
+        },
+        {
+          "main": {
+            "roleGbId": "1110",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/5776bc9b9fe180db76ecf76add47bf44/6941a971665e80a206db56b0ad3c59b7.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/a86ded28e834a8be7a7a8b74c2ce7bfa/6941a971665e80a206db56b0ad3c59b7.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1505",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/890adae97f3ec5f380008a743cbbc563.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/890adae97f3ec5f380008a743cbbc563.png",
+              "star": 5,
+              "texts": null
+            },
+            {
+              "roleGbId": "1307",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/2fdb664642d57f6fe3a444c595821059.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/2fdb664642d57f6fe3a444c595821059.png",
+              "star": 4,
+              "texts": null
+            }
+          ]
+        }
+      ],
+      "modifiedAt": 1790731554
+    },
+    {
+      "id": 12110,
+      "role": {
+        "roleGbId": "1311",
+        "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/2bd0b218329cc047e2b294056dcc5181/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/7b5a66c0c4ca3336063357e160453fa3/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "star": 5,
+        "texts": [
+          {
+            "language": "de",
+            "name": "Hsin",
+            "skillDisplay": "Basis-Kombo: \nUnisono：Unisono-Reaktion → Standardangriff*2 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Unisono-Reaktion → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill\nElektroflamme：Intro-Skill → Standardangriff → Verstärkter Schwerer Angriff → Resonanzbefreiung → Standardangriff → Resonanz-Skill → Verstärkter Resonanzskill → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill"
+          },
+          {
+            "language": "en",
+            "name": "Hsin",
+            "skillDisplay": "Basic Combo：\nUnison Combo：Union Response → Basic Attack*2 → Enhanced Heavy Attack → Resonance Liberation → Union Response → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill\nElectro Flare Combo：Intro Skill → Basic Attack → Enhanced Heavy Attack → Resonance Liberation → Basic Attack → Resonance Skill → Enhanced Resonance Skill → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill"
+          },
+          {
+            "language": "es",
+            "name": "Hsin",
+            "skillDisplay": "Combo básico：\nUnísono：Respuesta al Unísono → Ataque básico*2 → Ataque cargado mejorado → Liberación de resonancia → Respuesta al Unísono → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro\nLlamarada eléctrica：Habilidad Intro → Ataque básico → Ataque cargado mejorado → Liberación de resonancia → Ataque básico → Habilidad de resonancia → Habilidad de resonancia mejorada → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro"
+          },
+          {
+            "language": "fr",
+            "name": "Hsin",
+            "skillDisplay": "Combo de base :\nUnisson：Réponse à l'Unisson → Attaque normale*2 → Attaque lourde renforcée → Libération résonatrice → Réponse à l'Unisson → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro\nElectromagnétique：Compétence d'Intro → Attaque normale → Attaque lourde renforcée → Libération résonatrice → Attaque normale → Compétence résonatrice → Compétence résonatrice renforcée → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro"
+          },
+          {
+            "language": "ja",
+            "name": "心",
+            "skillDisplay": "基本コンボ：\n同奏：同奏レスポンス → 通常攻撃*2 → 強化重撃 → 共鳴解放 → 同奏レスポンス → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル\n電磁効果：変奏スキル → 通常攻撃 → 強化重撃 → 共鳴解放 → 通常攻撃 → 共鳴スキル → 強化共鳴スキル → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル"
+          },
+          {
+            "language": "ko",
+            "name": "여우의 별자리",
+            "skillDisplay": "기본 콤보：\n합일：합일 대응 → 일반 공격*2 → 강화된 강공격 → 공명 해방 → 합일 대응 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬\n전자：변주 스킬 → 일반 공격 → 강화된 강공격 → 공명 해방 → 일반 공격 → 공명 스킬 → 강화된 공명 스킬 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬"
+          },
+          {
+            "language": "zh-Hans",
+            "name": "心",
+            "skillDisplay": "基础连招：\n同奏：响应同奏→普攻*2→强化重击→共鸣解放→响应同奏→普攻*4→强化重击→共鸣解放→延奏离场\n电磁：变奏入场→普攻→强化重击→共鸣解放→普攻→共鸣技能→强化共鸣技能→普攻*4→强化重击→共鸣解放→延奏离场"
+          },
+          {
+            "language": "zh-Hant",
+            "name": "心",
+            "skillDisplay": "基礎連招：\n同奏：響應同奏 → 普攻*2 → 強化重擊 → 共鳴解放 → 響應同奏 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能\n電磁：變奏技能 → 普攻 → 強化重擊 → 共鳴解放 → 普攻 → 共鳴技能 → 強化共鳴技能 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能"
+          }
+        ],
+        "rolePlays": [
+          {
+            "gbId": "2",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/fb5c81ed3a220004b71069645f112867.png",
+            "secondPictureUrl": null
+          },
+          {
+            "gbId": "6",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/f19c9085129709ee14d013be869df69b.png",
+            "secondPictureUrl": null
+          }
+        ]
+      },
+      "texts": [
+        {
+          "language": "de",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "en",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "es",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "fr",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ja",
+          "introductionName": "【初心者向け】「心」育成攻略早見表|ビルド＆共鳴チェーン＆PT編成",
+          "introductionSource": "WW Echoes",
+          "introductionDescription": "<p>1. 「共鳴モダリティ・同奏」の立ち回り：変奏スキルで登場し、そのまま通常攻撃3・4段目へと繋いで【応世の心】を溜め切ります。その後、強化重撃を放ち、共鳴解放を発動して形態を切り替えます。一旦同奏キャラに交代してパーティメンバーに同奏を獲得させた後、再び心を変奏スキルで登場させて同奏にレスポンスします。これにより「万機統御」状態へ移行して【照世の心】を300Pt獲得するので、強化通常攻撃で【照世の心】を消費しきってから強化重撃を発動。最後に強化共鳴解放を撃って退場する、というのが一連の流れです。<br>基本コンボ：変奏で登場&rarr;A・A&rarr;強化H&rarr;R&rarr;パーティメンバーに交代&rarr;変奏で登場&rarr;強化A&times;4&rarr;強化H&rarr;強化R&rarr;終奏スキルで退場。<br><br>2. 「共鳴モダリティ・電磁」の立ち回り：変奏スキルで登場し、通常攻撃4段目に繋いでから強化重撃を放ちます。共鳴解放を発動して形態を切り替えた後、通常攻撃と共鳴スキルを振って【照世の心】を溜め切ります。続いて強化共鳴スキルを発動して「万機統御」状態へ移行し、強化通常攻撃で【照世の心】を消費しきってから強化重撃を発動。最後に強化共鳴解放を撃って退場する、というのが一連の流れです。<br>基本コンボ：変奏で登場&rarr;A&rarr;強化H&rarr;R&rarr;A・E&rarr;強化E&rarr;強化A&times;4&rarr;強化H&rarr;強化R&rarr;終奏スキルで退場。<br><br>3. おすすめパーティー：同奏システムや電磁システムのキャラ、または共鳴スキルダメージバフを持つキャラと組ませるのが適しています。<br><br>4. おすすめ音骸セット：「銜夢照世の心」5セットが第一候補となります。</p>"
+        },
+        {
+          "language": "ko",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "zh-Hans",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "zh-Hant",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        }
+      ],
+      "likeCount": 73,
+      "isLiked": false,
+      "collectCount": 0,
+      "isCollected": false,
+      "teammateRecommends": [
+        {
+          "main": {
+            "roleGbId": "1309",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/46a2036c6e6e5a89133570f18abe6d7f/7bb61d835380e06fad688a778964e88a.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/55b3b96fcdfc9942bff4bf963ce2bf96/7bb61d835380e06fad688a778964e88a.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1304",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/f0f853fc28b06aab285db5ab274bec52.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/f0f853fc28b06aab285db5ab274bec52.png",
+              "star": 5,
+              "texts": null
+            }
+          ]
+        },
+        {
+          "main": {
+            "roleGbId": "1110",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/5776bc9b9fe180db76ecf76add47bf44/6941a971665e80a206db56b0ad3c59b7.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/a86ded28e834a8be7a7a8b74c2ce7bfa/6941a971665e80a206db56b0ad3c59b7.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1505",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/890adae97f3ec5f380008a743cbbc563.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/890adae97f3ec5f380008a743cbbc563.png",
+              "star": 5,
+              "texts": null
+            },
+            {
+              "roleGbId": "1307",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/2fdb664642d57f6fe3a444c595821059.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/2fdb664642d57f6fe3a444c595821059.png",
+              "star": 4,
+              "texts": null
+            }
+          ]
+        }
+      ],
+      "modifiedAt": 1790731554
+    },
+    {
+      "id": 10228,
+      "role": {
+        "roleGbId": "1311",
+        "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/2bd0b218329cc047e2b294056dcc5181/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/7b5a66c0c4ca3336063357e160453fa3/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "star": 5,
+        "texts": [
+          {
+            "language": "de",
+            "name": "Hsin",
+            "skillDisplay": "Basis-Kombo: \nUnisono：Unisono-Reaktion → Standardangriff*2 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Unisono-Reaktion → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill\nElektroflamme：Intro-Skill → Standardangriff → Verstärkter Schwerer Angriff → Resonanzbefreiung → Standardangriff → Resonanz-Skill → Verstärkter Resonanzskill → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill"
+          },
+          {
+            "language": "en",
+            "name": "Hsin",
+            "skillDisplay": "Basic Combo：\nUnison Combo：Union Response → Basic Attack*2 → Enhanced Heavy Attack → Resonance Liberation → Union Response → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill\nElectro Flare Combo：Intro Skill → Basic Attack → Enhanced Heavy Attack → Resonance Liberation → Basic Attack → Resonance Skill → Enhanced Resonance Skill → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill"
+          },
+          {
+            "language": "es",
+            "name": "Hsin",
+            "skillDisplay": "Combo básico：\nUnísono：Respuesta al Unísono → Ataque básico*2 → Ataque cargado mejorado → Liberación de resonancia → Respuesta al Unísono → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro\nLlamarada eléctrica：Habilidad Intro → Ataque básico → Ataque cargado mejorado → Liberación de resonancia → Ataque básico → Habilidad de resonancia → Habilidad de resonancia mejorada → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro"
+          },
+          {
+            "language": "fr",
+            "name": "Hsin",
+            "skillDisplay": "Combo de base :\nUnisson：Réponse à l'Unisson → Attaque normale*2 → Attaque lourde renforcée → Libération résonatrice → Réponse à l'Unisson → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro\nElectromagnétique：Compétence d'Intro → Attaque normale → Attaque lourde renforcée → Libération résonatrice → Attaque normale → Compétence résonatrice → Compétence résonatrice renforcée → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro"
+          },
+          {
+            "language": "ja",
+            "name": "心",
+            "skillDisplay": "基本コンボ：\n同奏：同奏レスポンス → 通常攻撃*2 → 強化重撃 → 共鳴解放 → 同奏レスポンス → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル\n電磁効果：変奏スキル → 通常攻撃 → 強化重撃 → 共鳴解放 → 通常攻撃 → 共鳴スキル → 強化共鳴スキル → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル"
+          },
+          {
+            "language": "ko",
+            "name": "여우의 별자리",
+            "skillDisplay": "기본 콤보：\n합일：합일 대응 → 일반 공격*2 → 강화된 강공격 → 공명 해방 → 합일 대응 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬\n전자：변주 스킬 → 일반 공격 → 강화된 강공격 → 공명 해방 → 일반 공격 → 공명 스킬 → 강화된 공명 스킬 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬"
+          },
+          {
+            "language": "zh-Hans",
+            "name": "心",
+            "skillDisplay": "基础连招：\n同奏：响应同奏→普攻*2→强化重击→共鸣解放→响应同奏→普攻*4→强化重击→共鸣解放→延奏离场\n电磁：变奏入场→普攻→强化重击→共鸣解放→普攻→共鸣技能→强化共鸣技能→普攻*4→强化重击→共鸣解放→延奏离场"
+          },
+          {
+            "language": "zh-Hant",
+            "name": "心",
+            "skillDisplay": "基礎連招：\n同奏：響應同奏 → 普攻*2 → 強化重擊 → 共鳴解放 → 響應同奏 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能\n電磁：變奏技能 → 普攻 → 強化重擊 → 共鳴解放 → 普攻 → 共鳴技能 → 強化共鳴技能 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能"
+          }
+        ],
+        "rolePlays": [
+          {
+            "gbId": "2",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/fb5c81ed3a220004b71069645f112867.png",
+            "secondPictureUrl": null
+          },
+          {
+            "gbId": "6",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/f19c9085129709ee14d013be869df69b.png",
+            "secondPictureUrl": null
+          }
+        ]
+      },
+      "texts": [
+        {
+          "language": "de",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "en",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "es",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "fr",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ja",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ko",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "zh-Hans",
+          "introductionName": "“心”简易玩法+养成攻略【巡游天国FM】",
+          "introductionSource": "巡游天国FM",
+          "introductionDescription": "<p>双【模态】，双【体系】，重新点亮【同奏】之人&mdash;&mdash;&ldquo;心&rdquo;，堂堂登场！<br>两个【模态】各要怎么玩，要注意什么，抠1鱼头就告诉你。</p>"
+        },
+        {
+          "language": "zh-Hant",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        }
+      ],
+      "likeCount": 16,
+      "isLiked": false,
+      "collectCount": 0,
+      "isCollected": false,
+      "teammateRecommends": [
+        {
+          "main": {
+            "roleGbId": "1304",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/f0f853fc28b06aab285db5ab274bec52.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/f0f853fc28b06aab285db5ab274bec52.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1309",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/46a2036c6e6e5a89133570f18abe6d7f/7bb61d835380e06fad688a778964e88a.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/55b3b96fcdfc9942bff4bf963ce2bf96/7bb61d835380e06fad688a778964e88a.png",
+              "star": 5,
+              "texts": null
+            }
+          ]
+        },
+        {
+          "main": {
+            "roleGbId": "1505",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/890adae97f3ec5f380008a743cbbc563.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/890adae97f3ec5f380008a743cbbc563.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1110",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/5776bc9b9fe180db76ecf76add47bf44/6941a971665e80a206db56b0ad3c59b7.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/a86ded28e834a8be7a7a8b74c2ce7bfa/6941a971665e80a206db56b0ad3c59b7.png",
+              "star": 5,
+              "texts": null
+            },
+            {
+              "roleGbId": "1307",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/2fdb664642d57f6fe3a444c595821059.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/2fdb664642d57f6fe3a444c595821059.png",
+              "star": 4,
+              "texts": null
+            }
+          ]
+        }
+      ],
+      "modifiedAt": 1790740184
+    },
+    {
+      "id": 10231,
+      "role": {
+        "roleGbId": "1311",
+        "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/2bd0b218329cc047e2b294056dcc5181/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/7b5a66c0c4ca3336063357e160453fa3/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "star": 5,
+        "texts": [
+          {
+            "language": "de",
+            "name": "Hsin",
+            "skillDisplay": "Basis-Kombo: \nUnisono：Unisono-Reaktion → Standardangriff*2 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Unisono-Reaktion → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill\nElektroflamme：Intro-Skill → Standardangriff → Verstärkter Schwerer Angriff → Resonanzbefreiung → Standardangriff → Resonanz-Skill → Verstärkter Resonanzskill → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill"
+          },
+          {
+            "language": "en",
+            "name": "Hsin",
+            "skillDisplay": "Basic Combo：\nUnison Combo：Union Response → Basic Attack*2 → Enhanced Heavy Attack → Resonance Liberation → Union Response → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill\nElectro Flare Combo：Intro Skill → Basic Attack → Enhanced Heavy Attack → Resonance Liberation → Basic Attack → Resonance Skill → Enhanced Resonance Skill → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill"
+          },
+          {
+            "language": "es",
+            "name": "Hsin",
+            "skillDisplay": "Combo básico：\nUnísono：Respuesta al Unísono → Ataque básico*2 → Ataque cargado mejorado → Liberación de resonancia → Respuesta al Unísono → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro\nLlamarada eléctrica：Habilidad Intro → Ataque básico → Ataque cargado mejorado → Liberación de resonancia → Ataque básico → Habilidad de resonancia → Habilidad de resonancia mejorada → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro"
+          },
+          {
+            "language": "fr",
+            "name": "Hsin",
+            "skillDisplay": "Combo de base :\nUnisson：Réponse à l'Unisson → Attaque normale*2 → Attaque lourde renforcée → Libération résonatrice → Réponse à l'Unisson → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro\nElectromagnétique：Compétence d'Intro → Attaque normale → Attaque lourde renforcée → Libération résonatrice → Attaque normale → Compétence résonatrice → Compétence résonatrice renforcée → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro"
+          },
+          {
+            "language": "ja",
+            "name": "心",
+            "skillDisplay": "基本コンボ：\n同奏：同奏レスポンス → 通常攻撃*2 → 強化重撃 → 共鳴解放 → 同奏レスポンス → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル\n電磁効果：変奏スキル → 通常攻撃 → 強化重撃 → 共鳴解放 → 通常攻撃 → 共鳴スキル → 強化共鳴スキル → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル"
+          },
+          {
+            "language": "ko",
+            "name": "여우의 별자리",
+            "skillDisplay": "기본 콤보：\n합일：합일 대응 → 일반 공격*2 → 강화된 강공격 → 공명 해방 → 합일 대응 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬\n전자：변주 스킬 → 일반 공격 → 강화된 강공격 → 공명 해방 → 일반 공격 → 공명 스킬 → 강화된 공명 스킬 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬"
+          },
+          {
+            "language": "zh-Hans",
+            "name": "心",
+            "skillDisplay": "基础连招：\n同奏：响应同奏→普攻*2→强化重击→共鸣解放→响应同奏→普攻*4→强化重击→共鸣解放→延奏离场\n电磁：变奏入场→普攻→强化重击→共鸣解放→普攻→共鸣技能→强化共鸣技能→普攻*4→强化重击→共鸣解放→延奏离场"
+          },
+          {
+            "language": "zh-Hant",
+            "name": "心",
+            "skillDisplay": "基礎連招：\n同奏：響應同奏 → 普攻*2 → 強化重擊 → 共鳴解放 → 響應同奏 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能\n電磁：變奏技能 → 普攻 → 強化重擊 → 共鳴解放 → 普攻 → 共鳴技能 → 強化共鳴技能 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能"
+          }
+        ],
+        "rolePlays": [
+          {
+            "gbId": "2",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/fb5c81ed3a220004b71069645f112867.png",
+            "secondPictureUrl": null
+          },
+          {
+            "gbId": "6",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/f19c9085129709ee14d013be869df69b.png",
+            "secondPictureUrl": null
+          }
+        ]
+      },
+      "texts": [
+        {
+          "language": "de",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "en",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "es",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "fr",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ja",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ko",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "zh-Hans",
+          "introductionName": "梦州岁主【心月狐】电磁模态手法，配队，养成全方位攻略",
+          "introductionSource": "一戈",
+          "introductionDescription": "<p>心月狐作为鸣潮3.7版本综合强度顶尖的电系主C，拥有同奏与电磁双输出模态，自带高贵减抗、伤害加深、独立乘区等机制，不容易被稀释，配合新套装新声骸能稳定放大收益，属于&ldquo;机制+数值&rdquo;双满的主C。搭配锁暝可以走同奏队伍，也可搭配雷主走电磁队伍。</p>"
+        },
+        {
+          "language": "zh-Hant",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        }
+      ],
+      "likeCount": 4,
+      "isLiked": false,
+      "collectCount": 0,
+      "isCollected": false,
+      "teammateRecommends": [
+        {
+          "main": {
+            "roleGbId": "1309",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/46a2036c6e6e5a89133570f18abe6d7f/7bb61d835380e06fad688a778964e88a.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/55b3b96fcdfc9942bff4bf963ce2bf96/7bb61d835380e06fad688a778964e88a.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1304",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/f0f853fc28b06aab285db5ab274bec52.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/f0f853fc28b06aab285db5ab274bec52.png",
+              "star": 5,
+              "texts": null
+            }
+          ]
+        },
+        {
+          "main": {
+            "roleGbId": "1110",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/5776bc9b9fe180db76ecf76add47bf44/6941a971665e80a206db56b0ad3c59b7.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/a86ded28e834a8be7a7a8b74c2ce7bfa/6941a971665e80a206db56b0ad3c59b7.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1505",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/890adae97f3ec5f380008a743cbbc563.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/890adae97f3ec5f380008a743cbbc563.png",
+              "star": 5,
+              "texts": null
+            },
+            {
+              "roleGbId": "1307",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/2fdb664642d57f6fe3a444c595821059.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/2fdb664642d57f6fe3a444c595821059.png",
+              "star": 4,
+              "texts": null
+            }
+          ]
+        }
+      ],
+      "modifiedAt": 1790731554
+    },
+    {
+      "id": 10232,
+      "role": {
+        "roleGbId": "1311",
+        "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/2bd0b218329cc047e2b294056dcc5181/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/7b5a66c0c4ca3336063357e160453fa3/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "star": 5,
+        "texts": [
+          {
+            "language": "de",
+            "name": "Hsin",
+            "skillDisplay": "Basis-Kombo: \nUnisono：Unisono-Reaktion → Standardangriff*2 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Unisono-Reaktion → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill\nElektroflamme：Intro-Skill → Standardangriff → Verstärkter Schwerer Angriff → Resonanzbefreiung → Standardangriff → Resonanz-Skill → Verstärkter Resonanzskill → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill"
+          },
+          {
+            "language": "en",
+            "name": "Hsin",
+            "skillDisplay": "Basic Combo：\nUnison Combo：Union Response → Basic Attack*2 → Enhanced Heavy Attack → Resonance Liberation → Union Response → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill\nElectro Flare Combo：Intro Skill → Basic Attack → Enhanced Heavy Attack → Resonance Liberation → Basic Attack → Resonance Skill → Enhanced Resonance Skill → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill"
+          },
+          {
+            "language": "es",
+            "name": "Hsin",
+            "skillDisplay": "Combo básico：\nUnísono：Respuesta al Unísono → Ataque básico*2 → Ataque cargado mejorado → Liberación de resonancia → Respuesta al Unísono → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro\nLlamarada eléctrica：Habilidad Intro → Ataque básico → Ataque cargado mejorado → Liberación de resonancia → Ataque básico → Habilidad de resonancia → Habilidad de resonancia mejorada → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro"
+          },
+          {
+            "language": "fr",
+            "name": "Hsin",
+            "skillDisplay": "Combo de base :\nUnisson：Réponse à l'Unisson → Attaque normale*2 → Attaque lourde renforcée → Libération résonatrice → Réponse à l'Unisson → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro\nElectromagnétique：Compétence d'Intro → Attaque normale → Attaque lourde renforcée → Libération résonatrice → Attaque normale → Compétence résonatrice → Compétence résonatrice renforcée → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro"
+          },
+          {
+            "language": "ja",
+            "name": "心",
+            "skillDisplay": "基本コンボ：\n同奏：同奏レスポンス → 通常攻撃*2 → 強化重撃 → 共鳴解放 → 同奏レスポンス → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル\n電磁効果：変奏スキル → 通常攻撃 → 強化重撃 → 共鳴解放 → 通常攻撃 → 共鳴スキル → 強化共鳴スキル → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル"
+          },
+          {
+            "language": "ko",
+            "name": "여우의 별자리",
+            "skillDisplay": "기본 콤보：\n합일：합일 대응 → 일반 공격*2 → 강화된 강공격 → 공명 해방 → 합일 대응 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬\n전자：변주 스킬 → 일반 공격 → 강화된 강공격 → 공명 해방 → 일반 공격 → 공명 스킬 → 강화된 공명 스킬 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬"
+          },
+          {
+            "language": "zh-Hans",
+            "name": "心",
+            "skillDisplay": "基础连招：\n同奏：响应同奏→普攻*2→强化重击→共鸣解放→响应同奏→普攻*4→强化重击→共鸣解放→延奏离场\n电磁：变奏入场→普攻→强化重击→共鸣解放→普攻→共鸣技能→强化共鸣技能→普攻*4→强化重击→共鸣解放→延奏离场"
+          },
+          {
+            "language": "zh-Hant",
+            "name": "心",
+            "skillDisplay": "基礎連招：\n同奏：響應同奏 → 普攻*2 → 強化重擊 → 共鳴解放 → 響應同奏 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能\n電磁：變奏技能 → 普攻 → 強化重擊 → 共鳴解放 → 普攻 → 共鳴技能 → 強化共鳴技能 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能"
+          }
+        ],
+        "rolePlays": [
+          {
+            "gbId": "2",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/fb5c81ed3a220004b71069645f112867.png",
+            "secondPictureUrl": null
+          },
+          {
+            "gbId": "6",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/f19c9085129709ee14d013be869df69b.png",
+            "secondPictureUrl": null
+          }
+        ]
+      },
+      "texts": [
+        {
+          "language": "de",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "en",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "es",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "fr",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ja",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ko",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "zh-Hans",
+          "introductionName": "心月狐快速上手小技巧——silly沐",
+          "introductionSource": "silly沐",
+          "introductionDescription": "<p>心月狐的定位是导电属性的双模态主C。落地配合免费赠送的雷主与4星角色卜灵，他们三人组电磁效应队即可打出很亮眼的表现，后续补强也可以等待同奏体系的队友登场，组出完整同奏队，就业前景非常广泛。<br>实战操作难度极低，很简单就能上手操作。</p>"
+        },
+        {
+          "language": "zh-Hant",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        }
+      ],
+      "likeCount": 1,
+      "isLiked": false,
+      "collectCount": 0,
+      "isCollected": false,
+      "teammateRecommends": [
+        {
+          "main": {
+            "roleGbId": "1309",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/46a2036c6e6e5a89133570f18abe6d7f/7bb61d835380e06fad688a778964e88a.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/55b3b96fcdfc9942bff4bf963ce2bf96/7bb61d835380e06fad688a778964e88a.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1304",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/f0f853fc28b06aab285db5ab274bec52.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/f0f853fc28b06aab285db5ab274bec52.png",
+              "star": 5,
+              "texts": null
+            }
+          ]
+        },
+        {
+          "main": {
+            "roleGbId": "1110",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/5776bc9b9fe180db76ecf76add47bf44/6941a971665e80a206db56b0ad3c59b7.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/a86ded28e834a8be7a7a8b74c2ce7bfa/6941a971665e80a206db56b0ad3c59b7.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1307",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/2fdb664642d57f6fe3a444c595821059.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/2fdb664642d57f6fe3a444c595821059.png",
+              "star": 4,
+              "texts": null
+            },
+            {
+              "roleGbId": "1505",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/890adae97f3ec5f380008a743cbbc563.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/890adae97f3ec5f380008a743cbbc563.png",
+              "star": 5,
+              "texts": null
+            }
+          ]
+        }
+      ],
+      "modifiedAt": 1790731554
+    },
+    {
+      "id": 10229,
+      "role": {
+        "roleGbId": "1311",
+        "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/2bd0b218329cc047e2b294056dcc5181/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/7b5a66c0c4ca3336063357e160453fa3/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "star": 5,
+        "texts": [
+          {
+            "language": "de",
+            "name": "Hsin",
+            "skillDisplay": "Basis-Kombo: \nUnisono：Unisono-Reaktion → Standardangriff*2 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Unisono-Reaktion → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill\nElektroflamme：Intro-Skill → Standardangriff → Verstärkter Schwerer Angriff → Resonanzbefreiung → Standardangriff → Resonanz-Skill → Verstärkter Resonanzskill → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill"
+          },
+          {
+            "language": "en",
+            "name": "Hsin",
+            "skillDisplay": "Basic Combo：\nUnison Combo：Union Response → Basic Attack*2 → Enhanced Heavy Attack → Resonance Liberation → Union Response → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill\nElectro Flare Combo：Intro Skill → Basic Attack → Enhanced Heavy Attack → Resonance Liberation → Basic Attack → Resonance Skill → Enhanced Resonance Skill → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill"
+          },
+          {
+            "language": "es",
+            "name": "Hsin",
+            "skillDisplay": "Combo básico：\nUnísono：Respuesta al Unísono → Ataque básico*2 → Ataque cargado mejorado → Liberación de resonancia → Respuesta al Unísono → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro\nLlamarada eléctrica：Habilidad Intro → Ataque básico → Ataque cargado mejorado → Liberación de resonancia → Ataque básico → Habilidad de resonancia → Habilidad de resonancia mejorada → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro"
+          },
+          {
+            "language": "fr",
+            "name": "Hsin",
+            "skillDisplay": "Combo de base :\nUnisson：Réponse à l'Unisson → Attaque normale*2 → Attaque lourde renforcée → Libération résonatrice → Réponse à l'Unisson → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro\nElectromagnétique：Compétence d'Intro → Attaque normale → Attaque lourde renforcée → Libération résonatrice → Attaque normale → Compétence résonatrice → Compétence résonatrice renforcée → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro"
+          },
+          {
+            "language": "ja",
+            "name": "心",
+            "skillDisplay": "基本コンボ：\n同奏：同奏レスポンス → 通常攻撃*2 → 強化重撃 → 共鳴解放 → 同奏レスポンス → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル\n電磁効果：変奏スキル → 通常攻撃 → 強化重撃 → 共鳴解放 → 通常攻撃 → 共鳴スキル → 強化共鳴スキル → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル"
+          },
+          {
+            "language": "ko",
+            "name": "여우의 별자리",
+            "skillDisplay": "기본 콤보：\n합일：합일 대응 → 일반 공격*2 → 강화된 강공격 → 공명 해방 → 합일 대응 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬\n전자：변주 스킬 → 일반 공격 → 강화된 강공격 → 공명 해방 → 일반 공격 → 공명 스킬 → 강화된 공명 스킬 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬"
+          },
+          {
+            "language": "zh-Hans",
+            "name": "心",
+            "skillDisplay": "基础连招：\n同奏：响应同奏→普攻*2→强化重击→共鸣解放→响应同奏→普攻*4→强化重击→共鸣解放→延奏离场\n电磁：变奏入场→普攻→强化重击→共鸣解放→普攻→共鸣技能→强化共鸣技能→普攻*4→强化重击→共鸣解放→延奏离场"
+          },
+          {
+            "language": "zh-Hant",
+            "name": "心",
+            "skillDisplay": "基礎連招：\n同奏：響應同奏 → 普攻*2 → 強化重擊 → 共鳴解放 → 響應同奏 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能\n電磁：變奏技能 → 普攻 → 強化重擊 → 共鳴解放 → 普攻 → 共鳴技能 → 強化共鳴技能 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能"
+          }
+        ],
+        "rolePlays": [
+          {
+            "gbId": "2",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/fb5c81ed3a220004b71069645f112867.png",
+            "secondPictureUrl": null
+          },
+          {
+            "gbId": "6",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/f19c9085129709ee14d013be869df69b.png",
+            "secondPictureUrl": null
+          }
+        ]
+      },
+      "texts": [
+        {
+          "language": "de",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "en",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "es",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "fr",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ja",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ko",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "zh-Hans",
+          "introductionName": "【衔梦照世之心】心 角色养成、配队、操作手法综合攻略",
+          "introductionSource": "FireMage丶",
+          "introductionDescription": "<p>大家好，我是FireMage丶，本期为大家带来的是岁主 - 心声骸培养，技能机制、操作手法综合教程，本攻略包含具体的【电磁效应】、【同奏】体系出伤机制，希望能够帮助到大家。</p>"
+        },
+        {
+          "language": "zh-Hant",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        }
+      ],
+      "likeCount": 0,
+      "isLiked": false,
+      "collectCount": 0,
+      "isCollected": false,
+      "teammateRecommends": [
+        {
+          "main": {
+            "roleGbId": "1309",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/46a2036c6e6e5a89133570f18abe6d7f/7bb61d835380e06fad688a778964e88a.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/55b3b96fcdfc9942bff4bf963ce2bf96/7bb61d835380e06fad688a778964e88a.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1307",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/2fdb664642d57f6fe3a444c595821059.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/2fdb664642d57f6fe3a444c595821059.png",
+              "star": 4,
+              "texts": null
+            }
+          ]
+        },
+        {
+          "main": {
+            "roleGbId": "1508",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/ba81bbe33358b2f73201b58f51df43bb.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/ba81bbe33358b2f73201b58f51df43bb.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1110",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/5776bc9b9fe180db76ecf76add47bf44/6941a971665e80a206db56b0ad3c59b7.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/a86ded28e834a8be7a7a8b74c2ce7bfa/6941a971665e80a206db56b0ad3c59b7.png",
+              "star": 5,
+              "texts": null
+            }
+          ]
+        }
+      ],
+      "modifiedAt": 1790731554
+    },
+    {
+      "id": 10230,
+      "role": {
+        "roleGbId": "1311",
+        "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/2bd0b218329cc047e2b294056dcc5181/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/7b5a66c0c4ca3336063357e160453fa3/0e707e81e4a7c7b133dbf5c962baeed0.png",
+        "star": 5,
+        "texts": [
+          {
+            "language": "de",
+            "name": "Hsin",
+            "skillDisplay": "Basis-Kombo: \nUnisono：Unisono-Reaktion → Standardangriff*2 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Unisono-Reaktion → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill\nElektroflamme：Intro-Skill → Standardangriff → Verstärkter Schwerer Angriff → Resonanzbefreiung → Standardangriff → Resonanz-Skill → Verstärkter Resonanzskill → Standardangriff*4 → Verstärkter Schwerer Angriff → Resonanzbefreiung → Outro-Skill"
+          },
+          {
+            "language": "en",
+            "name": "Hsin",
+            "skillDisplay": "Basic Combo：\nUnison Combo：Union Response → Basic Attack*2 → Enhanced Heavy Attack → Resonance Liberation → Union Response → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill\nElectro Flare Combo：Intro Skill → Basic Attack → Enhanced Heavy Attack → Resonance Liberation → Basic Attack → Resonance Skill → Enhanced Resonance Skill → Basic Attack*4 → Enhanced Heavy Attack → Resonance Liberation → Outro Skill"
+          },
+          {
+            "language": "es",
+            "name": "Hsin",
+            "skillDisplay": "Combo básico：\nUnísono：Respuesta al Unísono → Ataque básico*2 → Ataque cargado mejorado → Liberación de resonancia → Respuesta al Unísono → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro\nLlamarada eléctrica：Habilidad Intro → Ataque básico → Ataque cargado mejorado → Liberación de resonancia → Ataque básico → Habilidad de resonancia → Habilidad de resonancia mejorada → Ataque básico*4 → Ataque cargado mejorado → Liberación de resonancia → Habilidad Outro"
+          },
+          {
+            "language": "fr",
+            "name": "Hsin",
+            "skillDisplay": "Combo de base :\nUnisson：Réponse à l'Unisson → Attaque normale*2 → Attaque lourde renforcée → Libération résonatrice → Réponse à l'Unisson → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro\nElectromagnétique：Compétence d'Intro → Attaque normale → Attaque lourde renforcée → Libération résonatrice → Attaque normale → Compétence résonatrice → Compétence résonatrice renforcée → Attaque normale*4 → Attaque lourde renforcée → Libération résonatrice → Compétence d'Outro"
+          },
+          {
+            "language": "ja",
+            "name": "心",
+            "skillDisplay": "基本コンボ：\n同奏：同奏レスポンス → 通常攻撃*2 → 強化重撃 → 共鳴解放 → 同奏レスポンス → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル\n電磁効果：変奏スキル → 通常攻撃 → 強化重撃 → 共鳴解放 → 通常攻撃 → 共鳴スキル → 強化共鳴スキル → 通常攻撃*4 → 強化重撃 → 共鳴解放 → 終奏スキル"
+          },
+          {
+            "language": "ko",
+            "name": "여우의 별자리",
+            "skillDisplay": "기본 콤보：\n합일：합일 대응 → 일반 공격*2 → 강화된 강공격 → 공명 해방 → 합일 대응 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬\n전자：변주 스킬 → 일반 공격 → 강화된 강공격 → 공명 해방 → 일반 공격 → 공명 스킬 → 강화된 공명 스킬 → 일반 공격*4 → 강화된 강공격 → 공명 해방 → 반주 스킬"
+          },
+          {
+            "language": "zh-Hans",
+            "name": "心",
+            "skillDisplay": "基础连招：\n同奏：响应同奏→普攻*2→强化重击→共鸣解放→响应同奏→普攻*4→强化重击→共鸣解放→延奏离场\n电磁：变奏入场→普攻→强化重击→共鸣解放→普攻→共鸣技能→强化共鸣技能→普攻*4→强化重击→共鸣解放→延奏离场"
+          },
+          {
+            "language": "zh-Hant",
+            "name": "心",
+            "skillDisplay": "基礎連招：\n同奏：響應同奏 → 普攻*2 → 強化重擊 → 共鳴解放 → 響應同奏 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能\n電磁：變奏技能 → 普攻 → 強化重擊 → 共鳴解放 → 普攻 → 共鳴技能 → 強化共鳴技能 → 普攻*4 → 強化重擊 → 共鳴解放 → 延奏技能"
+          }
+        ],
+        "rolePlays": [
+          {
+            "gbId": "2",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/fb5c81ed3a220004b71069645f112867.png",
+            "secondPictureUrl": null
+          },
+          {
+            "gbId": "6",
+            "pictureUrl": "https://guide-res.aki-game.net/introduction/material/53b443ed5b87e312f022324bdd5a88ca/f19c9085129709ee14d013be869df69b.png",
+            "secondPictureUrl": null
+          }
+        ]
+      },
+      "texts": [
+        {
+          "language": "de",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "en",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "es",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "fr",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ja",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "ko",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        },
+        {
+          "language": "zh-Hans",
+          "introductionName": "心月狐-快速上手（宇哲又吃大保底）",
+          "introductionSource": "宇哲又吃大保底",
+          "introductionDescription": "<div>1、心月狐，直伤体系，导电属性，共鸣技能伤害为主，同奏、电磁两套流派自由选择，对单对群都无明显短板。</div>\n<div>&nbsp;</div>\n<div>2、输出手法：</div>\n<div>电磁心月狐：心月狐先手技能+平a，积攒一半能量，切3号辅助位打满协奏，切2号位雷主打满协奏，切心月狐变奏入场，长按普攻重击，释放一段大，普攻一套打满能量，释放强化技技能，普攻一套打满能量，重击，两次技能，二段大收尾。</div>\n<div>&nbsp;</div>\n<div>3、电磁推荐配队：电磁心+雷主+穗穗/千咲/卜灵</div>\n<div>&nbsp;</div>\n<div>4、养成一览：衔梦照世之心43311，主词条：4暴击率/暴击伤害+3导电+3导电+1攻击+1攻击，副词条：暴击率、暴击伤害、攻击力百分比、攻击力、共鸣技能伤害加成、共鸣效率120+</div>"
+        },
+        {
+          "language": "zh-Hant",
+          "introductionName": "",
+          "introductionSource": "",
+          "introductionDescription": ""
+        }
+      ],
+      "likeCount": 0,
+      "isLiked": false,
+      "collectCount": 0,
+      "isCollected": false,
+      "teammateRecommends": [
+        {
+          "main": {
+            "roleGbId": "1309",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/46a2036c6e6e5a89133570f18abe6d7f/7bb61d835380e06fad688a778964e88a.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/55b3b96fcdfc9942bff4bf963ce2bf96/7bb61d835380e06fad688a778964e88a.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": null
+        },
+        {
+          "main": {
+            "roleGbId": "1110",
+            "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/5776bc9b9fe180db76ecf76add47bf44/6941a971665e80a206db56b0ad3c59b7.png",
+            "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/a86ded28e834a8be7a7a8b74c2ce7bfa/6941a971665e80a206db56b0ad3c59b7.png",
+            "star": 5,
+            "texts": null
+          },
+          "spares": [
+            {
+              "roleGbId": "1505",
+              "cardPictureUrl": "https://guide-res.aki-game.net/introduction/material/43865e670f6c369a47b31994276a5a4f/890adae97f3ec5f380008a743cbbc563.png",
+              "illustrationPictureUrl": "https://guide-res.aki-game.net/introduction/material/96574f5d80c21f91c18c0450608530eb/890adae97f3ec5f380008a743cbbc563.png",
+              "star": 5,
+              "texts": null
+            }
+          ]
+        }
+      ],
+      "modifiedAt": 1790731554
+    }
+  ]
+}

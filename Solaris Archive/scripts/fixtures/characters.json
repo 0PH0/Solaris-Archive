@@ -1,0 +1,506 @@
+[
+  {
+    "name": "心",
+    "yomi": "しん",
+    "id": "Hsin",
+    "rarity": 0,
+    "attribute": "",
+    "weapon": "",
+    "version": "3.7"
+  },
+  {
+    "name": "景燃",
+    "yomi": "じんらん",
+    "id": "Jingran",
+    "rarity": 5,
+    "attribute": "fusion",
+    "weapon": "broadblade",
+    "version": "3.6"
+  },
+  {
+    "name": "ルーシー",
+    "yomi": "るーしー",
+    "id": "Lucy",
+    "rarity": 5,
+    "attribute": "spectro",
+    "weapon": "pistols",
+    "version": "3.4"
+  },
+  {
+    "name": "清宵",
+    "yomi": "せいしょう",
+    "id": "Qingxiao",
+    "rarity": 5,
+    "attribute": "aero",
+    "weapon": "sword",
+    "version": "3.6"
+  },
+  {
+    "name": "レベッカ",
+    "yomi": "れべっか",
+    "id": "Rebecca",
+    "rarity": 5,
+    "attribute": "electro",
+    "weapon": "pistols",
+    "version": "3.4"
+  },
+  {
+    "name": "穂穂",
+    "yomi": "すいすい",
+    "id": "SuiSui",
+    "rarity": 5,
+    "attribute": "glacio",
+    "weapon": "rectifier",
+    "version": "3.5"
+  },
+  {
+    "name": "秧秧・玄翎",
+    "yomi": "やんやんげんれい",
+    "id": "Yangyang_Xuanling",
+    "rarity": 5,
+    "attribute": "havoc",
+    "weapon": "sword",
+    "version": "3.5"
+  },
+  {
+    "name": "アールト",
+    "yomi": "あーると",
+    "id": "aalto",
+    "rarity": 4,
+    "attribute": "aero",
+    "weapon": "pistols",
+    "version": "1.0"
+  },
+  {
+    "name": "エイメス",
+    "yomi": "えいめす",
+    "id": "aemeath",
+    "rarity": 5,
+    "attribute": "fusion",
+    "weapon": "sword",
+    "version": "3.1"
+  },
+  {
+    "name": "オーガスタ",
+    "yomi": "おーがすた",
+    "id": "augusta",
+    "rarity": 5,
+    "attribute": "electro",
+    "weapon": "broadblade",
+    "version": "2.6"
+  },
+  {
+    "name": "白芷",
+    "yomi": "びゃくし",
+    "id": "baizhi",
+    "rarity": 4,
+    "attribute": "glacio",
+    "weapon": "rectifier",
+    "version": "1.0"
+  },
+  {
+    "name": "ブラント",
+    "yomi": "ぶらんと",
+    "id": "brant",
+    "rarity": 5,
+    "attribute": "fusion",
+    "weapon": "sword",
+    "version": "2.1"
+  },
+  {
+    "name": "卜霊",
+    "yomi": "ぼくれい",
+    "id": "buling",
+    "rarity": 4,
+    "attribute": "electro",
+    "weapon": "rectifier",
+    "version": "2.8"
+  },
+  {
+    "name": "カカロ",
+    "yomi": "かかろ",
+    "id": "calcharo",
+    "rarity": 5,
+    "attribute": "electro",
+    "weapon": "broadblade",
+    "version": "1.0"
+  },
+  {
+    "name": "ツバキ",
+    "yomi": "つばき",
+    "id": "camellya",
+    "rarity": 5,
+    "attribute": "havoc",
+    "weapon": "sword",
+    "version": "1.4"
+  },
+  {
+    "name": "カンタレラ",
+    "yomi": "かんたれら",
+    "id": "cantarella",
+    "rarity": 5,
+    "attribute": "havoc",
+    "weapon": "rectifier",
+    "version": "2.2"
+  },
+  {
+    "name": "カルロッタ",
+    "yomi": "かるろった",
+    "id": "carlotta",
+    "rarity": 5,
+    "attribute": "glacio",
+    "weapon": "pistols",
+    "version": "2.0"
+  },
+  {
+    "name": "カルテジア",
+    "yomi": "かるてじあ",
+    "id": "cartethyia",
+    "rarity": 5,
+    "attribute": "aero",
+    "weapon": "sword",
+    "version": "2.4"
+  },
+  {
+    "name": "長離",
+    "yomi": "ちょうり",
+    "id": "changli",
+    "rarity": 5,
+    "attribute": "fusion",
+    "weapon": "sword",
+    "version": "1.1"
+  },
+  {
+    "name": "千咲",
+    "yomi": "ちさ",
+    "id": "chisa",
+    "rarity": 5,
+    "attribute": "havoc",
+    "weapon": "broadblade",
+    "version": "2.8"
+  },
+  {
+    "name": "熾霞",
+    "yomi": "しか",
+    "id": "chixia",
+    "rarity": 4,
+    "attribute": "fusion",
+    "weapon": "pistols",
+    "version": "1.0"
+  },
+  {
+    "name": "シャコンヌ",
+    "yomi": "しゃこんぬ",
+    "id": "ciaccona",
+    "rarity": 5,
+    "attribute": "aero",
+    "weapon": "pistols",
+    "version": "2.3"
+  },
+  {
+    "name": "丹瑾",
+    "yomi": "たんきん",
+    "id": "danjin",
+    "rarity": 4,
+    "attribute": "havoc",
+    "weapon": "sword",
+    "version": "1.0"
+  },
+  {
+    "name": "ダーニャ",
+    "yomi": "だーにゃ",
+    "id": "denia",
+    "rarity": 5,
+    "attribute": "fusion",
+    "weapon": "rectifier",
+    "version": "3.3"
+  },
+  {
+    "name": "アンコ",
+    "yomi": "あんこ",
+    "id": "encore",
+    "rarity": 5,
+    "attribute": "fusion",
+    "weapon": "rectifier",
+    "version": "1.0"
+  },
+  {
+    "name": "ガルブレーナ",
+    "yomi": "がるぶれーな",
+    "id": "galbrena",
+    "rarity": 5,
+    "attribute": "fusion",
+    "weapon": "pistols",
+    "version": "2.7"
+  },
+  {
+    "name": "緋雪",
+    "yomi": "ひゆき",
+    "id": "hiyuki",
+    "rarity": 5,
+    "attribute": "glacio",
+    "weapon": "sword",
+    "version": "3.3"
+  },
+  {
+    "name": "ユーノ",
+    "yomi": "ゆーの",
+    "id": "iuno",
+    "rarity": 5,
+    "attribute": "aero",
+    "weapon": "rectifier",
+    "version": "2.6"
+  },
+  {
+    "name": "鑑心",
+    "yomi": "かんしん",
+    "id": "jianxin",
+    "rarity": 5,
+    "attribute": "aero",
+    "weapon": "gauntlets",
+    "version": "1.0"
+  },
+  {
+    "name": "今汐",
+    "yomi": "こんし",
+    "id": "jinshi",
+    "rarity": 5,
+    "attribute": "spectro",
+    "weapon": "broadblade",
+    "version": "1.1"
+  },
+  {
+    "name": "忌炎",
+    "yomi": "きえん",
+    "id": "jiyan",
+    "rarity": 5,
+    "attribute": "aero",
+    "weapon": "broadblade",
+    "version": "1.0"
+  },
+  {
+    "name": "凌陽",
+    "yomi": "りんよう",
+    "id": "lingyang",
+    "rarity": 5,
+    "attribute": "glacio",
+    "weapon": "gauntlets",
+    "version": "1.0"
+  },
+  {
+    "name": "鎖暝",
+    "yomi": "さめい",
+    "id": "lucilla",
+    "rarity": 0,
+    "attribute": "",
+    "weapon": "",
+    "version": "x.x"
+  },
+  {
+    "name": "ルシラー",
+    "yomi": "るしらー",
+    "id": "lucilla",
+    "rarity": 5,
+    "attribute": "glacio",
+    "weapon": "rectifier",
+    "version": "3.4"
+  },
+  {
+    "name": "灯灯",
+    "yomi": "とうとう",
+    "id": "lumi",
+    "rarity": 4,
+    "attribute": "electro",
+    "weapon": "broadblade",
+    "version": "1.4"
+  },
+  {
+    "name": "ルパ",
+    "yomi": "るぱ",
+    "id": "lupa",
+    "rarity": 5,
+    "attribute": "fusion",
+    "weapon": "broadblade",
+    "version": "2.4"
+  },
+  {
+    "name": "リューク・ヘルセン",
+    "yomi": "りゅーく・へるせん",
+    "id": "luuk_herssen",
+    "rarity": 5,
+    "attribute": "spectro",
+    "weapon": "gauntlets",
+    "version": "3.1"
+  },
+  {
+    "name": "リンネー",
+    "yomi": "りんねー",
+    "id": "lynae",
+    "rarity": 5,
+    "attribute": "spectro",
+    "weapon": "pistols",
+    "version": "3.0"
+  },
+  {
+    "name": "モーニエ",
+    "yomi": "もーにえ",
+    "id": "mornye",
+    "rarity": 5,
+    "attribute": "fusion",
+    "weapon": "broadblade",
+    "version": "3.0"
+  },
+  {
+    "name": "モルトフィー",
+    "yomi": "もるとふぃー",
+    "id": "mortefi",
+    "rarity": 4,
+    "attribute": "fusion",
+    "weapon": "pistols",
+    "version": "1.0"
+  },
+  {
+    "name": "フィービー",
+    "yomi": "ふぃーびー",
+    "id": "phoebe",
+    "rarity": 5,
+    "attribute": "spectro",
+    "weapon": "rectifier",
+    "version": "2.1"
+  },
+  {
+    "name": "フローヴァ",
+    "yomi": "ふろーゔぁ",
+    "id": "phrolova",
+    "rarity": 5,
+    "attribute": "havoc",
+    "weapon": "rectifier",
+    "version": "2.5"
+  },
+  {
+    "name": "仇遠",
+    "yomi": "きゅうえん",
+    "id": "qiuyuan",
+    "rarity": 5,
+    "attribute": "aero",
+    "weapon": "sword",
+    "version": "2.7"
+  },
+  {
+    "name": "ロココ",
+    "yomi": "ろここ",
+    "id": "roccia",
+    "rarity": 5,
+    "attribute": "havoc",
+    "weapon": "gauntlets",
+    "version": "2.0"
+  },
+  {
+    "name": "散華",
+    "yomi": "さんか",
+    "id": "sanhua",
+    "rarity": 4,
+    "attribute": "glacio",
+    "weapon": "sword",
+    "version": "1.0"
+  },
+  {
+    "name": "ショアキーパー",
+    "yomi": "しょあきーぱー",
+    "id": "shorekeeper",
+    "rarity": 5,
+    "attribute": "spectro",
+    "weapon": "rectifier",
+    "version": "1.3"
+  },
+  {
+    "name": "シグリカ",
+    "yomi": "しぐりか",
+    "id": "sigrika",
+    "rarity": 5,
+    "attribute": "aero",
+    "weapon": "gauntlets",
+    "version": "3.2"
+  },
+  {
+    "name": "桃祈",
+    "yomi": "たおき",
+    "id": "taogi",
+    "rarity": 4,
+    "attribute": "havoc",
+    "weapon": "broadblade",
+    "version": "1.0"
+  },
+  {
+    "name": "ヴェリーナ",
+    "yomi": "ゔぇりーな",
+    "id": "verina",
+    "rarity": 5,
+    "attribute": "spectro",
+    "weapon": "rectifier",
+    "version": "1.0"
+  },
+  {
+    "name": "相里要",
+    "yomi": "そうりよう",
+    "id": "xiangli_yao",
+    "rarity": 5,
+    "attribute": "electro",
+    "weapon": "gauntlets",
+    "version": "1.2"
+  },
+  {
+    "name": "秧秧",
+    "yomi": "やんやん",
+    "id": "yangyang",
+    "rarity": 4,
+    "attribute": "aero",
+    "weapon": "sword",
+    "version": "1.0"
+  },
+  {
+    "name": "吟霖",
+    "yomi": "いんりん",
+    "id": "yinlin",
+    "rarity": 5,
+    "attribute": "electro",
+    "weapon": "rectifier",
+    "version": "1.0"
+  },
+  {
+    "name": "釉瑚",
+    "yomi": "ゆうご",
+    "id": "youhu",
+    "rarity": 4,
+    "attribute": "glacio",
+    "weapon": "rectifier",
+    "version": "1.3"
+  },
+  {
+    "name": "淵武",
+    "yomi": "えんぶ",
+    "id": "yuanwu",
+    "rarity": 4,
+    "attribute": "electro",
+    "weapon": "gauntlets",
+    "version": "1.0"
+  },
+  {
+    "name": "ザンニー",
+    "yomi": "ざんにー",
+    "id": "zani",
+    "rarity": 5,
+    "attribute": "spectro",
+    "weapon": "gauntlets",
+    "version": "2.3"
+  },
+  {
+    "name": "折枝",
+    "yomi": "おりえ",
+    "id": "zhezhi",
+    "rarity": 5,
+    "attribute": "glacio",
+    "weapon": "rectifier",
+    "version": "1.2"
+  }
+]

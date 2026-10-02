@@ -11,6 +11,22 @@ const characterSourceUrl = "https://anzfactory.github.io/wuwaaan/characters.json
 const characterAssetsUrl = "https://api.github.com/repos/ryanbenson/wuthering-waves-assets/contents/images?ref=master";
 const characterCacheTtlMs = 6 * 60 * 60 * 1000;
 let characterCache = null;
+const encoreCharacterUrl = "https://api-v2.encore.moe/api/en/character";
+const characterDetails = new Map();
+const characterDetailRequests = new Map();
+const characterWeaponCache = new Map();
+const characterWeaponRequests = new Map();
+const officialChannelId = "UC0Bi5KMcECRVYis5Gb_ZYZQ";
+let characterMediaCache = null;
+let characterMediaRequest = null;
+// Only verified associations: the API's InitWeaponItemId is a starter weapon.
+const verifiedCharacterReleases = [{
+  id: "Hsin", name: "Hsin", encoreId: 1311, version: "3.7", rarity: 5,
+  element: "Electro", weapon: "Rectifier", releaseAt: "2026-09-30T03:00:00Z",
+  signatureWeapon: { id: 21050116, name: "Blooming Jadehaven", slug: "blooming-jadehaven" },
+  useApiDetails: true,
+  videoId: "a3zMk49qpwI"
+}];
 const eventFeedUrl = "https://raw.githubusercontent.com/TheLovinator1/wutheringwaves/master/articles_latest.xml";
 const eventCacheTtlMs = 30 * 60 * 1000;
 let eventCache = null;
@@ -363,24 +379,62 @@ async function createCharactersPayload() {
     };
   }
 
-  const [characters, assets] = await Promise.all([
-    fetchJson(characterSourceUrl),
-    // A listagem de imagens usa a API publica do GitHub, que e limitada por IP
-    // (403 quando a cota acaba). Ela e opcional: sem ela o cliente monta a URL
-    // do raw.githubusercontent a partir do nome do personagem.
-    fetchJson(characterAssetsUrl).catch(() => [])
-  ]);
+  let characters, assets;
+  // Optional enrichment must not make the established primary source fail.
+  const extraSources = Promise.allSettled([fetchJson(encoreCharacterUrl), fetchText(eventFeedUrl)]);
+  try {
+    [characters, assets] = await Promise.all([
+      fetchJson(characterSourceUrl),
+      fetchJson(characterAssetsUrl).catch(() => [])
+    ]);
+    if (!Array.isArray(characters) || !Array.isArray(assets)) throw new Error("Invalid characters response");
+  } catch (error) {
+    if (characterCache?.payload) return { ...characterCache.payload, cached: true, stale: true, externalError: true };
+    throw error;
+  }
   const assetMap = buildAssetMap(assets);
+  const [encoreResult, feedResult] = await extraSources;
+  const roles = encoreResult.status === "fulfilled" && Array.isArray(encoreResult.value?.roleList) ? encoreResult.value.roleList : [];
+  const releases = verifiedCharacterReleases.filter(record => Date.parse(record.releaseAt) <= now);
+  const releaseNames = new Set(releases.map(record => normalizeKey(record.name)));
+  if (feedResult.status === "fulfilled") {
+    for (const record of parseOfficialConveneFeed(feedResult.value)) {
+      if (record.type === "resonator" && Date.parse(record.startAt) <= now) releaseNames.add(normalizeKey(record.featuredName));
+    }
+  }
   const normalized = characters
     .map((character) => normalizeCharacter(character, assetMap))
-    .filter((character) => character.rarity > 0)
-    .sort((a, b) => a.name.localeCompare(b.name, "en"));
+    .map(character => {
+      const release = releases.find(record => normalizeKey(record.name) === normalizeKey(character.name));
+      const role = roles.find(record => normalizeKey(record.Name.replace(/^The /i, "")) === normalizeKey(character.name.replace(/^The /i, "")) && (!character.rarity || record.Element?.Name === character.element))
+        || (release && roles.find(record => record.Id === release.encoreId));
+      if (role) {
+        character.encoreId = Number(role.Id);
+        character.iconUrl = safeEncoreAsset(role.RoleHeadIcon) || character.iconUrl;
+        if (!character.rarity && releaseNames.has(normalizeKey(character.name))) {
+          character.rarity = Number(role.QualityId); character.element = role.Element?.Name || "Unknown"; character.weapon = role.WeaponType?.Name || "Unknown";
+        }
+      }
+      if (release) Object.assign(character, { rarity: release.rarity, element: release.element, weapon: release.weapon, encoreId: release.encoreId, signatureWeapon: release.signatureWeapon, videoId: release.videoId, useApiDetails: true });
+      return character;
+    }).filter(character => character.rarity > 0);
+  // Include officially released newcomers even while the primary list is catching up.
+  for (const role of roles) {
+    if (!releaseNames.has(normalizeKey(role.Name)) || normalized.some(record => normalizeKey(record.name) === normalizeKey(role.Name))) continue;
+    const release = releases.find(record => record.encoreId === role.Id);
+    normalized.push({ id: role.Name, slug: normalizeKey(role.Name), name: role.Name, rarity: Number(role.QualityId), element: role.Element?.Name || "Unknown", weapon: role.WeaponType?.Name || "Unknown", encoreId: Number(role.Id), version: release?.version || "", imageUrl: safeEncoreAsset(role.RoleHeadIcon), iconUrl: safeEncoreAsset(role.RoleHeadIcon), sourceUrl: encoreCharacterUrl, newRelease: !release, useApiDetails: true, ...(release ? {signatureWeapon: release.signatureWeapon, videoId: release.videoId} : {}) });
+  }
+  for (const release of releases) {
+    if (!normalized.some(record => normalizeKey(record.name) === normalizeKey(release.name))) normalized.push({ ...release, slug: normalizeKey(release.id), sourceUrl: encoreCharacterUrl });
+  }
+  normalized.sort((a, b) => a.name.localeCompare(b.name, "en"));
 
   const payload = {
     updatedAt: new Date(now).toISOString(),
     syncIntervalMinutes: Math.round(characterCacheTtlMs / 60000),
     source: characterSourceUrl,
     imageSource: "https://github.com/ryanbenson/wuthering-waves-assets",
+    detailSource: encoreCharacterUrl,
     characters: normalized
   };
 
@@ -393,6 +447,114 @@ async function createCharactersPayload() {
     ...payload,
     cached: false
   };
+}
+
+function safeEncoreAsset(value) {
+  return typeof value === "string" && /^https:\/\/api\.encore\.moe\/resource\//.test(value) ? value : "";
+}
+
+async function createCharacterDetailPayload(id) {
+  if (!/^\d{4}$/.test(String(id))) throw new Error("Invalid character ID");
+  const saved = characterDetails.get(id);
+  if (saved?.expiresAt > Date.now()) return saved.payload;
+  if (characterDetailRequests.has(id)) return characterDetailRequests.get(id);
+  const request = (async () => {
+    try {
+      const data = await fetchJson(`${encoreCharacterUrl}/${id}`);
+      if (!data.Name?.Content || !data.QualityId) throw new Error("Invalid character details");
+      const stats = Object.fromEntries((data.Properties || []).map(property => {
+        const value = [...(property.GrowthValues || [])].reverse().find(record => Number(record.level) === Number(data.MaxLevel))?.value ?? property.BaseValue;
+        return [stripTags(property.Name), typeof value === "number" ? Math.round(value * 100) / 100 : stripTags(value)];
+      }));
+      const payload = {
+        id: Number(id), name: stripTags(data.Name.Content), maxLevel: Number(data.MaxLevel),
+        introduction: stripTags(data.Introduction?.Content), stats,
+        imageUrl: safeEncoreAsset(data.FormationRoleCard) || safeEncoreAsset(data.RolePortrait), portraitUrl: safeEncoreAsset(data.RolePortrait) || safeEncoreAsset(data.FormationRoleCard),
+        iconUrl: safeEncoreAsset(data.RoleHeadIconLarge || data.RoleHeadIcon),
+        skills: (data.Skills || []).map(skill => ({name: stripTags(skill.SkillName), type: stripTags(skill.SkillType), description: stripTags(skill.SkillDescribe)})),
+        sourceUrl: `${encoreCharacterUrl}/${id}`
+      };
+      characterDetails.set(id, {payload, expiresAt: Date.now() + characterCacheTtlMs});
+      return payload;
+    } catch (error) { if (saved?.payload) return {...saved.payload, stale: true}; throw error; }
+  })();
+  characterDetailRequests.set(id, request);
+  try {return await request;} finally {characterDetailRequests.delete(id);}
+}
+
+function parseOfficialCharacterVideos(html) {
+  const marker = "var ytInitialData = ";
+  const start = html.indexOf(marker);
+  if (start < 0) throw new Error("Official channel data unavailable");
+  const end = html.indexOf(";</script>", start);
+  const data = JSON.parse(html.slice(start + marker.length, end));
+  if (data.metadata?.channelMetadataRenderer?.externalId !== officialChannelId) throw new Error("Unexpected video channel");
+  const videos = {};
+  function visit(node) {
+    if (!node || typeof node !== "object") return;
+    const video = node.lockupViewModel;
+    const title = video?.metadata?.lockupMetadataViewModel?.title?.content || "";
+    const name = title.match(/Resonator Showcase\s*\|\s*(.+?)\s*(?:—|–| - )/i)?.[1];
+    if (name && /^[\w-]{11}$/.test(video.contentId)) videos[normalizeKey(name)] ||= video.contentId;
+    for (const value of Object.values(node)) visit(value);
+  }
+  visit(data); return videos;
+}
+
+function extractExplicitSignatureWeapon(guide) {
+  const characterName = guide?.role?.texts?.find(text => text.language === 'en')?.name;
+  const description = stripTags(guide?.weaponTexts?.find(text => text.language === 'en')?.recommendDescription).replace(/[’‘]/g, "'").toLowerCase();
+  if (!characterName) return null;
+  for (const item of guide?.weapon?.items || []) {
+    const name = item.texts?.find(text => text.language === 'en')?.name;
+    if (!name || !/^\d{8}$/.test(String(item.gbId))) continue;
+    const weapon = name.toLowerCase(), character = characterName.toLowerCase();
+    if ([`${weapon} is ${character}'s signature weapon`, `${character}'s signature weapon is ${weapon}`, `${weapon} is the signature weapon of ${character}`].some(phrase => description.includes(phrase))) {
+      return {id: Number(item.gbId), name: stripTags(name), slug: name.normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')};
+    }
+  }
+  return null;
+}
+
+async function createCharacterWeaponPayload(id) {
+  if (!/^\d{4}$/.test(String(id))) throw new Error('Invalid character ID');
+  const saved = characterWeaponCache.get(id);
+  if (saved?.expiresAt > Date.now()) return saved.payload;
+  if (characterWeaponRequests.has(id)) return characterWeaponRequests.get(id);
+  const task = (async () => {
+    const sourceUrl = `https://wuwaguide.kurogames.com/?role_id=${id}`;
+    let payload = {signatureWeapon: null, sourceUrl};
+    try {
+      const list = await fetchJson(`https://guide-server.aki-game.net/introduction/list?roleGbId=${id}`);
+      const entry = list.code === 200 && Array.isArray(list.data) ? list.data.find(record => String(record.role?.roleGbId) === String(id) && record.texts?.some(text => text.language === 'en' && text.introductionName)) : null;
+      if (entry && Number.isSafeInteger(Number(entry.id))) {
+        const result = await fetchJson(`https://guide-server.aki-game.net/introduction/info?roleGbId=${id}&id=${Number(entry.id)}`);
+        if (result.code === 200 && String(result.data?.role?.roleGbId) === String(id)) {
+          payload = {signatureWeapon: extractExplicitSignatureWeapon(result.data), sourceUrl, author: stripTags(result.data.baseTexts?.find(text => text.language === 'en')?.introductionSource)};
+        }
+      }
+      characterWeaponCache.set(id, {payload, expiresAt: Date.now() + characterCacheTtlMs});
+    } catch {payload = saved?.payload || payload; characterWeaponCache.set(id, {payload, expiresAt: Date.now() + 5 * 60000});}
+    return payload;
+  })();
+  characterWeaponRequests.set(id,task);
+  try {return await task;} finally {characterWeaponRequests.delete(id);}
+}
+
+async function createCharacterMediaPayload() {
+  if (characterMediaCache?.expiresAt > Date.now()) return characterMediaCache.payload;
+  if (characterMediaRequest) return characterMediaRequest;
+  characterMediaRequest = (async () => {
+    const verified = Object.fromEntries(verifiedCharacterReleases.map(record => [normalizeKey(record.name), record.videoId]));
+    try {
+      const response = await fetch("https://www.youtube.com/@WutheringWaves/videos?hl=en", {signal: AbortSignal.timeout(15000), headers: {"Accept-Language": "en-US,en;q=0.9"}});
+      if (!response.ok) throw new Error("Official channel unavailable");
+      const videos = parseOfficialCharacterVideos(await response.text());
+      const payload = {videos: {...videos, ...verified}, channelId: officialChannelId};
+      characterMediaCache = {payload, expiresAt: Date.now() + characterCacheTtlMs}; return payload;
+    } catch {const payload = characterMediaCache?.payload || {videos: verified, channelId: officialChannelId}; characterMediaCache = {payload, expiresAt: Date.now() + 5 * 60000}; return payload;}
+  })();
+  try {return await characterMediaRequest;} finally {characterMediaRequest = null;}
 }
 
 function createDemoEventsPayload(error) {
@@ -606,6 +768,18 @@ async function serveIndex(response) {
 const server = http.createServer(async (request, response) => {
   try {
     const url = new URL(request.url, `http://${request.headers.host}`);
+    if (request.method === "GET" && /^\/api\/character-weapons\/\d{4}$/.test(url.pathname)) {
+      await sendJson(request, response, 200, await createCharacterWeaponPayload(url.pathname.split('/').pop()), 'public, max-age=300'); return;
+    }
+
+    if (request.method === "GET" && /^\/api\/characters\/\d{4}$/.test(url.pathname)) {
+      try { await sendJson(request, response, 200, await createCharacterDetailPayload(url.pathname.split('/').pop()), 'public, max-age=300'); }
+      catch { await sendJson(request, response, 502, {error: "character_details_unavailable"}, 'no-store'); }
+      return;
+    }
+    if (request.method === "GET" && url.pathname === "/api/character-media") {
+      await sendJson(request, response, 200, await createCharacterMediaPayload(), 'public, max-age=300'); return;
+    }
 
     if (request.method === "GET" && url.pathname === "/api/characters") {
       try {
