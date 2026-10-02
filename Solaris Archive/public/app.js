@@ -1,5 +1,6 @@
 import {loadWeaponCatalog, loadWeaponDetail} from './weapon-catalog.js';
 import {loadCharacterDetail, getCharacterDetail} from './character-catalog.js';
+import {loadTierSnapshot, getTierSnapshot, selectTierEntries, tierCharacterKey, tierProfileSlug, TIER_ORDER, TIER_ROLES, TIER_SOURCE} from './tier-list.js';
 import { readEchoCatalogCache, loadEchoCatalog, ECHO_CACHE_TTL } from "./echo-catalog.js";
 const app = document.querySelector("#app");
 let gacha = { revision: 0 };
@@ -192,7 +193,7 @@ const copy = {
     sourceLabel: "Fonte",
     updatedLabel: "Atualizado",
     pageCharactersDesc: "Lista de Resonators com papel, elemento, arma, builds e pagina individual.",
-    pageTierDesc: "Classificacao por dano, suporte e exploracao com filtro por elemento.",
+    pageTierDesc: "Avaliações por modo e função, com critérios claros e dados verificados da Prydwen.",
     pageEchoesDesc: "Sonatas, efeitos de conjunto e monstros de origem para planejar farm.",
     pageWeaponsDesc: "Armas por tipo, raridade, atributo secundario e usuarios recomendados.",
     pageItemsDesc: "Materiais de ascensao, fontes de farm e calendario semanal.",
@@ -226,7 +227,7 @@ const copy = {
     showcaseTitle: "Showcase por papel de equipe",
     showcaseDesc: "Abas para comparar funcoes de dano, suporte, ataques coordenados e controle de campo.",
     tierPreviewTitle: "DPS meta atual",
-    tierPreviewDesc: "Baseado em rankings recentes de Prydwen, Wuthering.gg e Pocket Tactics.",
+    tierPreviewDesc: "DPS em destaque na Tower of Adversity. Referência: Prydwen, patch 3.7.",
     recentNewsTitle: "Patch notes e anuncios recentes",
     recentNewsDesc: "Cards de feed preparados para receber RSS, CDN do launcher ou CMS.",
     conveneSpotlightTitle: "Banners de Convene ativos",
@@ -264,8 +265,6 @@ const copy = {
     builderEmpty: "Nada encontrado nesse filtro.",
     options: "opcoes",
     level: "Nivel",
-    currentMetaUpdated: "Meta DPS: atualizado manualmente em 02/09/2026",
-    tierSources: "Fontes: Prydwen, Wuthering.gg, Pocket Tactics"
   },
   en: {
     navHome: "Home",
@@ -372,7 +371,7 @@ const copy = {
     sourceLabel: "Source",
     updatedLabel: "Updated",
     pageCharactersDesc: "Resonator list with role, element, weapon, builds, and individual pages.",
-    pageTierDesc: "Ranking by damage, support, and exploration with an element filter.",
+    pageTierDesc: "Ratings by game mode and role, with clear criteria and verified Prydwen data.",
     pageEchoesDesc: "Sonatas, set effects, and source monsters for farming plans.",
     pageWeaponsDesc: "Weapons by type, rarity, secondary stat, and recommended users.",
     pageItemsDesc: "Ascension materials, farming sources, and weekly calendar.",
@@ -406,7 +405,7 @@ const copy = {
     showcaseTitle: "Team-role showcase",
     showcaseDesc: "Tabs to compare damage, support, coordinated attacks, and field control roles.",
     tierPreviewTitle: "Current DPS meta",
-    tierPreviewDesc: "Based on recent rankings from Prydwen, Wuthering.gg, and Pocket Tactics.",
+    tierPreviewDesc: "Featured Tower of Adversity DPS. Reference: Prydwen, patch 3.7.",
     recentNewsTitle: "Recent patch notes and announcements",
     recentNewsDesc: "Feed cards ready to receive RSS, launcher CDN, or CMS data.",
     conveneSpotlightTitle: "Active Convene banners",
@@ -444,8 +443,6 @@ const copy = {
     builderEmpty: "Nothing found with this filter.",
     options: "options",
     level: "Level",
-    currentMetaUpdated: "DPS meta: manually updated on 09/02/2026",
-    tierSources: "Sources: Prydwen, Wuthering.gg, Pocket Tactics"
   },
   es: {
     navHome: "Inicio",
@@ -552,7 +549,7 @@ const copy = {
     sourceLabel: "Fuente",
     updatedLabel: "Actualizado",
     pageCharactersDesc: "Lista de Resonators con rol, elemento, arma, builds y pagina individual.",
-    pageTierDesc: "Clasificacion por dano, soporte y exploracion con filtro por elemento.",
+    pageTierDesc: "Evaluaciones por modo y función, con criterios claros y datos verificados de Prydwen.",
     pageEchoesDesc: "Sonatas, efectos de conjunto y monstruos de origen para planear farmeo.",
     pageWeaponsDesc: "Armas por tipo, rareza, atributo secundario y usuarios recomendados.",
     pageItemsDesc: "Materiales de ascension, fuentes de farmeo y calendario semanal.",
@@ -586,7 +583,7 @@ const copy = {
     showcaseTitle: "Showcase por rol de equipo",
     showcaseDesc: "Pestanas para comparar funciones de dano, soporte, ataques coordinados y control de campo.",
     tierPreviewTitle: "Meta DPS actual",
-    tierPreviewDesc: "Basado en rankings recientes de Prydwen, Wuthering.gg y Pocket Tactics.",
+    tierPreviewDesc: "DPS destacados en Tower of Adversity. Referencia: Prydwen, parche 3.7.",
     recentNewsTitle: "Patch notes y anuncios recientes",
     recentNewsDesc: "Cards de feed preparados para recibir RSS, CDN del launcher o CMS.",
     conveneSpotlightTitle: "Banners de Convene activos",
@@ -624,8 +621,6 @@ const copy = {
     builderEmpty: "Nada encontrado con este filtro.",
     options: "opciones",
     level: "Nivel",
-    currentMetaUpdated: "Meta DPS: actualizado manualmente el 02/09/2026",
-    tierSources: "Fuentes: Prydwen, Wuthering.gg, Pocket Tactics"
   }
 };
 
@@ -685,7 +680,6 @@ const characters = [
     },
     skills: ["Eras in Unity", "Incarnation", "Purge of Light"],
     affinity: ["Ages of Harvest", "Verdant Summit", "Autumntrace"],
-    tiers: { damage: "S+", support: "B", exploration: "A" }
   },
   {
     slug: "jiyan",
@@ -705,7 +699,6 @@ const characters = [
     },
     skills: ["Qingloong at War", "Windborne Strike", "Emerald Storm"],
     affinity: ["Verdant Summit", "Ages of Harvest", "Broadblade of Night"],
-    tiers: { damage: "S", support: "C", exploration: "A" }
   },
   {
     slug: "yinlin",
@@ -725,7 +718,6 @@ const characters = [
     },
     skills: ["Zapstring", "Magnetic Roar", "Thundering Wrath"],
     affinity: ["Stringmaster", "Cosmic Ripples", "Jinzhou Keeper"],
-    tiers: { damage: "S", support: "A", exploration: "B" }
   },
   {
     slug: "verina",
@@ -745,7 +737,6 @@ const characters = [
     },
     skills: ["Botany Experiment", "Arboreal Flourish", "Grace of Life"],
     affinity: ["Variation", "Comet Flare", "Rectifier of Voyage"],
-    tiers: { damage: "C", support: "S+", exploration: "A" }
   },
   {
     slug: "mortefi",
@@ -765,7 +756,6 @@ const characters = [
     },
     skills: ["Impromptu Show", "Fury Fugue", "Dissonance"],
     affinity: ["Static Mist", "Thunderbolt", "Undying Flame"],
-    tiers: { damage: "A", support: "A", exploration: "B" }
   },
   {
     slug: "sanhua",
@@ -785,7 +775,6 @@ const characters = [
     },
     skills: ["Frigid Light", "Eternal Frost", "Clarity of Mind"],
     affinity: ["Emerald of Genesis", "Lunar Cutter", "Sword of Night"],
-    tiers: { damage: "A", support: "A", exploration: "B" }
   }
 ];
 
@@ -798,48 +787,7 @@ const elementEchoSet = {
   Spectro: "Celestial Light 5p"
 };
 
-const roleTierTemplate = {
-  dps: { damage: "A", support: "C", exploration: "A" },
-  sub: { damage: "A", support: "A", exploration: "B" },
-  support: { damage: "C", support: "A", exploration: "A" },
-  control: { damage: "B", support: "A", exploration: "B" }
-};
-
-const tierSourceLinks = [
-  { label: "Prydwen", url: "https://www.prydwen.gg/wuthering-waves/team-tier-list" },
-  { label: "Wuthering.gg", url: "https://wuthering.gg/tier-list" },
-  { label: "Pocket Tactics", url: "https://www.pockettactics.com/wuthering-waves/tier-list" }
-];
-
-const currentMetaTierOverrides = {
-  "yangyang-xuanling": { damage: "SS", exploration: "S", damageRank: 1 },
-  aemeath: { damage: "SS", exploration: "A", damageRank: 2 },
-  hiyuki: { damage: "SS", exploration: "A", damageRank: 3 },
-  sigrika: { damage: "SS", exploration: "S", damageRank: 4 },
-  qingxiao: { damage: "SS", exploration: "A", damageRank: 5 },
-  "luuk-herssen": { damage: "SS", exploration: "A", damageRank: 6 },
-  cartethyia: { damage: "S+", exploration: "S", damageRank: 7 },
-  phrolova: { damage: "S+", exploration: "A", damageRank: 8 },
-  augusta: { damage: "S+", exploration: "A", damageRank: 9 },
-  galbrena: { damage: "S+", exploration: "A", damageRank: 10 },
-  iuno: { damage: "S+", exploration: "S", damageRank: 11 },
-  lucy: { damage: "S+", exploration: "A", damageRank: 12 },
-  carlotta: { damage: "S", exploration: "A", damageRank: 13 },
-  jiyan: { damage: "S", exploration: "A", damageRank: 14 },
-  zani: { damage: "S", exploration: "A", damageRank: 15 },
-  rebecca: { damage: "S", exploration: "A", damageRank: 16 },
-  lupa: { damage: "S", exploration: "A", damageRank: 17 },
-  changli: { damage: "A", exploration: "A", damageRank: 18 },
-  camellya: { damage: "A", exploration: "A", damageRank: 19 },
-  jinhsi: { damage: "A", exploration: "A", damageRank: 20 },
-  phoebe: { damage: "A", exploration: "A", damageRank: 21 },
-  encore: { damage: "A", exploration: "B", damageRank: 22 },
-  "xiangli-yao": { damage: "A", exploration: "B", damageRank: 23 },
-  calcharo: { damage: "B", exploration: "B", damageRank: 24 },
-  danjin: { damage: "B", exploration: "B", damageRank: 25 },
-  lingyang: { damage: "C", exploration: "B", damageRank: 26 },
-  chixia: { damage: "C", exploration: "B", damageRank: 27 }
-};
+const tierSourceLinks = [{label: "Prydwen", url: TIER_SOURCE}];
 
 const statByRole = {
   dps: { hp: 10680, atk: 412, def: 1120, crit: "20.0%" },
@@ -936,6 +884,7 @@ function characterAssetFileName(name = "") {
 }
 
 function characterAssetUrl(name = "") {
+  if (slugify(name) === "rover") return "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_4_UI.webp";
   const fileName = characterAssetFileName(name);
   return fileName ? `${WUWA_ASSET_BASE_URL}/${fileName}.png` : "";
 }
@@ -1004,7 +953,6 @@ function createCharacter([name, rarity, element, weapon, role]) {
     },
     skills: ["Ataque basico", "Resonance Skill", "Resonance Liberation"],
     affinity: [signatureByWeapon[weapon] || "Emerald of Genesis", "Pioneer Podcast option", `${weapon} of Night`],
-    tiers: { ...(roleTierTemplate[role] || roleTierTemplate.dps) },
     imageUrl: assetUrl,
     portraitUrl: assetUrl,
     iconUrl: assetUrl
@@ -1069,15 +1017,6 @@ characters.push(
 characters.forEach((character) => {
   if (character.slug === 'hsin') {character.apiOnly = true; character.encoreId = 1311;}
   const assetUrl = character.imageUrl || characterAssetUrl(character.name);
-  const metaOverride = currentMetaTierOverrides[character.slug];
-
-  if (metaOverride) {
-    const { damageRank, ...tiers } = metaOverride;
-    character.tiers = { ...character.tiers, ...tiers };
-    character.damageRank = damageRank;
-    character.metaSource = "Prydwen + Wuthering.gg + Pocket Tactics";
-  }
-
   character.imageUrl = assetUrl;
   character.portraitUrl = character.portraitUrl || assetUrl;
   character.iconUrl = character.iconUrl || assetUrl;
@@ -1678,7 +1617,8 @@ const state = {
   characterWeaponFilter: "all",
   characterRarityFilter: "all",
   showcaseCollapsed: readShowcaseCollapsed(),
-  tierMode: "damage",
+  tierMode: "toa",
+  tierFilters: {query: "", element: "all", weapon: "all", rarity: "all", role: "all"},
   elementFilter: "all",
   weaponFilter: "all",
   builder: readBuilder(),
@@ -2371,21 +2311,8 @@ function renderCharacterShowcase() {
   `;
 }
 
-function tierWeight(tier) {
-  return { SS: 7, "S+": 6, S: 5, A: 4, B: 3, C: 2, D: 1 }[tier] || 0;
-}
-
-function compareDamageMeta(a, b) {
-  const tierDiff = tierWeight(b.tiers.damage) - tierWeight(a.tiers.damage);
-  if (tierDiff !== 0) return tierDiff;
-  return (a.damageRank || 999) - (b.damageRank || 999);
-}
-
 function renderTierPreview() {
-  const top = [...characters]
-    .filter((character) => character.role === "dps")
-    .sort(compareDamageMeta)
-    .slice(0, 6);
+  const top = selectTierEntries(characters, getTierSnapshot(), {mode: "toa", role: "dps"}).filter(entry => entry.tier).slice(0, 6);
 
   return `
     <section class="page-band">
@@ -2402,11 +2329,12 @@ function renderTierPreview() {
           </div>
         </div>
         <div class="tier-preview">
-          ${top.map((character, index) => `
+          ${!getTierSnapshot() ? `<p>${tierDataError ? label("Avaliações indisponíveis no momento.","Ratings unavailable right now.","Evaluaciones no disponibles ahora.") : label("Carregando avaliações…","Loading ratings…","Cargando evaluaciones…")}</p>` : ""}
+          ${top.map(({character, tier}) => `
             <a href="${pathFor("characters", state.lang, character.slug)}" data-link class="tier-row">
-              <span>${index + 1}</span>
+              <span aria-hidden="true">◇</span>
               <strong>${character.name}</strong>
-              <em>${character.tiers.damage}</em>
+              <em>${tier}</em>
             </a>
           `).join("")}
         </div>
@@ -2644,7 +2572,7 @@ function renderCharactersPage() {
 }
 
 function renderCharacterDetail(slug) {
-  const character = characters.find((item) => item.slug === slug);
+  const character = characters.find((item) => item.slug === slug) || (/^rover-(aero|electro|havoc|spectro)$/.test(slug) ? characters.find(item => /^Rover\s*\(/i.test(item.name) && item.element.toLowerCase() === slug.slice(6)) : null);
   if (!character) return renderNotFound();
   const details = getCharacterDetail(character.encoreId);
   const trailer = character.videoId || characterTrailers[character.slug];
@@ -2704,68 +2632,164 @@ function renderCharacterDetail(slug) {
   `;
 }
 
-function renderTierPage() {
-  const elements = ["all", ...new Set(characters.map((character) => character.element))];
-  const filtered = state.elementFilter === "all"
-    ? characters
-    : characters.filter((character) => character.element === state.elementFilter);
-  const sorted = [...filtered].sort((a, b) => {
-    const tierDiff = tierWeight(b.tiers[state.tierMode]) - tierWeight(a.tiers[state.tierMode]);
-    if (tierDiff !== 0) return tierDiff;
-    return state.tierMode === "damage"
-      ? (a.damageRank || 999) - (b.damageRank || 999)
-      : a.name.localeCompare(b.name);
-  });
-  const groups = ["SS", "S+", "S", "A", "B", "C", "D"].map((tier) => ({
-    tier,
-    entries: sorted.filter((character) => character.tiers[state.tierMode] === tier)
-  })).filter((group) => group.entries.length);
+function renderOfficialVideo(videoId, title) {
+  if (!/^[\w-]{11}$/.test(videoId)) return "";
+  const playLabel = state.lang === "en" ? "Play official trailer" : state.lang === "es" ? "Reproducir tráiler oficial" : "Reproduzir trailer oficial";
+  return `<article class="panel official-video">
+    <h2>${escapeHtml(title)}</h2>
+    <div class="video-player">
+      <button type="button" class="video-launch" data-video-id="${videoId}" data-video-title="${escapeHtml(title)}">
+        <span aria-hidden="true">▶</span> ${playLabel}
+      </button>
+    </div>
+    <a class="text-link" href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noreferrer">YouTube · Wuthering Waves ↗</a>
+  </article>`;
+}
 
-  return `
-    ${renderPageHero(t("navTier"), t("pageTierDesc"), "Meta")}
-    <section class="page-band">
-      <div class="container">
-        <div class="module-status">
-          <span>${t("currentMetaUpdated")}</span>
-          <span>${t("tierSources")}</span>
-        </div>
-        <div class="toolbar">
-          <div class="segmented">
-            ${["damage", "support", "exploration"].map((mode) => `
-              <button type="button" data-tier-mode="${mode}" class="${state.tierMode === mode ? "is-active" : ""}">
-                ${t(mode)}
-              </button>
-            `).join("")}
-          </div>
-          <label>
-            <span>${t("element")}</span>
-            <select data-element-filter>
-              ${elements.map((element) => `
-                <option value="${element}" ${state.elementFilter === element ? "selected" : ""}>
-                  ${element === "all" ? t("all") : element}
-                </option>
-              `).join("")}
-            </select>
-          </label>
-        </div>
-        <div class="tier-board">
-          ${groups.map((group) => `
-            <section class="tier-group">
-              <strong>${group.tier}</strong>
-              <div>
-                ${group.entries.map((character) => `
-                  <a href="${pathFor("characters", state.lang, character.slug)}" data-link class="tier-token">
-                    ${renderCharacterAvatar(character)}
-                    <span>${character.name}</span>
-                  </a>
-                `).join("")}
-              </div>
-            </section>
-          `).join("")}
-        </div>
-      </div>
-    </section>
-  `;
+let characterDetailRevision = 0;
+const characterDetailFailures = new Map();
+const observedCharacterImages = new WeakSet();
+const characterImageObserver = new IntersectionObserver(entries => {
+  for (const entry of entries) {
+    if (!entry.isIntersecting || entry.target.closest('[hidden]')) continue;
+    characterImageObserver.unobserve(entry.target);
+    upgradeCharacterImages(entry.target.dataset.characterImage);
+  }
+}, {rootMargin: '180px'});
+
+async function upgradeCharacterImages(id) {
+  if ((characterDetailFailures.get(id) || 0) > Date.now()) return;
+  try {
+    const previous = getCharacterDetail(id);
+    const detail = await loadCharacterDetail(id);
+    document.querySelectorAll(`[data-character-image="${Number(id)}"]`).forEach(image => {
+      const source = image.dataset.imageVariant === 'detail' ? detail.portraitUrl : detail.imageUrl;
+      if (source && image.getAttribute('src') !== source) image.src = source;
+    });
+    const character = characters.find(record => Number(record.encoreId) === Number(id));
+    if (character?.apiOnly) {
+      const statName = {HP:'hp',ATK:'atk',DEF:'def','Crit. Rate':'crit','Crit. DMG':'critDmg'};
+      for (const [name,value] of Object.entries(detail.stats || {})) if (statName[name]) character.stats[statName[name]] = value;
+    }
+    if (detail !== previous) {
+      characterDetailRevision++;
+      if (state.route === 'characters' && state.detail && character?.slug === state.detail) scheduleRender();
+    }
+  } catch {
+    characterDetailFailures.set(String(id),Date.now() + 60000);
+    characterDetailRevision++;
+    if (state.route === 'characters' && state.detail) scheduleRender();
+  }
+}
+
+function observeCharacterImages() {
+  app.querySelectorAll('.route-panel:not([hidden]) [data-character-image]').forEach(image => {
+    if (observedCharacterImages.has(image)) return;
+    observedCharacterImages.add(image); characterImageObserver.observe(image);
+  });
+}
+
+let characterMediaRequest, characterMediaExpiresAt = 0;
+const characterWeaponLookups = new Map();
+function loadAssociatedCharacterWeapon(character) {
+  if (!character?.apiOnly || !character.encoreId || character.signatureWeapon) return;
+  const saved = characterWeaponLookups.get(character.encoreId);
+  if (saved?.pending || saved?.expiresAt > Date.now()) return;
+  characterWeaponLookups.set(character.encoreId,{pending: true});
+  fetch(`/api/character-weapons/${character.encoreId}`,{signal: AbortSignal.timeout(35000)}).then(async response => {
+    if (!response.ok) throw Error('Character weapon lookup unavailable');
+    const payload = await response.json();
+    const target = characters.find(record => record.encoreId === character.encoreId);
+    if (target && /^\d{8}$/.test(String(payload.signatureWeapon?.id)) && payload.signatureWeapon.name && /^[a-z0-9-]+$/.test(payload.signatureWeapon.slug)) {
+      target.signatureWeapon = payload.signatureWeapon;
+      target.signatureWeaponSource = payload.sourceUrl;
+      target.build.weapon = payload.signatureWeapon.name;
+      characterDetailRevision++; scheduleRender();
+    }
+    characterWeaponLookups.set(character.encoreId,{expiresAt: Date.now() + 6 * 60 * 60 * 1000});
+  }).catch(() => characterWeaponLookups.set(character.encoreId,{expiresAt: Date.now() + 5 * 60000}));
+}
+async function loadCharacterMedia() {
+  if (characterMediaRequest || characterMediaExpiresAt > Date.now()) return characterMediaRequest;
+  characterMediaRequest = (async () => {
+    try {
+      const response = await fetch('/api/character-media', {signal: AbortSignal.timeout(20000)});
+      if (!response.ok) throw Error('Official videos unavailable');
+      const payload = await response.json();
+      if (payload.channelId !== 'UC0Bi5KMcECRVYis5Gb_ZYZQ') throw Error('Unexpected official channel');
+      for (const character of characters) {
+        const videoId = payload.videos?.[characterLookupKey(character)];
+        if (/^[\w-]{11}$/.test(videoId || '') && !characterTrailers[character.slug]) characterTrailers[character.slug] = videoId;
+      }
+      characterMediaExpiresAt = Date.now() + 6 * 60 * 60 * 1000;
+      characterDetailRevision++; scheduleRender();
+    } catch {characterMediaExpiresAt = Date.now() + 5 * 60000;}
+    finally {characterMediaRequest = null;}
+  })();
+  return characterMediaRequest;
+}
+
+let tierDataRequest, tierDataError = false, tierDataRevision = 0;
+async function ensureTierData() {
+  if (getTierSnapshot() || tierDataRequest || tierDataError) return tierDataRequest;
+  tierDataRequest = loadTierSnapshot().catch(() => {tierDataError = true;}).finally(() => {
+    tierDataRequest = null; tierDataRevision++; scheduleRender();
+  });
+  return tierDataRequest;
+}
+const tierRoleLabel = role => ({dps:'DPS',hybrid:'Hybrid',support:'Support'})[role];
+function tierFilterSelect(name, title, values) {
+  return '<label><span>'+title+'</span><select data-tier-filter="'+name+'">'+[['all',t('all')],...values.map(value=>[value,name==='role'?tierRoleLabel(value):name==='rarity'?value+'★':value])].map(([value,text])=>'<option value="'+escapeHtml(value)+'" '+(state.tierFilters[name]===String(value)?'selected':'')+'>'+escapeHtml(text)+'</option>').join('')+'</select></label>';
+}
+function renderTierCharacter(entry) {
+  const {character,role,tier,sequence,sourceUrl}=entry;
+  // The catalog's legacy Rover URL is shared; use its existing Encore head asset here.
+  const avatarCharacter = /^Rover\s*\(/i.test(character.name) ? {...character,imageUrl:'https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_'+(character.element==='Havoc'?'5':'4')+'_UI.webp'} : character;
+  return '<article class="tier-resonator" data-tier-character="'+escapeHtml(tierProfileSlug(character))+'" data-tier-role="'+(role || 'unrated')+'" data-tier-grade="'+(tier || 'unrated')+'">'+
+    '<a class="tier-character-link" href="'+pathFor('characters',state.lang,tierProfileSlug(character))+'" data-link>'+renderCharacterAvatar(avatarCharacter)+'<strong>'+escapeHtml(character.name)+'</strong></a>'+
+    '<div class="tier-card-meta"><span class="pill pill--'+escapeHtml(character.element.toLowerCase())+'">'+escapeHtml(character.element)+'</span><span>'+character.rarity+'★'+(sequence?' · '+sequence:'')+'</span></div>'+
+    (sourceUrl?'<a class="tier-review-link" href="'+escapeHtml(sourceUrl)+'" target="_blank" rel="noreferrer" aria-label="'+escapeHtml(label('Ver avaliação de ','Read review for ','Ver evaluación de ')+character.name+' · '+tierRoleLabel(role))+'">'+label('Avaliação ↗','Review ↗','Evaluación ↗')+'</a>':'')+'</article>';
+}
+function renderTierResults() {
+  const data=getTierSnapshot();
+  if (!data) return '<div class="empty-state" role="status"><h2>'+label('Avaliações da Tier List','Tier List ratings','Evaluaciones de la Tier List')+'</h2><p>'+(tierDataError?label('Não foi possível carregar as avaliações.','Unable to load ratings.','No se pudieron cargar las evaluaciones.'):label('Carregando dados verificados…','Loading verified data…','Cargando datos verificados…'))+'</p>'+(tierDataError?'<button type="button" class="favorite-wide" data-tier-retry>'+label('Tentar novamente','Try again','Reintentar')+'</button>':'')+'</div>';
+  const entries=selectTierEntries(characters,data,{...state.tierFilters,mode:state.tierMode});
+  const count=new Set(entries.map(entry=>tierCharacterKey(entry.character))).size;
+  const total=new Set(characters.map(tierCharacterKey)).size;
+  const roles=state.tierFilters.role==='all'?TIER_ROLES:[state.tierFilters.role];
+  const rated=entries.filter(entry=>entry.tier),unrated=entries.filter(entry=>!entry.tier);
+  const heading=state.tierMode==='ww'?'Whimpering Wastes':'Tower of Adversity';
+  return '<div class="tier-results-summary"><div><p class="eyebrow">'+label('MODO DE JOGO','GAME MODE','MODO DE JUEGO')+'</p><h2>'+heading+'</h2></div><p data-tier-count role="status" aria-live="polite">'+count+' / '+total+' '+label('personagens','characters','personajes')+' · '+rated.length+' '+label('avaliações','ratings','evaluaciones')+'</p></div>'+
+    '<p class="tier-order-note">'+label('Compare dentro da mesma função. A ordem dos personagens em cada tier é alfabética.','Compare within the same role. Characters within each tier are sorted alphabetically.','Compara dentro de la misma función. Los personajes de cada tier están en orden alfabético.')+'</p>'+
+    (rated.length?'<div class="tier-matrix" style="--tier-columns:'+roles.length+'"><div class="tier-matrix-head"><span>Tier</span>'+roles.map(role=>'<strong>'+tierRoleLabel(role)+'</strong>').join('')+'</div>'+TIER_ORDER.map(tier=>{
+      const tierEntries=rated.filter(entry=>entry.tier===tier);if(!tierEntries.length)return '';
+      return '<section class="tier-matrix-row" data-tier-row="'+tier+'"><h3 class="tier-rank-label">'+tier+'</h3>'+roles.map(role=>{
+        const cell=tierEntries.filter(entry=>entry.role===role);
+        return '<div class="tier-role-cell"><h4>'+tierRoleLabel(role)+'</h4><div class="tier-cell-cards">'+(cell.map(renderTierCharacter).join('') || '<span class="tier-cell-empty" aria-label="'+label('Sem personagens nesta função e tier','No characters in this role and tier','Sin personajes en esta función y tier')+'">—</span>')+'</div></div>';
+      }).join('')+'</section>';
+    }).join('')+'</div>':'')+
+    (unrated.length?'<section class="tier-unrated"><h3>'+label('Sem avaliação','Unrated','Sin evaluación')+'</h3><p>'+label('Estes personagens estão no catálogo, mas não têm avaliação neste snapshot da Prydwen. Não atribuímos notas estimadas.','These characters are in the catalog but have no rating in this Prydwen snapshot. No estimated tiers are assigned.','Estos personajes están en el catálogo, pero no tienen evaluación en este snapshot de Prydwen. No se asignan tiers estimados.')+'</p><div class="tier-unrated-grid">'+unrated.map(renderTierCharacter).join('')+'</div></section>':'')+
+    (!entries.length?'<div class="empty-state"><h3>'+label('Nenhum personagem encontrado','No characters found','No se encontraron personajes')+'</h3><p>'+label('Ajuste a pesquisa ou limpe os filtros.','Adjust your search or reset the filters.','Ajusta la búsqueda o limpia los filtros.')+'</p><button type="button" class="favorite-wide" data-tier-reset>'+label('Limpar filtros','Reset filters','Limpiar filtros')+'</button></div>':'');
+}
+function updateTierResults() {
+  const panel=routePanels.get(routeCacheKey()),results=panel?.querySelector('[data-tier-results]');
+  if (!results || state.route!=='tier') return;
+  results.innerHTML=renderTierResults();panel.dataset.signature=routeSignature();
+  applyAccessibility(results,state.lang);observeCharacterImages();
+}
+function tierReferenceDate(value) {
+  return new Intl.DateTimeFormat(state.lang,{timeZone:'UTC'}).format(new Date(value+'T00:00:00Z'));
+}
+function renderTierPage() {
+  const data=getTierSnapshot();
+  return renderPageHero(t('navTier'),t('pageTierDesc'),'ENDGAME / META')+
+    '<section class="page-band"><div class="container tier-catalog">'+
+    '<div class="tier-reference"><div><p class="eyebrow">'+label('REFERÊNCIA VERIFICADA','VERIFIED REFERENCE','REFERENCIA VERIFICADA')+'</p><strong>Prydwen · '+label('Patch','Patch','Parche')+' '+(data?.patch || '—')+'</strong><p>'+(data ? label('Referência atualizada em ','Source updated ','Referencia actualizada el ')+tierReferenceDate(data.sourceUpdatedAt)+' · '+label('Conferida em ','Verified ','Verificada el ')+tierReferenceDate(data.verifiedAt) : label('Carregando referência…','Loading reference…','Cargando referencia…'))+'</p></div><a class="text-link" href="'+TIER_SOURCE+'" target="_blank" rel="noreferrer">'+label('Consultar referência ↗','View reference ↗','Consultar referencia ↗')+'</a></div>'+
+    '<details class="tier-criteria"><summary>'+label('Como ler esta Tier List','How to read this Tier List','Cómo leer esta Tier List')+'</summary><div class="tier-criteria-content"><p>'+label('A avaliação considera o desempenho em equipes e a execução das rotações em cada modo. Uma nota não representa o dano isolado do personagem.','Ratings consider team performance and rotation execution in each mode. A tier does not measure isolated character damage.','La evaluación considera el rendimiento en equipos y la ejecución de rotaciones en cada modo. Un tier no mide el daño aislado del personaje.')+'</p><dl><div><dt>DPS</dt><dd>'+label('Responsável pelo dano principal da composição.','Provides the team’s primary damage.','Aporta el daño principal del equipo.')+'</dd></div><div><dt>Hybrid</dt><dd>'+label('Combina dano próprio com buffs, efeitos ou sinergias para a equipe.','Combines personal damage with buffs, effects or team synergies.','Combina daño propio con buffs, efectos o sinergias para el equipo.')+'</dd></div><div><dt>Support</dt><dd>'+label('Prioriza buffs, sustentação e utilidade para a composição.','Focuses on buffs, sustain and team utility.','Prioriza buffs, sostenimiento y utilidad para el equipo.')+'</dd></div></dl><p>'+label('S0, S2 e S6 indicam a sequência de ressonância usada na avaliação. Personagens com duas funções aparecem em ambas, com notas independentes.','S0, S2 and S6 indicate the Resonance Chain used for the rating. Characters with two roles appear in both, with independent ratings.','S0, S2 y S6 indican la secuencia de resonancia usada en la evaluación. Los personajes con dos funciones aparecen en ambas, con notas independientes.')+'</p><p>'+label('T0 é o topo da escala; T4 é o nível inferior. Usamos a lista de desempenho, sem misturar as avaliações de custo-benefício (Value). A dificuldade de execução, as sinergias e os investimentos podem mudar o resultado da sua equipe.','T0 is the top of the scale; T4 is the lowest tier. We use performance ratings separately from the Value list. Execution difficulty, synergies and investment can change your team’s results.','T0 es el nivel superior; T4 es el inferior. Usamos evaluaciones de rendimiento sin mezclarlas con la lista Value. La dificultad de ejecución, las sinergias y la inversión pueden cambiar los resultados del equipo.')+'</p></div></details>'+
+    '<div class="tier-mode-switch" role="group" aria-label="'+label('Modo de jogo','Game mode','Modo de juego')+'">'+['toa','ww'].map(mode=>'<button type="button" data-tier-mode="'+mode+'" aria-pressed="'+(state.tierMode===mode)+'" class="'+(state.tierMode===mode?'is-active':'')+'">'+(mode==='toa'?'Tower of Adversity':'Whimpering Wastes')+'</button>').join('')+'</div>'+
+    '<div class="tier-filters"><label class="tier-search"><span>'+label('Pesquisar personagem','Search character','Buscar personaje')+'</span><input type="search" data-tier-search value="'+escapeHtml(state.tierFilters.query)+'" placeholder="'+label('Nome do personagem…','Character name…','Nombre del personaje…')+'" autocomplete="off"></label>'+
+    tierFilterSelect('element',t('element'),[...new Set(characters.map(character=>character.element))].sort())+tierFilterSelect('weapon',t('weapon'),[...new Set(characters.map(character=>character.weapon))].sort())+tierFilterSelect('rarity',label('Raridade','Rarity','Rareza'),['4','5'])+tierFilterSelect('role',label('Função','Role','Función'),TIER_ROLES)+'<button type="button" class="tier-reset" data-tier-reset>'+label('Limpar filtros','Reset filters','Limpiar filtros')+'</button></div>'+
+    '<div data-tier-results>'+renderTierResults()+'</div></div></section>';
 }
 
 function renderEchoesPage() {
@@ -4118,6 +4142,12 @@ function runSearch(form) {
 }
 
 app.addEventListener("click", (event) => {
+  if (event.target.closest("[data-tier-retry]")) {tierDataError=false;ensureTierData();render();return;}
+  if (event.target.closest("[data-tier-reset]")) {
+    cancelPendingSearch();state.tierFilters={query:"",element:"all",weapon:"all",rarity:"all",role:"all"};
+    const panel=routePanels.get(routeCacheKey());panel?.querySelectorAll("[data-tier-filter]").forEach(select=>select.value="all");
+    const search=panel?.querySelector("[data-tier-search]");if(search)search.value="";updateTierResults();return;
+  }
   const characterRetry = event.target.closest('[data-character-retry]');
   if (characterRetry) {characterDetailFailures.delete(characterRetry.dataset.characterRetry);upgradeCharacterImages(characterRetry.dataset.characterRetry);characterDetailRevision++;scheduleRender();return;}
   if (event.target.closest('[data-gacha-module-retry]')) { gachaModuleError = false; loadGachaModule(); return; }
@@ -4222,8 +4252,10 @@ app.addEventListener("click", (event) => {
 
   const tierButton = event.target.closest("[data-tier-mode]");
   if (tierButton) {
-    state.tierMode = tierButton.getAttribute("data-tier-mode");
-    render();
+    cancelPendingSearch();
+    state.tierMode = tierButton.getAttribute("data-tier-mode") === "ww" ? "ww" : "toa";
+    tierButton.parentElement.querySelectorAll('[data-tier-mode]').forEach(button=>{const active=button.dataset.tierMode===state.tierMode;button.setAttribute('aria-pressed',String(active));button.classList.toggle('is-active',active);});
+    updateTierResults();
     return;
   }
 
@@ -4272,6 +4304,7 @@ app.addEventListener("keydown", (event) => {
 });
 
 app.addEventListener("change", (event) => {
+  if (event.target.matches("[data-tier-filter]")) {cancelPendingSearch();state.tierFilters[event.target.dataset.tierFilter]=event.target.value;updateTierResults();return;}
   if (state.route === "gacha" && handleGacha(event, gachaContext())) return;
   if (event.target.matches('[data-builder-set-filter]')) {
     builderUI.set = event.target.value;
@@ -4360,6 +4393,8 @@ app.addEventListener("change", (event) => {
 });
 
 app.addEventListener("input", (event) => {
+  const tierSearch=event.target.closest("[data-tier-search]");
+  if(tierSearch){state.tierFilters.query=tierSearch.value;const panel=routePanels.get(routeCacheKey());if(panel)panel.dataset.signature=routeSignature();queueSearch(tierSearch,updateTierResults);return;}
   if (event.target.tagName !== "SELECT" && handleBuilderField(event)) return;
   const globalSearch = event.target.closest("[data-global-search]");
   if (globalSearch) {

@@ -1,0 +1,749 @@
+{
+  "schemaVersion": 1,
+  "source": "https://www.prydwen.gg/wuthering-waves/tier-list",
+  "patch": "3.7",
+  "sourceUpdatedAt": "2026-09-30",
+  "verifiedAt": "2026-10-01",
+  "tiers": [
+    "T0",
+    "T0.5",
+    "T1",
+    "T1.5",
+    "T2",
+    "T3",
+    "T4"
+  ],
+  "roles": [
+    "dps",
+    "hybrid",
+    "support"
+  ],
+  "characters": [
+    {
+      "slug": "hiyuki",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T0",
+          "ww": "T0"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/hiyuki"
+    },
+    {
+      "slug": "jingran",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T0",
+          "ww": "T1"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/jingran"
+    },
+    {
+      "slug": "qingxiao",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T0",
+          "ww": "T0.5"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/qingxiao"
+    },
+    {
+      "slug": "yangyang-xuanling",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T0",
+          "ww": "T1"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/yangyang-xuanling"
+    },
+    {
+      "slug": "denia",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T0",
+          "ww": "T0.5"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/denia"
+    },
+    {
+      "slug": "iuno",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T1",
+          "ww": "T4"
+        },
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T0",
+          "ww": "T1"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/iuno"
+    },
+    {
+      "slug": "lucilla",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T0",
+          "ww": "T0"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/lucilla"
+    },
+    {
+      "slug": "lynae",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T0",
+          "ww": "T0.5"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/lynae"
+    },
+    {
+      "slug": "chisa",
+      "ratings": [
+        {
+          "role": "support",
+          "sequence": "S0",
+          "toa": "T0",
+          "ww": "T0"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/chisa"
+    },
+    {
+      "slug": "mornye",
+      "ratings": [
+        {
+          "role": "support",
+          "sequence": "S0",
+          "toa": "T0",
+          "ww": "T1"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/mornye"
+    },
+    {
+      "slug": "suisui",
+      "ratings": [
+        {
+          "role": "support",
+          "sequence": "S0",
+          "toa": "T0",
+          "ww": "T0.5"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/suisui"
+    },
+    {
+      "slug": "the-shorekeeper",
+      "ratings": [
+        {
+          "role": "support",
+          "sequence": "S0",
+          "toa": "T0",
+          "ww": "T0.5"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/the-shorekeeper"
+    },
+    {
+      "slug": "aemeath",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T0.5",
+          "ww": "T0.5"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/aemeath"
+    },
+    {
+      "slug": "hsin",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T0.5",
+          "ww": "T1"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/hsin"
+    },
+    {
+      "slug": "luuk-herssen",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T0.5",
+          "ww": "T1"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/luuk-herssen"
+    },
+    {
+      "slug": "sigrika",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T0.5",
+          "ww": "T0"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/sigrika"
+    },
+    {
+      "slug": "lupa",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T0.5",
+          "ww": "T1"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/lupa"
+    },
+    {
+      "slug": "qiuyuan",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T0.5",
+          "ww": "T0"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/qiuyuan"
+    },
+    {
+      "slug": "rebecca",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T0.5",
+          "ww": "T1.5"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/rebecca"
+    },
+    {
+      "slug": "verina",
+      "ratings": [
+        {
+          "role": "support",
+          "sequence": "S0",
+          "toa": "T0.5",
+          "ww": "T1"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/verina"
+    },
+    {
+      "slug": "augusta",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T1",
+          "ww": "T1"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/augusta"
+    },
+    {
+      "slug": "cartethyia",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T1",
+          "ww": "T1.5"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/cartethyia"
+    },
+    {
+      "slug": "galbrena",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T1",
+          "ww": "T1"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/galbrena"
+    },
+    {
+      "slug": "lucy",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T1",
+          "ww": "T2"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/lucy"
+    },
+    {
+      "slug": "phrolova",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T1",
+          "ww": "T0"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/phrolova"
+    },
+    {
+      "slug": "ciaccona",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T1",
+          "ww": "T1.5"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/ciaccona"
+    },
+    {
+      "slug": "mortefi",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S6",
+          "toa": "T1",
+          "ww": "T2"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/mortefi"
+    },
+    {
+      "slug": "rover-electro",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S2",
+          "toa": "T1",
+          "ww": "T1"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/rover-electro"
+    },
+    {
+      "slug": "carlotta",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T1.5",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/carlotta"
+    },
+    {
+      "slug": "brant",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T2",
+          "ww": "T4"
+        },
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T1.5",
+          "ww": "T3"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/brant"
+    },
+    {
+      "slug": "buling",
+      "ratings": [
+        {
+          "role": "support",
+          "sequence": "S6",
+          "toa": "T1.5",
+          "ww": "T1.5"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/buling"
+    },
+    {
+      "slug": "rover-aero",
+      "ratings": [
+        {
+          "role": "support",
+          "sequence": "S6",
+          "toa": "T1.5",
+          "ww": "T2"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/rover-aero"
+    },
+    {
+      "slug": "jiyan",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T2",
+          "ww": "T3"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/jiyan"
+    },
+    {
+      "slug": "phoebe",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T2",
+          "ww": "T4"
+        },
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T2",
+          "ww": "T3"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/phoebe"
+    },
+    {
+      "slug": "zani",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T2",
+          "ww": "T3"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/zani"
+    },
+    {
+      "slug": "cantarella",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T2",
+          "ww": "T1"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/cantarella"
+    },
+    {
+      "slug": "changli",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T2",
+          "ww": "T3"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/changli"
+    },
+    {
+      "slug": "sanhua",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S6",
+          "toa": "T2",
+          "ww": "T3"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/sanhua"
+    },
+    {
+      "slug": "rover-spectro",
+      "ratings": [
+        {
+          "role": "support",
+          "sequence": "S6",
+          "toa": "T2",
+          "ww": "T3"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/rover-spectro"
+    },
+    {
+      "slug": "camellya",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T3",
+          "ww": "T3"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/camellya"
+    },
+    {
+      "slug": "encore",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T3",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/encore"
+    },
+    {
+      "slug": "jinhsi",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T3",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/jinhsi"
+    },
+    {
+      "slug": "lingyang",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T3",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/lingyang"
+    },
+    {
+      "slug": "xiangli-yao",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T3",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/xiangli-yao"
+    },
+    {
+      "slug": "danjin",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S6",
+          "toa": "T3",
+          "ww": "T3"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/danjin"
+    },
+    {
+      "slug": "roccia",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T3",
+          "ww": "T2"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/roccia"
+    },
+    {
+      "slug": "yinlin",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T3",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/yinlin"
+    },
+    {
+      "slug": "zhezhi",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T3",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/zhezhi"
+    },
+    {
+      "slug": "baizhi",
+      "ratings": [
+        {
+          "role": "support",
+          "sequence": "S6",
+          "toa": "T3",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/baizhi"
+    },
+    {
+      "slug": "calcharo",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S0",
+          "toa": "T4",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/calcharo"
+    },
+    {
+      "slug": "chixia",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S6",
+          "toa": "T4",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/chixia"
+    },
+    {
+      "slug": "rover-havoc",
+      "ratings": [
+        {
+          "role": "dps",
+          "sequence": "S6",
+          "toa": "T4",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/rover-havoc"
+    },
+    {
+      "slug": "aalto",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S6",
+          "toa": "T4",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/aalto"
+    },
+    {
+      "slug": "jianxin",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S0",
+          "toa": "T4",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/jianxin"
+    },
+    {
+      "slug": "lumi",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S6",
+          "toa": "T4",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/lumi"
+    },
+    {
+      "slug": "taoqi",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S6",
+          "toa": "T4",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/taoqi"
+    },
+    {
+      "slug": "yangyang",
+      "ratings": [
+        {
+          "role": "hybrid",
+          "sequence": "S6",
+          "toa": "T4",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/yangyang"
+    },
+    {
+      "slug": "youhu",
+      "ratings": [
+        {
+          "role": "support",
+          "sequence": "S6",
+          "toa": "T4",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/youhu"
+    },
+    {
+      "slug": "yuanwu",
+      "ratings": [
+        {
+          "role": "support",
+          "sequence": "S6",
+          "toa": "T4",
+          "ww": "T4"
+        }
+      ],
+      "sourceUrl": "https://www.prydwen.gg/wuthering-waves/characters/yuanwu"
+    }
+  ]
+}

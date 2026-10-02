@@ -1,0 +1,222 @@
+{
+  "reports": [
+    {
+      "label": "pt-BR/toa",
+      "width": 320,
+      "scrollWidth": 320,
+      "cards": 63,
+      "body": "60 / 60 personagens · 62 avaliações"
+    },
+    {
+      "label": "pt-BR/toa",
+      "width": 390,
+      "scrollWidth": 390,
+      "cards": 63,
+      "body": "60 / 60 personagens · 62 avaliações"
+    },
+    {
+      "label": "pt-BR/toa",
+      "width": 768,
+      "scrollWidth": 753,
+      "cards": 63,
+      "body": "60 / 60 personagens · 62 avaliações"
+    },
+    {
+      "label": "pt-BR/toa",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "cards": 63,
+      "body": "60 / 60 personagens · 62 avaliações"
+    },
+    {
+      "label": "pt-BR/toa",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "cards": 63,
+      "body": "60 / 60 personagens · 62 avaliações"
+    },
+    {
+      "label": "pt-BR/ww",
+      "width": 320,
+      "scrollWidth": 320,
+      "cards": 63,
+      "body": "60 / 60 personagens · 62 avaliações"
+    },
+    {
+      "label": "pt-BR/ww",
+      "width": 390,
+      "scrollWidth": 390,
+      "cards": 63,
+      "body": "60 / 60 personagens · 62 avaliações"
+    },
+    {
+      "label": "pt-BR/ww",
+      "width": 768,
+      "scrollWidth": 753,
+      "cards": 63,
+      "body": "60 / 60 personagens · 62 avaliações"
+    },
+    {
+      "label": "pt-BR/ww",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "cards": 63,
+      "body": "60 / 60 personagens · 62 avaliações"
+    },
+    {
+      "label": "pt-BR/ww",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "cards": 63,
+      "body": "60 / 60 personagens · 62 avaliações"
+    },
+    {
+      "label": "en/toa",
+      "width": 320,
+      "scrollWidth": 320,
+      "cards": 63,
+      "body": "60 / 60 characters · 62 ratings"
+    },
+    {
+      "label": "en/toa",
+      "width": 390,
+      "scrollWidth": 390,
+      "cards": 63,
+      "body": "60 / 60 characters · 62 ratings"
+    },
+    {
+      "label": "en/toa",
+      "width": 768,
+      "scrollWidth": 753,
+      "cards": 63,
+      "body": "60 / 60 characters · 62 ratings"
+    },
+    {
+      "label": "en/toa",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "cards": 63,
+      "body": "60 / 60 characters · 62 ratings"
+    },
+    {
+      "label": "en/toa",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "cards": 63,
+      "body": "60 / 60 characters · 62 ratings"
+    },
+    {
+      "label": "en/ww",
+      "width": 320,
+      "scrollWidth": 320,
+      "cards": 63,
+      "body": "60 / 60 characters · 62 ratings"
+    },
+    {
+      "label": "en/ww",
+      "width": 390,
+      "scrollWidth": 390,
+      "cards": 63,
+      "body": "60 / 60 characters · 62 ratings"
+    },
+    {
+      "label": "en/ww",
+      "width": 768,
+      "scrollWidth": 753,
+      "cards": 63,
+      "body": "60 / 60 characters · 62 ratings"
+    },
+    {
+      "label": "en/ww",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "cards": 63,
+      "body": "60 / 60 characters · 62 ratings"
+    },
+    {
+      "label": "en/ww",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "cards": 63,
+      "body": "60 / 60 characters · 62 ratings"
+    },
+    {
+      "label": "es/toa",
+      "width": 320,
+      "scrollWidth": 320,
+      "cards": 63,
+      "body": "60 / 60 personajes · 62 evaluaciones"
+    },
+    {
+      "label": "es/toa",
+      "width": 390,
+      "scrollWidth": 390,
+      "cards": 63,
+      "body": "60 / 60 personajes · 62 evaluaciones"
+    },
+    {
+      "label": "es/toa",
+      "width": 768,
+      "scrollWidth": 753,
+      "cards": 63,
+      "body": "60 / 60 personajes · 62 evaluaciones"
+    },
+    {
+      "label": "es/toa",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "cards": 63,
+      "body": "60 / 60 personajes · 62 evaluaciones"
+    },
+    {
+      "label": "es/toa",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "cards": 63,
+      "body": "60 / 60 personajes · 62 evaluaciones"
+    },
+    {
+      "label": "es/ww",
+      "width": 320,
+      "scrollWidth": 320,
+      "cards": 63,
+      "body": "60 / 60 personajes · 62 evaluaciones"
+    },
+    {
+      "label": "es/ww",
+      "width": 390,
+      "scrollWidth": 390,
+      "cards": 63,
+      "body": "60 / 60 personajes · 62 evaluaciones"
+    },
+    {
+      "label": "es/ww",
+      "width": 768,
+      "scrollWidth": 753,
+      "cards": 63,
+      "body": "60 / 60 personajes · 62 evaluaciones"
+    },
+    {
+      "label": "es/ww",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "cards": 63,
+      "body": "60 / 60 personajes · 62 evaluaciones"
+    },
+    {
+      "label": "es/ww",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "cards": 63,
+      "body": "60 / 60 personajes · 62 evaluaciones"
+    },
+    {
+      "label": "expanded criteria",
+      "width": 390,
+      "scrollWidth": 390,
+      "cards": 63,
+      "body": "60 / 60 personagens · 62 avaliações"
+    }
+  ],
+  "errors": []
+}
