@@ -136,6 +136,24 @@ const copy = {
     pageEventsTitle: "Eventos atuais",
     pageEventsDesc: "Eventos ativos com banner oficial, periodo, horario e contagem regressiva em tempo real.",
     pageNewsDesc: "Feed de anuncios, patch notes e atualizacoes editoriais.",
+    emptyNewsText: "Nenhuma noticia cadastrada no momento.",
+    newsFeaturedTitle: "Destaque editorial",
+    newsSummaryTitle: "Resumo do feed",
+    newsArchiveTitle: "Arquivo",
+    introPageTitle: "Introdução",
+    introPageDesc: "Uma visao rapida sobre o proposito do Solaris Archive e sobre o universo de Wuthering Waves.",
+    introPurposeTitle: "Uma wiki para consulta rapida",
+    introPurposeText: "O Solaris Archive centraliza informacoes uteis para jogadores de Wuthering Waves: personagens, builds, ecos, armas, codigos, banners, eventos e guias essenciais. A ideia e reduzir o tempo procurando dados espalhados e deixar a tomada de decisao mais simples.",
+    introObjectiveTitle: "Objetivo da Wiki",
+    introObjectiveText: "Organizar dados de jogo em paginas claras, atualizaveis e faceis de navegar, com prioridade para legibilidade, filtros praticos e contexto suficiente para jogadores novos ou experientes.",
+    introGameTitle: "Sobre Wuthering Waves",
+    introGameText: "Wuthering Waves e um RPG de acao em mundo aberto desenvolvido pela Kuro Games. O jogador assume o papel de Rover, um protagonista sem memoria que viaja por Solaris-3 ao lado dos Resonators em busca de respostas e de um novo caminho para o mundo.",
+    introLoreTitle: "Universo e historia",
+    introLoreText: "Solaris-3 e um mundo marcado pelo Lament, uma serie de catastrofes que transformou civilizacoes, criaturas e as proprias leis do ambiente. A humanidade sobreviveu entre ruinas, tecnologia e ecos de um passado quebrado, enquanto novos conflitos e regioes revelam pouco a pouco os misterios por tras do desastre.",
+    introResourcesTitle: "Recursos disponiveis",
+    introResourcesText: "A Wiki oferece banco de personagens, tier list, ecos, armas, itens, codigos, builder de builds, guias e um hub de eventos com dados mockados prontos para integracao real.",
+    introSummaryTitle: "Como usar",
+    introSummaryText: "Use a busca inicial para encontrar rapidamente qualquer topico ou navegue pelas abas para comparar dados, acompanhar eventos e planejar builds.",
     showcaseKicker: "Resonators",
     showcaseTitle: "Showcase por papel de equipe",
     showcaseDesc: "Abas para comparar funcoes de dano, suporte, ataques coordenados e controle de campo.",
@@ -293,6 +311,24 @@ const copy = {
     pageEventsTitle: "Current events",
     pageEventsDesc: "Active events with official banners, schedule, time, and live countdown.",
     pageNewsDesc: "Announcement feed, patch notes, and editorial updates.",
+    emptyNewsText: "No news available right now.",
+    newsFeaturedTitle: "Editorial spotlight",
+    newsSummaryTitle: "Feed summary",
+    newsArchiveTitle: "Archive",
+    introPageTitle: "Introduction",
+    introPageDesc: "A quick overview of the Solaris Archive purpose and the world of Wuthering Waves.",
+    introPurposeTitle: "A wiki for quick reference",
+    introPurposeText: "Solaris Archive centralizes useful Wuthering Waves information: characters, builds, echoes, weapons, codes, banners, events, and essential guides. The goal is to reduce scattered searching and make decisions easier.",
+    introObjectiveTitle: "Wiki objective",
+    introObjectiveText: "Organize game data into clear, maintainable, easy-to-browse pages with readable layouts, practical filters, and useful context for new and experienced players.",
+    introGameTitle: "About Wuthering Waves",
+    introGameText: "Wuthering Waves is an open-world action RPG by Kuro Games. Players take the role of Rover, an amnesiac protagonist travelling across Solaris-3 alongside Resonators while searching for answers and a future for the world.",
+    introLoreTitle: "World and story",
+    introLoreText: "Solaris-3 is shaped by the Lament, a series of catastrophes that changed civilizations, creatures, and the laws of the environment. Humanity survives among ruins, technology, and echoes of a broken past as new regions reveal the disaster's mysteries.",
+    introResourcesTitle: "Available resources",
+    introResourcesText: "The Wiki offers characters, tier list, echoes, weapons, items, codes, a build builder, guides, and an events hub with mock data ready for real integration.",
+    introSummaryTitle: "How to use it",
+    introSummaryText: "Use the home search to find topics quickly or browse the tabs to compare data, track events, and plan builds.",
     showcaseKicker: "Resonators",
     showcaseTitle: "Team-role showcase",
     showcaseDesc: "Tabs to compare damage, support, coordinated attacks, and field control roles.",
@@ -450,6 +486,24 @@ const copy = {
     pageEventsTitle: "Eventos actuales",
     pageEventsDesc: "Eventos activos con banner oficial, periodo, horario y cuenta regresiva en tiempo real.",
     pageNewsDesc: "Feed de anuncios, patch notes y actualizaciones editoriales.",
+    emptyNewsText: "No hay noticias disponibles ahora.",
+    newsFeaturedTitle: "Destacado editorial",
+    newsSummaryTitle: "Resumen del feed",
+    newsArchiveTitle: "Archivo",
+    introPageTitle: "Introducción",
+    introPageDesc: "Una vista rapida del proposito de Solaris Archive y del universo de Wuthering Waves.",
+    introPurposeTitle: "Una wiki para consulta rapida",
+    introPurposeText: "Solaris Archive centraliza informacion util de Wuthering Waves: personajes, builds, ecos, armas, codigos, banners, eventos y guias esenciales. El objetivo es reducir busquedas dispersas y facilitar decisiones.",
+    introObjectiveTitle: "Objetivo de la Wiki",
+    introObjectiveText: "Organizar datos del juego en paginas claras, actualizables y faciles de navegar, con prioridad en legibilidad, filtros practicos y contexto para jugadores nuevos o expertos.",
+    introGameTitle: "Sobre Wuthering Waves",
+    introGameText: "Wuthering Waves es un RPG de accion en mundo abierto de Kuro Games. El jugador asume el papel de Rover, protagonista sin memoria que viaja por Solaris-3 junto a Resonators en busca de respuestas y de un nuevo futuro.",
+    introLoreTitle: "Universo e historia",
+    introLoreText: "Solaris-3 es un mundo marcado por el Lament, una serie de catastrofes que transformo civilizaciones, criaturas y las leyes del ambiente. La humanidad sobrevive entre ruinas, tecnologia y ecos de un pasado roto mientras nuevas regiones revelan sus misterios.",
+    introResourcesTitle: "Recursos disponibles",
+    introResourcesText: "La Wiki ofrece personajes, tier list, ecos, armas, objetos, codigos, builder de builds, guias y un hub de eventos con datos mock listos para integracion real.",
+    introSummaryTitle: "Como usar",
+    introSummaryText: "Usa la busqueda inicial para encontrar temas rapidamente o navega por las pestanas para comparar datos, seguir eventos y planear builds.",
     showcaseKicker: "Resonators",
     showcaseTitle: "Showcase por rol de equipo",
     showcaseDesc: "Pestanas para comparar funciones de dano, soporte, ataques coordinados y control de campo.",
@@ -2128,21 +2182,72 @@ function renderTierPreview() {
   `;
 }
 
-function renderNewsGrid(limit = 6) {
+function newsTimestamp(item) {
+  const value = String(item?.date || "");
+  const date = new Date(/^\d{4}-\d{2}-\d{2}$/.test(value) ? `${value}T12:00:00Z` : value);
+  return date.getTime();
+}
+
+function validNewsItem(item) {
+  return Boolean(item?.title) && Number.isFinite(newsTimestamp(item));
+}
+
+function sortedNewsItems(items = news) {
+  const source = Array.isArray(items) ? items : [];
+  return [...source]
+    .filter(validNewsItem)
+    .sort((a, b) => newsTimestamp(b) - newsTimestamp(a));
+}
+
+function renderNewsCard(item, featured = false) {
+  const localImage = /^\/assets\/(event-(web|forge|code|tower)|banner-(next|resonance))\.png$/.test(item.image || "");
+  return `
+    <article class="data-card news-card ${featured ? "news-card--featured" : ""}">
+      <img src="${escapeHtml(localImage ? '/assets/event-placeholder-1280.webp' : item.image || EVENT_FALLBACK_IMAGE)}" ${localImage ? 'srcset="/assets/event-placeholder-640.webp 640w, /assets/event-placeholder-1280.webp 900w" sizes="(max-width: 760px) 100vw, (max-width: 1060px) 50vw, 40vw"' : ''} alt="" loading="lazy" decoding="async" width="1280" height="720" onerror="this.onerror=null;this.src='${EVENT_FALLBACK_IMAGE}';">
+      <div class="card-body">
+        <span class="pill">${escapeHtml(item.category || t("navNews"))}</span>
+        <h3>${escapeHtml(item.title)}</h3>
+        <time datetime="${escapeHtml(item.date)}">${formatNewsDate(item.date)}</time>
+        <p>${escapeHtml(item.summary || "")}</p>
+      </div>
+    </article>
+  `;
+}
+
+function renderNewsGrid(limit = 6, items = news) {
+  const requestedLimit = Number(limit);
+  const safeLimit = Number.isFinite(requestedLimit) && requestedLimit >= 0 ? requestedLimit : 6;
+  const list = sortedNewsItems(items).slice(0, safeLimit);
+
+  if (!list.length) {
+    return `
+      <div class="empty-state">
+        <h3>${t("navNews")}</h3>
+        <p>${t("emptyNewsText")}</p>
+      </div>
+    `;
+  }
+
   return `
     <div class="news-grid">
-      ${news.slice(0, limit).map((item) => `
-        <article class="data-card news-card">
-          <img src="${item.image}" alt="" loading="lazy">
-          <div class="card-body">
-            <span class="pill">${item.category}</span>
-            <h3>${item.title}</h3>
-            <time datetime="${item.date}">${formatNewsDate(item.date)}</time>
-            <p>${item.summary}</p>
-          </div>
-        </article>
-      `).join("")}
+      ${list.map((item) => renderNewsCard(item)).join("")}
     </div>
+  `;
+}
+
+function renderNewsDigest(items) {
+  const list = sortedNewsItems(items);
+
+  return `
+    <ol class="news-list">
+      ${list.map((item) => `
+        <li>
+          <time datetime="${escapeHtml(item.date)}">${formatNewsDate(item.date)}</time>
+          <strong>${escapeHtml(item.title)}</strong>
+          <p>${escapeHtml(item.summary || "")}</p>
+        </li>
+      `).join("")}
+    </ol>
   `;
 }
 
@@ -3287,72 +3392,38 @@ function renderEventCard(event, compact = false) {
 }
 
 function renderNewsPage() {
-  const featured = [...news].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
-  const archive = [...news].sort((a, b) => new Date(b.date) - new Date(a.date));
-  const categoryCounts = [...new Set(news.map((item) => item.category))].map((category) => ({
-    category,
-    count: news.filter((item) => item.category === category).length
-  }));
+  const archive = sortedNewsItems(news);
+
+  if (!archive.length) {
+    return `
+      ${renderPageHero(t("navNews"), t("pageNewsDesc"), "Feed")}
+      <section class="page-band">
+        <div class="container">
+          ${renderNewsGrid(news.length)}
+        </div>
+      </section>
+    `;
+  }
+
+  const [featured, ...rest] = archive;
+  const archiveItems = rest.length ? rest : archive;
 
   return `
     ${renderPageHero(t("navNews"), t("pageNewsDesc"), "Feed")}
     <section class="page-band page-band--deep">
-      <div class="container split-layout">
-        <article class="panel">
-          <h2>Destaque editorial</h2>
-          <div class="data-card" style="overflow: hidden;">
-            <img src="${featured.image}" alt="" loading="lazy">
-            <div class="card-body">
-              <span class="pill">${featured.category}</span>
-              <h3>${featured.title}</h3>
-              <time datetime="${featured.date}">${formatNewsDate(featured.date)}</time>
-              <p>${featured.summary}</p>
-            </div>
-          </div>
-        </article>
-        <article class="panel">
-          <h2>Resumo do feed</h2>
-          <ol class="ranked-list">
-            ${archive.map((item) => `
-              <li>
-                <span>${String(new Date(item.date).getUTCDate()).padStart(2, "0")}</span>
-                <div>
-                  <strong>${item.title}</strong>
-                  <small>${item.category} - ${item.summary}</small>
-                </div>
-              </li>
-            `).join("")}
-          </ol>
-          <div class="stat-grid" style="margin-top: 16px;">
-            ${categoryCounts.map((entry) => `
-              <div class="stat-tile">
-                <span>${entry.category}</span>
-                <strong>${entry.count}</strong>
-              </div>
-            `).join("")}
-          </div>
-        </article>
+      <div class="container news-page-layout">
+        ${renderNewsCard(featured, true)}
+        <aside class="panel news-feed-panel">
+          <p class="eyebrow">${t("newsArchiveTitle")}</p>
+          <h2>${t("newsSummaryTitle")}</h2>
+          ${renderNewsDigest(archiveItems)}
+        </aside>
       </div>
     </section>
     <section class="page-band">
       <div class="container">
-        <div class="section-header">
-          <div>
-            <p class="eyebrow">Arquivo</p>
-            <h2>${t("recentNewsTitle")}</h2>
-            <p>Cards prontos para receber RSS, launcher feed ou CMS futuramente.</p>
-          </div>
-        </div>
-        ${renderNewsGrid(news.length)}
-      </div>
-    </section>
-  `;
-
-  return `
-    ${renderPageHero(t("navNews"), t("pageNewsDesc"), "Feed")}
-    <section class="page-band">
-      <div class="container">
-        ${renderNewsGrid(news.length)}
+        ${renderSectionHeader(t("newsArchiveTitle"), t("recentNewsTitle"), t("recentNewsDesc"))}
+        ${renderNewsGrid(archiveItems.length, archiveItems)}
       </div>
     </section>
   `;
@@ -3370,7 +3441,9 @@ function renderNotFound() {
 }
 
 function formatNewsDate(date) {
-  return new Intl.DateTimeFormat(currentLocale(), { dateStyle: "medium" }).format(new Date(`${date}T12:00:00Z`));
+  const timestamp = newsTimestamp({ date });
+  if (!Number.isFinite(timestamp)) return "--";
+  return new Intl.DateTimeFormat(currentLocale(), { dateStyle: "medium", timeZone: "UTC" }).format(timestamp);
 }
 
 function renderRoute() {
