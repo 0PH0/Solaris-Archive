@@ -10,19 +10,22 @@ puramente estático: os endpoints `/api/*` precisam do servidor.
 ## Configuração do projeto
 
 - Repositório: `https://github.com/0PH0/Solaris-Archive`.
-- Diretório raiz: `Solaris Archive` (subpasta do repositório).
+- Diretório raiz: `site` (subpasta do repositório, sem espaços no caminho).
 - Framework: Node.js (`node`).
 - Runtime: Node.js 24.x, definido em `package.json`.
 - Build e diretório de saída: padrões da Vercel para Node.js; sem override.
 - Branch de produção: `main`.
 - Integração GitHub: habilitada para esse repositório, com deploy automático.
-- Acesso de produção: público, sem exigir autenticação da Vercel.
+- Acesso de produção: público, com Standard Protection mantendo previews e URLs
+  de deployments protegidos; o domínio principal de produção não exige login.
 - HTTPS: usar o domínio `.vercel.app` fornecido pela plataforma.
 
 O build é o empacotamento nativo da Vercel. Não executar `generate:assets` nem
 `optimize:assets` no build: as imagens e os vídeos necessários já estão versionados.
 As configurações da conta, da integração GitHub e do acesso público são verificadas
 na plataforma; o arquivo de configuração sozinho não cria a integração Git.
+O nome anterior da pasta, `Solaris Archive`, causava `invalid_function_name` na
+publicação da Function. A renomeação para `site` preserva o conteúdo do projeto.
 
 ## Ambiente e fontes externas
 
