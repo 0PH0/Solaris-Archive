@@ -208,7 +208,7 @@ const copy = {
     pageGuideTitle: "Guia do jogo",
     pageGuideDesc: "Mecanicas centrais, rotacoes e rotas de progressao.",
     pageCodesTitle: "Codigos de resgate",
-    pageCodesDesc: "Lista com codigos ativos e expirados, recompensas e copia em um clique.",
+    pageCodesDesc: "Codigos ativos conferidos nas fontes, recompensas e copia em um clique.",
     pageBuilderDesc: "Calculadora demonstrativa para comparar personagem, arma, eco e nivel.",
     pageEventsTitle: "Eventos atuais",
     pageEventsDesc: "Eventos ativos com banner oficial, periodo, horario e contagem regressiva em tempo real.",
@@ -241,7 +241,7 @@ const copy = {
     conveneSpotlightTitle: "Banners de Convene ativos",
     conveneSpotlightDesc: "Fonte separada de /api/events, com arte oficial, destaque, periodo e contagem regressiva.",
     redeemTitle: "Resgate em um clique",
-    redeemDesc: "Lista com status ativo/expirado, recompensas e data de validade.",
+    redeemDesc: "Codigos ativos, recompensas e validade quando divulgada.",
     echoes: "Ecos",
     mainStats: "Stats principais",
     team: "Time",
@@ -386,7 +386,7 @@ const copy = {
     pageGuideTitle: "Game guide",
     pageGuideDesc: "Core mechanics, rotations, and progression routes.",
     pageCodesTitle: "Redeem codes",
-    pageCodesDesc: "Active and expired codes, rewards, and one-click copy.",
+    pageCodesDesc: "Active codes checked against sources, rewards, and one-click copy.",
     pageBuilderDesc: "Demo calculator to compare character, weapon, echo, and level.",
     pageEventsTitle: "Current events",
     pageEventsDesc: "Active events with official banners, schedule, time, and live countdown.",
@@ -419,7 +419,7 @@ const copy = {
     conveneSpotlightTitle: "Active Convene banners",
     conveneSpotlightDesc: "Separate source from /api/events, with official art, featured item, schedule, and countdown.",
     redeemTitle: "One-click redeem",
-    redeemDesc: "List with active/expired status, rewards, and expiration date.",
+    redeemDesc: "Active codes, rewards, and expiration dates when announced.",
     echoes: "Echoes",
     mainStats: "Main stats",
     team: "Team",
@@ -564,7 +564,7 @@ const copy = {
     pageGuideTitle: "Guia del juego",
     pageGuideDesc: "Mecanicas centrales, rotaciones y rutas de progresion.",
     pageCodesTitle: "Codigos de canje",
-    pageCodesDesc: "Codigos activos y expirados, recompensas y copia en un clic.",
+    pageCodesDesc: "Codigos activos comprobados en las fuentes, recompensas y copia en un clic.",
     pageBuilderDesc: "Calculadora demo para comparar personaje, arma, eco y nivel.",
     pageEventsTitle: "Eventos actuales",
     pageEventsDesc: "Eventos activos con banner oficial, periodo, horario y cuenta regresiva en tiempo real.",
@@ -597,7 +597,7 @@ const copy = {
     conveneSpotlightTitle: "Banners de Convene activos",
     conveneSpotlightDesc: "Fuente separada de /api/events, con arte oficial, destacado, periodo y cuenta regresiva.",
     redeemTitle: "Canje en un clic",
-    redeemDesc: "Lista con estado activo/expirado, recompensas y fecha de vencimiento.",
+    redeemDesc: "Codigos activos, recompensas y vencimiento cuando se anuncie.",
     echoes: "Ecos",
     mainStats: "Stats principales",
     team: "Equipo",
@@ -1568,12 +1568,22 @@ const news = [
   }
 ];
 
+// Source review: 2026-10-02 (UTC). This is not an in-game redemption test.
+// Pocket Tactics (2026-09-30) and Beebom (2026-10-01) agree on this active code.
+// No published expiry: null must never become a generated deadline.
+const codesCheckedAt = "2026-10-02";
 const codes = [
-  { code: "WAVEBUILDER", status: "active", rewards: ["Astrites x60", "Potion x5"], expiresAt: addClientDays(3) },
-  { code: "SOLARISGUIDE", status: "active", rewards: ["Shell Credit x20000"], expiresAt: addClientDays(9) },
-  { code: "ECHOARCHIVE", status: "active", rewards: ["Echo EXP x6"], expiresAt: addClientDays(14) },
-  { code: "OLDTACETFIELD", status: "expired", rewards: ["Shell Credit x10000"], expiresAt: "2026-01-20T03:00:00.000Z" }
+  { code: "WUTHERINGGIFT", status: "active", rewards: ["Astrite x50", "Premium Resonance Potion x2", "Medium Revival Inhaler x2", "Medium Energy Bag x2", "Shell Credit x10000"], expiresAt: null }
 ];
+const codeSources = [
+  { name: "Pocket Tactics", url: "https://www.pockettactics.com/wuthering-waves/codes" },
+  { name: "Beebom", url: "https://beebom.com/wuthering-waves-redeem-codes/" }
+];
+
+function activeCodes(now = Date.now()) {
+  return codes.filter(code => code.status === "active" &&
+    (!code.expiresAt || Date.parse(code.expiresAt) > now));
+}
 
 const weeklyFarmPlan = [
   { day: "Segunda", focus: "Bosses", note: "Tacet Cores e materiais de ascensao de dano." },
@@ -1660,13 +1670,6 @@ const routeViewState = {
 const routePanels = new Map();
 const preloadedImageUrls = new Set();
 let favoriteCache = null;
-
-function addClientDays(days) {
-  const date = new Date();
-  date.setUTCDate(date.getUTCDate() + days);
-  date.setUTCHours(date.getUTCHours(), 0, 0, 0);
-  return date.toISOString();
-}
 
 function t(key) {
   return copy[state.lang]?.[key] || copy[DEFAULT_LANG][key] || key;
@@ -1875,7 +1878,7 @@ function searchIndex() {
       meta: article.category,
       route: "news"
     })),
-    ...codes.map((code) => ({
+    ...activeCodes().map((code) => ({
       label: `${code.code} ${code.rewards.join(" ")}`,
       title: code.code,
       meta: t("codes"),
@@ -2453,24 +2456,30 @@ function renderNewsDigest(items) {
 }
 
 function renderCodesWidget(full = false) {
-  const list = full ? codes : codes.filter((code) => code.status === "active").slice(0, 3);
+  const current = activeCodes();
+  const list = full ? current : current.slice(0, 3);
+  if (!list.length) return '<p class="notice">' + label('Nenhum codigo ativo confirmado nas fontes.', 'No active codes confirmed by sources.', 'Ningun codigo activo confirmado en las fuentes.') + '</p>';
 
   return `
     <div class="codes-widget">
-      ${list.map((code) => `
-        <article class="code-row ${code.status === "expired" ? "is-expired" : ""}">
+      ${list.map((code) => {
+        const endingSoon = code.expiresAt && Date.parse(code.expiresAt) - Date.now() <= 72 * 60 * 60 * 1000;
+        const validity = code.expiresAt
+          ? label('Valido ate: ', 'Valid until: ', 'Valido hasta: ') + formatDate(code.expiresAt)
+          : label('Validade nao divulgada', 'Expiration not announced', 'Vencimiento no anunciado');
+        return `
+        <article class="code-row">
           <div>
             <strong>${code.code}</strong>
             <span>${code.rewards.join(" • ")}</span>
           </div>
           <div>
-            <small>${formatDate(code.expiresAt)}</small>
-            <button type="button" data-copy="${code.code}" ${code.status === "expired" ? "disabled" : ""}>
-              ${code.status === "expired" ? t("ended") : t("copyCode")}
-            </button>
+            <small>${endingSoon ? label('Vence em breve', 'Expires soon', 'Vence pronto') : label('Ativo', 'Active', 'Activo')} · ${validity}</small>
+            <button type="button" data-copy="${code.code}">${t("copyCode")}</button>
           </div>
         </article>
-      `).join("")}
+      `;
+      }).join("")}
     </div>
   `;
 }
@@ -3206,8 +3215,9 @@ function renderCodesPage() {
     ${renderPageHero(t("pageCodesTitle"), t("pageCodesDesc"), "Rewards")}
     <section class="page-band">
       <div class="container compact-section">
-        <p class="notice">${t("mockNotice")}</p>
+        <p class="notice">${label('Fontes consultadas em', 'Sources reviewed on', 'Fuentes consultadas el')} <time datetime="${codesCheckedAt}">${new Intl.DateTimeFormat(currentLocale(), { dateStyle: 'short', timeZone: 'UTC' }).format(new Date(codesCheckedAt + 'T00:00:00Z'))}</time>. ${label('Resgate uma vez por conta a partir do Nivel de Uniao 2, em Configuracoes → Outras configuracoes → Codigo de resgate. Nao testado no jogo.', 'Redeem once per account from Union Level 2 in Settings → Other Settings → Redemption Code. Not tested in-game.', 'Canjea una vez por cuenta desde el Nivel de Union 2 en Ajustes → Otros ajustes → Codigo de canje. No probado en el juego.')}</p>
         ${renderCodesWidget(true)}
+        <p class="notice">${label('Fontes', 'Sources', 'Fuentes')}: ${codeSources.map(source => '<a class="text-link" href="' + source.url + '" target="_blank" rel="noreferrer">' + source.name + '</a>').join(' · ')}</p>
       </div>
     </section>
   `;
