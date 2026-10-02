@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>/pt-BR/</loc></url>
+  <url><loc>/pt-BR/introducao</loc></url>
   <url><loc>/pt-BR/personagens</loc></url>
   <url><loc>/pt-BR/tier-list</loc></url>
   <url><loc>/pt-BR/ecos</loc></url>
@@ -12,6 +13,7 @@
   <url><loc>/pt-BR/eventos</loc></url>
   <url><loc>/pt-BR/noticias</loc></url>
   <url><loc>/en/</loc></url>
+  <url><loc>/en/introducao</loc></url>
   <url><loc>/en/personagens</loc></url>
   <url><loc>/en/tier-list</loc></url>
   <url><loc>/en/ecos</loc></url>
@@ -23,6 +25,7 @@
   <url><loc>/en/eventos</loc></url>
   <url><loc>/en/noticias</loc></url>
   <url><loc>/es/</loc></url>
+  <url><loc>/es/introducao</loc></url>
   <url><loc>/es/personagens</loc></url>
   <url><loc>/es/tier-list</loc></url>
   <url><loc>/es/ecos</loc></url>

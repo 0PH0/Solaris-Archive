@@ -26,6 +26,7 @@ const itemAssetExtensionOverrides = {
 const copy = {
   "pt-BR": {
     navHome: "Home",
+    navIntro: "Introdução",
     navCharacters: "Personagens",
     navTier: "Tier List",
     navEchoes: "Ecos",
@@ -182,6 +183,7 @@ const copy = {
   },
   en: {
     navHome: "Home",
+    navIntro: "Introduction",
     navCharacters: "Characters",
     navTier: "Tier List",
     navEchoes: "Echoes",
@@ -338,6 +340,7 @@ const copy = {
   },
   es: {
     navHome: "Inicio",
+    navIntro: "Introducción",
     navCharacters: "Personajes",
     navTier: "Tier List",
     navEchoes: "Ecos",
@@ -496,6 +499,7 @@ const copy = {
 
 const routes = [
   { id: "home", slug: "", labelKey: "navHome", nav: true },
+  { id: "intro", slug: "introducao", labelKey: "navIntro", nav: true },
   { id: "characters", slug: "personagens", labelKey: "navCharacters", nav: true },
   { id: "tier", slug: "tier-list", labelKey: "navTier", nav: true },
   { id: "echoes", slug: "ecos", labelKey: "navEchoes", nav: true },
@@ -2210,6 +2214,71 @@ function renderPageHero(title, description, kicker = "Wiki") {
   `;
 }
 
+function renderIntroductionPage() {
+  const resources = [
+    { title: t("navCharacters"), text: t("pageCharactersDesc"), route: "characters" },
+    { title: t("navTier"), text: t("pageTierDesc"), route: "tier" },
+    { title: t("navEvents"), text: t("pageEventsDesc"), route: "events" },
+    { title: t("navBuilder"), text: t("pageBuilderDesc"), route: "builder" }
+  ];
+
+  return `
+    ${renderPageHero(t("introPageTitle"), t("introPageDesc"), "Solaris Archive")}
+    <section class="page-band">
+      <div class="container">
+        ${renderOfficialVideo("RJsycDbdSgo", "Wuthering Waves — Xuanfang: Eisodus")}
+      </div>
+    </section>
+    <section class="page-band">
+      <div class="container intro-layout">
+        <article class="panel intro-lead">
+          <p class="eyebrow">${t("introPurposeTitle")}</p>
+          <h2>${t("introObjectiveTitle")}</h2>
+          <p>${t("introPurposeText")}</p>
+          <p>${t("introObjectiveText")}</p>
+          <div class="intro-resource-row">
+            <span>${characters.length} ${t("navCharacters")}</span>
+            <span>${echoes.length} ${t("echoes")}</span>
+            <span>${weapons.length} ${t("navWeapons")}</span>
+          </div>
+        </article>
+        <figure class="intro-visual">
+          <img src="/assets/home-hero-1600.webp" srcset="/assets/home-hero-960.webp 960w, /assets/home-hero-1600.webp 1600w, /assets/home-hero-2560.webp 2560w" sizes="(max-width: 1060px) 100vw, 50vw" alt="Paisagem inspirada em Solaris-3" loading="lazy" decoding="async" width="1600" height="900">
+          <figcaption>${t("introSummaryText")}</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="page-band page-band--deep">
+      <div class="container intro-card-grid">
+        <article class="panel">
+          <p class="eyebrow">WuWa</p>
+          <h2>${t("introGameTitle")}</h2>
+          <p>${t("introGameText")}</p>
+        </article>
+        <article class="panel">
+          <p class="eyebrow">Solaris-3</p>
+          <h2>${t("introLoreTitle")}</h2>
+          <p>${t("introLoreText")}</p>
+        </article>
+      </div>
+    </section>
+    <section class="page-band">
+      <div class="container">
+        ${renderSectionHeader(t("database"), t("introResourcesTitle"), t("introResourcesText"))}
+        <div class="intro-resource-grid">
+          ${resources.map((resource) => `
+            <a class="data-card intro-resource-card" href="${pathFor(resource.route)}" data-link>
+              <div class="card-body">
+                <h3>${resource.title}</h3>
+                <p>${resource.text}</p>
+              </div>
+            </a>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
 function renderCharactersPage() {
   if (state.detail) {
     return renderCharacterDetail(state.detail);
