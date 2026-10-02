@@ -1,3 +1,4 @@
+import {loadWeaponCatalog, loadWeaponDetail} from './weapon-catalog.js';
 const app = document.querySelector("#app");
 const DEFAULT_LANG = "pt-BR";
 const SUPPORTED_LANGS = ["pt-BR", "en", "es"];
@@ -2556,7 +2557,39 @@ function renderEchoesPage() {
   `;
 }
 
+let weaponsReady = false, weaponRequest, weaponRevision = 0, weaponError = false;
+const weaponDetails = new Map();
+async function ensureWeapons() {
+  if (weaponsReady || weaponRequest) return weaponRequest;
+  weaponRequest = loadWeaponCatalog().then(items=>{
+    for(const item of items){const old=weapons.find(w=>w.slug===item.slug || w.name===item.name);if(old)Object.assign(old,item);else weapons.push({...item,baseAtk:null,stat:'—',passive:'',recommended:[]});}
+    for (const character of characters) {const weapon = weapons.find(item => Number(item.id) === character.signatureWeapon?.id); if (weapon) weapon.recommended = [...new Set([...(weapon.recommended || []),character.name])];}
+  }).catch(()=>{weaponError=true;}).finally(()=>{weaponsReady=true;weaponRequest=null;weaponRevision++;scheduleRender();});
+  return weaponRequest;
+}
+function ensureWeaponDetail() {
+  const weapon=weapons.find(w=>w.slug===state.detail);
+  if(!weapon?.id || weaponDetails.has(weapon.id))return;
+  weaponDetails.set(weapon.id,{loading:true});
+  loadWeaponDetail(weapon.id).then(data=>weaponDetails.set(weapon.id,data)).catch(()=>weaponDetails.set(weapon.id,{error:true})).finally(()=>{weaponRevision++;scheduleRender();});
+}
+function renderWeaponDetail(slug) {
+  const weapon=weapons.find(w=>w.slug===slug);
+  if(!weapon)return weaponsReady?renderNotFound():renderPageHero(t('navWeapons'),'Carregando catálogo…',t('database'));
+  const detail=weaponDetails.get(weapon.id);
+  const label=(pt,en,es)=>state.lang==='en'?en:state.lang==='es'?es:pt;
+  const properties=detail?.properties || [];
+  return renderPageHero(weapon.name,weapon.type+' · '+stars(weapon.rarity),t('weapon'))+
+    '<section class="page-band"><div class="container detail-layout weapon-detail"><aside class="detail-aside">'+renderItemAssetImage('weapon',weapon)+'<a class="text-link" data-link href="'+pathFor('weapons')+'">'+t('back')+'</a></aside><div class="detail-main">'+
+    (detail?.loading?'<p role="status">'+label('Carregando detalhes…','Loading details…','Cargando detalles…')+'</p>':'')+
+    (detail?.error?'<p role="status">'+label('Não foi possível carregar os detalhes da Encore.','Unable to load Encore details.','No se pudieron cargar los detalles de Encore.')+'</p>':'')+
+    '<article class="panel"><h2>'+label('Atributos','Attributes','Atributos')+'</h2>'+(properties.length?'<div class="weapon-stats-scroll"><table><thead><tr><th>'+label('Nível','Level','Nivel')+'</th>'+properties.map(p=>'<th>'+escapeHtml(p.name)+'</th>').join('')+'</tr></thead><tbody>'+properties[0].values.map((v,i)=>'<tr><td>'+v.level+'</td>'+properties.map(p=>'<td>'+escapeHtml(p.values[i]?.value || '—')+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>':'<p>ATK: '+(weapon.baseAtk ?? '—')+' · '+escapeHtml(weapon.stat || '—')+'</p>')+'</article>'+
+    (detail?.passive || weapon.passive?'<article class="panel"><h2>'+escapeHtml(detail?.passiveName || label('Passiva','Passive','Pasiva'))+'</h2><p>'+escapeHtml(detail?.passive || weapon.passive)+'</p><small>'+label('Valores separados por / correspondem às categorias de sintonia da arma.','Slash-separated values correspond to weapon syntonization ranks.','Los valores separados por / corresponden a rangos de sintonización.')+'</small></article>':'')+
+    (detail?.description?'<article class="panel"><h2>'+label('Descrição','Description','Descripción')+'</h2><p>'+escapeHtml(detail.description)+'</p></article>':'')+
+    (detail?.source?'<a class="text-link" href="'+escapeHtml(detail.source)+'" target="_blank" rel="noreferrer">Encore · '+label('Fonte dos dados','Data source','Fuente de datos')+'</a>':'')+'</div></div></section>';
+}
 function renderWeaponsPage() {
+  if(state.detail)return renderWeaponDetail(state.detail);
   const types = ["all", ...new Set(weapons.map((weapon) => weapon.type))];
   const filtered = state.weaponFilter === "all"
     ? weapons
@@ -2587,9 +2620,9 @@ function renderWeaponsPage() {
                 <span>${stars(weapon.rarity)}</span>
               </div>
               <div class="card-body">
-                <h3>${weapon.name}</h3>
+                <h3><a data-link href="${pathFor("weapons",state.lang,weapon.slug)}">${escapeHtml(weapon.name)} ↗</a></h3>
                 <dl class="mini-dl">
-                  <div><dt>ATK</dt><dd>${weapon.baseAtk}</dd></div>
+                  <div><dt>ATK</dt><dd>${weapon.baseAtk ?? "—"}</dd></div>
                   <div><dt>${t("substat")}</dt><dd>${weapon.stat}</dd></div>
                 </dl>
                 <p>${weapon.passive}</p>
