@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "test": "node --test scripts/test-convenes.mjs scripts/test-characters.mjs scripts/test-echo-catalog.mjs scripts/test-memory-cache.mjs scripts/test-tier-list.mjs && node scripts/test-gacha.mjs",
     "test:tier": "node scripts/test-tier-browser.mjs",

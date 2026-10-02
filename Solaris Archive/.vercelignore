@@ -1,0 +1,6 @@
+artifacts/
+docs/
+.vscode/
+.env
+.env.*
+*.log
