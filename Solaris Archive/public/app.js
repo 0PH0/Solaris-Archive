@@ -1,4 +1,5 @@
 import {loadWeaponCatalog, loadWeaponDetail} from './weapon-catalog.js';
+import { readEchoCatalogCache, loadEchoCatalog, ECHO_CACHE_TTL } from "./echo-catalog.js";
 const app = document.querySelector("#app");
 const DEFAULT_LANG = "pt-BR";
 const SUPPORTED_LANGS = ["pt-BR", "en", "es"];
@@ -1080,6 +1081,133 @@ echoes.push(
     .filter((echo) => !existingEchoSlugs.has(echo.slug))
 );
 
+
+// Keep the Builder catalog independent of the Wiki's recommendation lists.
+const cachedEchoCatalog = readEchoCatalogCache();
+let builderEchoes = cachedEchoCatalog?.echoes || [];
+let builderSonatas = cachedEchoCatalog?.sets || [];
+let builderCatalogLoaded = false;
+let builderCatalogLoading = false;
+let builderCatalogError = false;
+let builderCatalogExpiresAt = 0;
+
+async function loadBuilderEchoes() {
+  if (builderCatalogLoading) return;
+  builderCatalogLoading = true;
+  builderCatalogError = false;
+  notifyAccessibility('loading');
+  scheduleRender();
+  try {
+    const catalog = await loadEchoCatalog();
+    const restore = !builderEchoes.length;
+    builderEchoes = catalog.echoes;
+    builderSonatas = catalog.sets;
+    builderCatalogError = Boolean(catalog.stale);
+    builderCatalogExpiresAt = catalog.stale ? Date.now() + 60000 : catalog.updatedAt + ECHO_CACHE_TTL;
+    if (restore) {
+      state.builder = readBuilder();
+      state.builderMessage = builderRestored ? "restored" : "";
+    }
+    if (builderUI.kind === "echo") updateBuilderPicker("echo");
+  } catch { builderCatalogError = true; builderCatalogExpiresAt = Date.now() + 60000; }
+  finally {
+    builderCatalogLoading = false;
+    builderCatalogLoaded = true;
+    notifyAccessibility(builderCatalogError ? 'loadError' : 'loaded');
+    scheduleRender();
+  }
+}
+
+const builderStats = {
+  hpPercent: "HP %", hp: "HP", atkPercent: "ATK %", atk: "ATK", defPercent: "DEF %", def: "DEF",
+  critRate: "CRIT Rate %", critDamage: "CRIT DMG %", energy: "Energy Regen %", healing: "Healing Bonus %",
+  aero: "Aero DMG %", glacio: "Glacio DMG %", electro: "Electro DMG %", fusion: "Fusion DMG %", havoc: "Havoc DMG %", spectro: "Spectro DMG %",
+  basic: "Basic Attack %", heavy: "Heavy Attack %", skill: "Resonance Skill %", liberation: "Liberation %"
+};
+const builderMainStats = {
+  1: ["hpPercent", "atkPercent", "defPercent"],
+  3: ["hpPercent", "atkPercent", "defPercent", "energy", "aero", "glacio", "electro", "fusion", "havoc", "spectro"],
+  4: ["hpPercent", "atkPercent", "defPercent", "critRate", "critDamage", "healing"]
+};
+const builderSubStats = ["hpPercent", "hp", "atkPercent", "atk", "defPercent", "def", "critRate", "critDamage", "energy", "basic", "heavy", "skill", "liberation"];
+const builderText = {
+  "pt-BR": {
+    title: "Monte sua próxima build.", description: "Um personagem. Cinco Echoes. Cada detalhe no seu lugar.",
+    catalogLoading: "Carregando catálogo de Echoes…", catalogError: "Não foi possível carregar os Echoes. Sua build salva foi preservada.", catalogStale: "Exibindo o catálogo em cache. Não foi possível atualizar agora.", retry: "Tentar novamente",
+    restored: "Build salva recuperada", makeMain: "Tornar principal",
+    setup: "Configuração", equipment: "Personagem & arma", change: "Trocar", select: "Selecionar", close: "Fechar",
+    echoLoadout: "Seus cinco Echoes", echoHint: "O primeiro Echo é o principal. Combine os custos dentro do limite de 12.",
+    main: "Principal", cost: "Custo", totalCost: "Custo total", equipped: "equipados", empty: "Adicionar Echo", remove: "Remover Echo",
+    mainStat: "Atributo principal", secondary: "Atributo fixo", substats: "Subatributos", value: "Valor", set: "Sonata",
+    bonuses: "Bônus dos Echoes", bonusesHint: "Soma dos valores preenchidos. Não inclui atributos base, arma ou efeitos condicionais de Sonata.",
+    setTitle: "Combinações de Sonata", setHint: "Conjuntos do catálogo. Echoes repetidos contam uma vez por conjunto.", noSets: "Equipe Echoes para acompanhar os conjuntos.",
+    name: "Nome da build", namePlaceholder: "Minha build de Jinhsi", save: "Salvar build", saved: "Salva neste navegador", unsaved: "Alterações não salvas", saveError: "Não foi possível salvar neste navegador",
+    reset: "Recomeçar", resetPrompt: "Limpar a build atual? A versão salva permanece disponível até você salvar novamente.",
+    level: "Nível", rank: "Sintonia", available: "disponíveis", capacity: "Limite de custo", slots: "Posições", selected: "Selecionado",
+    detailHint: "Preencha os valores exibidos no jogo. O nível não calcula atributos automaticamente.", catalog: "Referência do catálogo", weaponAtk: "ATK base no catálogo", locked: "Disponível no nível", noEcho: "Escolha um Echo para editar seus atributos.",
+    filter: "Filtrar", preview: "Resumo da build", pieces: "peças", skillPlan: "Prioridade de atributos"
+  },
+  en: {
+    title: "Build your next adventure.", description: "One resonator. Five Echoes. Every detail in its place.", setup: "Setup", equipment: "Resonator & weapon", change: "Change", select: "Select", close: "Close",
+    catalogLoading: "Loading Echo catalog…", catalogError: "Unable to load Echoes. Your saved build is preserved.", catalogStale: "Showing cached catalog. Unable to refresh right now.", retry: "Retry",
+    restored: "Saved build restored", makeMain: "Set as main",
+    echoLoadout: "Your five Echoes", echoHint: "The first Echo is your main. Keep the combined cost within 12.", main: "Main", cost: "Cost", totalCost: "Total cost", equipped: "equipped", empty: "Add Echo", remove: "Remove Echo",
+    mainStat: "Main attribute", secondary: "Fixed attribute", substats: "Substats", value: "Value", set: "Sonata", bonuses: "Echo bonuses", bonusesHint: "Sum of entered values. Excludes base stats, weapon and conditional Sonata effects.", setTitle: "Sonata combinations", setHint: "Catalog sets. Repeated Echoes count once per set.", noSets: "Equip Echoes to track your sets.",
+    name: "Build name", namePlaceholder: "My Jinhsi build", save: "Save build", saved: "Saved in this browser", unsaved: "Unsaved changes", saveError: "Unable to save in this browser", reset: "Start over", resetPrompt: "Clear this build? The saved version stays available until you save again.", level: "Level", rank: "Syntonization", available: "available", capacity: "Cost limit", slots: "Slots", selected: "Selected", detailHint: "Enter the values shown in game. Level does not calculate attributes automatically.", catalog: "Catalog reference", weaponAtk: "Catalog base ATK", locked: "Available at level", noEcho: "Select an Echo to edit its attributes.", filter: "Filter", preview: "Build overview", pieces: "pieces", skillPlan: "Attribute priority"
+  },
+  es: {
+    title: "Prepara tu próxima build.", description: "Un personaje. Cinco Ecos. Cada detalle en su lugar.", setup: "Configuración", equipment: "Personaje y arma", change: "Cambiar", select: "Seleccionar", close: "Cerrar",
+    catalogLoading: "Cargando catálogo de Ecos…", catalogError: "No se pudieron cargar los Ecos. Tu build guardada se conserva.", catalogStale: "Mostrando catálogo en caché. No se pudo actualizar.", retry: "Reintentar",
+    restored: "Build guardada recuperada", makeMain: "Usar como principal",
+    echoLoadout: "Tus cinco Ecos", echoHint: "El primer Eco es el principal. Mantén el coste total dentro de 12.", main: "Principal", cost: "Coste", totalCost: "Coste total", equipped: "equipados", empty: "Añadir Eco", remove: "Quitar Eco",
+    mainStat: "Atributo principal", secondary: "Atributo fijo", substats: "Subatributos", value: "Valor", set: "Sonata", bonuses: "Bonificaciones de Ecos", bonusesHint: "Suma de los valores introducidos. No incluye atributos base, arma o efectos condicionales de Sonata.", setTitle: "Combinaciones de Sonata", setHint: "Conjuntos del catálogo. Ecos repetidos cuentan una vez por conjunto.", noSets: "Equipa Ecos para ver los conjuntos.",
+    name: "Nombre de la build", namePlaceholder: "Mi build de Jinhsi", save: "Guardar build", saved: "Guardada en este navegador", unsaved: "Cambios sin guardar", saveError: "No se pudo guardar en este navegador", reset: "Reiniciar", resetPrompt: "¿Limpiar la build actual? La versión guardada permanece hasta que vuelvas a guardar.", level: "Nivel", rank: "Sintonía", available: "disponibles", capacity: "Límite de coste", slots: "Posiciones", selected: "Seleccionado", detailHint: "Introduce los valores del juego. El nivel no calcula atributos automáticamente.", catalog: "Referencia del catálogo", weaponAtk: "ATK base del catálogo", locked: "Disponible al nivel", noEcho: "Selecciona un Eco para editar sus atributos.", filter: "Filtrar", preview: "Resumen de la build", pieces: "piezas", skillPlan: "Prioridad de atributos"
+  }
+};
+function bt(key) { return builderText[state.lang]?.[key] || builderText["pt-BR"][key] || key; }
+function emptyBuilderEcho() { return { slug: "", set: "", level: 0, mainStat: "", mainValue: 0, secondaryValue: 0, substats: Array.from({ length: 5 }, () => ({ stat: "", value: 0 })) }; }
+function defaultBuilder() { return { version: 1, name: "", character: "jinhsi", weapon: "ages-of-harvest", level: 90, weaponLevel: 90, rank: 1, echoes: Array.from({ length: 5 }, emptyBuilderEcho) }; }
+function builderNumber(value, max = 99999, min = 0) { const number = Number(value); return Number.isFinite(number) ? Math.min(max, Math.max(min, number)) : min; }
+let builderRestored = false;
+function readBuilder() {
+  const build = defaultBuilder();
+  try {
+    const saved = JSON.parse(localStorage.getItem("solaris:builder:v1") || "null");
+    if (!saved || saved.version !== 1) return build;
+    build.name = typeof saved.name === "string" ? saved.name.slice(0, 80) : "";
+    if (typeof saved.character === "string" && /^[a-z0-9-]+$/.test(saved.character)) build.character = saved.character;
+    if (typeof saved.weapon === 'string' && saved.weapon.length <= 160 && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(saved.weapon)) build.weapon = saved.weapon;
+    build.level = Math.trunc(builderNumber(saved.level, 90, 1));
+    build.weaponLevel = Math.trunc(builderNumber(saved.weaponLevel, 90, 1));
+    build.rank = Math.trunc(builderNumber(saved.rank, 5, 1));
+    let cost = 0;
+    build.echoes = build.echoes.map((slot, index) => {
+      const raw = saved.echoes?.[index];
+      const item = builderEchoes.find((e) => e.slug === raw?.slug);
+      if (!item || cost + item.cost > 12) return slot;
+      cost += item.cost;
+      slot.slug = item.slug;
+      slot.set = item.sets.includes(raw.set) ? raw.set : item.sets[0];
+      slot.level = Math.trunc(builderNumber(raw.level, 25));
+      slot.mainStat = builderMainStats[item.cost].includes(raw.mainStat) ? raw.mainStat : "";
+      slot.mainValue = slot.mainStat ? builderNumber(raw.mainValue) : 0;
+      slot.secondaryValue = builderNumber(raw.secondaryValue);
+      const used = new Set();
+      slot.substats = slot.substats.map((sub, i) => {
+        const value = raw.substats?.[i];
+        if (builderSubStats.includes(value?.stat) && !used.has(value.stat)) {
+          used.add(value.stat); return { stat: value.stat, value: builderNumber(value.value) };
+        }
+        return sub;
+      });
+      return slot;
+    });
+    builderRestored = true;
+  } catch { /* Invalid or unavailable storage leaves a usable empty build. */ }
+  return build;
+}
+const builderUI = { kind: "", slot: 0, opener: null };
+
 const weapons = [
   {
     slug: "ages-of-harvest",
@@ -1467,12 +1595,8 @@ const state = {
   tierMode: "damage",
   elementFilter: "all",
   weaponFilter: "all",
-  builder: {
-    character: "jinhsi",
-    weapon: "ages-of-harvest",
-    echo: "celestial-light",
-    level: 90
-  },
+  builder: readBuilder(),
+  builderMessage: builderRestored ? "restored" : "",
   builderSearch: {
     character: "",
     weapon: "",
@@ -2931,24 +3055,24 @@ function normalizeBuilderWeapon(character = selectedBuilderCharacter()) {
 
 function builderItems(kind) {
   if (kind === "weapon") return compatibleBuilderWeapons();
-  if (kind === "echo") return echoes;
+  if (kind === "echo") return builderEchoes;
   return characters;
 }
 
 function builderSelectedSlug(kind) {
-  return state.builder[kind];
+  return kind === "echo" ? state.builder.echoes[builderUI.slot]?.slug : state.builder[kind];
 }
 
 function builderFilterValue(kind, item) {
-  if (kind === "character") return item.role;
-  if (kind === "weapon") return item.type;
-  return item.element;
+  if (kind === "character") return item.element;
+  if (kind === "weapon") return String(item.rarity);
+  return String(item.cost);
 }
 
 function builderFilterLabel(kind, value) {
   if (value === "all") return t("all");
-  if (kind === "character") return t(roleLabels[value] || value);
-  return value;
+  if (kind === "weapon") return stars(Number(value));
+  return kind === "echo" ? `${bt("cost")} ${value}` : value;
 }
 
 function builderFilterOptions(kind) {
@@ -2963,7 +3087,7 @@ function effectiveBuilderFilter(kind) {
 function builderSearchText(kind, item) {
   if (kind === "character") return [item.name, item.element, item.weapon, item.role, ...(item.tags || [])].join(" ");
   if (kind === "weapon") return [item.name, item.type, item.stat, ...(item.recommended || [])].join(" ");
-  return [item.name, item.element, item.effect2, item.effect5, ...(item.bestFor || [])].join(" ");
+  return [item.name, ...(item.aliases || []), item.cost, ...item.sets.map((slug) => builderSonatas.find((set) => set.slug === slug)?.name)].join(" ");
 }
 
 function filteredBuilderItems(kind) {
@@ -2973,13 +3097,14 @@ function filteredBuilderItems(kind) {
   return builderItems(kind).filter((item) => {
     const matchesSearch = !query || builderSearchText(kind, item).toLowerCase().includes(query);
     const matchesFilter = filter === "all" || builderFilterValue(kind, item) === filter;
-    return matchesSearch && matchesFilter;
+    const matchesSet = kind !== "echo" || !builderUI.set || item.sets.includes(builderUI.set);
+    return matchesSearch && matchesFilter && matchesSet;
   });
 }
 
 function renderBuilderItemIcon(kind, item) {
   const imageUrl = item.iconUrl || item.imageUrl || itemAssetUrl(kind, item);
-  const fallbackLabel = kind === "weapon" ? item.type.slice(0, 2) : item.element.slice(0, 2);
+  const fallbackLabel = kind === "weapon" ? item.type.slice(0, 2) : String(item.cost || "E").slice(0, 2);
 
   if (!imageUrl) {
     return `<span class="builder-option-mark">${escapeHtml(fallbackLabel)}</span>`;
@@ -2990,9 +3115,12 @@ function renderBuilderItemIcon(kind, item) {
       <img
         src="${escapeHtml(imageUrl)}"
         alt="${escapeHtml(item.name)}"
+        width="110"
+        height="110"
+        data-fallback-src="${escapeHtml(item.iconFallbackUrl || "")}"
         loading="lazy"
         decoding="async"
-        onerror="this.onerror=null;this.src='${ITEM_FALLBACK_IMAGE}';var p=this.parentElement;if(p)p.classList.add('is-fallback');"
+        onerror="if(this.dataset.fallbackSrc){this.src=this.dataset.fallbackSrc;delete this.dataset.fallbackSrc;return;}this.onerror=null;this.src='${ITEM_FALLBACK_IMAGE}';var p=this.parentElement;if(p)p.classList.add('is-fallback');"
       />
     </span>
   `;
@@ -3078,111 +3206,211 @@ function renderCharacterStatTargetSummary(character) {
   `;
 }
 
-function renderBuilderOption(kind, item) {
-  const isSelected = item.slug === builderSelectedSlug(kind);
-  const meta = kind === "character"
-    ? `${stars(item.rarity)} - ${item.element} - ${item.weapon}`
-    : kind === "weapon"
-      ? `${stars(item.rarity)} - ${item.type} - ${item.stat}`
-      : `${item.element} - ${item.effect2}`;
+function builderCost(except = -1) {
+  return state.builder.echoes.reduce((sum, slot, index) => sum + (index === except ? 0 : builderEchoes.find((e) => e.slug === slot.slug)?.cost || 0), 0);
+}
 
-  return `
-    <button class="builder-option ${isSelected ? "is-active" : ""}" type="button" data-builder-pick="${kind}" data-value="${item.slug}">
-      ${kind === "character" ? renderCharacterAvatar(item) : renderBuilderItemIcon(kind, item)}
-      <span>
-        <strong>${escapeHtml(item.name)}</strong>
-        <small>${escapeHtml(meta)}</small>
-      </span>
-    </button>
-  `;
+function renderBuilderOption(kind, item) {
+  const selected = item.slug === builderSelectedSlug(kind);
+  const disabled = kind === "echo" && builderCost(builderUI.slot) + item.cost > 12;
+  const meta = kind === "character" ? item.element + " · " + item.weapon : kind === "weapon" ? item.type + " · " + item.stat : bt("cost") + " " + item.cost;
+  return '<button class="builder-option' + (selected ? ' is-active' : '') + '" type="button" data-builder-pick="' + kind + '" data-value="' + item.slug + '" aria-pressed="' + selected + '" ' + (disabled ? 'disabled title="' + bt("capacity") + '"' : '') + '>' +
+    (kind === "character" ? renderCharacterAvatar(item) : renderBuilderItemIcon(kind, item)) +
+    '<span class="builder-option-info"><strong>' + escapeHtml(item.name) + '</strong><small>' + escapeHtml(meta) + '</small><span class="builder-rarity">' + (kind === "echo" ? (disabled ? bt("capacity") : '★★★★★') : stars(item.rarity)) + '</span></span></button>';
 }
 
 function renderBuilderOptions(kind) {
   const items = filteredBuilderItems(kind);
-  if (!items.length) return `<div class="empty-state builder-empty">${t("builderEmpty")}</div>`;
-  return items.map((item) => renderBuilderOption(kind, item)).join("");
+  return items.length ? items.map((item) => renderBuilderOption(kind, item)).join("") : '<div class="empty-state builder-empty">' + t("builderEmpty") + '</div>';
 }
 
 function renderBuilderPicker(kind, title, placeholder) {
-  const options = builderFilterOptions(kind);
-  const currentFilter = effectiveBuilderFilter(kind);
-  const current = builderItems(kind).find((item) => item.slug === builderSelectedSlug(kind));
+  const filter = effectiveBuilderFilter(kind);
+  return '<section class="builder-picker" data-builder-picker="' + kind + '">' +
+    '<div class="builder-picker-head"><div><p class="eyebrow">' + bt("select") + '</p><h2 id="builder-dialog-title">' + title + '</h2></div><button type="button" class="builder-icon-button" data-builder-close aria-label="' + bt("close") + '">×</button></div>' +
+    '<div class="builder-picker-tools"><input aria-label="' + placeholder + '" type="search" value="' + escapeHtml(state.builderSearch[kind]) + '" placeholder="' + placeholder + '" data-builder-search="' + kind + '">' +
+    '<select aria-label="' + bt("filter") + '" data-builder-filter="' + kind + '">' + builderFilterOptions(kind).map((value) => '<option value="' + value + '" ' + (filter === value ? 'selected' : '') + '>' + builderFilterLabel(kind, value) + '</option>').join('') + '</select></div>' +
+    '<p class="builder-picker-count"><span data-builder-count="' + kind + '">' + filteredBuilderItems(kind).length + ' ' + bt("available") + '</span>' + (kind === "echo" ? '<span>' + bt("cost") + ' ' + builderCost(builderUI.slot) + ' / 12 · Echo ' + (builderUI.slot + 1) + '</span>' : '') + '</p>' +
+    '<div class="builder-option-grid" data-builder-options="' + kind + '">' + renderBuilderOptions(kind) + '</div></section>';
+}
 
-  return `
-    <section class="builder-picker" data-builder-picker="${kind}">
-      <div class="builder-picker-head">
-        <div>
-          <span>${title}</span>
-          <strong>${escapeHtml(current?.name || "--")}</strong>
-        </div>
-        <small data-builder-count="${kind}">${filteredBuilderItems(kind).length} ${t("options")}</small>
-      </div>
-      <div class="builder-picker-tools">
-        <input type="search" value="${escapeHtml(state.builderSearch[kind])}" placeholder="${placeholder}" data-builder-search="${kind}">
-        <select data-builder-filter="${kind}">
-          ${options.map((value) => `<option value="${value}" ${currentFilter === value ? "selected" : ""}>${builderFilterLabel(kind, value)}</option>`).join("")}
-        </select>
-      </div>
-      <div class="builder-option-grid" data-builder-options="${kind}">
-        ${renderBuilderOptions(kind)}
-      </div>
-    </section>
-  `;
+function openBuilderPicker(kind, slot, opener) {
+  closeBuilderPicker(false);
+  builderUI.kind = kind; builderUI.slot = slot; builderUI.opener = opener;
+  const dialog = document.createElement("dialog");
+  dialog.className = "builder-dialog";
+  dialog.setAttribute("aria-labelledby", "builder-dialog-title");
+  dialog.setAttribute("data-builder-dialog", "");
+  const label = kind === "character" ? t("navCharacters") : kind === "weapon" ? t("weapon") : "Echo " + (slot + 1);
+  const search = kind === "character" ? t("searchCharacter") : kind === "weapon" ? t("searchWeapon") : t("searchEcho");
+  dialog.innerHTML = renderBuilderPicker(kind, label, search);
+  if (kind === "echo") {
+    const filter = document.createElement("select");
+    filter.setAttribute("aria-label", bt("set"));
+    filter.dataset.builderSetFilter = "";
+    filter.innerHTML = '<option value="">' + t("all") + ' · Sonata</option>' + builderSonatas.map((set) => '<option value="' + set.slug + '">' + escapeHtml(set.name) + '</option>').join('');
+    filter.value = builderUI.set || "";
+    dialog.querySelector('.builder-picker-tools').appendChild(filter);
+  }
+  app.appendChild(dialog);
+  dialog.addEventListener("cancel", (event) => { event.preventDefault(); closeBuilderPicker(); });
+  dialog.addEventListener("click", (event) => { if (event.target === dialog) closeBuilderPicker(); });
+  dialog.showModal();
+  dialog.querySelector("input")?.focus();
+}
+
+function closeBuilderPicker(restoreFocus = true) {
+  cancelPendingSearch();
+  const dialog = app.querySelector("[data-builder-dialog]");
+  if (dialog) { dialog.close(); dialog.remove(); }
+  if (restoreFocus) {
+    const fallback = routePanels.get(routeCacheKey())?.querySelector('[data-builder-open="' + builderUI.kind + '"]' + (builderUI.kind === "echo" ? '[data-slot="' + builderUI.slot + '"]' : ''));
+    (builderUI.opener?.isConnected ? builderUI.opener : fallback)?.focus();
+  }
+  builderUI.kind = "";
 }
 
 function updateBuilderPicker(kind) {
-  const picker = app.querySelector(`[data-builder-picker="${kind}"]`);
-  if (!picker || state.route !== "builder") {
-    render();
-    return;
-  }
+  const picker = app.querySelector('[data-builder-dialog] [data-builder-picker="' + kind + '"]');
+  if (!picker) return;
+  picker.querySelector('[data-builder-options="' + kind + '"]').innerHTML = renderBuilderOptions(kind);
+  picker.querySelector('[data-builder-count="' + kind + '"]').textContent = filteredBuilderItems(kind).length + ' ' + bt("available");
+  const panel = routePanels.get(routeCacheKey());
+  if (panel) panel.dataset.signature = routeSignature();
+}
 
-  const options = picker.querySelector(`[data-builder-options="${kind}"]`);
-  const count = picker.querySelector(`[data-builder-count="${kind}"]`);
-  const items = filteredBuilderItems(kind);
-  if (options) options.innerHTML = items.length
-    ? items.map((item) => renderBuilderOption(kind, item)).join("")
-    : `<div class="empty-state builder-empty">${t("builderEmpty")}</div>`;
-  if (count) count.textContent = `${items.length} ${t("options")}`;
+function builderStatOptions(keys, value, excluded = []) {
+  return '<option value="">— ' + bt("select") + ' —</option>' + keys.map((key) => '<option value="' + key + '" ' + (key === value ? 'selected' : '') + (excluded.includes(key) && key !== value ? ' disabled' : '') + '>' + builderStats[key] + '</option>').join('');
+}
+
+function renderBuilderEcho(slot, index) {
+  const item = builderEchoes.find((e) => e.slug === slot.slug);
+  const disabled = item ? '' : 'disabled';
+  const unlocked = Math.floor(slot.level / 5);
+  const numeric = (field, value, max = 99999, extra = '') => '<input type="number" min="0" max="' + max + '" step="' + (field === "level" ? '1' : '0.1') + '" value="' + value + '" data-echo-index="' + index + '" data-echo-field="' + field + '" ' + disabled + ' ' + extra + '>';
+  return '<article class="builder-echo-card ' + (item ? 'is-equipped' : 'is-empty') + '" data-echo-card="' + index + '">' +
+    '<header><span class="builder-slot-number">0' + (index + 1) + '</span><strong>Echo ' + (index + 1) + '</strong>' + (index === 0 ? '<span class="builder-main-tag">' + bt("main") + '</span>' : '') +
+    '<button type="button" class="builder-icon-button" data-builder-remove="' + index + '" aria-label="' + bt("remove") + ' ' + (index + 1) + '" ' + disabled + '>×</button></header>' +
+    '<button type="button" class="builder-echo-select" data-builder-open="echo" data-slot="' + index + '" aria-label="' + (item ? bt("change") + ' ' + item.name : bt("empty") + ' ' + (index + 1)) + '">' +
+    (item ? renderBuilderItemIcon("echo", item) : '<span class="builder-empty-art" aria-hidden="true">◇<i>+</i></span>') +
+    '<strong>' + escapeHtml(item?.name || bt("empty")) + '</strong><small>' + (item ? '<span class="builder-rarity">★★★★★</span> · ' + bt("cost") + ' ' + item.cost : bt("select") + ' →') + '</small></button>' +
+    '<div class="builder-echo-fields"><label class="builder-echo-level"><span>' + bt("level") + '</span>' + numeric("level", slot.level, 25) + '<small>/ 25</small></label>' +
+    '<label><span>' + bt("set") + '</span><select data-echo-index="' + index + '" data-echo-field="set" ' + disabled + '>' + (item ? item.sets.map((slug) => '<option value="' + slug + '" ' + (slug === slot.set ? 'selected' : '') + '>' + escapeHtml(builderSonatas.find((e) => e.slug === slug)?.name) + '</option>').join('') : '<option>—</option>') + '</select></label>' +
+    '<label><span>' + bt("mainStat") + '</span><select data-echo-index="' + index + '" data-echo-field="mainStat" ' + disabled + '>' + builderStatOptions(builderMainStats[item?.cost] || [], slot.mainStat) + '</select></label>' +
+    '<label class="builder-stat-value"><span>' + bt("value") + '</span>' + numeric("mainValue", slot.mainValue, 99999, slot.mainStat ? '' : 'disabled') + '</label>' +
+    '<label class="builder-stat-value"><span>' + bt("secondary") + ' · ' + (item?.cost === 1 ? 'HP' : 'ATK') + '</span>' + numeric("secondaryValue", slot.secondaryValue) + '</label>' +
+    (item && index > 0 ? '<button type="button" class="builder-text-button builder-promote" data-builder-main="' + index + '">' + bt("makeMain") + ' ↑</button>' : '') +
+    '<details class="builder-substats"><summary>' + bt("substats") + ' <span>' + unlocked + ' / 5</span></summary>' + slot.substats.map((sub, i) => {
+      const locked = !item || i >= unlocked;
+      return '<div class="builder-substat-row"><label><span>' + bt("substats") + ' ' + (i + 1) + '</span><select data-echo-index="' + index + '" data-echo-sub="' + i + '" data-echo-field="stat" ' + (locked ? 'disabled' : '') + '>' + builderStatOptions(builderSubStats, sub.stat, slot.substats.map((s) => s.stat)) + '</select></label>' +
+        '<input aria-label="' + bt("value") + ' ' + (i + 1) + '" type="number" min="0" max="99999" step="0.1" value="' + sub.value + '" data-echo-index="' + index + '" data-echo-sub="' + i + '" data-echo-field="value" ' + (locked || !sub.stat ? 'disabled' : '') + '>' + (locked ? '<small>' + bt("locked") + ' ' + ((i + 1) * 5) + '</small>' : '') + '</div>';
+    }).join('') + '</details></div></article>';
+}
+
+function builderTotals() {
+  const totals = Object.fromEntries(Object.keys(builderStats).map((key) => [key, 0]));
+  for (const slot of state.builder.echoes) {
+    const item = builderEchoes.find((e) => e.slug === slot.slug);
+    if (!item) continue;
+    if (slot.mainStat in totals) totals[slot.mainStat] += slot.mainValue;
+    totals[item.cost === 1 ? "hp" : "atk"] += slot.secondaryValue;
+    slot.substats.slice(0, Math.floor(slot.level / 5)).forEach((sub) => { if (sub.stat in totals) totals[sub.stat] += sub.value; });
+  }
+  return totals;
+}
+
+function renderBuilderBonuses() {
+  const totals = builderTotals();
+  const main = ["atkPercent", "critRate", "critDamage", "energy"];
+  const value = (key) => '+' + Number(totals[key].toFixed(1)).toLocaleString(currentLocale()) + (["atk", "hp", "def"].includes(key) ? '' : '%');
+  return '<div class="builder-bonus-grid">' + main.map((key) => '<div><span>' + builderStats[key] + '</span><strong>' + value(key) + '</strong></div>').join('') + '</div>' +
+    '<dl class="builder-bonus-list">' + Object.keys(totals).filter((key) => !main.includes(key) && (totals[key] || ["hp", "atk", "def"].includes(key))).map((key) => '<div><dt>' + builderStats[key] + '</dt><dd>' + value(key) + '</dd></div>').join('') + '</dl>';
+}
+
+function renderBuilderSonatas() {
+  const sets = new Map();
+  state.builder.echoes.forEach((slot) => {
+    if (!slot.slug || !slot.set) return;
+    if (!sets.has(slot.set)) sets.set(slot.set, new Set());
+    sets.get(slot.set).add(slot.slug);
+  });
+  if (!sets.size) return '<p class="builder-muted">' + bt("noSets") + '</p>';
+  return [...sets].map(([slug, members]) => {
+    const set = builderSonatas.find((e) => e.slug === slug);
+    if (!set) return '';
+    const maximum = Math.max(1, ...set.bonuses.map((bonus) => bonus.count));
+    return '<div class="builder-sonata"><div><strong>' + escapeHtml(set.name) + '</strong><span>' + members.size + ' / ' + maximum + '</span></div><div class="builder-set-progress">' + Array.from({ length: maximum }, (_, i) => '<i class="' + (i < members.size ? 'is-active' : '') + '"></i>').join('') + '</div>' + set.bonuses.map((bonus) => '<p>' + (members.size >= bonus.count ? '✓ ' : '') + bonus.count + ' ' + bt("pieces") + ': ' + escapeHtml(bonus.description) + '</p>').join('') + '</div>';
+  }).join('');
+}
+
+function updateBuilderSummary() {
+  const panel = routePanels.get(routeCacheKey());
+  if (!panel) return;
+  panel.querySelector('[data-builder-bonuses]').innerHTML = renderBuilderBonuses();
+  panel.querySelector('[data-builder-message]').textContent = state.builderMessage ? bt(state.builderMessage) : bt("unsaved");
+  panel.dataset.signature = routeSignature();
 }
 
 function renderBuilderPage() {
+  if (!builderEchoes.length) return '<section class="builder-workspace"><div class="container builder-shell"><h1>' + bt("title") + '</h1><div class="empty-state" role="status"><p>' + bt(builderCatalogError ? "catalogError" : "catalogLoading") + '</p>' + (builderCatalogError ? '<button type="button" class="builder-button" data-builder-retry>' + bt("retry") + '</button>' : '') + '</div></div></section>';
   const character = selectedBuilderCharacter();
   const weapon = normalizeBuilderWeapon(character);
-  const echo = echoes.find((item) => item.slug === state.builder.echo) || echoes[0];
-  const levelRatio = state.builder.level / 90;
-  const atk = Math.round((character.stats.atk + weapon.baseAtk) * (0.58 + levelRatio * 0.52));
-  const hp = Math.round(character.stats.hp * (0.62 + levelRatio * 0.42));
-  const crit = Math.round((weapon.stat.includes("CRIT") ? 68 : 52) + levelRatio * 12);
-  const score = Math.round((atk / 18) + crit * 1.4 + (echo.name === character.build.echoes.replace(" 5p", "") ? 40 : 18));
+  const used = state.builder.echoes.filter((e) => e.slug).length;
+  const numberField = (field, label, value, max) => '<label class="builder-number-field"><span>' + label + '</span><div><input aria-label="' + label + '" type="number" min="1" max="' + max + '" step="1" data-builder-field="' + field + '" value="' + value + '"><small>/ ' + max + '</small></div></label>';
+  return '<section class="builder-workspace"><div class="container builder-shell">' +
+    '<header class="builder-heading"><div><p class="eyebrow">SOLARIS ARCHIVE / BUILD LAB</p><h1>' + bt("title") + '</h1><p>' + bt("description") + '</p></div><span class="builder-heading-mark" aria-hidden="true">◇</span></header>' +
+    (builderCatalogError ? '<p role="status" class="builder-input-hint">' + bt("catalogStale") + ' <button type="button" class="builder-text-button" data-builder-retry>' + bt("retry") + '</button></p>' : '') +
+    '<div class="builder-toolbar"><label><span class="sr-only">' + bt("name") + '</span><input type="text" maxlength="80" data-builder-field="name" value="' + escapeHtml(state.builder.name) + '" placeholder="' + bt("namePlaceholder") + '"></label><span class="builder-save-status" data-builder-message role="status">' + bt(state.builderMessage || "unsaved") + '</span><button type="button" class="builder-button builder-button--primary" data-builder-save>' + bt("save") + '</button><button type="button" class="builder-button" data-builder-reset>' + bt("reset") + '</button></div>' +
+    '<div class="builder-equipment"><article class="builder-resonator"><div class="builder-resonator-art">' + renderCharacterAvatar(character, "detail") + '</div><div class="builder-resonator-info"><p class="eyebrow">01 / RESONATOR</p><span class="builder-rarity">' + stars(character.rarity) + '</span><h2>' + escapeHtml(character.name) + '</h2><p class="builder-muted">' + escapeHtml(character.element) + ' · ' + escapeHtml(character.weapon) + '</p>' + numberField("level", bt("level"), state.builder.level, 90) + '<button type="button" class="builder-button" data-builder-open="character">' + bt("change") + ' ↗</button></div></article>' +
+    '<article class="builder-weapon"><div class="builder-section-line"><p class="eyebrow">02 / ' + t("weapon") + '</p><button type="button" class="builder-text-button" data-builder-open="weapon">' + bt("change") + ' ↗</button></div><div class="builder-weapon-info">' + renderBuilderItemIcon("weapon", weapon) + '<div><span class="builder-rarity">' + stars(weapon.rarity) + '</span><h2>' + escapeHtml(weapon.name) + '</h2><p>' + weapon.type + ' · ' + weapon.stat + '</p></div></div><div class="builder-weapon-controls">' + numberField("weaponLevel", bt("level"), state.builder.weaponLevel, 90) + numberField("rank", bt("rank"), state.builder.rank, 5) + '</div><p class="builder-weapon-passive">' + escapeHtml(weapon.passive) + '</p><small class="builder-muted">' + bt("weaponAtk") + ': ' + weapon.baseAtk + '</small></article>' +
+    '<aside class="builder-overview"><p class="eyebrow">' + bt("preview") + '</p><div class="builder-cost-number"><strong>' + builderCost() + '</strong><span>/ 12</span></div><p>' + bt("totalCost") + '</p><div class="builder-cost-track"><i style="width:' + (builderCost() / 12 * 100) + '%"></i></div><div class="builder-overview-bottom"><span>' + bt("slots") + '</span><strong>' + used + ' / 5</strong></div><small class="builder-muted">' + bt("skillPlan") + '</small><p class="builder-priority">' + escapeHtml(character.build.mainStats.join(' · ')) + '</p></aside></div>' +
+    '<section class="builder-echo-section" aria-labelledby="builder-echo-title"><div class="builder-echo-heading"><div><p class="eyebrow">03 / ECHO LOADOUT</p><h2 id="builder-echo-title">' + bt("echoLoadout") + '</h2><p>' + bt("echoHint") + '</p></div><span class="builder-equipped-count">' + used + ' / 5 ' + bt("equipped") + '</span></div><div class="builder-five-echoes">' + state.builder.echoes.map(renderBuilderEcho).join('') + '</div><p class="builder-input-hint">' + bt("detailHint") + '</p></section>' +
+    '<div class="builder-bottom"><section class="builder-summary"><p class="eyebrow">04 / ATTRIBUTES</p><h2>' + bt("bonuses") + '</h2><div data-builder-bonuses>' + renderBuilderBonuses() + '</div><p class="builder-input-hint">' + bt("bonusesHint") + '</p></section><section class="builder-summary"><p class="eyebrow">SONATA EFFECTS</p><h2>' + bt("setTitle") + '</h2><div data-builder-sonatas>' + renderBuilderSonatas() + '</div><p class="builder-input-hint">' + bt("setHint") + '</p></section></div></div></section>';
+}
 
-  return `
-    ${renderPageHero(t("navBuilder"), t("pageBuilderDesc"), "Tools")}
-    <section class="page-band">
-      <div class="container builder-layout">
-        <div class="builder-panel builder-panel--cards" data-builder-form>
-          ${renderBuilderPicker("character", t("navCharacters"), t("searchCharacter"))}
-          ${renderBuilderPicker("weapon", t("weapon"), t("searchWeapon"))}
-          ${renderBuilderPicker("echo", t("echoes"), t("searchEcho"))}
-          <label>
-            <span>${t("level")} ${state.builder.level}</span>
-            <input type="range" min="1" max="90" value="${state.builder.level}" data-builder-level>
-          </label>
-        </div>
-        <div class="builder-results">
-          <article class="panel">
-            <h2>${character.name} + ${weapon.name}</h2>
-            <p>${echo.name} • ${echo.effect2}</p>
-            ${renderBar("ATK", atk, 1600)}
-            ${renderBar("HP", hp, 18000)}
-            ${renderBar("Crit Score", crit, 100)}
-            ${renderBar("Build Score", score, 220)}
-          </article>
-          ${renderBuilderStatTargets(character, weapon, echo, { atk, hp, crit, score })}
-        </div>
-      </div>
-    </section>
-  `;
+function handleBuilderField(event) {
+  const target = event.target;
+  if (!target.matches('[data-builder-field], [data-echo-field]')) return false;
+  const field = target.dataset.builderField;
+  if (field) {
+    state.builder[field] = field === "name" ? target.value.slice(0, 80) : Math.trunc(builderNumber(target.value, field === "rank" ? 5 : 90, 1));
+    if (event.type === "change") target.value = state.builder[field];
+  } else {
+    const index = Number(target.dataset.echoIndex);
+    const slot = state.builder.echoes[index];
+    const item = builderEchoes.find((e) => e.slug === slot?.slug);
+    if (!item || target.disabled) return true;
+    const key = target.dataset.echoField;
+    const subIndex = target.dataset.echoSub;
+    if (subIndex !== undefined) {
+      const sub = slot.substats[Number(subIndex)];
+      if (!sub || Number(subIndex) >= Math.floor(slot.level / 5)) return true;
+      if (key === "stat") {
+        if (target.value && (!builderSubStats.includes(target.value) || slot.substats.some((s, i) => i !== Number(subIndex) && s.stat === target.value))) return true;
+        sub.stat = target.value; sub.value = 0;
+      } else { sub.value = builderNumber(target.value); if (event.type === "change") target.value = sub.value; }
+    } else if (key === "set") {
+      if (item.sets.includes(target.value)) slot.set = target.value;
+    } else if (key === "mainStat") {
+      if (!target.value || builderMainStats[item.cost].includes(target.value)) { slot.mainStat = target.value; slot.mainValue = 0; }
+    } else {
+      slot[key] = key === "level" ? Math.trunc(builderNumber(target.value, 25)) : builderNumber(target.value);
+      if (event.type === "change") target.value = slot[key];
+    }
+    if (target.tagName === "SELECT" || (key === "level" && event.type === "change")) {
+      const card = target.closest('[data-echo-card]');
+      const wasOpen = card.querySelector('details').open;
+      card.outerHTML = renderBuilderEcho(slot, index);
+      const panel = routePanels.get(routeCacheKey());
+      const nextCard = panel.querySelector('[data-echo-card="' + index + '"]');
+      nextCard.querySelector('details').open = wasOpen;
+      nextCard.querySelector('[data-echo-field="' + key + '"]' + (subIndex !== undefined ? '[data-echo-sub="' + subIndex + '"]' : ''))?.focus();
+      if (key === "set") panel.querySelector('[data-builder-sonatas]').innerHTML = renderBuilderSonatas();
+    }
+  }
+  state.builderMessage = "unsaved";
+  updateBuilderSummary();
+  return true;
 }
 
 function renderBar(label, value, max) {
@@ -3712,19 +3940,53 @@ app.addEventListener("click", (event) => {
     return;
   }
 
-  const builderPick = event.target.closest("[data-builder-pick]");
-  if (builderPick) {
-    const kind = builderPick.getAttribute("data-builder-pick");
-    if (["character", "weapon", "echo"].includes(kind)) {
-      state.builder[kind] = builderPick.getAttribute("data-value");
-      if (kind === "character") {
-        const character = selectedBuilderCharacter();
-        normalizeBuilderWeapon(character);
-        state.builderSearch.weapon = "";
-      }
-      render();
-    }
+  if (event.target.closest("[data-builder-retry]")) { loadBuilderEchoes(); return; }
+  const builderOpen = event.target.closest("[data-builder-open]");
+  if (builderOpen) { openBuilderPicker(builderOpen.dataset.builderOpen, Number(builderOpen.dataset.slot || 0), builderOpen); return; }
+  if (event.target.closest("[data-builder-close]")) { closeBuilderPicker(); return; }
+  const mainEcho = event.target.closest("[data-builder-main]");
+  if (mainEcho) {
+    const index = Number(mainEcho.dataset.builderMain);
+    if (!state.builder.echoes[index]?.slug) return;
+    [state.builder.echoes[0], state.builder.echoes[index]] = [state.builder.echoes[index], state.builder.echoes[0]];
+    state.builderMessage = "unsaved";
+    render();
+    routePanels.get(routeCacheKey())?.querySelector('[data-builder-open="echo"][data-slot="0"]')?.focus();
     return;
+  }
+  if (event.target.closest("[data-builder-save]")) {
+    try { localStorage.setItem("solaris:builder:v1", JSON.stringify(state.builder)); state.builderMessage = "saved"; }
+    catch { state.builderMessage = "saveError"; }
+    notifyAccessibility(bt(state.builderMessage), true);
+    updateBuilderSummary(); return;
+  }
+  if (event.target.closest("[data-builder-reset]")) {
+    if (window.confirm(bt("resetPrompt"))) { state.builder = defaultBuilder(); state.builderMessage = "unsaved"; render(); }
+    return;
+  }
+  const removeEcho = event.target.closest("[data-builder-remove]");
+  if (removeEcho && !removeEcho.disabled) {
+    const index = Number(removeEcho.dataset.builderRemove);
+    state.builder.echoes[index] = emptyBuilderEcho(); state.builderMessage = "unsaved"; render();
+    routePanels.get(routeCacheKey()).querySelector('[data-builder-open="echo"][data-slot="' + index + '"]')?.focus(); return;
+  }
+  const builderPick = event.target.closest("[data-builder-pick]");
+  if (builderPick && !builderPick.disabled) {
+    const kind = builderPick.dataset.builderPick;
+    const item = builderItems(kind).find((item) => item.slug === builderPick.dataset.value);
+    if (!item) return;
+    if (kind === "echo") {
+      if (builderCost(builderUI.slot) + item.cost > 12) return;
+      const slot = state.builder.echoes[builderUI.slot];
+      if (slot.slug !== item.slug) {
+        state.builder.echoes[builderUI.slot] = { ...emptyBuilderEcho(), slug: item.slug, set: item.sets[0] };
+      }
+    } else if (kind === "character" || kind === "weapon") {
+      state.builder[kind] = item.slug;
+      if (kind === "character") { normalizeBuilderWeapon(selectedBuilderCharacter()); state.builderSearch.weapon = ""; }
+    }
+    state.builderMessage = "unsaved";
+    render(); closeBuilderPicker(); return;
   }
 
   const showcaseButton = event.target.closest("[data-showcase-toggle]");
@@ -3798,6 +4060,12 @@ app.addEventListener("keydown", (event) => {
 });
 
 app.addEventListener("change", (event) => {
+  if (event.target.matches('[data-builder-set-filter]')) {
+    builderUI.set = event.target.value;
+    updateBuilderPicker("echo");
+    return;
+  }
+  if (handleBuilderField(event)) return;
   const language = event.target.closest("[data-language-select]");
   if (language) {
     navigateTo(pathFor(state.route === "not-found" ? "home" : state.route, language.value, state.detail));
@@ -3871,6 +4139,7 @@ app.addEventListener("change", (event) => {
 });
 
 app.addEventListener("input", (event) => {
+  if (event.target.tagName !== "SELECT" && handleBuilderField(event)) return;
   const globalSearch = event.target.closest("[data-global-search]");
   if (globalSearch) {
     updateSearchSuggestions(globalSearch);
