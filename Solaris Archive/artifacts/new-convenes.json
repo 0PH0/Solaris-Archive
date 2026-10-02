@@ -1,0 +1,121 @@
+{
+  "updatedAt": "2026-10-02T02:02:56.494Z",
+  "syncIntervalMinutes": 5,
+  "source": "https://raw.githubusercontent.com/TheLovinator1/wutheringwaves/master/articles_latest.xml",
+  "imageSource": "Kuro Games CDN via TheLovinator1/wutheringwaves",
+  "convenes": [
+    {
+      "id": "convene-5546-horizonofdawnbreakfeaturedresonatorconvene",
+      "title": "[Horizon of Dawnbreak] Featured Resonator Convene",
+      "type": "resonator",
+      "featuredName": "Chisa",
+      "featuredDetail": "",
+      "imageUrl": "https://hw-media-cdn-mingchao.kurogame.com/object/1790524800000/trn2p82rluezvtpbhd-1790599750647.jpg",
+      "startAt": "2026-09-28T20:51:59+00:00",
+      "endAt": "2026-10-22T01:59:00.000Z",
+      "startLabel": "Version 3.7 update",
+      "startTimeLabel": "",
+      "estimatedStart": true,
+      "serverTimezone": "UTC+8",
+      "highlights": [
+        "5-Star Resonator: Chisa, 4-Star Resonators: Buling, Taoqi, and Youhu receive boosted drop rates!"
+      ],
+      "sourceUrl": "https://wutheringwaves.kurogames.com/en/main/news/detail/5546",
+      "status": "ao_vivo"
+    },
+    {
+      "id": "convene-5546-kumokirifeaturedweaponconvene",
+      "title": "[Kumokiri] Featured Weapon Convene",
+      "type": "weapon",
+      "featuredName": "Kumokiri",
+      "featuredDetail": "",
+      "imageUrl": "https://hw-media-cdn-mingchao.kurogame.com/object/1790524800000/bp1ghgcr0axdqnq3tg-1790599781062.jpg",
+      "startAt": "2026-09-28T20:51:59+00:00",
+      "endAt": "2026-10-22T01:59:00.000Z",
+      "startLabel": "Version 3.7 update",
+      "startTimeLabel": "",
+      "estimatedStart": true,
+      "serverTimezone": "UTC+8",
+      "highlights": [
+        "5-Star Weapon: Kumokiri, 4-Star Weapons: Fusion Accretion, Commando of Conviction, and Dauntless Evernight receive boosted drop rates!"
+      ],
+      "sourceUrl": "https://wutheringwaves.kurogames.com/en/main/news/detail/5546",
+      "status": "ao_vivo"
+    },
+    {
+      "id": "convene-5546-acrosstimeswaxesandwanesfeaturedresonatorconvene",
+      "title": "[Across Time's Waxes and Wanes] Featured Resonator Convene",
+      "type": "resonator",
+      "featuredName": "Iuno",
+      "featuredDetail": "",
+      "imageUrl": "https://hw-media-cdn-mingchao.kurogame.com/object/1790524800000/52fuzc2q5izfpskj6p-1790599795275.jpg",
+      "startAt": "2026-09-28T20:51:59+00:00",
+      "endAt": "2026-10-22T01:59:00.000Z",
+      "startLabel": "Version 3.7 update",
+      "startTimeLabel": "",
+      "estimatedStart": true,
+      "serverTimezone": "UTC+8",
+      "highlights": [
+        "5-Star Resonator: Iuno, 4-Star Resonators: Buling, Taoqi, and Youhu receive boosted drop rates!"
+      ],
+      "sourceUrl": "https://wutheringwaves.kurogames.com/en/main/news/detail/5546",
+      "status": "ao_vivo"
+    },
+    {
+      "id": "convene-5546-moongazerssigilfeaturedweaponconvene",
+      "title": "[Moongazer's Sigil] Featured Weapon Convene",
+      "type": "weapon",
+      "featuredName": "Moongazer's Sigil",
+      "featuredDetail": "",
+      "imageUrl": "https://hw-media-cdn-mingchao.kurogame.com/object/1790524800000/5se8wi7o764x037898-1790599812463.jpg",
+      "startAt": "2026-09-28T20:51:59+00:00",
+      "endAt": "2026-10-22T01:59:00.000Z",
+      "startLabel": "Version 3.7 update",
+      "startTimeLabel": "",
+      "estimatedStart": true,
+      "serverTimezone": "UTC+8",
+      "highlights": [
+        "5-Star Weapon: Moongazer's Sigil, 4-Star Weapons: Fusion Accretion, Commando of Conviction, and Dauntless Evernight receive boosted drop rates!"
+      ],
+      "sourceUrl": "https://wutheringwaves.kurogames.com/en/main/news/detail/5546",
+      "status": "ao_vivo"
+    },
+    {
+      "id": "convene-5529-hsin",
+      "title": "[As Full as Tonight, Forever] Featured Resonator Convene",
+      "type": "resonator",
+      "featuredName": "Hsin",
+      "featuredDetail": "Electro",
+      "imageUrl": "/assets/banners/hsin-3.7.webp",
+      "highlights": [
+        "5-Star Resonator: Hsin; 4-Star Resonators: Buling, Taoqi, Youhu"
+      ],
+      "startAt": "2026-09-30T03:00:00Z",
+      "endAt": "2026-10-22T01:59:00Z",
+      "startLabel": "Version 3.7 update",
+      "estimatedStart": true,
+      "serverTimezone": "UTC+8",
+      "sourceUrl": "https://wutheringwaves.kurogames.com/en/main/news/detail/5529",
+      "status": "ao_vivo"
+    },
+    {
+      "id": "convene-5529-bloomingjadehaven",
+      "title": "[Blooming Jadehaven] Featured Weapon Convene",
+      "type": "weapon",
+      "featuredName": "Blooming Jadehaven",
+      "featuredDetail": "Rectifier",
+      "imageUrl": "/assets/banners/blooming-jadehaven-3.7.webp",
+      "highlights": [
+        "5-Star Weapon: Blooming Jadehaven; 4-Star Weapons: Fusion Accretion, Commando of Conviction, Dauntless Evernight"
+      ],
+      "startAt": "2026-09-30T03:00:00Z",
+      "endAt": "2026-10-22T01:59:00Z",
+      "startLabel": "Version 3.7 update",
+      "estimatedStart": true,
+      "serverTimezone": "UTC+8",
+      "sourceUrl": "https://wutheringwaves.kurogames.com/en/main/news/detail/5529",
+      "status": "ao_vivo"
+    }
+  ],
+  "cached": false
+}

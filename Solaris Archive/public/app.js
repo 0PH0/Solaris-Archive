@@ -96,6 +96,7 @@ const copy = {
     activeEvents: "Eventos ativos",
     currentConvenes: "Convocacoes atuais",
     emptyConvenes: "Nenhuma convocacao ativa no momento.",
+    convenesUnavailable: "Não foi possível atualizar as convocações. Tentaremos novamente em instantes.",
     convenePageTitle: "Banners de personagem e arma",
     convenePageDesc: "Convocacoes sincronizadas em endpoint proprio, independentes dos eventos in-game.",
     categoryOverview: "Resumo por categoria",
@@ -274,6 +275,7 @@ const copy = {
     activeEvents: "Active events",
     currentConvenes: "Current convenes",
     emptyConvenes: "No active convenes right now.",
+    convenesUnavailable: "Unable to refresh convenes. We will retry shortly.",
     convenePageTitle: "Character and weapon banners",
     convenePageDesc: "Convenes synced from their own endpoint, independent from in-game events.",
     categoryOverview: "Category overview",
@@ -452,6 +454,7 @@ const copy = {
     activeEvents: "Eventos activos",
     currentConvenes: "Convocatorias actuales",
     emptyConvenes: "No hay convocatorias activas ahora.",
+    convenesUnavailable: "No se pudieron actualizar las convocatorias. Lo intentaremos de nuevo en breve.",
     convenePageTitle: "Banners de personaje y arma",
     convenePageDesc: "Convocatorias sincronizadas desde su propio endpoint, independientes de los eventos in-game.",
     categoryOverview: "Resumen por categoria",
@@ -2117,7 +2120,7 @@ function renderBannerSpotlight() {
           <div class="banner-grid">
             ${cards.map((convene) => renderConveneCard(convene, true)).join("")}
           </div>
-        ` : `<div class="empty-state">${t("emptyConvenes")}</div>`}
+        ` : `<div class="empty-state">${t(state.conveneError ? "convenesUnavailable" : "emptyConvenes")}</div>`}
       </div>
     </section>
   `;
@@ -3527,7 +3530,7 @@ function nextEndingLabel(items) {
     .filter((time) => Number.isFinite(time) && time >= Date.now())
     .sort((a, b) => a - b)[0];
 
-  return upcomingEnd ? formatEventDateTime(new Date(upcomingEnd).toISOString()) : t("noActiveItems");
+  return upcomingEnd ? formatDate(new Date(upcomingEnd).toISOString()) : t("noActiveItems");
 }
 
 function eventCategoryItems(category, events, convenes) {
@@ -3586,7 +3589,7 @@ function renderFilteredEventContent(filter, events, convenes) {
   if (filter === "banner") {
     return convenes.length
       ? renderEventGroup(t("currentConvenes"), convenes.map((convene) => renderConveneCard(convene)), "banner-grid")
-      : `<div class="empty-state">${t("emptyConvenes")}</div>`;
+      : `<div class="empty-state">${t(state.conveneError ? "convenesUnavailable" : "emptyConvenes")}</div>`;
   }
 
   if (filter === "all") {
@@ -3664,15 +3667,19 @@ function renderConvenesSection() {
           <div class="banner-grid">
             ${convenes.map((convene) => renderConveneCard(convene)).join("")}
           </div>
-        ` : `<div class="empty-state">${t("emptyConvenes")}</div>`}
+        ` : `<div class="empty-state">${t(state.conveneError ? "convenesUnavailable" : "emptyConvenes")}</div>`}
       </div>
     </section>
   `;
 }
 
+function conveneImageUrl(convene) {
+  // Every banner uses only the image attached to this exact API record.
+  return convene?.imageUrl || convene?.image || convene?.bannerImageUrl || EVENT_FALLBACK_IMAGE;
+}
 function renderConveneCard(convene, compact = false) {
   const status = getEventStatus(convene);
-  const imageUrl = convene.imageUrl || EVENT_FALLBACK_IMAGE;
+  const imageUrl = conveneImageUrl(convene);
   const featured = [convene.featuredName, convene.featuredDetail].filter(Boolean).join(" - ");
 
   return `
@@ -3900,21 +3907,35 @@ function updateDynamicTimes() {
   }
 }
 
-async function loadConvenes() {
-  try {
-    const response = await fetch("/api/convenes", { headers: { Accept: "application/json" } });
-    const payload = await response.json();
-    state.convenes = payload.convenes || [];
-    state.convenesUpdatedAt = payload.updatedAt || new Date().toISOString();
-    state.conveneSyncIntervalMinutes = payload.syncIntervalMinutes || 30;
-    state.conveneSource = payload.imageSource || payload.source || "/api/convenes";
-    state.conveneError = Boolean(payload.externalError);
-  } catch {
-    state.conveneError = true;
-    state.conveneSource = "erro ao sincronizar";
-    state.convenes = [];
-  }
-  render();
+async function loadConvenes({ force = false } = {}) {
+  if (dataRequests.convenes) return dataRequests.convenes;
+  if (dataRequests.convenesLoaded && !force) return state.convenes;
+
+  dataRequests.convenes = (async () => {
+    try {
+      const response = await fetch("/api/convenes", { cache: "no-store", headers: { Accept: "application/json" }, signal: AbortSignal.timeout(20000) });
+      const payload = await response.json();
+      if (!response.ok || !Array.isArray(payload.convenes)) throw new Error("Invalid convenes response");
+      state.convenes = payload.externalError ? [] : payload.convenes;
+      state.convenesUpdatedAt = payload.updatedAt || new Date().toISOString();
+      state.conveneSyncIntervalMinutes = payload.syncIntervalMinutes || 30;
+      state.conveneSource = payload.imageSource || payload.source || "/api/convenes";
+      state.conveneError = Boolean(payload.externalError);
+    } catch {
+      state.convenes = [];
+      state.conveneError = true;
+      state.conveneSource = state.conveneSource || "erro ao sincronizar";
+    } finally {
+      dataRequests.convenesLoaded = true;
+      dataRequests.convenes = null;
+      preloadAppAssets();
+      scheduleRender();
+    }
+
+    return state.convenes;
+  })();
+
+  return dataRequests.convenes;
 }
 
 async function loadEvents() {

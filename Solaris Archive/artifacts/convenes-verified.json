@@ -1,0 +1,85 @@
+{
+  "updatedAt": "2026-09-15T16:46:22.105Z",
+  "syncIntervalMinutes": 5,
+  "source": "https://raw.githubusercontent.com/TheLovinator1/wutheringwaves/master/articles_latest.xml",
+  "imageSource": "Kuro Games CDN via TheLovinator1/wutheringwaves",
+  "convenes": [
+    {
+      "id": "convene-5431-thousandfuturesmirroredinsnowfeaturedresonatorconvene",
+      "title": "[Thousand Futures Mirrored in Snow] Featured Resonator Convene",
+      "type": "resonator",
+      "featuredName": "Hiyuki",
+      "featuredDetail": "",
+      "imageUrl": "https://hw-media-cdn-mingchao.kurogame.com/object/1788796800000/b8yi2bag36qmpefefb-1788863744046.jpg",
+      "startAt": "2026-09-10T02:00:00.000Z",
+      "endAt": "2026-09-29T03:59:00.000Z",
+      "startLabel": "",
+      "startTimeLabel": "",
+      "estimatedStart": false,
+      "serverTimezone": "UTC+8",
+      "highlights": [
+        "5-Star Resonator: Hiyuki, 4-Star Resonators: Mortefi, Aalto, Yuanwu receive boosted drop rates!"
+      ],
+      "sourceUrl": "https://wutheringwaves.kurogames.com/en/main/news/detail/5431",
+      "status": "ao_vivo"
+    },
+    {
+      "id": "convene-5431-frostburnfeaturedweaponconvene",
+      "title": "[Frostburn] Featured Weapon Convene",
+      "type": "weapon",
+      "featuredName": "Frostburn",
+      "featuredDetail": "",
+      "imageUrl": "https://hw-media-cdn-mingchao.kurogame.com/object/1788796800000/sexumjk68m4p5o5vqg-1788863861038.jpg",
+      "startAt": "2026-09-10T02:00:00.000Z",
+      "endAt": "2026-09-29T03:59:00.000Z",
+      "startLabel": "",
+      "startTimeLabel": "",
+      "estimatedStart": false,
+      "serverTimezone": "UTC+8",
+      "highlights": [
+        "5-Star Weapon: Frostburn, 4-Star Weapons: Waning Redshift, Discord, and Novaburst receive boosted drop rates!"
+      ],
+      "sourceUrl": "https://wutheringwaves.kurogames.com/en/main/news/detail/5431",
+      "status": "ao_vivo"
+    },
+    {
+      "id": "convene-5431-distantmaythestarlightsbefeaturedresonatorconvene",
+      "title": "[Distant May the Starlights Be] Featured Resonator Convene",
+      "type": "resonator",
+      "featuredName": "Mornye",
+      "featuredDetail": "",
+      "imageUrl": "https://hw-media-cdn-mingchao.kurogame.com/object/1788796800000/56sxhnnb0cw9txz53m-1788863954789.jpg",
+      "startAt": "2026-09-10T02:00:00.000Z",
+      "endAt": "2026-09-29T03:59:00.000Z",
+      "startLabel": "",
+      "startTimeLabel": "",
+      "estimatedStart": false,
+      "serverTimezone": "UTC+8",
+      "highlights": [
+        "5-Star Resonator: Mornye, 4-Star Resonators: Mortefi, Aalto, Yuanwu receive boosted drop rates!"
+      ],
+      "sourceUrl": "https://wutheringwaves.kurogames.com/en/main/news/detail/5431",
+      "status": "ao_vivo"
+    },
+    {
+      "id": "convene-5431-starfieldcalibratorfeaturedweaponconvene",
+      "title": "[Starfield Calibrator] Featured Weapon Convene",
+      "type": "weapon",
+      "featuredName": "Starfield Calibrator",
+      "featuredDetail": "",
+      "imageUrl": "https://hw-media-cdn-mingchao.kurogame.com/object/1788796800000/hwlp8xp1ms10jwbohk-1788863998941.jpg",
+      "startAt": "2026-09-10T02:00:00.000Z",
+      "endAt": "2026-09-29T03:59:00.000Z",
+      "startLabel": "",
+      "startTimeLabel": "",
+      "estimatedStart": false,
+      "serverTimezone": "UTC+8",
+      "highlights": [
+        "5-Star Weapon: Starfield Calibrator, 4-Star Weapons: Waning Redshift, Discord, and Novaburst receive boosted drop rates!"
+      ],
+      "sourceUrl": "https://wutheringwaves.kurogames.com/en/main/news/detail/5431",
+      "status": "ao_vivo"
+    }
+  ],
+  "cached": false
+}

@@ -27,12 +27,17 @@ const verifiedCharacterReleases = [{
   useApiDetails: true,
   videoId: "a3zMk49qpwI"
 }];
+const verifiedConveneAdditions = [
+  { id: "convene-5529-hsin", title: "[As Full as Tonight, Forever] Featured Resonator Convene", type: "resonator", featuredName: "Hsin", featuredDetail: "Electro", imageUrl: "/assets/banners/hsin-3.7.webp", highlights: ["5-Star Resonator: Hsin; 4-Star Resonators: Buling, Taoqi, Youhu"] },
+  { id: "convene-5529-bloomingjadehaven", title: "[Blooming Jadehaven] Featured Weapon Convene", type: "weapon", featuredName: "Blooming Jadehaven", featuredDetail: "Rectifier", imageUrl: "/assets/banners/blooming-jadehaven-3.7.webp", highlights: ["5-Star Weapon: Blooming Jadehaven; 4-Star Weapons: Fusion Accretion, Commando of Conviction, Dauntless Evernight"] }
+].map(record => ({ ...record, startAt: "2026-09-30T03:00:00Z", endAt: "2026-10-22T01:59:00Z", startLabel: "Version 3.7 update", estimatedStart: true, serverTimezone: "UTC+8", sourceUrl: "https://wutheringwaves.kurogames.com/en/main/news/detail/5529" }));
 const eventFeedUrl = "https://raw.githubusercontent.com/TheLovinator1/wutheringwaves/master/articles_latest.xml";
 const eventCacheTtlMs = 30 * 60 * 1000;
 let eventCache = null;
 const conveneFeedUrl = eventFeedUrl;
-const conveneCacheTtlMs = 30 * 60 * 1000;
+const conveneCacheTtlMs = 5 * 60 * 1000;
 let conveneCache = null;
+let conveneFeedRequest = null;
 
 const mimeTypes = {
   ".css": "text/css; charset=utf-8",
@@ -138,6 +143,10 @@ async function fetchText(url) {
 
 function decodeXml(value = "") {
   return String(value)
+    .replace(/&#(x[0-9a-f]+|\d+);/gi, (entity, code) => {
+      const value = code[0].toLowerCase() === "x" ? parseInt(code.slice(1), 16) : Number(code);
+      return value > 0 && value <= 0x10ffff ? String.fromCodePoint(value) : entity;
+    })
     .replace(/&amp;/g, "&")
     .replace(/&quot;/g, "\"")
     .replace(/&#39;|&apos;/g, "'")
@@ -202,7 +211,12 @@ function extractConveneDates(content = "", fallbackStartAt = "") {
 function extractOfficialImage(content = "") {
   const urls = [...content.matchAll(/<img[^>]+src=["']([^"']+)["'][^>]*>/gi)]
     .map((match) => decodeXml(match[1]))
-    .filter((url) => /^https:\/\//i.test(url) && /kurogame\.com/i.test(url));
+    .filter((url) => {
+      try {
+        const parsed = new URL(url);
+        return parsed.protocol === "https:" && /(^|\.)kurogame\.com$/i.test(parsed.hostname);
+      } catch { return false; }
+    });
   const staticImage = urls.find((url) => !/\.gif(?:\?|$)/i.test(url));
   return staticImage || urls[0] || "";
 }
@@ -279,6 +293,22 @@ function parseOfficialEventFeed(xml) {
 
 function parseOfficialConveneFeed(xml) {
   return [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)]
+    .flatMap((entry) => {
+      const block = entry[1];
+      if (isStandaloneConveneArticle(extractTag(block, "title"))) return [entry];
+      const content = extractTag(block, "content");
+      // Current official notices contain several banners. Keep each section's
+      // image and dates together; never borrow art from another banner.
+      const headings = [...content.matchAll(/<p>\s*<strong>(\[[^<]+\]\s+Featured\s+(?:Resonator|Weapon)\s+Convene)<\/strong>\s*<\/p>/gi)];
+      return headings.map((heading, index) => {
+        const section = content.slice(heading.index, headings[index + 1]?.index ?? content.length);
+        const sectionBlock = block
+          .replace(/<title[^>]*>[\s\S]*?<\/title>/i, () => `<title>${heading[1]}</title>`)
+          .replace(/<content[^>]*>[\s\S]*?<\/content>/i, () => `<content><![CDATA[${section}]]></content>`)
+          .replace(/<id>([\s\S]*?)<\/id>/i, (_, id) => `<id>${id}-${normalizeKey(heading[1])}</id>`);
+        return ["", sectionBlock];
+      });
+    })
     .map(([, block]) => {
       const title = extractTag(block, "title");
       const content = extractTag(block, "content");
@@ -561,17 +591,6 @@ function createDemoEventsPayload(error) {
   const now = new Date();
   const events = [
     {
-      id: "banner-resonancia-celestial",
-      category: "banner",
-      title: "Convocacao: Ressonancia Celestial",
-      imageUrl: "https://img.game8.co/4581383/a039394ed8eed7f6c8f13d6c10b45614.png/show",
-      startAt: daysFromNow(-6),
-      endAt: daysFromNow(8, 3),
-      serverTimezone: "UTC+8",
-      rewards: ["Resonator 5 estrelas", "Arma assinada", "Corais Oscilantes"],
-      sourceUrl: "https://wutheringwaves.kurogames.com/"
-    },
-    {
       id: "evento-forja-do-eco",
       category: "evento_in_game",
       title: "Forja do Eco: Desafio de Sonatas",
@@ -614,17 +633,6 @@ function createDemoEventsPayload(error) {
       serverTimezone: "UTC+8",
       rewards: ["Astrites x60", "Potion x5", "Creditos Shell"],
       sourceUrl: "https://wutheringwaves.kurogames.com/"
-    },
-    {
-      id: "banner-proximo-vento",
-      category: "banner",
-      title: "Proxima Convocacao: Vento do Norte",
-      imageUrl: "/assets/banner-next.png",
-      startAt: daysFromNow(9, 3),
-      endAt: daysFromNow(30, 3),
-      serverTimezone: "UTC+8",
-      rewards: ["Resonator Aero", "Armas 4 estrelas", "Bonus de primeira rolagem"],
-      sourceUrl: "https://wutheringwaves.kurogames.com/"
     }
   ].map((event) => ({
     ...event,
@@ -638,6 +646,27 @@ function createDemoEventsPayload(error) {
     externalError: Boolean(error),
     events
   };
+}
+
+async function fetchConveneFeed() {
+  if (conveneFeedRequest) return conveneFeedRequest;
+  // Same source, but independent from the events feed's raw-text cache.
+  conveneFeedRequest = (async () => {
+    const response = await fetch(conveneFeedUrl, {
+      signal: AbortSignal.timeout(15000),
+      cache: "no-store",
+      headers: {
+        Accept: "application/atom+xml,text/xml,text/plain",
+        "Cache-Control": "no-cache",
+        "User-Agent": "Solaris-Archive-WuWa-Wiki"
+      }
+    });
+    if (!response.ok) throw new Error(`Convene feed unavailable: ${response.status}`);
+    const xml = await response.text();
+    if (!/<feed[\s>]/i.test(xml)) throw new Error("Invalid convene feed");
+    return xml;
+  })();
+  try { return await conveneFeedRequest; } finally { conveneFeedRequest = null; }
 }
 
 async function createEventsPayload() {
@@ -693,9 +722,14 @@ async function createConvenesPayload() {
   }
 
   try {
-    const xml = await fetchText(conveneFeedUrl);
-    const convenes = parseOfficialConveneFeed(xml)
-      .filter((convene) => getStatus(convene.startAt, convene.endAt, new Date(now)) === "ao_vivo")
+    const xml = await fetchConveneFeed();
+    const records = parseOfficialConveneFeed(xml);
+    for (const addition of verifiedConveneAdditions) {
+      if (!records.some(record => record.type === addition.type && normalizeKey(record.featuredName) === normalizeKey(addition.featuredName) && record.startAt === addition.startAt && record.endAt === addition.endAt)
+          && !records.some(record => record.type === addition.type && normalizeKey(record.featuredName) === normalizeKey(addition.featuredName) && Date.parse(record.startAt) <= now && Date.parse(record.endAt) > now)) records.push(addition);
+    }
+    const convenes = records
+      .filter((convene) => new Date(convene.startAt).getTime() <= now && new Date(convene.endAt).getTime() > now)
       .slice(0, 8)
       .map((convene) => ({
         ...convene,
@@ -711,7 +745,8 @@ async function createConvenesPayload() {
     };
 
     conveneCache = {
-      expiresAt: now + conveneCacheTtlMs,
+      // Recheck at a phase transition, even if the normal TTL has not elapsed.
+      expiresAt: Math.min(now + conveneCacheTtlMs, ...records.flatMap((record) => [Date.parse(record.startAt), Date.parse(record.endAt)]).filter((time) => time > now)),
       payload
     };
 
@@ -720,29 +755,40 @@ async function createConvenesPayload() {
       cached: false
     };
   } catch (error) {
-    if (conveneCache?.payload) {
-      return {
-        ...conveneCache.payload,
-        cached: true,
-        stale: true,
-        externalError: true,
-        message: error.message
-      };
-    }
-
-    return {
+    // An unavailable source must never turn an old or demo banner into a live one.
+    const fallback = {
       updatedAt: new Date(now).toISOString(),
-      syncIntervalMinutes: Math.round(conveneCacheTtlMs / 60000),
+      syncIntervalMinutes: 1,
       source: conveneFeedUrl,
-      imageSource: "Kuro Games CDN via TheLovinator1/wutheringwaves",
       externalError: true,
       message: error.message,
       convenes: []
     };
+    conveneCache = {
+      expiresAt: now + 60 * 1000,
+      payload: fallback
+    };
+    return fallback;
   }
 }
 
-async function serveFile(response, filePath) {
+function responseEncoding(request) {
+  const accepted = new Map(String(request.headers['accept-encoding'] || '').toLowerCase().split(',').map(part => {
+    const [name, ...parameters] = part.trim().split(';');
+    const quality = parameters.find(value => value.trim().startsWith('q='));
+    return [name, quality ? Number(quality.trim().slice(2)) : 1];
+  }));
+  const quality = name => accepted.get(name) ?? accepted.get('*') ?? 0;
+  const identity = accepted.get('identity') ?? (accepted.get('*') === 0 ? 0 : 1);
+  const preferred = quality('br') >= quality('gzip') ? 'br' : 'gzip';
+  return quality(preferred) > 0 && quality(preferred) >= identity ? preferred : '';
+}
+
+function compressor(encoding) {
+  return encoding === 'br' ? createBrotliCompress({ params: { [constants.BROTLI_PARAM_QUALITY]: 4 } }) : createGzip();
+}
+
+async function serveFile(response, filePath, request) {
   const ext = path.extname(filePath);
   const type = mimeTypes[ext] || "application/octet-stream";
   const cacheControl = [".html", ".js", ".css"].includes(ext)
