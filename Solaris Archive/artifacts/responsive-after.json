@@ -1,0 +1,509 @@
+{
+  "report": [
+    {
+      "route": "",
+      "title": "Solaris Archive",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "",
+      "title": "Solaris Archive",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "",
+      "title": "Solaris Archive",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "",
+      "title": "Solaris Archive",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "",
+      "title": "Solaris Archive",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "route": "introducao",
+      "title": "Introdução",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "introducao",
+      "title": "Introdução",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "introducao",
+      "title": "Introdução",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "introducao",
+      "title": "Introdução",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "introducao",
+      "title": "Introdução",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "route": "characters",
+      "title": "Personagens",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "characters",
+      "title": "Personagens",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "characters",
+      "title": "Personagens",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "characters",
+      "title": "Personagens",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "characters",
+      "title": "Personagens",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "route": "characters/jinhsi",
+      "title": "Jinhsi",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "characters/jinhsi",
+      "title": "Jinhsi",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "characters/jinhsi",
+      "title": "Jinhsi",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "characters/jinhsi",
+      "title": "Jinhsi",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "characters/jinhsi",
+      "title": "Jinhsi",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "route": "tier-list",
+      "title": "Tier List",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "tier-list",
+      "title": "Tier List",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "tier-list",
+      "title": "Tier List",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "tier-list",
+      "title": "Tier List",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "tier-list",
+      "title": "Tier List",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "route": "ecos",
+      "title": "Ecos",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "ecos",
+      "title": "Ecos",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "ecos",
+      "title": "Ecos",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "ecos",
+      "title": "Ecos",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "ecos",
+      "title": "Ecos",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "route": "armas",
+      "title": "Armas",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "armas",
+      "title": "Armas",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "armas",
+      "title": "Armas",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "armas",
+      "title": "Armas",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "armas",
+      "title": "Armas",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "route": "itens",
+      "title": "Itens",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "itens",
+      "title": "Itens",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "itens",
+      "title": "Itens",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "itens",
+      "title": "Itens",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "itens",
+      "title": "Itens",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "route": "guia",
+      "title": "Guia do jogo",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "guia",
+      "title": "Guia do jogo",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "guia",
+      "title": "Guia do jogo",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "guia",
+      "title": "Guia do jogo",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "guia",
+      "title": "Guia do jogo",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "route": "codigos",
+      "title": "Codigos de resgate",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "codigos",
+      "title": "Codigos de resgate",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "codigos",
+      "title": "Codigos de resgate",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "codigos",
+      "title": "Codigos de resgate",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "codigos",
+      "title": "Codigos de resgate",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "route": "builder",
+      "title": "Monte sua próxima build.",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "builder",
+      "title": "Monte sua próxima build.",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "builder",
+      "title": "Monte sua próxima build.",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "builder",
+      "title": "Monte sua próxima build.",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "builder",
+      "title": "Monte sua próxima build.",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "route": "gacha",
+      "title": "Convocações",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "gacha",
+      "title": "Convocações",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "gacha",
+      "title": "Convocações",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "gacha",
+      "title": "Convocações",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "gacha",
+      "title": "Convocações",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "route": "eventos",
+      "title": "Eventos atuais",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "eventos",
+      "title": "Eventos atuais",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "eventos",
+      "title": "Eventos atuais",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "eventos",
+      "title": "Eventos atuais",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "eventos",
+      "title": "Eventos atuais",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "route": "noticias",
+      "title": "Noticias",
+      "width": 320,
+      "scrollWidth": 320,
+      "overflow": []
+    },
+    {
+      "route": "noticias",
+      "title": "Noticias",
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": []
+    },
+    {
+      "route": "noticias",
+      "title": "Noticias",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": []
+    },
+    {
+      "route": "noticias",
+      "title": "Noticias",
+      "width": 1024,
+      "scrollWidth": 1009,
+      "overflow": []
+    },
+    {
+      "route": "noticias",
+      "title": "Noticias",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": []
+    },
+    {
+      "modal": {
+        "width": 320,
+        "height": 568,
+        "rect": {
+          "x": 19,
+          "y": 48.6875,
+          "width": 282,
+          "height": 470.625
+        },
+        "scrollWidth": 280,
+        "clientWidth": 280
+      }
+    }
+  ],
+  "errors": []
+}

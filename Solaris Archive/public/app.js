@@ -1987,10 +1987,10 @@ function renderTopbar() {
             <option value="${lang}" ${lang === state.lang ? "selected" : ""}>${lang}</option>
           `).join("")}
         </select>
-        <button class="menu-button" type="button" data-menu-toggle aria-label="${t("menu")}">☰</button>
+        <button class="menu-button" type="button" data-menu-toggle aria-label="${t("menu")}" aria-expanded="false" aria-controls="mobile-navigation">☰</button>
       </div>
     </header>
-    <div class="mobile-nav" data-mobile-nav hidden>
+    <div class="mobile-nav" id="mobile-navigation" data-mobile-nav hidden>
       ${routes.filter((route) => route.id !== "home").map((route) => `
         <a href="${pathFor(route.id)}" data-link>${t(route.labelKey)}</a>
       `).join("")}
@@ -4513,8 +4513,13 @@ app.addEventListener("click", (event) => {
   const menuButton = event.target.closest("[data-menu-toggle]");
   if (menuButton) {
     const nav = app.querySelector("[data-mobile-nav]");
-    if (nav) nav.hidden = !nav.hidden;
+    if (nav) { nav.hidden = !nav.hidden; menuButton.setAttribute("aria-expanded", String(!nav.hidden)); }
     return;
+  }
+
+  if (!event.target.closest('[data-mobile-nav]')) {
+    const toggle = app.querySelector('[data-menu-toggle][aria-expanded="true"]');
+    if (toggle) { app.querySelector('[data-mobile-nav]').hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
   }
 
   if (!event.target.closest("[data-search-form]")) hideAllSearchSuggestions();
@@ -4534,9 +4539,10 @@ app.addEventListener("focusin", (event) => {
 });
 
 app.addEventListener("keydown", (event) => {
-  const globalSearch = event.target.closest("[data-global-search]");
-  if (globalSearch && event.key === "Escape") {
-    hideSearchSuggestions(globalSearch.closest("[data-search-form]"));
+  const searchForm = event.target.closest("[data-search-form]");
+  if (searchForm && event.key === "Escape") {
+    hideSearchSuggestions(searchForm);
+    searchForm.querySelector('[data-global-search]')?.focus();
   }
 });
 

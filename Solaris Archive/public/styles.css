@@ -154,7 +154,7 @@ html {
 
 body {
   margin: 0;
-  min-width: 320px;
+  min-width: 0;
   background:
     linear-gradient(180deg, rgba(11, 13, 16, 0.88), rgba(11, 13, 16, 0.98)),
     repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 120px),
@@ -671,9 +671,6 @@ img {
 }
 
 .live-ticker {
-  position: sticky;
-  top: 72px;
-  z-index: 30;
   border-block: 1px solid rgba(65, 241, 213, 0.18);
   background: rgba(11, 13, 16, 0.9);
   backdrop-filter: blur(16px);
@@ -2497,8 +2494,7 @@ th {
     max-width: 86px;
   }
 
-  .mobile-nav,
-  .live-ticker {
+  .mobile-nav {
     top: 64px;
   }
 
@@ -2848,3 +2844,74 @@ th {
   .builder-dialog .builder-option { transition: none; }
 }
 
+/* Keep the existing grids; constrain intrinsic text and controls instead of
+   clipping the page, so intentional table/ticker scrolling remains usable. */
+img, video { max-width: 100%; }
+:is(.detail-main, .detail-aside, .panel, .toolbar > *, .module-status > span,
+    .card-topline > *, .tier-token, .gacha-banner-list > *, .gacha-pity > *,
+    .builder-picker-tools > *, .builder-picker-count > *) { min-width: 0; }
+:is(.panel, .module-status, .card-topline, .tier-token, .gacha-banner-list,
+    .gacha-featured, .builder-picker-count) { overflow-wrap: anywhere; }
+.builder-dialog { overflow: auto; overscroll-behavior: contain; }
+.builder-picker-count { flex-wrap: wrap; }
+.gacha-history table { min-width: 0; table-layout: fixed; }
+.gacha-history th, .gacha-history td { white-space: normal; }
+.gacha-history th:first-child { width: 44px; }
+html { scroll-padding-top: 88px; }
+
+@media (max-width: 1600px) {
+  :root { --home-hero: url('/assets/home-hero-1600.webp'); --subhero: url('/assets/subhero-1600.webp'); }
+}
+@media (max-width: 1060px) {
+  .mobile-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    max-height: calc(100dvh - 72px - env(safe-area-inset-bottom));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .mobile-nav a { min-height: 44px; white-space: normal; }
+}
+@media (min-width: 1061px) { .mobile-nav { display: none; } }
+@media (max-width: 960px) {
+  :root { --home-hero: url('/assets/home-hero-960.webp'); --subhero: url('/assets/subhero-960.webp'); }
+}
+@media (max-width: 760px) {
+  .topbar { gap: 10px; }
+  .mobile-nav { max-height: calc(100dvh - 64px - env(safe-area-inset-bottom)); }
+  .top-actions { gap: 6px; }
+  .brand { gap: 7px; }
+  .brand strong { font-size: clamp(.76rem, 2.8vw, .95rem); }
+  .brand-logo { width: 34px; height: 34px; flex-basis: 34px; }
+  .language-select { max-width: 74px; padding-left: 6px; padding-right: 24px; }
+  :is(.menu-button, .language-select, .settings-button, .segmented button,
+      .toolbar select, .wiki-filters input, .wiki-filters select,
+      .builder-icon-button, .builder-text-button, .builder-promote,
+      .builder-picker-tools input, .builder-picker-tools select,
+      .gacha-tabs button, .gacha-page summary, [data-copy]) { min-height: 44px; }
+  :is(.menu-button, .settings-button, .builder-icon-button, .icon-button) { min-width: 44px; min-height: 44px; }
+  input:not([type=checkbox]):not([type=radio]), select { font-size: 16px; }
+  .builder-workspace :is(input, select), .builder-dialog :is(input, select) { font-size: 16px; min-height: 44px; }
+  .toolbar label { min-width: 0; max-width: 100%; }
+  .toolbar select { width: 100%; min-width: 0; }
+  .segmented { flex-wrap: wrap; }
+  .segmented button { white-space: normal; }
+  .subhero h1 { font-size: clamp(1.8rem, 7vw, 2.4rem); overflow-wrap: anywhere; }
+  .gacha-tabs { flex-wrap: wrap; }
+  .gacha-tabs button { flex: 1; }
+  .convene-credit { max-width: calc(100% - 32px); }
+  .builder-dialog .builder-picker { gap: 12px; }
+  .builder-dialog .builder-option-grid { max-height: min(55dvh, 420px); }
+}
+@media (max-width: 360px) {
+  .topbar { gap: 6px; padding-inline: 8px; }
+  .top-actions { gap: 4px; }
+  .gacha-form, .gacha-odds { grid-template-columns: minmax(0, 1fr); }
+  .gacha-pull-actions { gap: 8px; }
+  .gacha-pull-actions button { padding-inline: 8px; }
+}
+@media (max-height: 600px) and (max-width: 1060px) {
+  .detail-aside { position: static; }
+  .builder-dialog .builder-option-grid { max-height: 40dvh; }
+}

@@ -1,0 +1,1513 @@
+{
+  "report": [
+    {
+      "label": "home",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Solaris Archive"
+    },
+    {
+      "label": "home",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Solaris Archive"
+    },
+    {
+      "label": "home",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Solaris Archive"
+    },
+    {
+      "label": "home",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Solaris Archive"
+    },
+    {
+      "label": "home",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Solaris Archive"
+    },
+    {
+      "label": "pt-BR/introducao",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Introdução"
+    },
+    {
+      "label": "pt-BR/introducao",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Introdução"
+    },
+    {
+      "label": "pt-BR/introducao",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Introdução"
+    },
+    {
+      "label": "pt-BR/introducao",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Introdução"
+    },
+    {
+      "label": "pt-BR/introducao",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Introdução"
+    },
+    {
+      "label": "pt-BR/characters",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Personagens"
+    },
+    {
+      "label": "pt-BR/characters",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Personagens"
+    },
+    {
+      "label": "pt-BR/characters",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Personagens"
+    },
+    {
+      "label": "pt-BR/characters",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Personagens"
+    },
+    {
+      "label": "pt-BR/characters",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Personagens"
+    },
+    {
+      "label": "pt-BR/characters/jinhsi",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "pt-BR/characters/jinhsi",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "pt-BR/characters/jinhsi",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "pt-BR/characters/jinhsi",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "pt-BR/characters/jinhsi",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "pt-BR/tier-list",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Tier List"
+    },
+    {
+      "label": "pt-BR/tier-list",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Tier List"
+    },
+    {
+      "label": "pt-BR/tier-list",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Tier List"
+    },
+    {
+      "label": "pt-BR/tier-list",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Tier List"
+    },
+    {
+      "label": "pt-BR/tier-list",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Tier List"
+    },
+    {
+      "label": "pt-BR/ecos",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Ecos"
+    },
+    {
+      "label": "pt-BR/ecos",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Ecos"
+    },
+    {
+      "label": "pt-BR/ecos",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Ecos"
+    },
+    {
+      "label": "pt-BR/ecos",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Ecos"
+    },
+    {
+      "label": "pt-BR/ecos",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Ecos"
+    },
+    {
+      "label": "pt-BR/armas",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Armas"
+    },
+    {
+      "label": "pt-BR/armas",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Armas"
+    },
+    {
+      "label": "pt-BR/armas",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Armas"
+    },
+    {
+      "label": "pt-BR/armas",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Armas"
+    },
+    {
+      "label": "pt-BR/armas",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Armas"
+    },
+    {
+      "label": "pt-BR/itens",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Itens"
+    },
+    {
+      "label": "pt-BR/itens",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Itens"
+    },
+    {
+      "label": "pt-BR/itens",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Itens"
+    },
+    {
+      "label": "pt-BR/itens",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Itens"
+    },
+    {
+      "label": "pt-BR/itens",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Itens"
+    },
+    {
+      "label": "pt-BR/guia",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Guia do jogo"
+    },
+    {
+      "label": "pt-BR/guia",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Guia do jogo"
+    },
+    {
+      "label": "pt-BR/guia",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Guia do jogo"
+    },
+    {
+      "label": "pt-BR/guia",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Guia do jogo"
+    },
+    {
+      "label": "pt-BR/guia",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Guia do jogo"
+    },
+    {
+      "label": "pt-BR/codigos",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Codigos de resgate"
+    },
+    {
+      "label": "pt-BR/codigos",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Codigos de resgate"
+    },
+    {
+      "label": "pt-BR/codigos",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Codigos de resgate"
+    },
+    {
+      "label": "pt-BR/codigos",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Codigos de resgate"
+    },
+    {
+      "label": "pt-BR/codigos",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Codigos de resgate"
+    },
+    {
+      "label": "pt-BR/builder",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Monte sua próxima build."
+    },
+    {
+      "label": "pt-BR/builder",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Monte sua próxima build."
+    },
+    {
+      "label": "pt-BR/builder",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Monte sua próxima build."
+    },
+    {
+      "label": "pt-BR/builder",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Monte sua próxima build."
+    },
+    {
+      "label": "pt-BR/builder",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Monte sua próxima build."
+    },
+    {
+      "label": "pt-BR/gacha",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Convocações"
+    },
+    {
+      "label": "pt-BR/gacha",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Convocações"
+    },
+    {
+      "label": "pt-BR/gacha",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Convocações"
+    },
+    {
+      "label": "pt-BR/gacha",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Convocações"
+    },
+    {
+      "label": "pt-BR/gacha",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Convocações"
+    },
+    {
+      "label": "pt-BR/eventos",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Eventos atuais"
+    },
+    {
+      "label": "pt-BR/eventos",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Eventos atuais"
+    },
+    {
+      "label": "pt-BR/eventos",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Eventos atuais"
+    },
+    {
+      "label": "pt-BR/eventos",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Eventos atuais"
+    },
+    {
+      "label": "pt-BR/eventos",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Eventos atuais"
+    },
+    {
+      "label": "pt-BR/noticias",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Noticias"
+    },
+    {
+      "label": "pt-BR/noticias",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Noticias"
+    },
+    {
+      "label": "pt-BR/noticias",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Noticias"
+    },
+    {
+      "label": "pt-BR/noticias",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Noticias"
+    },
+    {
+      "label": "pt-BR/noticias",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Noticias"
+    },
+    {
+      "label": "en/introducao",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Introduction"
+    },
+    {
+      "label": "en/introducao",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Introduction"
+    },
+    {
+      "label": "en/introducao",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Introduction"
+    },
+    {
+      "label": "en/introducao",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Introduction"
+    },
+    {
+      "label": "en/introducao",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Introduction"
+    },
+    {
+      "label": "en/characters",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Characters"
+    },
+    {
+      "label": "en/characters",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Characters"
+    },
+    {
+      "label": "en/characters",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Characters"
+    },
+    {
+      "label": "en/characters",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Characters"
+    },
+    {
+      "label": "en/characters",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Characters"
+    },
+    {
+      "label": "en/characters/jinhsi",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "en/characters/jinhsi",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "en/characters/jinhsi",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "en/characters/jinhsi",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "en/characters/jinhsi",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "en/tier-list",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Tier List"
+    },
+    {
+      "label": "en/tier-list",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Tier List"
+    },
+    {
+      "label": "en/tier-list",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Tier List"
+    },
+    {
+      "label": "en/tier-list",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Tier List"
+    },
+    {
+      "label": "en/tier-list",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Tier List"
+    },
+    {
+      "label": "en/ecos",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Echoes"
+    },
+    {
+      "label": "en/ecos",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Echoes"
+    },
+    {
+      "label": "en/ecos",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Echoes"
+    },
+    {
+      "label": "en/ecos",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Echoes"
+    },
+    {
+      "label": "en/ecos",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Echoes"
+    },
+    {
+      "label": "en/armas",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Weapons"
+    },
+    {
+      "label": "en/armas",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Weapons"
+    },
+    {
+      "label": "en/armas",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Weapons"
+    },
+    {
+      "label": "en/armas",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Weapons"
+    },
+    {
+      "label": "en/armas",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Weapons"
+    },
+    {
+      "label": "en/itens",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Items"
+    },
+    {
+      "label": "en/itens",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Items"
+    },
+    {
+      "label": "en/itens",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Items"
+    },
+    {
+      "label": "en/itens",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Items"
+    },
+    {
+      "label": "en/itens",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Items"
+    },
+    {
+      "label": "en/guia",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Game guide"
+    },
+    {
+      "label": "en/guia",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Game guide"
+    },
+    {
+      "label": "en/guia",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Game guide"
+    },
+    {
+      "label": "en/guia",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Game guide"
+    },
+    {
+      "label": "en/guia",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Game guide"
+    },
+    {
+      "label": "en/codigos",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Redeem codes"
+    },
+    {
+      "label": "en/codigos",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Redeem codes"
+    },
+    {
+      "label": "en/codigos",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Redeem codes"
+    },
+    {
+      "label": "en/codigos",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Redeem codes"
+    },
+    {
+      "label": "en/codigos",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Redeem codes"
+    },
+    {
+      "label": "en/builder",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Build your next adventure."
+    },
+    {
+      "label": "en/builder",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Build your next adventure."
+    },
+    {
+      "label": "en/builder",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Build your next adventure."
+    },
+    {
+      "label": "en/builder",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Build your next adventure."
+    },
+    {
+      "label": "en/builder",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Build your next adventure."
+    },
+    {
+      "label": "en/gacha",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Convenes"
+    },
+    {
+      "label": "en/gacha",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Convenes"
+    },
+    {
+      "label": "en/gacha",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Convenes"
+    },
+    {
+      "label": "en/gacha",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Convenes"
+    },
+    {
+      "label": "en/gacha",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Convenes"
+    },
+    {
+      "label": "en/eventos",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Current events"
+    },
+    {
+      "label": "en/eventos",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Current events"
+    },
+    {
+      "label": "en/eventos",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Current events"
+    },
+    {
+      "label": "en/eventos",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Current events"
+    },
+    {
+      "label": "en/eventos",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Current events"
+    },
+    {
+      "label": "en/noticias",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "News"
+    },
+    {
+      "label": "en/noticias",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "News"
+    },
+    {
+      "label": "en/noticias",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "News"
+    },
+    {
+      "label": "en/noticias",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "News"
+    },
+    {
+      "label": "en/noticias",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "News"
+    },
+    {
+      "label": "es/introducao",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Introducción"
+    },
+    {
+      "label": "es/introducao",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Introducción"
+    },
+    {
+      "label": "es/introducao",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Introducción"
+    },
+    {
+      "label": "es/introducao",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Introducción"
+    },
+    {
+      "label": "es/introducao",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Introducción"
+    },
+    {
+      "label": "es/characters",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Personajes"
+    },
+    {
+      "label": "es/characters",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Personajes"
+    },
+    {
+      "label": "es/characters",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Personajes"
+    },
+    {
+      "label": "es/characters",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Personajes"
+    },
+    {
+      "label": "es/characters",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Personajes"
+    },
+    {
+      "label": "es/characters/jinhsi",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "es/characters/jinhsi",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "es/characters/jinhsi",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "es/characters/jinhsi",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "es/characters/jinhsi",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Jinhsi"
+    },
+    {
+      "label": "es/tier-list",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Tier List"
+    },
+    {
+      "label": "es/tier-list",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Tier List"
+    },
+    {
+      "label": "es/tier-list",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Tier List"
+    },
+    {
+      "label": "es/tier-list",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Tier List"
+    },
+    {
+      "label": "es/tier-list",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Tier List"
+    },
+    {
+      "label": "es/ecos",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Ecos"
+    },
+    {
+      "label": "es/ecos",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Ecos"
+    },
+    {
+      "label": "es/ecos",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Ecos"
+    },
+    {
+      "label": "es/ecos",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Ecos"
+    },
+    {
+      "label": "es/ecos",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Ecos"
+    },
+    {
+      "label": "es/armas",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Armas"
+    },
+    {
+      "label": "es/armas",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Armas"
+    },
+    {
+      "label": "es/armas",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Armas"
+    },
+    {
+      "label": "es/armas",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Armas"
+    },
+    {
+      "label": "es/armas",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Armas"
+    },
+    {
+      "label": "es/itens",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Objetos"
+    },
+    {
+      "label": "es/itens",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Objetos"
+    },
+    {
+      "label": "es/itens",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Objetos"
+    },
+    {
+      "label": "es/itens",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Objetos"
+    },
+    {
+      "label": "es/itens",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Objetos"
+    },
+    {
+      "label": "es/guia",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Guia del juego"
+    },
+    {
+      "label": "es/guia",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Guia del juego"
+    },
+    {
+      "label": "es/guia",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Guia del juego"
+    },
+    {
+      "label": "es/guia",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Guia del juego"
+    },
+    {
+      "label": "es/guia",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Guia del juego"
+    },
+    {
+      "label": "es/codigos",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Codigos de canje"
+    },
+    {
+      "label": "es/codigos",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Codigos de canje"
+    },
+    {
+      "label": "es/codigos",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Codigos de canje"
+    },
+    {
+      "label": "es/codigos",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Codigos de canje"
+    },
+    {
+      "label": "es/codigos",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Codigos de canje"
+    },
+    {
+      "label": "es/builder",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Prepara tu próxima build."
+    },
+    {
+      "label": "es/builder",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Prepara tu próxima build."
+    },
+    {
+      "label": "es/builder",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Prepara tu próxima build."
+    },
+    {
+      "label": "es/builder",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Prepara tu próxima build."
+    },
+    {
+      "label": "es/builder",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Prepara tu próxima build."
+    },
+    {
+      "label": "es/gacha",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Convocatorias"
+    },
+    {
+      "label": "es/gacha",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Convocatorias"
+    },
+    {
+      "label": "es/gacha",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Convocatorias"
+    },
+    {
+      "label": "es/gacha",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Convocatorias"
+    },
+    {
+      "label": "es/gacha",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Convocatorias"
+    },
+    {
+      "label": "es/eventos",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Eventos actuales"
+    },
+    {
+      "label": "es/eventos",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Eventos actuales"
+    },
+    {
+      "label": "es/eventos",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Eventos actuales"
+    },
+    {
+      "label": "es/eventos",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Eventos actuales"
+    },
+    {
+      "label": "es/eventos",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Eventos actuales"
+    },
+    {
+      "label": "es/noticias",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Noticias"
+    },
+    {
+      "label": "es/noticias",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Noticias"
+    },
+    {
+      "label": "es/noticias",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Noticias"
+    },
+    {
+      "label": "es/noticias",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Noticias"
+    },
+    {
+      "label": "es/noticias",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Noticias"
+    },
+    {
+      "label": "touch navigation",
+      "width": 320,
+      "height": 568,
+      "scrollWidth": 320,
+      "title": "Personagens"
+    },
+    {
+      "label": "builder modal",
+      "width": 320,
+      "height": 568,
+      "scrollWidth": 320,
+      "title": "Monte sua próxima build."
+    },
+    {
+      "label": "builder modal",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "title": "Monte sua próxima build."
+    },
+    {
+      "label": "builder modal",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 753,
+      "title": "Monte sua próxima build."
+    },
+    {
+      "label": "builder modal",
+      "width": 1024,
+      "height": 768,
+      "scrollWidth": 1009,
+      "title": "Monte sua próxima build."
+    },
+    {
+      "label": "builder modal",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Monte sua próxima build."
+    },
+    {
+      "label": "builder modal",
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 829,
+      "title": "Monte sua próxima build."
+    },
+    {
+      "label": "builder modal",
+      "width": 320,
+      "height": 360,
+      "scrollWidth": 320,
+      "title": "Monte sua próxima build."
+    },
+    {
+      "label": "gacha video",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "title": "Convocações"
+    },
+    {
+      "label": "gacha ten results",
+      "width": 320,
+      "height": 900,
+      "scrollWidth": 320,
+      "title": "Convocações"
+    },
+    {
+      "label": "gacha ten results",
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "title": "Convocações"
+    },
+    {
+      "label": "gacha ten results",
+      "width": 768,
+      "height": 900,
+      "scrollWidth": 753,
+      "title": "Convocações"
+    },
+    {
+      "label": "gacha ten results",
+      "width": 1024,
+      "height": 900,
+      "scrollWidth": 1009,
+      "title": "Convocações"
+    },
+    {
+      "label": "gacha ten results",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1425,
+      "title": "Convocações"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "lazy modules/media",
+    "touch menu",
+    "debounce",
+    "local search without requests",
+    "Builder slots/cost/persistence",
+    "short-screen dialogs",
+    "Gacha draws/video/pity/history/calculator",
+    "catalog cache after reload"
+  ]
+}
