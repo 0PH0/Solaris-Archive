@@ -116,6 +116,8 @@
 }
 
 :root {
+  --home-hero: url('/assets/home-hero-2560.webp');
+  --subhero: url('/assets/subhero-2560.webp');
   color-scheme: dark;
   --bg: #0b0d10;
   --bg-raised: #14171c;
@@ -144,6 +146,10 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+.route-panel[hidden] {
+  display: none;
 }
 
 body {
@@ -405,7 +411,7 @@ img {
   background:
     linear-gradient(90deg, rgba(7, 9, 12, 0.88) 0%, rgba(7, 9, 12, 0.48) 48%, rgba(7, 9, 12, 0.72) 100%),
     linear-gradient(180deg, transparent 0%, rgba(11, 13, 16, 0.2) 52%, rgba(11, 13, 16, 0.92) 100%),
-    url("/assets/home-hero-wuwa.jpg") center / cover no-repeat;
+    var(--home-hero) center / cover no-repeat;
   transform: scale(1.02);
 }
 
@@ -441,7 +447,7 @@ img {
   background:
     linear-gradient(90deg, rgba(7, 9, 12, 0.88) 0%, rgba(7, 9, 12, 0.72) 52%, rgba(7, 9, 12, 0.9) 100%),
     linear-gradient(180deg, transparent 0%, rgba(11, 13, 16, 0.42) 58%, rgba(11, 13, 16, 0.92) 100%),
-    url("/assets/home-hero-wuwa.jpg") center / cover no-repeat;
+    var(--home-hero) center / cover no-repeat;
 }
 
 .hero-content--search {
@@ -1488,7 +1494,7 @@ img {
   border-bottom: 1px solid var(--line);
   background:
     linear-gradient(90deg, rgba(7, 9, 12, 0.78), rgba(7, 9, 12, 0.94)),
-    url("/assets/subhero-wuwa-2560.jpg") center / cover no-repeat;
+    var(--subhero) center / cover no-repeat;
 }
 
 .subhero::after {

@@ -20,6 +20,14 @@ async function loadGachaModule() {
   });
   return gachaModuleRequest;
 }
+let searchTimer;
+function cancelPendingSearch() { clearTimeout(searchTimer); }
+function queueSearch(input, update) {
+  cancelPendingSearch();
+  searchTimer = setTimeout(() => {
+    if (input.isConnected && input.getClientRects().length) update();
+  }, 160);
+}
 const DEFAULT_LANG = "pt-BR";
 const SUPPORTED_LANGS = ["pt-BR", "en", "es"];
 const label = (pt, en, es) => state.lang === 'en' ? en : state.lang === 'es' ? es : pt;
@@ -87,7 +95,6 @@ const itemAssetExtensionOverrides = {
   "midnight-veil": "png",
   "tidebreaking-courage": "png"
 };
-
 const copy = {
   "pt-BR": {
     navHome: "Home",
@@ -1636,6 +1643,24 @@ const state = {
   }
 };
 
+const dataRequests = {
+  characters: null,
+  events: null,
+  convenes: null,
+  charactersLoaded: false,
+  eventsLoaded: false,
+  convenesLoaded: false
+};
+
+const routeViewState = {
+  shellReady: false,
+  renderQueued: false
+};
+
+const routePanels = new Map();
+const preloadedImageUrls = new Set();
+let favoriteCache = null;
+
 function addClientDays(days) {
   const date = new Date();
   date.setUTCDate(date.getUTCDate() + days);
@@ -1680,20 +1705,23 @@ function pathFor(routeId, lang = state.lang, detail = "") {
 }
 
 function navigateTo(url) {
+  cancelPendingSearch();
+  closeBuilderPicker(false);
   window.history.pushState({}, "", url);
   parseLocation();
   render();
-  // Instantaneo: com scroll suave, sair de uma pagina longa deixa a nova pagina
-  // fora da viewport durante a animacao e a tela parece vazia.
-  window.scrollTo({ top: 0, behavior: "auto" });
+  window.scrollTo({ top: 0, behavior: reducedMotion() ? "instant" : "smooth" });
 }
 
 function getFavorites() {
+  if (favoriteCache) return favoriteCache;
   try {
-    return JSON.parse(localStorage.getItem("solaris:favorites") || "[]");
+    const saved = JSON.parse(localStorage.getItem("solaris:favorites") || "[]");
+    favoriteCache = Array.isArray(saved) ? [...new Set(saved.filter((slug) => typeof slug === "string"))] : [];
   } catch {
-    return [];
+    favoriteCache = [];
   }
+  return favoriteCache;
 }
 
 function setFavorites(favorites) {
@@ -1884,6 +1912,7 @@ function searchMatches(query, limit = 6) {
 }
 
 function hideSearchSuggestions(form) {
+  cancelPendingSearch();
   const suggestions = form?.querySelector("[data-search-suggestions]");
   if (!suggestions) return;
   suggestions.hidden = true;
@@ -1891,6 +1920,7 @@ function hideSearchSuggestions(form) {
 }
 
 function hideAllSearchSuggestions() {
+  cancelPendingSearch();
   app.querySelectorAll("[data-search-suggestions]").forEach((suggestions) => {
     suggestions.hidden = true;
     suggestions.innerHTML = "";
@@ -1930,7 +1960,7 @@ function renderTopbar() {
   return `
     <header class="topbar">
       <a class="brand" href="${pathFor("home")}" data-link aria-label="Solaris Archive">
-        <img class="brand-logo" src="/assets/site-logo.png" alt="" width="42" height="42">
+        <img class="brand-logo" src="/assets/site-logo-84.webp" alt="" width="42" height="42">
         <span>
           <strong>Solaris Archive</strong>
           <small>Wuthering Waves Wiki</small>
@@ -2271,8 +2301,9 @@ function renderCharacterResults(filtered) {
 }
 
 function updateCharacterResults() {
-  const results = app.querySelector("[data-character-results]");
-  const count = app.querySelector("[data-character-count]");
+  const panel = routePanels.get(routeCacheKey());
+  const results = panel?.querySelector("[data-character-results]");
+  const count = panel?.querySelector("[data-character-count]");
   if (!results || state.route !== "characters" || state.detail) {
     render();
     return;
@@ -2284,6 +2315,7 @@ function updateCharacterResults() {
   applyAccessibility(app, state.lang);
   notifyAccessibility(`${filtered.length} ${t("characterCount")}`, true);
   if (count) count.textContent = state.charactersLoading ? t("syncingCharacters") : `${filtered.length} / ${characters.length} ${t("characterCount")}`;
+  panel.dataset.signature = routeSignature();
 }
 
 function renderCharacterShowcase() {
@@ -3775,11 +3807,13 @@ function renderConveneCard(convene, compact = false) {
 
 function renderEventCard(event, compact = false) {
   const status = getEventStatus(event);
-  const imageUrl = event.imageUrl || EVENT_FALLBACK_IMAGE;
+  const localImage = /^\/assets\/event-(web|forge|code|tower)\.png$/.test(event.imageUrl || "");
+  const imageUrl = localImage ? '/assets/event-placeholder-1280.webp' : event.imageUrl || EVENT_FALLBACK_IMAGE;
   return `
     <article class="data-card event-card ${compact ? "event-card--compact" : ""}">
       <img
         src="${escapeHtml(imageUrl)}"
+        ${localImage ? 'srcset="/assets/event-placeholder-640.webp 640w, /assets/event-placeholder-1280.webp 900w" sizes="(max-width: 760px) 100vw, 50vw"' : ''}
         alt="${escapeHtml(event.title)}"
         loading="lazy"
         decoding="async"
@@ -3897,32 +3931,176 @@ function gachaContext() {
 }
 
 function renderRoute(routeId = state.route, detail = state.detail) {
-function renderRoute() {
-  switch (state.route) {
+  const previousRoute = state.route;
+  const previousDetail = state.detail;
+  state.route = routeId;
+  state.detail = detail;
+
+  try {
+    switch (routeId) {
+      case "home":
+        return renderHome();
+      case "intro":
+        return renderIntroductionPage();
+      case "characters":
+        return renderCharactersPage();
+      case "tier":
+        return renderTierPage();
+      case "echoes":
+        return renderEchoesPage();
+      case "weapons":
+        return renderWeaponsPage();
+      case "items":
+        return renderItemsPage();
+      case "guide":
+        return renderGuidePage();
+      case "codes":
+        return renderCodesPage();
+      case "gacha":
+        if (gachaModuleError) return renderPageHero(t("navGacha"), state.lang === "en" ? "Unable to load. Try again." : state.lang === "es" ? "No se pudo cargar. Inténtalo de nuevo." : "Não foi possível carregar. Tente novamente.") + '<div class="container"><button type="button" class="builder-button" data-gacha-module-retry>' + (state.lang === "en" ? "Retry" : state.lang === "es" ? "Reintentar" : "Tentar novamente") + '</button></div>';
+        return renderGacha(gachaContext());
+      case "builder":
+        return renderBuilderPage();
+      case "events":
+        return renderEventsPage();
+      case "news":
+        return renderNewsPage();
+      default:
+        return renderNotFound();
+    }
+  } finally {
+    state.route = previousRoute;
+    state.detail = previousDetail;
+  }
+}
+
+function routeCacheKey(routeId = state.route, detail = state.detail) {
+  return `${state.lang}:${routeId}:${detail || ""}`;
+}
+
+function collectionSignature(items, fields = ["id", "slug", "title", "name", "updatedAt", "imageUrl", "startAt", "endAt"]) {
+  if (!Array.isArray(items)) return "0";
+  return JSON.stringify(items.map((item) => fields.map((field) => item?.[field] ?? "")));
+}
+
+function routeSignature(routeId = state.route, detail = state.detail) {
+  const timedStatus = ["home", "events", "gacha"].includes(routeId)
+    ? [...state.events, ...state.convenes].map(getEventStatus).join(",") : "";
+  const base = [state.lang, routeId, detail || "", timedStatus,
+    routeId === "characters" ? state.characterSort : "",
+    ["home", "events", "gacha"].includes(routeId) ? state.conveneError : ""
+  ].join("|");
+  const favorites = getFavorites().join(",");
+
+  switch (routeId) {
     case "home":
-      return renderHome();
+      return [base, tierDataRevision, state.roleFilter, state.showcaseCollapsed, state.timeMode, collectionSignature(characters, ["slug", "name", "imageUrl"]), collectionSignature(state.events), collectionSignature(state.convenes, ["id", "title", "updatedAt", "imageUrl"]), state.updatedAt, state.convenesUpdatedAt, favorites].join("|");
     case "characters":
-      return renderCharactersPage();
+      return [base, detail ? characterDetailRevision : "", state.charactersLoading, state.characterQuery, state.roleFilter, state.characterElementFilter, state.characterWeaponFilter, state.characterRarityFilter, state.charactersUpdatedAt, state.charactersSource, state.charactersApiError, collectionSignature(characters, ["slug", "name", "imageUrl"]), favorites].join("|");
     case "tier":
-      return renderTierPage();
-    case "echoes":
-      return renderEchoesPage();
+      return [base, state.tierMode, JSON.stringify(state.tierFilters), tierDataRevision, state.charactersLoading, collectionSignature(characters, ["slug", "name", "element", "weapon", "rarity"])].join("|");
     case "weapons":
-      return renderWeaponsPage();
-    case "items":
-      return renderItemsPage();
-    case "guide":
-      return renderGuidePage();
-    case "codes":
-      return renderCodesPage();
+      return [base, state.weaponFilter, weaponRevision].join("|");
+    case "gacha":
+      return [base, gachaModuleLoaded, gachaModuleError, gacha.revision, weaponRevision, Boolean(dataRequests.convenes), dataRequests.convenesLoaded, state.convenesUpdatedAt, collectionSignature(state.convenes), collectionSignature(characters, ["name", "imageUrl", "iconUrl"])].join("|");
     case "builder":
-      return renderBuilderPage();
+      return [base, JSON.stringify(state.builder), state.builderMessage, builderEchoes.length, builderCatalogError, builderCatalogLoading, JSON.stringify(state.builderSearch), JSON.stringify(state.builderFilter), collectionSignature(characters, ["slug", "name", "imageUrl"])].join("|");
     case "events":
-      return renderEventsPage();
+      return [base, state.eventFilter, state.timeMode, state.updatedAt, state.convenesUpdatedAt, state.eventSource, state.conveneSource, collectionSignature(state.events), collectionSignature(state.convenes, ["id", "title", "updatedAt", "imageUrl"])].join("|");
     case "news":
-      return renderNewsPage();
+      return [base, collectionSignature(news, ["title", "date", "category", "summary", "image"])].join("|");
+    case "intro":
+      return [base, characters.length].join("|");
     default:
-      return renderNotFound();
+      return base;
+  }
+}
+
+function ensureAppShell() {
+  if (routeViewState.shellReady) return;
+  app.innerHTML = `<div data-app-topbar></div><main data-route-host></main><div data-app-footer></div>`;
+  routeViewState.shellReady = true;
+}
+
+function routeHost() {
+  ensureAppShell();
+  return app.querySelector("[data-route-host]");
+}
+
+function ensureRoutePanel(key) {
+  const host = routeHost();
+  let panel = routePanels.get(key);
+
+  if (!panel) {
+    panel = document.createElement("section");
+    panel.className = "route-panel";
+    panel.setAttribute("data-route-panel", "");
+    panel.hidden = true;
+    routePanels.set(key, panel);
+    host.appendChild(panel);
+  }
+
+  return panel;
+}
+
+function updateRoutePanel(routeId = state.route, detail = state.detail, visible = true) {
+  const key = routeCacheKey(routeId, detail);
+  const panel = ensureRoutePanel(key);
+  const signature = routeSignature(routeId, detail);
+
+  if (panel.dataset.signature !== signature && !isConvenePlaying(panel)) {
+    panel.innerHTML = renderRoute(routeId, detail);
+    panel.dataset.signature = routeSignature(routeId, detail);
+    delete panel.dataset.tickerSignature;
+  }
+
+  panel.hidden = !visible;
+  return panel;
+}
+
+function renderRouteHost() {
+  const currentKey = routeCacheKey();
+  routePanels.forEach((panel, key) => {
+    if (key === currentKey) return;
+    panel.querySelectorAll("iframe[data-video-frame]").forEach((frame) => {
+      frame.contentWindow?.postMessage(JSON.stringify({ event: "command", func: "pauseVideo", args: [] }), "https://www.youtube-nocookie.com");
+    });
+    panel.hidden = true;
+  });
+  updateRoutePanel(state.route, state.detail, true);
+}
+
+function scheduleRender() {
+  if (routeViewState.renderQueued) return;
+  routeViewState.renderQueued = true;
+
+  const flush = () => {
+    routeViewState.renderQueued = false;
+    render();
+  };
+
+  if (typeof window.requestAnimationFrame === "function") {
+    window.requestAnimationFrame(flush);
+  } else {
+    window.setTimeout(flush, 0);
+  }
+}
+
+function preloadImage(url) {
+  if (typeof Image !== "function" || !url || url.startsWith("data:") || preloadedImageUrls.has(url)) return;
+  preloadedImageUrls.add(url);
+  const image = new Image();
+  image.decoding = "async";
+  image.src = url;
+}
+
+function preloadAppAssets() {
+  // Only prioritize the visible hero. Card images load near the viewport.
+  const hero = app.querySelector('.route-panel:not([hidden]) .hero-backdrop, .route-panel:not([hidden]) .subhero');
+  if (hero) {
+    const property = hero.classList.contains('hero-backdrop') ? '--home-hero' : '--subhero';
+    const url = getComputedStyle(hero).getPropertyValue(property).match(/url\(["']?([^"')]+)["']?\)/)?.[1];
+    if (url) preloadImage(url);
   }
 }
 
@@ -3964,33 +4142,50 @@ function updateSeo() {
 
 function render() {
   updateSeo();
-  app.innerHTML = `${renderTopbar()}<main>${renderRoute()}</main>${renderFooter()}`;
+  ensureAppShell();
+  const topbar = app.querySelector("[data-app-topbar]");
+  const topbarSignature = [state.lang, state.route, getFavorites().join(",")].join("|");
+  if (topbar.dataset.signature !== topbarSignature) {
+    topbar.innerHTML = renderTopbar();
+    topbar.dataset.signature = topbarSignature;
+  }
+  renderRouteHost();
+  const footer = app.querySelector("[data-app-footer]");
+  if (footer.dataset.lang !== state.lang) {
+    footer.innerHTML = renderFooter();
+    footer.dataset.lang = state.lang;
+  }
   updateDynamicTimes();
+  preloadAppData();
   applyAccessibility(app, state.lang);
   observeCharacterImages();
 }
 
 function updateDynamicTimes() {
-  let hasEndedVisibleEvent = false;
-
-  document.querySelectorAll("[data-countdown]").forEach((node) => {
+  if (document.hidden) return;
+  const panel = routePanels.get(routeCacheKey());
+  if (!panel || panel.hidden) return;
+  const ticker = panel.querySelector(".live-ticker");
+  const tickerSignature = [state.lang, state.updatedAt, collectionSignature(state.events), state.events.map(getEventStatus).join(",")].join("|");
+  if (ticker && panel.dataset.tickerSignature !== tickerSignature) {
+    ticker.outerHTML = renderLiveTicker();
+    panel.dataset.tickerSignature = tickerSignature;
+  }
+  panel.querySelectorAll("[data-countdown]").forEach((node) => {
     const event = {
       startAt: node.getAttribute("data-start"),
       endAt: node.getAttribute("data-end")
     };
     node.textContent = countdownLabel(event);
-    if (getEventStatus(event) === "encerrado") hasEndedVisibleEvent = true;
   });
 
-  document.querySelectorAll(".ticker-sync").forEach((node) => {
+  panel.querySelectorAll(".ticker-sync").forEach((node) => {
     node.textContent = `${t("updated")} ${timeAgo(state.updatedAt)}`;
   });
 
-  if (hasEndedVisibleEvent) {
-    state.events = activeEvents();
-    state.convenes = activeConvenes();
-    render();
-  }
+  // Expiry invalidates only the visible page, on the next frame. Hidden
+  // tickers must never recursively render an unrelated page (e.g. News).
+  if (!isConvenePlaying(panel) && panel.dataset.signature !== routeSignature()) scheduleRender();
 }
 
 async function loadConvenes({ force = false } = {}) {
@@ -4024,21 +4219,34 @@ async function loadConvenes({ force = false } = {}) {
   return dataRequests.convenes;
 }
 
-async function loadEvents() {
-  try {
-    const response = await fetch("/api/events", { headers: { Accept: "application/json" } });
-    const payload = await response.json();
-    state.events = payload.events || [];
-    state.updatedAt = payload.updatedAt || new Date().toISOString();
-    state.syncIntervalMinutes = payload.syncIntervalMinutes || 10;
-    state.eventSource = payload.imageSource || payload.source || "/api/events";
-    state.eventError = false;
-  } catch {
-    state.eventError = true;
-    state.eventSource = "erro ao sincronizar";
-    state.events = [];
-  }
-  render();
+async function loadEvents({ force = false } = {}) {
+  if (dataRequests.events) return dataRequests.events;
+  if (dataRequests.eventsLoaded && !force) return state.events;
+
+  dataRequests.events = (async () => {
+    try {
+      const response = await fetch("/api/events", { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(20000) });
+      const payload = await response.json();
+      if (!response.ok || !Array.isArray(payload.events)) throw new Error("Invalid events response");
+      state.events = Array.isArray(payload.events) ? payload.events : [];
+      state.updatedAt = payload.updatedAt || new Date().toISOString();
+      state.syncIntervalMinutes = payload.syncIntervalMinutes || 10;
+      state.eventSource = payload.imageSource || payload.source || "/api/events";
+      state.eventError = Boolean(payload.externalError);
+    } catch {
+      state.eventError = true;
+      state.eventSource = state.eventSource || "erro ao sincronizar";
+    } finally {
+      dataRequests.eventsLoaded = true;
+      dataRequests.events = null;
+      preloadAppAssets();
+      scheduleRender();
+    }
+
+    return state.events;
+  })();
+
+  return dataRequests.events;
 }
 
 async function loadCharacters({ force = false } = {}) {
@@ -4422,19 +4630,23 @@ app.addEventListener("change", (event) => {
 });
 
 app.addEventListener("input", (event) => {
+  if (event.isComposing) return;
   const tierSearch=event.target.closest("[data-tier-search]");
   if(tierSearch){state.tierFilters.query=tierSearch.value;const panel=routePanels.get(routeCacheKey());if(panel)panel.dataset.signature=routeSignature();queueSearch(tierSearch,updateTierResults);return;}
   if (event.target.tagName !== "SELECT" && handleBuilderField(event)) return;
   const globalSearch = event.target.closest("[data-global-search]");
   if (globalSearch) {
-    updateSearchSuggestions(globalSearch);
+    if (globalSearch.value.trim().length < 2) hideSearchSuggestions(globalSearch.closest('[data-search-form]'));
+    else queueSearch(globalSearch, () => updateSearchSuggestions(globalSearch));
     return;
   }
 
   const characterSearch = event.target.closest("[data-character-search]");
   if (characterSearch) {
     state.characterQuery = characterSearch.value;
-    updateCharacterResults();
+    const panel = routePanels.get(routeCacheKey());
+    if (panel) panel.dataset.signature = routeSignature();
+    queueSearch(characterSearch, updateCharacterResults);
     return;
   }
 
@@ -4443,7 +4655,7 @@ app.addEventListener("input", (event) => {
     const kind = builderSearch.getAttribute("data-builder-search");
     if (state.builderSearch[kind] !== undefined) {
       state.builderSearch[kind] = builderSearch.value;
-      updateBuilderPicker(kind);
+      queueSearch(builderSearch, () => updateBuilderPicker(kind));
     }
     return;
   }
@@ -4464,15 +4676,25 @@ app.addEventListener("wheel", (event) => {
 }, { passive: false });
 
 window.addEventListener("popstate", () => {
+  cancelPendingSearch();
+  closeBuilderPicker(false);
   parseLocation();
   render();
 });
 
 parseLocation();
 render();
-loadCharacters();
-loadConvenes();
-loadEvents();
 window.setInterval(updateDynamicTimes, 1000);
-window.setInterval(loadConvenes, 5 * 60 * 1000);
-window.setInterval(loadEvents, 5 * 60 * 1000);
+window.setInterval(() => {
+  if (document.hidden) return;
+  if (dataRequests.charactersLoaded && Date.now() - Date.parse(state.charactersUpdatedAt || 0) >= (state.charactersSyncIntervalMinutes || 360) * 60000) loadCharacters({force: true});
+  if (state.route === 'characters') loadCharacterMedia();
+  if (dataRequests.convenesLoaded && (state.conveneError || Date.now() - new Date(state.convenesUpdatedAt || 0).getTime() >= state.conveneSyncIntervalMinutes * 60000)) loadConvenes({ force: true });
+  if (state.eventError || Date.now() - new Date(state.updatedAt || 0).getTime() >= state.syncIntervalMinutes * 60000) loadEvents({ force: true });
+}, 60 * 1000);
+window.addEventListener("storage", (event) => {
+  if (event.key === "solaris:favorites" || event.key === null) {
+    favoriteCache = null;
+    scheduleRender();
+  }
+});

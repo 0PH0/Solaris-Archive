@@ -1,8 +1,11 @@
 import { createReadStream } from "node:fs";
-import { readFile, stat } from "node:fs/promises";
+import { stat } from "node:fs/promises";
 import http from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { createBrotliCompress, createGzip, constants } from "node:zlib";
+import { pipeline } from "node:stream/promises";
+import { Readable } from "node:stream";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.join(__dirname, "public");
@@ -38,9 +41,13 @@ const conveneFeedUrl = eventFeedUrl;
 const conveneCacheTtlMs = 5 * 60 * 1000;
 let conveneCache = null;
 let conveneFeedRequest = null;
+const jsonRequests = new Map();
+const textRequests = new Map();
+const textCache = new Map();
 
 const mimeTypes = {
   ".webm": "video/webm",
+  ".webp": "image/webp",
   ".css": "text/css; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
@@ -113,33 +120,51 @@ function titleFromId(id = "") {
 }
 
 async function fetchJson(url) {
-  const response = await fetch(url, {
-    headers: {
-      "Accept": "application/json",
-      "User-Agent": "Solaris-Archive-WuWa-Wiki"
+  if (jsonRequests.has(url)) return jsonRequests.get(url);
+  const pending = (async () => {
+    const response = await fetch(url, {
+      signal: AbortSignal.timeout(15000),
+      headers: {
+        "Accept": "application/json",
+        ...(url.startsWith('https://guide-server.aki-game.net/') ? {"x-language": "en"} : {}),
+        "User-Agent": "Solaris-Archive-WuWa-Wiki"
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${url}: ${response.status}`);
     }
-  });
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status}`);
-  }
-
-  return response.json();
+    return response.json();
+  })();
+  jsonRequests.set(url, pending);
+  try { return await pending; } finally { jsonRequests.delete(url); }
 }
 
 async function fetchText(url) {
-  const response = await fetch(url, {
-    headers: {
-      "Accept": "application/atom+xml,text/xml,text/plain",
-      "User-Agent": "Solaris-Archive-WuWa-Wiki"
+  const cached = textCache.get(url);
+  if (cached?.expiresAt > Date.now()) return cached.text;
+  if (textRequests.has(url)) return textRequests.get(url);
+  const pending = (async () => {
+    const response = await fetch(url, {
+      signal: AbortSignal.timeout(15000),
+      headers: {
+        "Accept": "application/atom+xml,text/xml,text/plain",
+        "User-Agent": "Solaris-Archive-WuWa-Wiki"
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${url}: ${response.status}`);
     }
-  });
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status}`);
-  }
-
-  return response.text();
+    const text = await response.text();
+    if (!/<feed[\s>]/i.test(text)) throw new Error("Invalid article feed");
+    textCache.set(url, { text, expiresAt: Date.now() + eventCacheTtlMs });
+    return text;
+  })();
+  textRequests.set(url, pending);
+  try { return await pending; } finally { textRequests.delete(url); }
 }
 
 function decodeXml(value = "") {
@@ -708,7 +733,12 @@ async function createEventsPayload() {
       cached: false
     };
   } catch (error) {
-    return createDemoEventsPayload(error);
+    if (eventCache?.payload && !eventCache.payload.externalError) {
+      return { ...eventCache.payload, cached: true, stale: true, externalError: true, message: error.message };
+    }
+    const payload = createDemoEventsPayload(error);
+    eventCache = { payload, expiresAt: now + 2 * 60 * 1000 };
+    return payload;
   }
 }
 
@@ -796,20 +826,54 @@ async function serveFile(response, filePath, request) {
     ? "no-cache"
     : "public, max-age=3600";
 
+  const fileStat = await stat(filePath);
+  const compressible = ['.html', '.css', '.js', '.json', '.svg', '.xml'].includes(ext);
+  const encoding = compressible && fileStat.size >= 1024 ? responseEncoding(request) : '';
+  if (ext === '.webm' && request.headers.range) {
+    const match = /^bytes=(\d+)-(\d*)$/.exec(request.headers.range);
+    const start = match ? Number(match[1]) : NaN;
+    const end = match && match[2] ? Math.min(Number(match[2]),fileStat.size-1) : fileStat.size-1;
+    if (!Number.isSafeInteger(start) || start < 0 || start > end || start >= fileStat.size) {
+      response.writeHead(416, {'Content-Range': `bytes */${fileStat.size}`}); response.end(); return;
+    }
+    response.writeHead(206, {'Content-Type':type,'Accept-Ranges':'bytes','Content-Range':`bytes ${start}-${end}/${fileStat.size}`,'Content-Length':end-start+1,'Cache-Control':cacheControl});
+    if(request.method==='HEAD'){response.end();return;}
+    createReadStream(filePath,{start,end}).pipe(response); return;
+  }
+  const etag = `W/"${fileStat.size}-${fileStat.mtimeMs}"`;
+  if (request.headers["if-none-match"] === etag) {
+    response.writeHead(304, { "ETag": etag, "Cache-Control": cacheControl, ...(compressible ? { Vary: 'Accept-Encoding' } : {}) });
+    response.end();
+    return;
+  }
   response.writeHead(200, {
     "Content-Type": type,
-    "Cache-Control": cacheControl
+    "Cache-Control": cacheControl,
+    "ETag": etag,
+    ...(encoding ? { 'Content-Encoding': encoding } : { 'Content-Length': fileStat.size }),
+    ...(compressible ? { Vary: 'Accept-Encoding' } : {}),
+    ...(ext === '.webm' ? { 'Accept-Ranges': 'bytes' } : {})
   });
-  createReadStream(filePath).pipe(response);
+  if (request.method === "HEAD") { response.end(); return; }
+  if (encoding) await pipeline(createReadStream(filePath), compressor(encoding), response);
+  else await pipeline(createReadStream(filePath), response);
 }
 
-async function serveIndex(response) {
-  const html = await readFile(path.join(publicDir, "index.html"));
-  response.writeHead(200, {
-    "Content-Type": "text/html; charset=utf-8",
-    "Cache-Control": "no-cache"
+async function serveIndex(response, request) {
+  await serveFile(response, path.join(publicDir, "index.html"), request);
+}
+
+async function sendJson(request, response, status, payload, cacheControl) {
+  const body = JSON.stringify(payload);
+  const encoding = Buffer.byteLength(body) >= 1024 ? responseEncoding(request) : '';
+  response.writeHead(status, {
+    'Content-Type': 'application/json; charset=utf-8',
+    'Cache-Control': cacheControl,
+    Vary: 'Accept-Encoding',
+    ...(encoding ? { 'Content-Encoding': encoding } : { 'Content-Length': Buffer.byteLength(body) })
   });
-  response.end(html);
+  if (encoding) await pipeline(Readable.from([body]), compressor(encoding), response);
+  else response.end(body);
 }
 
 const server = http.createServer(async (request, response) => {
@@ -831,44 +895,29 @@ const server = http.createServer(async (request, response) => {
     if (request.method === "GET" && url.pathname === "/api/characters") {
       try {
         const payload = await createCharactersPayload();
-        response.writeHead(200, {
-          "Content-Type": "application/json; charset=utf-8",
-          "Cache-Control": "public, max-age=300"
-        });
-        response.end(JSON.stringify(payload, null, 2));
+        await sendJson(request, response, 200, payload, 'public, max-age=300');
       } catch (error) {
-        response.writeHead(502, {
-          "Content-Type": "application/json; charset=utf-8",
-          "Cache-Control": "no-store"
-        });
-        response.end(JSON.stringify({
+        if (response.headersSent) { response.destroy(); return; }
+        await sendJson(request, response, 502, {
           error: "characters_source_unavailable",
           message: error.message,
           source: characterSourceUrl,
           imageSource: "https://github.com/ryanbenson/wuthering-waves-assets",
           characters: []
-        }, null, 2));
+        }, 'no-store');
       }
       return;
     }
 
     if (request.method === "GET" && url.pathname === "/api/events") {
       const payload = await createEventsPayload();
-      response.writeHead(200, {
-        "Content-Type": "application/json; charset=utf-8",
-        "Cache-Control": "public, max-age=120"
-      });
-      response.end(JSON.stringify(payload, null, 2));
+      await sendJson(request, response, 200, payload, 'public, max-age=120');
       return;
     }
 
     if (request.method === "GET" && url.pathname === "/api/convenes") {
       const payload = await createConvenesPayload();
-      response.writeHead(200, {
-        "Content-Type": "application/json; charset=utf-8",
-        "Cache-Control": "public, max-age=120"
-      });
-      response.end(JSON.stringify(payload, null, 2));
+      await sendJson(request, response, 200, payload, 'no-store');
       return;
     }
 
@@ -885,7 +934,7 @@ const server = http.createServer(async (request, response) => {
     const resolvedPath = path.resolve(staticPath);
     const resolvedPublic = path.resolve(publicDir);
 
-    if (!resolvedPath.startsWith(resolvedPublic)) {
+    if (resolvedPath !== resolvedPublic && !resolvedPath.startsWith(resolvedPublic + path.sep)) {
       response.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" });
       response.end("Forbidden");
       return;
@@ -894,15 +943,18 @@ const server = http.createServer(async (request, response) => {
     try {
       const fileStat = await stat(resolvedPath);
       if (fileStat.isFile()) {
-        await serveFile(response, resolvedPath);
+        await serveFile(response, resolvedPath, request);
         return;
       }
-    } catch {
+    } catch (error) {
+      if (response.headersSent) { response.destroy(); return; }
+      if (!['ENOENT', 'ENOTDIR'].includes(error.code)) throw error;
       // Fall through to SPA routing.
     }
 
-    await serveIndex(response);
+    await serveIndex(response, request);
   } catch (error) {
+    if (response.headersSent) { response.destroy(); return; }
     response.writeHead(500, { "Content-Type": "text/plain; charset=utf-8" });
     response.end(`Server error: ${error.message}`);
   }
