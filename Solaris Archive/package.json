@@ -4,6 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "node --test scripts/test-convenes.mjs scripts/test-characters.mjs scripts/test-echo-catalog.mjs scripts/test-memory-cache.mjs scripts/test-tier-list.mjs && node scripts/test-gacha.mjs",
+    "test:tier": "node scripts/test-tier-browser.mjs",
+    "test:hsin": "node scripts/check-hsin-browser.mjs",
+    "test:responsive": "node scripts/test-responsive.mjs",
+    "test:http": "node scripts/test-http-performance.mjs",
+    "optimize:assets": "node scripts/optimize-assets.mjs",
+    "test:accessibility": "node scripts/test-accessibility.mjs",
     "start": "node server.js",
     "generate:assets": "node scripts/generate-assets.mjs"
   }
