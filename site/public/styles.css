@@ -44,12 +44,12 @@
 .gacha-banner-list h2 { font-size:14px; color:var(--muted); margin:0 0 6px; }
 .gacha-banner-list>button[data-gacha-banner] { overflow:hidden; text-align:left; padding:0; border:1px solid var(--line); background:var(--panel); color:var(--text); border-radius:10px; }
 .gacha-banner-list>button.is-active { border-color:var(--gold-bright); box-shadow:inset 3px 0 var(--gold-bright); }
-.gacha-banner-list img { width:100%; aspect-ratio:2.6; object-fit:cover; display:block; }
+.gacha-banner-list img { width:100%; height:auto; aspect-ratio:auto; object-fit:contain; object-position:center; display:block; }
 .gacha-banner-list button>span { display:grid; padding:12px 15px; gap:4px; }
 .gacha-banner-list small { color:var(--muted); font-size:11px; }
 .gacha-stage { min-width:0; }
 .gacha-banner,.gacha-results,.gacha-calculator,.gacha-history { border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--panel); }
-.gacha-banner-art { display:block; width:100%; max-height:390px; object-fit:contain; background:var(--bg-deep); }
+.gacha-banner-art { display:block; width:100%; height:auto; max-height:390px; object-fit:contain; object-position:center; background:var(--bg-deep); }
 .gacha-banner-body { padding:24px; background:linear-gradient(120deg,rgba(199,164,90,.07),transparent); }
 .gacha-featured h2 { margin:6px 0; font-size:30px; }
 .gacha-featured p:not(.eyebrow) { font-size:13px; color:var(--muted); }
@@ -116,7 +116,7 @@
 }
 
 :root {
-  --home-hero: url('/assets/home-hero-2560.webp');
+  --home-hero: image-set(url('/assets/home-hero-2560.webp') 1x, url('/assets/home-hero-3840.webp') 2x);
   --subhero: url('/assets/subhero-2560.webp');
   color-scheme: dark;
   --bg: #0b0d10;
@@ -412,7 +412,6 @@ img {
     linear-gradient(90deg, rgba(7, 9, 12, 0.88) 0%, rgba(7, 9, 12, 0.48) 48%, rgba(7, 9, 12, 0.72) 100%),
     linear-gradient(180deg, transparent 0%, rgba(11, 13, 16, 0.2) 52%, rgba(11, 13, 16, 0.92) 100%),
     var(--home-hero) center / cover no-repeat;
-  transform: scale(1.02);
 }
 
 .hero::before {
@@ -1100,8 +1099,8 @@ img {
   z-index: 2;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
+  object-position: center;
   background: rgba(7, 9, 12, 0.72);
 }
 
@@ -1304,7 +1303,8 @@ img {
   width: 100%;
   height: 100%;
   min-height: 320px;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
 }
 
 .intro-visual figcaption {
@@ -1342,7 +1342,7 @@ img {
 }
 
 .news-card--featured img {
-  aspect-ratio: 21 / 9;
+  aspect-ratio: auto;
 }
 
 .news-card--featured .card-body {
@@ -1915,10 +1915,12 @@ img {
 
 .event-card img,
 .news-card img {
+  display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
   border-bottom: 1px solid var(--line);
 }
 
@@ -1928,7 +1930,7 @@ img {
 }
 
 .news-card--featured img {
-  aspect-ratio: 21 / 9;
+  aspect-ratio: auto;
 }
 
 .official-video h2 {
@@ -1972,11 +1974,11 @@ img {
 }
 
 @media (max-width: 760px) {
-  .news-card--featured img { aspect-ratio: 16 / 9; }
+  .news-card--featured img { aspect-ratio: auto; }
 }
 
 .event-card--compact img {
-  aspect-ratio: 21 / 9;
+  aspect-ratio: auto;
 }
 
 .convene-card .mini-dl {
@@ -2668,7 +2670,7 @@ th {
 .builder-resonator { display: grid; grid-template-columns: .95fr 1fr; position: relative; background: linear-gradient(120deg, rgba(199,164,90,.12), var(--bg-raised)) !important; }
 .builder-resonator-art { min-width: 0; position: relative; overflow: hidden; }
 .builder-resonator-art .avatar { height: 100%; min-height: 280px; width: 100%; border: 0; border-radius: 0; background: transparent; aspect-ratio: auto; }
-.builder-resonator-art .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 10%; }
+.builder-resonator-art .avatar img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
 .builder-resonator-art .avatar::before, .builder-resonator-art .avatar::after, .builder-resonator-art .avatar > span { display: none; }
 .builder-resonator-art::after { position: absolute; inset: 0; content: ''; background: linear-gradient(0deg, rgba(20,23,28,.6), transparent 35%); pointer-events: none; }
 .builder-resonator-info { position: relative; padding: 24px 18px 22px 8px; display: flex; flex-direction: column; align-items: flex-start; }
@@ -2775,7 +2777,7 @@ th {
 .builder-dialog .builder-option { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 0; min-height: 175px; overflow: hidden; border-radius: 8px; background: #172027; }
 .builder-dialog .builder-option.is-active { outline: 1px solid var(--teal); }
 .builder-dialog .builder-option .avatar { height: 110px; min-height: 110px; border-radius: 0; width: 100%; aspect-ratio: auto; border: 0; }
-.builder-dialog .builder-option .avatar img { height: 100%; width: 100%; object-fit: cover; object-position: top; }
+.builder-dialog .builder-option .avatar img { height: 100%; width: 100%; object-fit: contain; object-position: center; }
 .builder-dialog .builder-option .avatar > span { display: none; }
 .builder-dialog .builder-option-icon { width: 100%; height: 110px; border: 0; border-radius: 0; background: radial-gradient(circle at center, rgba(199,164,90,.11), transparent); }
 .builder-dialog .builder-option-icon::after { display: none; }
@@ -2860,7 +2862,10 @@ img, video { max-width: 100%; }
 html { scroll-padding-top: 88px; }
 
 @media (max-width: 1600px) {
-  :root { --home-hero: url('/assets/home-hero-1600.webp'); --subhero: url('/assets/subhero-1600.webp'); }
+  :root {
+    --home-hero: image-set(url('/assets/home-hero-1600.webp') 1x, url('/assets/home-hero-3840.webp') 2x);
+    --subhero: image-set(url('/assets/subhero-1600.webp') 1x, url('/assets/subhero-2560.webp') 2x);
+  }
 }
 @media (max-width: 1060px) {
   .mobile-nav {
@@ -2875,7 +2880,11 @@ html { scroll-padding-top: 88px; }
 }
 @media (min-width: 1061px) { .mobile-nav { display: none; } }
 @media (max-width: 960px) {
-  :root { --home-hero: url('/assets/home-hero-960.webp'); --subhero: url('/assets/subhero-960.webp'); }
+  :root {
+    /* The tall mobile hero needs extra pixels after background-size: cover. */
+    --home-hero: image-set(url('/assets/home-hero-1600.webp') 1x, url('/assets/home-hero-2560.webp') 2x);
+    --subhero: image-set(url('/assets/subhero-960.webp') 1x, url('/assets/subhero-2560.webp') 2x);
+  }
 }
 @media (max-width: 760px) {
   .topbar { gap: 10px; }

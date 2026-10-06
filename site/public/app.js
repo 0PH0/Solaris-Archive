@@ -1,9 +1,11 @@
 import {loadWeaponCatalog, loadWeaponDetail} from './weapon-catalog.js';
+import {imageAttributes, setImageSources, installImageFallbacks} from './image-utils.js';
 import {loadCharacterDetail, getCharacterDetail} from './character-catalog.js';
 import {loadTierSnapshot, getTierSnapshot, selectTierEntries, tierCharacterKey, tierProfileSlug, TIER_ORDER, TIER_ROLES, TIER_SOURCE} from './tier-list.js';
 import { readEchoCatalogCache, loadEchoCatalog, ECHO_CACHE_TTL } from "./echo-catalog.js";
 import { settingsButton, applyAccessibility, notifyAccessibility, captionParameters, reducedMotion } from "./settings-accessibility.js";
 const app = document.querySelector("#app");
+installImageFallbacks();
 let gacha = { revision: 0 };
 let renderGacha = () => renderPageHero(t("navGacha"), state.lang === "en" ? "Loading…" : state.lang === "es" ? "Cargando…" : "Carregando…");
 let handleGacha = () => false;
@@ -922,17 +924,16 @@ function itemAssetUrl(kind, item) {
 }
 
 function renderItemAssetImage(kind, item, className = "item-art") {
-  const imageUrl = item.iconUrl || item.imageUrl || itemAssetUrl(kind, item);
+  const imageUrl = item.imageUrl || item.iconUrl || itemAssetUrl(kind, item);
   if (!imageUrl) return "";
 
   return `
     <div class="${className}" data-kind="${kind}">
       <img
-        src="${escapeHtml(imageUrl)}"
+        ${imageAttributes([imageUrl, item.iconUrl, itemAssetUrl(kind, item), ITEM_FALLBACK_IMAGE])}
         alt="${escapeHtml(item.name)}"
         loading="lazy"
         decoding="async"
-        onerror="this.onerror=null;this.src='${ITEM_FALLBACK_IMAGE}';var p=this.parentElement;if(p)p.classList.add('is-fallback');"
       />
     </div>
   `;
@@ -1963,7 +1964,7 @@ function renderTopbar() {
   return `
     <header class="topbar">
       <a class="brand" href="${pathFor("home")}" data-link aria-label="Solaris Archive">
-        <img class="brand-logo" src="/assets/site-logo-84.webp" alt="" width="42" height="42">
+        <img class="brand-logo" ${imageAttributes(['/assets/site-logo-84.webp','/assets/site-logo.png'], {srcset:'/assets/site-logo-84.webp 84w, /assets/site-logo-126.webp 126w', sizes:'42px', width:42, height:42})} alt="" decoding="async">
         <span>
           <strong>Solaris Archive</strong>
           <small>Wuthering Waves Wiki</small>
@@ -2128,7 +2129,7 @@ function renderBannerSpotlight() {
 
 function renderCharacterAvatar(character, variant = "card") {
   const detail = getCharacterDetail(character.encoreId);
-  const imageUrl = (variant === "detail" ? detail?.portraitUrl : detail?.imageUrl) || (variant === "detail"
+  const imageUrl = (variant === "icon" ? detail?.iconUrl || character.iconUrl : variant === "detail" ? detail?.portraitUrl : detail?.imageUrl) || (variant === "detail"
     ? character.portraitUrl || character.imageUrl || character.iconUrl || characterAssetUrl(character.name)
     : character.imageUrl || character.iconUrl || character.portraitUrl || characterAssetUrl(character.name));
 
@@ -2137,12 +2138,11 @@ function renderCharacterAvatar(character, variant = "card") {
       <span>${initials(character.name)}</span>
       ${imageUrl ? `
         <img
-          src="${escapeHtml(imageUrl)}"
+          ${imageAttributes([imageUrl, variant === 'detail' ? detail?.imageUrl : '', character.imageUrl, character.iconUrl, CHARACTER_FALLBACK_IMAGE])}
           alt="${escapeHtml(character.name)}"
           loading="lazy"
           decoding="async"
           ${character.encoreId ? `data-character-image="${Number(character.encoreId)}" data-image-variant="${variant}"` : ""}
-          onerror="this.onerror=null;this.src='${CHARACTER_FALLBACK_IMAGE}';var avatar=this.closest('.avatar');if(avatar)avatar.classList.add('avatar--fallback');"
         >
       ` : ""}
     </div>
@@ -2404,10 +2404,9 @@ function sortedNewsItems(items = news) {
 }
 
 function renderNewsCard(item, featured = false) {
-  const localImage = /^\/assets\/(event-(web|forge|code|tower)|banner-(next|resonance))\.png$/.test(item.image || "");
   return `
     <article class="data-card news-card ${featured ? "news-card--featured" : ""}">
-      <img src="${escapeHtml(localImage ? '/assets/event-placeholder-1280.webp' : item.image || EVENT_FALLBACK_IMAGE)}" ${localImage ? 'srcset="/assets/event-placeholder-640.webp 640w, /assets/event-placeholder-1280.webp 900w" sizes="(max-width: 760px) 100vw, (max-width: 1060px) 50vw, 40vw"' : ''} alt="" loading="lazy" decoding="async" width="1280" height="720" onerror="this.onerror=null;this.src='${EVENT_FALLBACK_IMAGE}';">
+      <img ${eventImageAttributes(item.image)} alt="" loading="lazy" decoding="async">
       <div class="card-body">
         <span class="pill">${escapeHtml(item.category || t("navNews"))}</span>
         <h3>${escapeHtml(item.title)}</h3>
@@ -2558,7 +2557,7 @@ function renderIntroductionPage() {
           </div>
         </article>
         <figure class="intro-visual">
-          <img src="/assets/home-hero-1600.webp" srcset="/assets/home-hero-960.webp 960w, /assets/home-hero-1600.webp 1600w, /assets/home-hero-2560.webp 2560w" sizes="(max-width: 1060px) 100vw, 50vw" alt="Paisagem inspirada em Solaris-3" loading="lazy" decoding="async" width="1600" height="900">
+          <img ${imageAttributes(['/assets/home-hero-1600.webp','/assets/home-hero-wuwa.jpg'], {srcset:'/assets/home-hero-960.webp 960w, /assets/home-hero-1600.webp 1600w, /assets/home-hero-2560.webp 2560w, /assets/home-hero-3840.webp 3840w', sizes:'(max-width: 1060px) calc(100vw - 32px), 50vw', width:1600, height:900})} alt="Paisagem inspirada em Solaris-3" loading="lazy" decoding="async">
           <figcaption>${t("introSummaryText")}</figcaption>
         </figure>
       </div>
@@ -2712,8 +2711,9 @@ async function upgradeCharacterImages(id) {
     const previous = getCharacterDetail(id);
     const detail = await loadCharacterDetail(id);
     document.querySelectorAll(`[data-character-image="${Number(id)}"]`).forEach(image => {
-      const source = image.dataset.imageVariant === 'detail' ? detail.portraitUrl : detail.imageUrl;
-      if (source && image.getAttribute('src') !== source) image.src = source;
+      const source = image.dataset.imageVariant === 'icon' ? detail.iconUrl : image.dataset.imageVariant === 'detail' ? detail.portraitUrl : detail.imageUrl;
+      const previousSource = image.getAttribute('src');
+      setImageSources(image, [source, previousSource?.startsWith('data:') ? '' : previousSource, image.dataset.imageVariant === 'detail' ? detail.imageUrl : '', detail.iconUrl, CHARACTER_FALLBACK_IMAGE]);
     });
     const character = characters.find(record => Number(record.encoreId) === Number(id));
     if (character?.apiOnly) {
@@ -2793,9 +2793,10 @@ function tierFilterSelect(name, title, values) {
 function renderTierCharacter(entry) {
   const {character,role,tier,sequence,sourceUrl}=entry;
   // The catalog's legacy Rover URL is shared; use its existing Encore head asset here.
-  const avatarCharacter = /^Rover\s*\(/i.test(character.name) ? {...character,imageUrl:'https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_'+(character.element==='Havoc'?'5':'4')+'_UI.webp'} : character;
+  const roverIcon = /^Rover\s*\(/i.test(character.name) ? 'https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_'+(character.element==='Havoc'?'5':'4')+'_UI.webp' : '';
+  const avatarCharacter = roverIcon ? {...character,imageUrl:roverIcon,iconUrl:roverIcon} : character;
   return '<article class="tier-resonator" data-tier-character="'+escapeHtml(tierProfileSlug(character))+'" data-tier-role="'+(role || 'unrated')+'" data-tier-grade="'+(tier || 'unrated')+'">'+
-    '<a class="tier-character-link" href="'+pathFor('characters',state.lang,tierProfileSlug(character))+'" data-link>'+renderCharacterAvatar(avatarCharacter)+'<strong>'+escapeHtml(character.name)+'</strong></a>'+
+    '<a class="tier-character-link" href="'+pathFor('characters',state.lang,tierProfileSlug(character))+'" data-link>'+renderCharacterAvatar(avatarCharacter, 'icon')+'<strong>'+escapeHtml(character.name)+'</strong></a>'+
     '<div class="tier-card-meta"><span class="pill pill--'+escapeHtml(character.element.toLowerCase())+'">'+escapeHtml(character.element)+'</span><span>'+character.rarity+'★'+(sequence?' · '+sequence:'')+'</span></div>'+
     (sourceUrl?'<a class="tier-review-link" href="'+escapeHtml(sourceUrl)+'" target="_blank" rel="noreferrer" aria-label="'+escapeHtml(label('Ver avaliação de ','Read review for ','Ver evaluación de ')+character.name+' · '+tierRoleLabel(role))+'">'+label('Avaliação ↗','Review ↗','Evaluación ↗')+'</a>':'')+'</article>';
 }
@@ -2893,7 +2894,7 @@ function renderWeaponDetail(slug) {
   const label=(pt,en,es)=>state.lang==='en'?en:state.lang==='es'?es:pt;
   const properties=detail?.properties || [];
   return renderPageHero(weapon.name,weapon.type+' · '+stars(weapon.rarity),t('weapon'))+
-    '<section class="page-band"><div class="container detail-layout weapon-detail"><aside class="detail-aside">'+renderItemAssetImage('weapon',weapon)+'<a class="text-link" data-link href="'+pathFor('weapons')+'">'+t('back')+'</a></aside><div class="detail-main">'+
+    '<section class="page-band"><div class="container detail-layout weapon-detail"><aside class="detail-aside">'+renderItemAssetImage('weapon',{...weapon, imageUrl: detail?.imageUrl})+'<a class="text-link" data-link href="'+pathFor('weapons')+'">'+t('back')+'</a></aside><div class="detail-main">'+
     (detail?.loading?'<p role="status">'+label('Carregando detalhes…','Loading details…','Cargando detalles…')+'</p>':'')+
     (detail?.error?'<p role="status">'+label('Não foi possível carregar os detalhes da Encore.','Unable to load Encore details.','No se pudieron cargar los detalles de Encore.')+'</p>':'')+
     '<article class="panel"><h2>'+label('Atributos','Attributes','Atributos')+'</h2>'+(properties.length?'<div class="weapon-stats-scroll"><table><thead><tr><th>'+label('Nível','Level','Nivel')+'</th>'+properties.map(p=>'<th>'+escapeHtml(p.name)+'</th>').join('')+'</tr></thead><tbody>'+properties[0].values.map((v,i)=>'<tr><td>'+v.level+'</td>'+properties.map(p=>'<td>'+escapeHtml(p.values[i]?.value || '—')+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>':'<p>ATK: '+(weapon.baseAtk ?? '—')+' · '+escapeHtml(weapon.stat || '—')+'</p>')+'</article>'+
@@ -3309,14 +3310,12 @@ function renderBuilderItemIcon(kind, item) {
   return `
     <span class="builder-option-icon" data-kind="${kind}">
       <img
-        src="${escapeHtml(imageUrl)}"
+        ${imageAttributes([imageUrl, item.iconFallbackUrl, itemAssetUrl(kind, item), ITEM_FALLBACK_IMAGE])}
         alt="${escapeHtml(item.name)}"
         width="110"
         height="110"
-        data-fallback-src="${escapeHtml(item.iconFallbackUrl || "")}"
         loading="lazy"
         decoding="async"
-        onerror="if(this.dataset.fallbackSrc){this.src=this.dataset.fallbackSrc;delete this.dataset.fallbackSrc;return;}this.onerror=null;this.src='${ITEM_FALLBACK_IMAGE}';var p=this.parentElement;if(p)p.classList.add('is-fallback');"
       />
     </span>
   `;
@@ -3411,7 +3410,7 @@ function renderBuilderOption(kind, item) {
   const disabled = kind === "echo" && builderCost(builderUI.slot) + item.cost > 12;
   const meta = kind === "character" ? item.element + " · " + item.weapon : kind === "weapon" ? item.type + " · " + item.stat : bt("cost") + " " + item.cost;
   return '<button class="builder-option' + (selected ? ' is-active' : '') + '" type="button" data-builder-pick="' + kind + '" data-value="' + item.slug + '" aria-pressed="' + selected + '" ' + (disabled ? 'disabled title="' + bt("capacity") + '"' : '') + '>' +
-    (kind === "character" ? renderCharacterAvatar(item) : renderBuilderItemIcon(kind, item)) +
+    (kind === "character" ? renderCharacterAvatar(item, 'icon') : renderBuilderItemIcon(kind, item)) +
     '<span class="builder-option-info"><strong>' + escapeHtml(item.name) + '</strong><small>' + escapeHtml(meta) + '</small><span class="builder-rarity">' + (kind === "echo" ? (disabled ? bt("capacity") : '★★★★★') : stars(item.rarity)) + '</span></span></button>';
 }
 
@@ -3772,6 +3771,19 @@ function conveneImageUrl(convene) {
   // Every banner uses only the image attached to this exact API record.
   return convene?.imageUrl || convene?.image || convene?.bannerImageUrl || EVENT_FALLBACK_IMAGE;
 }
+function eventImageAttributes(source) {
+  const local = /^\/assets\/(event-(?:web|forge|code|tower))\.png$/.exec(source || '');
+  if (!local) return imageAttributes([source, EVENT_FALLBACK_IMAGE], bannerImageOptions(source));
+  // These four existing placeholder PNGs are byte-identical. Share derivatives.
+  return imageAttributes(['/assets/event-placeholder-900.webp', source, EVENT_FALLBACK_IMAGE], {
+    srcset:'/assets/event-placeholder-640.webp 640w, /assets/event-placeholder-900.webp 900w',
+    sizes:'(max-width: 760px) calc(100vw - 32px), (max-width: 1060px) 50vw, 40vw', width:900, height:500
+  });
+}
+function bannerImageOptions(source) {
+  const local = /^\/assets\/banners\/(hsin-3\.7|blooming-jadehaven-3\.7)\.webp$/.exec(source || '');
+  return local ? {srcset:`/assets/banners/${local[1]}-464.webp 464w, ${source} 928w`, sizes:'(max-width: 760px) calc(100vw - 32px), 50vw', width:928, height:516} : {};
+}
 function renderConveneCard(convene, compact = false) {
   const status = getEventStatus(convene);
   const imageUrl = conveneImageUrl(convene);
@@ -3780,11 +3792,10 @@ function renderConveneCard(convene, compact = false) {
   return `
     <article class="data-card event-card convene-card ${compact ? "event-card--compact" : ""}">
       <img
-        src="${escapeHtml(imageUrl)}"
+        ${imageAttributes([imageUrl, EVENT_FALLBACK_IMAGE], bannerImageOptions(imageUrl))}
         alt="${escapeHtml(convene.title)}"
         loading="lazy"
         decoding="async"
-        onerror="this.onerror=null;this.src='${EVENT_FALLBACK_IMAGE}';"
       >
       <div class="card-body">
         <div class="card-topline">
@@ -3817,17 +3828,13 @@ function renderConveneCard(convene, compact = false) {
 
 function renderEventCard(event, compact = false) {
   const status = getEventStatus(event);
-  const localImage = /^\/assets\/event-(web|forge|code|tower)\.png$/.test(event.imageUrl || "");
-  const imageUrl = localImage ? '/assets/event-placeholder-1280.webp' : event.imageUrl || EVENT_FALLBACK_IMAGE;
   return `
     <article class="data-card event-card ${compact ? "event-card--compact" : ""}">
       <img
-        src="${escapeHtml(imageUrl)}"
-        ${localImage ? 'srcset="/assets/event-placeholder-640.webp 640w, /assets/event-placeholder-1280.webp 900w" sizes="(max-width: 760px) 100vw, 50vw"' : ''}
+        ${eventImageAttributes(event.imageUrl)}
         alt="${escapeHtml(event.title)}"
         loading="lazy"
         decoding="async"
-        onerror="this.onerror=null;this.src='${EVENT_FALLBACK_IMAGE}';"
       >
       <div class="card-body">
         <div class="card-topline">
@@ -3919,7 +3926,7 @@ function gachaFeatured(banner) {
 function gachaContext() {
   return {
     lang: state.lang, banners: activeConvenes(), escape: escapeHtml,
-    imageUrl: conveneImageUrl, date: iso => formatEventDate(iso, "server"),
+    imageUrl: conveneImageUrl, bannerImageOptions, imageAttributes, eventFallback:EVENT_FALLBACK_IMAGE, itemFallback:ITEM_FALLBACK_IMAGE, characterFallback:CHARACTER_FALLBACK_IMAGE, date: iso => formatEventDate(iso, "server"),
     time: iso => formatEventTime(iso, "server"), countdown: countdownLabel,
     loading: !dataRequests.convenesLoaded || Boolean(dataRequests.convenes), error: state.conveneError,
     catalogPending: !weaponsReady,

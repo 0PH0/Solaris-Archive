@@ -466,7 +466,7 @@ async function createCharactersPayload() {
         || (release && roles.find(record => record.Id === release.encoreId));
       if (role) {
         character.encoreId = Number(role.Id);
-        character.iconUrl = safeEncoreAsset(role.RoleHeadIcon) || character.iconUrl;
+        character.iconUrl = safeEncoreAsset(role.RoleHeadIconLarge) || safeEncoreAsset(role.RoleHeadIcon) || character.iconUrl;
         if (!character.rarity && releaseNames.has(normalizeKey(character.name))) {
           character.rarity = Number(role.QualityId); character.element = role.Element?.Name || "Unknown"; character.weapon = role.WeaponType?.Name || "Unknown";
         }
@@ -478,7 +478,7 @@ async function createCharactersPayload() {
   for (const role of roles) {
     if (!releaseNames.has(normalizeKey(role.Name)) || normalized.some(record => normalizeKey(record.name) === normalizeKey(role.Name))) continue;
     const release = releases.find(record => record.encoreId === role.Id);
-    normalized.push({ id: role.Name, slug: normalizeKey(role.Name), name: role.Name, rarity: Number(role.QualityId), element: role.Element?.Name || "Unknown", weapon: role.WeaponType?.Name || "Unknown", encoreId: Number(role.Id), version: release?.version || "", imageUrl: safeEncoreAsset(role.RoleHeadIcon), iconUrl: safeEncoreAsset(role.RoleHeadIcon), sourceUrl: encoreCharacterUrl, newRelease: !release, useApiDetails: true, ...(release ? {signatureWeapon: release.signatureWeapon, videoId: release.videoId} : {}) });
+    normalized.push({ id: role.Name, slug: normalizeKey(role.Name), name: role.Name, rarity: Number(role.QualityId), element: role.Element?.Name || "Unknown", weapon: role.WeaponType?.Name || "Unknown", encoreId: Number(role.Id), version: release?.version || "", imageUrl: safeEncoreAsset(role.RoleHeadIconLarge) || safeEncoreAsset(role.RoleHeadIcon), iconUrl: safeEncoreAsset(role.RoleHeadIconLarge) || safeEncoreAsset(role.RoleHeadIcon), sourceUrl: encoreCharacterUrl, newRelease: !release, useApiDetails: true, ...(release ? {signatureWeapon: release.signatureWeapon, videoId: release.videoId} : {}) });
   }
   for (const release of releases) {
     if (!normalized.some(record => normalizeKey(record.name) === normalizeKey(release.name))) normalized.push({ ...release, slug: normalizeKey(release.id), sourceUrl: encoreCharacterUrl });

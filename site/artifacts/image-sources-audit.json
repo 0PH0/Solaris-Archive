@@ -1,0 +1,202 @@
+[
+  {
+    "src": "/assets/banner-next-IA.png",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/banner-next.png",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/banner-resonance-IA.png",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/banner-resonance.png",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/event-code-IA.png",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/event-code.png",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/event-forge-IA.png",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/event-forge.png",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/event-placeholder-1280.webp",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/event-placeholder-640.webp",
+    "width": 640,
+    "height": 356
+  },
+  {
+    "src": "/assets/event-placeholder-900.webp",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/event-tower-IA.png",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/event-tower.png",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/event-web-IA.png",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/event-web.png",
+    "width": 900,
+    "height": 500
+  },
+  {
+    "src": "/assets/home-hero-1600.webp",
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "src": "/assets/home-hero-2560.webp",
+    "width": 2560,
+    "height": 1440
+  },
+  {
+    "src": "/assets/home-hero-3840.webp",
+    "width": 3840,
+    "height": 2160
+  },
+  {
+    "src": "/assets/home-hero-960.webp",
+    "width": 960,
+    "height": 540
+  },
+  {
+    "src": "/assets/home-hero-wuwa.jpg",
+    "width": 12000,
+    "height": 6750
+  },
+  {
+    "src": "/assets/site-logo-126.webp",
+    "width": 126,
+    "height": 126
+  },
+  {
+    "src": "/assets/site-logo-84.webp",
+    "width": 84,
+    "height": 84
+  },
+  {
+    "src": "/assets/site-logo.png",
+    "width": 550,
+    "height": 550
+  },
+  {
+    "src": "/assets/subhero-1600.webp",
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "src": "/assets/subhero-2560.webp",
+    "width": 2560,
+    "height": 1440
+  },
+  {
+    "src": "/assets/subhero-960.webp",
+    "width": 960,
+    "height": 540
+  },
+  {
+    "src": "/assets/subhero-wuwa-2560.jpg",
+    "width": 2560,
+    "height": 1440
+  },
+  {
+    "src": "/assets/banners/blooming-jadehaven-3.7-464.webp",
+    "width": 464,
+    "height": 258
+  },
+  {
+    "src": "/assets/banners/blooming-jadehaven-3.7.webp",
+    "width": 928,
+    "height": 516
+  },
+  {
+    "src": "/assets/banners/hsin-3.7-464.webp",
+    "width": 464,
+    "height": 258
+  },
+  {
+    "src": "/assets/banners/hsin-3.7.webp",
+    "width": 928,
+    "height": 516
+  },
+  {
+    "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconRoleHeadCircle256/T_IconRoleHeadCircle256_75_UI.webp",
+    "width": 256,
+    "height": 256
+  },
+  {
+    "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_75_UI.webp",
+    "width": 256,
+    "height": 256
+  },
+  {
+    "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconRoleHead150/T_IconRoleHead150_75_UI.webp",
+    "width": 152,
+    "height": 152
+  },
+  {
+    "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconRoleHead80/T_IconRoleHead80_75_UI.webp",
+    "width": 80,
+    "height": 80
+  },
+  {
+    "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_Xin_UI.webp",
+    "width": 696,
+    "height": 960
+  },
+  {
+    "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/PixActivity/T_ActivityRoleXin.webp",
+    "width": 2048,
+    "height": 2032
+  },
+  {
+    "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconWeapon/T_IconWeapon21010016_UI.webp",
+    "width": 256,
+    "height": 256
+  },
+  {
+    "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconWeapon732/T_IconWeapon732_21010016_UI.webp",
+    "width": 732,
+    "height": 392
+  },
+  {
+    "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods/T_IconMonsterGoods_988_UI.webp",
+    "width": 256,
+    "height": 256
+  }
+]

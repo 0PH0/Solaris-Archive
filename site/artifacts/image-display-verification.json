@@ -1,0 +1,5814 @@
+{
+  "report": [
+    {
+      "route": "personagens",
+      "width": 320,
+      "scrollWidth": 320,
+      "images": [
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jinhsi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jiyan.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Yinlin.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 252,
+          "displayHeight": 252
+        }
+      ]
+    },
+    {
+      "route": "personagens/hsin",
+      "width": 320,
+      "scrollWidth": 320,
+      "images": [
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/PixActivity/T_ActivityRoleXin.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 2048,
+          "height": 2032,
+          "displayWidth": 282,
+          "displayHeight": 353
+        }
+      ]
+    },
+    {
+      "route": "tier-list",
+      "width": 320,
+      "scrollWidth": 320,
+      "images": [
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Hiyuki.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jingran.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/YangyangXuanling.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jiyan.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jinhsi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Yinlin.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 104,
+          "displayHeight": 104
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 103,
+          "displayHeight": 103
+        }
+      ]
+    },
+    {
+      "route": "armas/verdant-summit",
+      "width": 320,
+      "scrollWidth": 320,
+      "images": [
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconWeapon732/T_IconWeapon732_21010016_UI.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 732,
+          "height": 392,
+          "displayWidth": 284,
+          "displayHeight": 319
+        }
+      ]
+    },
+    {
+      "route": "ecos",
+      "width": 320,
+      "scrollWidth": 320,
+      "images": [
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/CelestialLight.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/SierraGale.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/MoonlitClouds.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/RejuvenatingGlow.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/VoidThunder.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        }
+      ]
+    },
+    {
+      "route": "builder",
+      "width": 320,
+      "scrollWidth": 320,
+      "images": [
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jinhsi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 137,
+          "displayHeight": 291
+        },
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconWeapon/T_IconWeapon21010026_UI.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 69,
+          "displayHeight": 76
+        }
+      ]
+    },
+    {
+      "route": "eventos",
+      "width": 320,
+      "scrollWidth": 320,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/banners/hsin-3.7-464.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 288,
+          "height": 160,
+          "displayWidth": 282,
+          "displayHeight": 157
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 282,
+          "displayHeight": 0
+        }
+      ]
+    },
+    {
+      "route": "noticias",
+      "width": 320,
+      "scrollWidth": 320,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 288,
+          "height": 160,
+          "displayWidth": 282,
+          "displayHeight": 157
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 288,
+          "height": 160,
+          "displayWidth": 282,
+          "displayHeight": 157
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 282,
+          "displayHeight": 0
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 288,
+          "height": 160,
+          "displayWidth": 282,
+          "displayHeight": 157
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 288,
+          "height": 160,
+          "displayWidth": 282,
+          "displayHeight": 157
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 282,
+          "displayHeight": 0
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 288,
+          "height": 160,
+          "displayWidth": 282,
+          "displayHeight": 157
+        }
+      ]
+    },
+    {
+      "route": "gacha",
+      "width": 320,
+      "scrollWidth": 320,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/banners/hsin-3.7-464.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 288,
+          "height": 160,
+          "displayWidth": 135,
+          "displayHeight": 75
+        },
+        {
+          "src": "http://localhost:4173/assets/banners/hsin-3.7.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 928,
+          "height": 516,
+          "displayWidth": 282,
+          "displayHeight": 157
+        }
+      ]
+    },
+    {
+      "route": "introducao",
+      "width": 320,
+      "scrollWidth": 320,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/home-hero-960.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 288,
+          "height": 162,
+          "displayWidth": 282,
+          "displayHeight": 220
+        }
+      ]
+    },
+    {
+      "route": "personagens",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jinhsi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jiyan.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Yinlin.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Denia.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Hiyuki.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Iuno.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jingran.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Qingxiao.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/YangyangXuanling.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 322,
+          "displayHeight": 322
+        }
+      ]
+    },
+    {
+      "route": "personagens/hsin",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/PixActivity/T_ActivityRoleXin.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 2048,
+          "height": 2032,
+          "displayWidth": 352,
+          "displayHeight": 441
+        }
+      ]
+    },
+    {
+      "route": "tier-list",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Hiyuki.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jingran.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Qingxiao.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/YangyangXuanling.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Denia.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Iuno.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Lucilla.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Iuno.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jiyan.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jinhsi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Yinlin.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 83,
+          "displayHeight": 83
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 82,
+          "displayHeight": 82
+        }
+      ]
+    },
+    {
+      "route": "armas/verdant-summit",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconWeapon732/T_IconWeapon732_21010016_UI.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 732,
+          "height": 392,
+          "displayWidth": 354,
+          "displayHeight": 319
+        }
+      ]
+    },
+    {
+      "route": "ecos",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/CelestialLight.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/SierraGale.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/MoonlitClouds.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/RejuvenatingGlow.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/VoidThunder.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        }
+      ]
+    },
+    {
+      "route": "builder",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jinhsi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 171,
+          "displayHeight": 291
+        },
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconWeapon/T_IconWeapon21010026_UI.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 69,
+          "displayHeight": 76
+        }
+      ]
+    },
+    {
+      "route": "eventos",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/banners/hsin-3.7.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 358,
+          "height": 199,
+          "displayWidth": 352,
+          "displayHeight": 196
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 358,
+          "height": 199,
+          "displayWidth": 352,
+          "displayHeight": 196
+        }
+      ]
+    },
+    {
+      "route": "noticias",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 358,
+          "height": 199,
+          "displayWidth": 352,
+          "displayHeight": 196
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 358,
+          "height": 199,
+          "displayWidth": 352,
+          "displayHeight": 196
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 352,
+          "displayHeight": 0
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 358,
+          "height": 199,
+          "displayWidth": 352,
+          "displayHeight": 196
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 358,
+          "height": 199,
+          "displayWidth": 352,
+          "displayHeight": 196
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 352,
+          "displayHeight": 0
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 358,
+          "height": 199,
+          "displayWidth": 352,
+          "displayHeight": 196
+        }
+      ]
+    },
+    {
+      "route": "gacha",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/banners/hsin-3.7.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 358,
+          "height": 199,
+          "displayWidth": 170,
+          "displayHeight": 95
+        },
+        {
+          "src": "http://localhost:4173/assets/banners/hsin-3.7.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 928,
+          "height": 516,
+          "displayWidth": 352,
+          "displayHeight": 196
+        }
+      ]
+    },
+    {
+      "route": "introducao",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/home-hero-960.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 358,
+          "height": 201,
+          "displayWidth": 352,
+          "displayHeight": 220
+        }
+      ]
+    },
+    {
+      "route": "personagens",
+      "width": 768,
+      "scrollWidth": 753,
+      "images": [
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_Xin_UI.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 696,
+          "height": 960,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jinhsi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jiyan.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Yinlin.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Verina.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Mortefi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Sanhua.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Denia.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Hiyuki.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Iuno.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jingran.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Lucilla.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Qingxiao.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/YangyangXuanling.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 319,
+          "displayHeight": 319
+        }
+      ]
+    },
+    {
+      "route": "personagens/hsin",
+      "width": 768,
+      "scrollWidth": 753,
+      "images": [
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/PixActivity/T_ActivityRoleXin.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 2048,
+          "height": 2032,
+          "displayWidth": 715,
+          "displayHeight": 894
+        }
+      ]
+    },
+    {
+      "route": "tier-list",
+      "width": 768,
+      "scrollWidth": 753,
+      "images": [
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Hiyuki.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jingran.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Qingxiao.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/YangyangXuanling.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Denia.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Iuno.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Lucilla.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Chisa.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Mornye.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Suisui.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Verina.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Iuno.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Mortefi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jiyan.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Sanhua.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jinhsi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Yinlin.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 173,
+          "displayHeight": 173
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 107,
+          "displayHeight": 107
+        }
+      ]
+    },
+    {
+      "route": "armas/verdant-summit",
+      "width": 768,
+      "scrollWidth": 753,
+      "images": [
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconWeapon732/T_IconWeapon732_21010016_UI.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 732,
+          "height": 392,
+          "displayWidth": 717,
+          "displayHeight": 384
+        }
+      ]
+    },
+    {
+      "route": "ecos",
+      "width": 768,
+      "scrollWidth": 753,
+      "images": [
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/CelestialLight.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/SierraGale.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/MoonlitClouds.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/RejuvenatingGlow.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/VoidThunder.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/SunSinkingEclipse.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/MoltenRift.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/FreezingFrost.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/LingeringTunes.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/EmpyreanAnthem.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 76,
+          "height": 76,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        }
+      ]
+    },
+    {
+      "route": "builder",
+      "width": 768,
+      "scrollWidth": 753,
+      "images": [
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jinhsi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 180,
+          "displayHeight": 323
+        },
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconWeapon/T_IconWeapon21010026_UI.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 69,
+          "displayHeight": 76
+        }
+      ]
+    },
+    {
+      "route": "eventos",
+      "width": 768,
+      "scrollWidth": 753,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/banners/hsin-3.7.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 384,
+          "height": 213,
+          "displayWidth": 349,
+          "displayHeight": 194
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 384,
+          "height": 213,
+          "displayWidth": 349,
+          "displayHeight": 194
+        }
+      ]
+    },
+    {
+      "route": "noticias",
+      "width": 768,
+      "scrollWidth": 753,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 384,
+          "height": 213,
+          "displayWidth": 715,
+          "displayHeight": 398
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 384,
+          "height": 213,
+          "displayWidth": 349,
+          "displayHeight": 194
+        },
+        {
+          "src": "http://localhost:4173/assets/banner-resonance.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 900,
+          "height": 500,
+          "displayWidth": 349,
+          "displayHeight": 194
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 384,
+          "height": 213,
+          "displayWidth": 349,
+          "displayHeight": 194
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 384,
+          "height": 213,
+          "displayWidth": 349,
+          "displayHeight": 194
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 349,
+          "displayHeight": 0
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 384,
+          "height": 213,
+          "displayWidth": 349,
+          "displayHeight": 194
+        }
+      ]
+    },
+    {
+      "route": "gacha",
+      "width": 768,
+      "scrollWidth": 753,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/banners/hsin-3.7.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 384,
+          "height": 213,
+          "displayWidth": 223,
+          "displayHeight": 124
+        },
+        {
+          "src": "http://localhost:4173/assets/banners/hsin-3.7.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 928,
+          "height": 516,
+          "displayWidth": 466,
+          "displayHeight": 259
+        }
+      ]
+    },
+    {
+      "route": "introducao",
+      "width": 768,
+      "scrollWidth": 753,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/home-hero-960.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 736,
+          "height": 414,
+          "displayWidth": 715,
+          "displayHeight": 402
+        }
+      ]
+    },
+    {
+      "route": "personagens",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "images": [
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_Xin_UI.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 696,
+          "height": 960,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jinhsi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jiyan.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Yinlin.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Verina.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Mortefi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Sanhua.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Aalto.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Aemeath.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Augusta.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Baizhi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Brant.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Buling.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Chisa.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Denia.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Hiyuki.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Iuno.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jingran.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Lucilla.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Mornye.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Qingxiao.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Suisui.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/YangyangXuanling.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 251,
+          "displayHeight": 251
+        }
+      ]
+    },
+    {
+      "route": "personagens/hsin",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "images": [
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/PixActivity/T_ActivityRoleXin.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 2048,
+          "height": 2032,
+          "displayWidth": 278,
+          "displayHeight": 348
+        }
+      ]
+    },
+    {
+      "route": "tier-list",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "images": [
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Hiyuki.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jingran.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Qingxiao.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/YangyangXuanling.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Denia.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Iuno.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Lucilla.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Lynae.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Chisa.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Mornye.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Suisui.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Shorekeeper.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Aemeath.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/LuukHerssen.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Sigrika.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Lupa.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 152,
+          "height": 152,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Qiuyuan.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Rebecca.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Verina.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Augusta.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Cartethyia.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Galbrena.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Iuno.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Ciaccona.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Mortefi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Brant.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Buling.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Brant.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jiyan.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Sanhua.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jinhsi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Yinlin.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Baizhi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Aalto.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 90,
+          "displayHeight": 90
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 98,
+          "displayHeight": 98
+        }
+      ]
+    },
+    {
+      "route": "armas/verdant-summit",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "images": [
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconWeapon732/T_IconWeapon732_21010016_UI.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 732,
+          "height": 392,
+          "displayWidth": 280,
+          "displayHeight": 319
+        }
+      ]
+    },
+    {
+      "route": "ecos",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "images": [
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/CelestialLight.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/SierraGale.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/MoonlitClouds.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/RejuvenatingGlow.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/VoidThunder.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/SunSinkingEclipse.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/MoltenRift.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/FreezingFrost.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/LingeringTunes.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 64,
+          "height": 64,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/EmpyreanAnthem.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 76,
+          "height": 76,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/MidnightVeil.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 76,
+          "height": 76,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 0,
+          "height": 0,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/TidebreakingCourage.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 76,
+          "height": 76,
+          "displayWidth": 96,
+          "displayHeight": 96
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/GustsofWelkin.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 76,
+          "height": 76,
+          "displayWidth": 96,
+          "displayHeight": 96
+        }
+      ]
+    },
+    {
+      "route": "builder",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "images": [
+        {
+          "src": "https://raw.githubusercontent.com/ryanbenson/wuthering-waves-assets/master/images/Jinhsi.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 269,
+          "displayHeight": 323
+        },
+        {
+          "src": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconWeapon/T_IconWeapon21010026_UI.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 256,
+          "height": 256,
+          "displayWidth": 69,
+          "displayHeight": 76
+        }
+      ]
+    },
+    {
+      "route": "eventos",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/banners/hsin-3.7.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 720,
+          "height": 400,
+          "displayWidth": 580,
+          "displayHeight": 323
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 576,
+          "height": 320,
+          "displayWidth": 381,
+          "displayHeight": 212
+        }
+      ]
+    },
+    {
+      "route": "noticias",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 576,
+          "height": 320,
+          "displayWidth": 638,
+          "displayHeight": 355
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 576,
+          "height": 320,
+          "displayWidth": 381,
+          "displayHeight": 212
+        },
+        {
+          "src": "http://localhost:4173/assets/banner-resonance.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 900,
+          "height": 500,
+          "displayWidth": 381,
+          "displayHeight": 211
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 576,
+          "height": 320,
+          "displayWidth": 381,
+          "displayHeight": 212
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 576,
+          "height": 320,
+          "displayWidth": 381,
+          "displayHeight": 212
+        },
+        {
+          "src": "http://localhost:4173/assets/banner-next.png",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 900,
+          "height": 500,
+          "displayWidth": 381,
+          "displayHeight": 211
+        },
+        {
+          "src": "http://localhost:4173/assets/event-placeholder-640.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 576,
+          "height": 320,
+          "displayWidth": 381,
+          "displayHeight": 212
+        }
+      ]
+    },
+    {
+      "route": "gacha",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/banners/hsin-3.7.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 720,
+          "height": 400,
+          "displayWidth": 223,
+          "displayHeight": 124
+        },
+        {
+          "src": "http://localhost:4173/assets/banners/hsin-3.7.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 928,
+          "height": 516,
+          "displayWidth": 929,
+          "displayHeight": 390
+        }
+      ]
+    },
+    {
+      "route": "introducao",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "images": [
+        {
+          "src": "http://localhost:4173/assets/home-hero-960.webp",
+          "fit": "contain",
+          "position": "50% 50%",
+          "width": 720,
+          "height": 405,
+          "displayWidth": 533,
+          "displayHeight": 320
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "dpr": 3,
+      "logo": "http://localhost:4173/assets/site-logo-126.webp",
+      "hero": "2560"
+    },
+    {
+      "width": 1440,
+      "dpr": 2,
+      "logo": "http://localhost:4173/assets/site-logo-126.webp",
+      "hero": "3840"
+    }
+  ],
+  "checks": [
+    "no content cropping",
+    "natural proportions",
+    "large portrait and weapon",
+    "responsive source fallback",
+    "failed upgrade recovery",
+    "DPR selection",
+    "no horizontal overflow"
+  ],
+  "errors": []
+}

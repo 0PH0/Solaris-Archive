@@ -11,6 +11,7 @@
     "test:tier": "node scripts/test-tier-browser.mjs",
     "test:hsin": "node scripts/check-hsin-browser.mjs",
     "test:responsive": "node scripts/test-responsive.mjs",
+    "test:images": "node scripts/test-images.mjs",
     "test:http": "node scripts/test-http-performance.mjs",
     "optimize:assets": "node scripts/optimize-assets.mjs",
     "test:accessibility": "node scripts/test-accessibility.mjs",

@@ -1,4 +1,5 @@
 const SOURCE = 'https://api-v2.encore.moe/api/en/weapon';
+import {encoreImageUrl} from './image-utils.js';
 const TTL = 6 * 60 * 60 * 1000;
 const pending = new Map();
 const memory = new Map();
@@ -35,5 +36,5 @@ export async function loadWeaponCatalog(){
 }
 export async function loadWeaponDetail(id){
   const data=await cached('solaris:weapon-detail:v1:'+id,SOURCE+'/'+encodeURIComponent(id));
-  return {passive:plain(data.Desc),passiveName:plain(data.ResonName),description:plain(data.AttributesDescription || data.BgDescription),properties:(data.Properties || []).map(p=>({name:plain(p.Name),values:(p.GrowthValues || []).filter(v=>[1,20,40,60,80,90].includes(v.Level)).map(v=>({level:v.Level,value:plain(v.Value)}))})),source:SOURCE+'/'+id};
+  return {imageUrl:encoreImageUrl(data.IconBig) || encoreImageUrl(data.Icon),passive:plain(data.Desc),passiveName:plain(data.ResonName),description:plain(data.AttributesDescription || data.BgDescription),properties:(data.Properties || []).map(p=>({name:plain(p.Name),values:(p.GrowthValues || []).filter(v=>[1,20,40,60,80,90].includes(v.Level)).map(v=>({level:v.Level,value:plain(v.Value)}))})),source:SOURCE+'/'+id};
 }

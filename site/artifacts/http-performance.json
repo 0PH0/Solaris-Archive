@@ -3,61 +3,61 @@
     {
       "asset": "/app.js",
       "encoding": "gzip",
-      "originalBytes": 222349,
-      "transferredBytes": 57989
+      "originalBytes": 224425,
+      "transferredBytes": 58912
     },
     {
       "asset": "/app.js",
       "encoding": "br",
-      "originalBytes": 222349,
-      "transferredBytes": 58151
+      "originalBytes": 224425,
+      "transferredBytes": 59031
     },
     {
       "asset": "/styles.css",
       "encoding": "gzip",
-      "originalBytes": 83704,
-      "transferredBytes": 15556
+      "originalBytes": 84187,
+      "transferredBytes": 15635
     },
     {
       "asset": "/styles.css",
       "encoding": "br",
-      "originalBytes": 83704,
-      "transferredBytes": 16685
+      "originalBytes": 84187,
+      "transferredBytes": 16718
     },
     {
       "asset": "/pt-BR/builder",
       "encoding": "gzip",
-      "originalBytes": 1201,
-      "transferredBytes": 566
+      "originalBytes": 1205,
+      "transferredBytes": 567
     },
     {
       "asset": "/pt-BR/builder",
       "encoding": "br",
-      "originalBytes": 1201,
-      "transferredBytes": 505
+      "originalBytes": 1205,
+      "transferredBytes": 503
     }
   ],
   "apis": [
     {
       "asset": "/api/characters",
-      "status": 502,
-      "externalError": "characters_source_unavailable",
-      "records": 0,
-      "transferredBytes": 215
+      "status": 200,
+      "externalError": false,
+      "records": 55,
+      "transferredBytes": 3632
     },
     {
       "asset": "/api/events",
       "status": 200,
-      "externalError": true,
-      "records": 4,
-      "transferredBytes": 616
+      "externalError": false,
+      "records": 0,
+      "transferredBytes": 257
     },
     {
       "asset": "/api/convenes",
       "status": 200,
-      "externalError": true,
-      "records": 0,
-      "transferredBytes": 225
+      "externalError": false,
+      "records": 6,
+      "transferredBytes": 1034
     }
   ]
 }
