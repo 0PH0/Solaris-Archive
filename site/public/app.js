@@ -2334,7 +2334,7 @@ function renderCharacterShowcase() {
       <div class="container">
         <div class="home-featured-heading">
           <h2 id="home-featured-title">${label("Personagens em destaque", "Featured characters", "Personajes destacados")}</h2>
-          <a class="text-link" href="${pathFor("characters")}" data-link>${label("Ver todos", "View all", "Ver todos")} ↗</a>
+          <a class="text-link home-view-all" href="${pathFor("characters")}" data-link><span>${label("Ver todos", "View all", "Ver todos")}</span> <span class="home-control-arrow" aria-hidden="true">↗</span></a>
         </div>
         <div class="home-featured-strip" tabindex="0" role="region" aria-label="${label("Personagens em destaque", "Featured characters", "Personajes destacados")}">
           ${featured.map(({character, isNew, onBanner}) => `
@@ -2347,9 +2347,9 @@ function renderCharacterShowcase() {
         </div>
         <div class="home-role-showcase">
           <button class="home-showcase-toggle" type="button" data-showcase-toggle aria-expanded="${!state.showcaseCollapsed}" aria-controls="home-resonators-content">
-            <span aria-hidden="true">${state.showcaseCollapsed ? "+" : "−"}</span>
-            <span>${t("showcaseTitle")}</span>
-            <small>${state.showcaseCollapsed ? label("Comparar funções", "Compare roles", "Comparar roles") : label("Recolher", "Collapse", "Contraer")}</small>
+            <span class="home-showcase-icon" aria-hidden="true">${state.showcaseCollapsed ? "+" : "−"}</span>
+            <span class="home-showcase-label">${t("showcaseTitle")}</span>
+            <small class="home-showcase-action">${state.showcaseCollapsed ? label("Comparar funções", "Compare roles", "Comparar roles") : label("Recolher", "Collapse", "Contraer")}</small>
           </button>
           <div id="home-resonators-content" ${state.showcaseCollapsed ? "hidden" : ""}>
             ${!state.showcaseCollapsed ? `
