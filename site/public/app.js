@@ -1,6 +1,7 @@
 import {loadWeaponCatalog, loadWeaponDetail} from './weapon-catalog.js';
 import {imageAttributes, setImageSources, installImageFallbacks} from './image-utils.js';
 import {loadCharacterDetail, getCharacterDetail} from './character-catalog.js';
+import {selectHomeFeatured} from './home-featured.js';
 import {loadTierSnapshot, getTierSnapshot, selectTierEntries, tierCharacterKey, tierProfileSlug, TIER_ORDER, TIER_ROLES, TIER_SOURCE} from './tier-list.js';
 import { readEchoCatalogCache, loadEchoCatalog, ECHO_CACHE_TTL } from "./echo-catalog.js";
 import { settingsButton, applyAccessibility, notifyAccessibility, captionParameters, reducedMotion } from "./settings-accessibility.js";
@@ -1603,9 +1604,9 @@ const mapLegend = [
 
 function readShowcaseCollapsed() {
   try {
-    return localStorage.getItem("solaris:showcase-collapsed") === "true";
+    return localStorage.getItem("solaris:showcase-collapsed") !== "false";
   } catch {
-    return false;
+    return true;
   }
 }
 
@@ -2322,32 +2323,48 @@ function updateCharacterResults() {
 }
 
 function renderCharacterShowcase() {
-  const featured = state.roleFilter === "all"
+  const roleCharacters = state.roleFilter === "all"
     ? characters
     : characters.filter((character) => character.role === state.roleFilter);
-  const toggleLabel = state.showcaseCollapsed ? t("showShowcase") : t("hideShowcase");
+  const relevant = selectTierEntries(characters, getTierSnapshot(), {mode: "toa"}).filter(entry => entry.tier && ["T0", "T0.5"].includes(entry.tier)).map(entry => entry.character);
+  const featured = selectHomeFeatured(characters, state.convenes, relevant);
 
   return `
-    <section class="page-band page-band--deep">
+    <section class="page-band home-resonators" aria-labelledby="home-featured-title">
       <div class="container">
-        ${renderSectionHeader(
-          t("showcaseKicker"),
-          t("showcaseTitle"),
-          t("showcaseDesc"),
-          `<button class="section-toggle" type="button" data-showcase-toggle aria-expanded="${!state.showcaseCollapsed}" aria-controls="home-resonators-content">
-            <span aria-hidden="true">${state.showcaseCollapsed ? "+" : "-"}</span>
-            ${toggleLabel}
-          </button>`
-        )}
-        <div id="home-resonators-content">
-          ${state.showcaseCollapsed ? `
-            <div class="collapsed-note">${t("charactersHidden")}</div>
-          ` : `
+        <div class="home-featured-heading">
+          <h2 id="home-featured-title">${label("Personagens em destaque", "Featured characters", "Personajes destacados")}</h2>
+          <a class="text-link" href="${pathFor("characters")}" data-link>${label("Ver todos", "View all", "Ver todos")} ↗</a>
+        </div>
+        <div class="home-featured-strip" tabindex="0" role="region" aria-label="${label("Personagens em destaque", "Featured characters", "Personajes destacados")}">
+          ${featured.map(({character, isNew, onBanner}) => `
+            <a class="home-featured-card" href="${pathFor("characters", state.lang, character.slug)}" data-link>
+              ${renderCharacterAvatar(character, "icon")}
+              <strong>${escapeHtml(character.name)}</strong>
+              <small>${[isNew ? label("Novo", "New", "Nuevo") : "", onBanner ? label("Banner ativo", "Active banner", "Banner activo") : ""].filter(Boolean).join(" · ") || escapeHtml(character.element)}</small>
+            </a>
+          `).join("")}
+        </div>
+        <div class="home-role-showcase">
+          <button class="home-showcase-toggle" type="button" data-showcase-toggle aria-expanded="${!state.showcaseCollapsed}" aria-controls="home-resonators-content">
+            <span aria-hidden="true">${state.showcaseCollapsed ? "+" : "−"}</span>
+            <span>${t("showcaseTitle")}</span>
+            <small>${state.showcaseCollapsed ? label("Comparar funções", "Compare roles", "Comparar roles") : label("Recolher", "Collapse", "Contraer")}</small>
+          </button>
+          <div id="home-resonators-content" ${state.showcaseCollapsed ? "hidden" : ""}>
+            ${!state.showcaseCollapsed ? `
+            <p class="home-showcase-description">${t("showcaseDesc")}</p>
             ${renderRoleTabs()}
-            <div class="character-grid">
-              ${featured.map(renderCharacterCard).join("")}
+            <div class="home-role-grid" tabindex="0" role="region" aria-label="${t("showcaseTitle")}">
+              ${roleCharacters.map(character => `
+                <a class="home-role-card" href="${pathFor("characters", state.lang, character.slug)}" data-link>
+                  ${renderCharacterAvatar(character, "icon")}
+                  <span><strong>${escapeHtml(character.name)}</strong><small>${t(roleLabels[character.role])}</small></span>
+                </a>
+              `).join("")}
             </div>
-          `}
+            ` : ""}
+          </div>
         </div>
       </div>
     </section>
@@ -4011,7 +4028,7 @@ function routeSignature(routeId = state.route, detail = state.detail) {
 
   switch (routeId) {
     case "home":
-      return [base, tierDataRevision, state.roleFilter, state.showcaseCollapsed, state.timeMode, collectionSignature(characters, ["slug", "name", "imageUrl"]), collectionSignature(state.events), collectionSignature(state.convenes, ["id", "title", "updatedAt", "imageUrl"]), state.updatedAt, state.convenesUpdatedAt, favorites].join("|");
+      return [base, tierDataRevision, state.roleFilter, state.showcaseCollapsed, state.timeMode, collectionSignature(characters, ["slug", "name", "imageUrl", "iconUrl", "version", "newRelease"]), collectionSignature(state.events), collectionSignature(state.convenes, ["id", "title", "type", "featuredName", "startAt", "endAt", "updatedAt", "imageUrl"]), state.updatedAt, state.convenesUpdatedAt, favorites].join("|");
     case "characters":
       return [base, detail ? characterDetailRevision : "", state.charactersLoading, state.characterQuery, state.roleFilter, state.characterElementFilter, state.characterWeaponFilter, state.characterRarityFilter, state.charactersUpdatedAt, state.charactersSource, state.charactersApiError, collectionSignature(characters, ["slug", "name", "imageUrl"]), favorites].join("|");
     case "tier":
