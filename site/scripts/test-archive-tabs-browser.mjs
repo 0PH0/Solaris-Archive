@@ -3,6 +3,8 @@ import fs from 'node:fs/promises';
 import {openBrowser, delay} from './browser-harness.mjs';
 import {loadEchoCatalog, normalizeEchoCatalog, filterEchoCatalog, groupEchoAppearances} from '../public/echo-catalog.js';
 import {loadWeaponDetail} from '../public/weapon-catalog.js';
+import {metadataText} from '../public/content-translations.js';
+const localeFixture=JSON.parse(await fs.readFile(new URL('./fixtures/encore-localized-text.json',import.meta.url),'utf8'));
 const snapshot = async (file, fallback) => {
   try {return JSON.parse(await fs.readFile(file,'utf8'));} catch {return fallback();}
 };
@@ -33,6 +35,8 @@ try {
   await browser.call('Page.addScriptToEvaluateOnNewDocument',{source:`
     const payload=${JSON.stringify(payload)}, weapons=${JSON.stringify(weapons)}, details=${JSON.stringify(details)};
     localStorage.setItem('solaris:echo-catalog:v4',JSON.stringify({payload,updatedAt:Date.now()}));
+    const localized=${JSON.stringify(localeFixture)};
+    for(const [lang,fields] of Object.entries(localized))for(const [kind,data] of Object.entries(fields))localStorage.setItem('solaris:source-text:v1:'+lang+':'+(kind==='character'?'character:1311':kind==='weapon'?'weapon:21010016':kind==='weaponAges'?'weapon:21010026':kind+':'),JSON.stringify({data,time:Date.now()}));
     const originalFetch=window.fetch.bind(window);
     window.fetch=(url, options)=>{
       const key=String(url);let value;
@@ -103,7 +107,7 @@ try {
         for(const type of ['Sword','Pistols','all']) {
           await browser.evaluate(`(()=>{const input=document.querySelector('${active} [data-weapon-filter]');input.value='${type}';input.dispatchEvent(new Event('change',{bubbles:true}));})()`);
           await waitFor(`document.querySelector('${active} [data-weapon-filter]').value==='${type}'`);
-          if(type!=='all') assert(await browser.evaluate(`[...document.querySelectorAll('${active} .weapon-card .pill')].every(p=>p.textContent==='${type}')`));
+          if(type!=='all') assert(await browser.evaluate(`[...document.querySelectorAll('${active} .weapon-card .pill')].every(p=>p.textContent==='${metadataText(type,language)}')`));
           assert(await browser.evaluate(`document.querySelectorAll('${active} .weapon-card').length>0`));
         }
       }

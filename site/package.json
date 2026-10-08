@@ -7,7 +7,8 @@
     "node": "24.x"
   },
   "scripts": {
-    "test": "node --test scripts/test-convenes.mjs scripts/test-characters.mjs scripts/test-echo-catalog.mjs scripts/test-weapon-catalog.mjs scripts/test-memory-cache.mjs scripts/test-tier-list.mjs scripts/test-home-featured.mjs && node scripts/test-gacha.mjs",
+    "test": "node --test scripts/test-convenes.mjs scripts/test-characters.mjs scripts/test-echo-catalog.mjs scripts/test-weapon-catalog.mjs scripts/test-memory-cache.mjs scripts/test-tier-list.mjs scripts/test-home-featured.mjs scripts/test-localization.mjs && node scripts/test-gacha.mjs",
+    "test:translations": "node scripts/test-translations-browser.mjs",
     "test:archive": "node scripts/test-archive-tabs-browser.mjs",
     "test:tier": "node scripts/test-tier-browser.mjs",
     "test:hsin": "node scripts/check-hsin-browser.mjs",

@@ -1,3 +1,5 @@
+import {contentText, metadataText, bannerText, highlightText} from './content-translations.js';
+import {getSourceText, loadSourceText, loadEchoSourceText, sourceTextFailed, sourcePlainText} from './source-localization.js';
 import {loadWeaponCatalog, loadWeaponDetail} from './weapon-catalog.js';
 import {imageAttributes, setImageSources, installImageFallbacks} from './image-utils.js';
 import {loadCharacterDetail, getCharacterDetail} from './character-catalog.js';
@@ -100,20 +102,20 @@ const itemAssetExtensionOverrides = {
 };
 const copy = {
   "pt-BR": {
-    navHome: "Home",
+    navHome: "Início",
     navIntro: "Introdução",
     navCharacters: "Personagens",
-    navTier: "Tier List",
+    navTier: "Classificação",
     navEchoes: "Echoes",
     navSonatas: "Sonatas",
     navWeapons: "Armas",
     navItems: "Itens",
     navGuide: "Guia",
-    navCodes: "Codigos",
-    navBuilder: "Builder",
+    navCodes: "Códigos",
+    navBuilder: "Montar equipamentos",
     navGacha: "Convocações",
     navEvents: "Eventos",
-    navNews: "Noticias",
+    navNews: "Notícias",
     searchPlaceholder: "Buscar personagem, arma, eco...",
     database: "Base de dados",
     favorites: "Favoritos",
@@ -124,27 +126,27 @@ const copy = {
     comingSoon: "Em breve",
     ended: "Encerrado",
     activeEvents: "Eventos ativos",
-    currentConvenes: "Convocacoes atuais",
-    emptyConvenes: "Nenhuma convocacao ativa no momento.",
+    currentConvenes: "Convocações atuais",
+    emptyConvenes: "Nenhuma convocação ativa no momento.",
     convenesUnavailable: "Não foi possível atualizar as convocações. Tentaremos novamente em instantes.",
     convenePageTitle: "Banners de personagem e arma",
-    convenePageDesc: "Convocacoes sincronizadas em endpoint proprio, independentes dos eventos in-game.",
+    convenePageDesc: "Convocações com imagens oficiais, destaques, horários e contagem regressiva.",
     categoryOverview: "Resumo por categoria",
     activeNow: "Ativos agora",
-    nextEnd: "Proximo fim",
+    nextEnd: "Próximo fim",
     noActiveItems: "Sem itens ativos",
     featuredItem: "Destaque",
     conveneType: "Tipo",
     updated: "Atualizado",
     mockNotice: "Dados demonstrativos prontos para plugar em fontes reais.",
     serverTime: "Servidor UTC+8",
-    localTime: "Horario local",
-    eventStartDate: "Data de inicio",
-    eventStartTime: "Hora de inicio",
-    eventEndDate: "Data de termino",
-    eventEndTime: "Hora de termino",
+    localTime: "Horário local",
+    eventStartDate: "Data de início",
+    eventStartTime: "Hora de início",
+    eventEndDate: "Data de término",
+    eventEndTime: "Hora de término",
     eventEndsIn: "Termina em",
-    eventStartsIn: "Comeca em",
+    eventStartsIn: "Começa em",
     details: "Detalhes",
     copyCode: "Copiar",
     copied: "Copiado",
@@ -152,16 +154,16 @@ const copy = {
     syncEvery: "Atualiza a cada",
     emptyEvents: "Nenhum evento ativo no momento.",
     all: "Todos",
-    banners: "Convocacoes",
-    inGame: "Eventos in-game",
+    banners: "Convocações",
+    inGame: "Eventos no jogo",
     webEvents: "Eventos web",
     tower: "Torre da Adversidade",
-    codes: "Codigos",
+    codes: "Códigos",
     damage: "Dano",
     support: "Suporte",
-    exploration: "Exploracao",
+    exploration: "Exploração",
     mainDps: "Dano Principal",
-    subDps: "Sub-DPS",
+    subDps: "Dano secundário",
     healer: "Suporte",
     controller: "Controle",
     back: "Voltar",
@@ -169,20 +171,20 @@ const copy = {
     element: "Elemento",
     weapon: "Arma",
     role: "Papel",
-    recommendedBuild: "Build recomendada",
-    statTargets: "Metas de status",
-    statTargetsDesc: "Indicador sugerido para jogar esse personagem com boa consistencia.",
+    recommendedBuild: "Equipamentos recomendados",
+    statTargets: "Metas de atributos",
+    statTargetsDesc: "Indicador sugerido para jogar esse personagem com boa consistência.",
     priorityStats: "Prioridade",
     suggestedEnergy: "Recarga sugerida",
     targetReached: "Ok",
     targetMissing: "Ajustar",
-    stats: "Stats",
+    stats: "Atributos",
     source: "Fonte",
     reward: "Recompensas",
-    status: "Status",
-    routeNotFound: "Pagina nao encontrada",
-    routeNotFoundText: "A rota solicitada nao existe neste prototipo.",
-    noAffiliation: "Projeto de fa nao afiliado, endossado ou publicado pela Kuro Games/Guangzhou Kuro Technology.",
+    status: "Estado",
+    routeNotFound: "Página não encontrada",
+    routeNotFoundText: "A página solicitada não existe.",
+    noAffiliation: "Projeto de fãs sem afiliação, endosso ou publicação pela Kuro Games/Guangzhou Kuro Technology.",
     language: "Idioma",
     menu: "Menu",
     hideShowcase: "Fechar",
@@ -190,93 +192,93 @@ const copy = {
     charactersHidden: "Personagens ocultos",
     search: "Pesquisa",
     searchButton: "Buscar",
-    primaryActions: "Acoes principais",
+    primaryActions: "Ações principais",
     baseSummary: "Resumo da base",
     officialSite: "Site oficial",
-    heroEyebrow: "Fan wiki PT-BR - i18n - eventos ao vivo",
-    heroCopy: "Portal wiki de Wuthering Waves com builds, ecos, armas, codigos e agenda de eventos em uma unica base navegavel.",
-    characterSearchPlaceholder: "Buscar por nome, elemento ou tag",
+    heroEyebrow: "Wiki de fãs · Eventos ao vivo",
+    heroCopy: "Wiki de Wuthering Waves com personagens, Echoes, armas, códigos e agenda de eventos.",
+    characterSearchPlaceholder: "Buscar por nome, elemento ou marcador",
     characterFiltersLabel: "Filtros de personagens",
     noCharacterFoundTitle: "Nenhum personagem encontrado",
     noCharacterFoundText: "Tente mudar a pesquisa ou limpar algum filtro.",
     syncingCharacters: "Sincronizando personagens...",
     characterCount: "personagens",
-    apiFallback: "API indisponivel, usando cache local",
+    apiFallback: "API indisponível, usando cache local",
     sourceLabel: "Fonte",
     updatedLabel: "Atualizado",
-    pageCharactersDesc: "Lista de Resonators com papel, elemento, arma, builds e pagina individual.",
+    pageCharactersDesc: "Personagens com função, elemento, arma, equipamentos e página individual.",
     pageTierDesc: "Avaliações por modo e função, com critérios claros e dados verificados da Prydwen.",
-    pageEchoesDesc: "Sonatas, efeitos de conjunto e monstros de origem para planejar farm.",
-    pageWeaponsDesc: "Armas por tipo, raridade, atributo secundario e usuarios recomendados.",
-    pageItemsDesc: "Materiais de ascensao, fontes de farm e calendario semanal.",
+    pageEchoesDesc: "Echoes, Sonatas e efeitos de conjunto para planejar seus equipamentos.",
+    pageWeaponsDesc: "Armas por tipo, raridade, atributo secundário e usuários recomendados.",
+    pageItemsDesc: "Materiais de ascensão, fontes de recursos e calendário semanal.",
     pageGuideTitle: "Guia do jogo",
-    pageGuideDesc: "Mecanicas centrais, rotacoes e rotas de progressao.",
-    pageCodesTitle: "Codigos de resgate",
-    pageCodesDesc: "Codigos ativos conferidos nas fontes, recompensas e copia em um clique.",
-    pageBuilderDesc: "Calculadora demonstrativa para comparar personagem, arma, eco e nivel.",
+    pageGuideDesc: "Mecânicas centrais, rotações e rotas de progressão.",
+    pageCodesTitle: "Códigos de resgate",
+    pageCodesDesc: "Códigos ativos conferidos nas fontes, recompensas e cópia em um clique.",
+    pageBuilderDesc: "Monte os equipamentos de um personagem com armas, Echoes e atributos.",
     pageEventsTitle: "Eventos atuais",
-    pageEventsDesc: "Eventos ativos com banner oficial, periodo, horario e contagem regressiva em tempo real.",
-    pageNewsDesc: "Feed de anuncios, patch notes e atualizacoes editoriais.",
-    emptyNewsText: "Nenhuma noticia cadastrada no momento.",
+    pageEventsDesc: "Eventos ativos com banner oficial, período, horário e contagem regressiva em tempo real.",
+    pageNewsDesc: "Notícias, notas de atualização e novidades do site.",
+    emptyNewsText: "Nenhuma notícia cadastrada no momento.",
     newsFeaturedTitle: "Destaque editorial",
-    newsSummaryTitle: "Resumo do feed",
+    newsSummaryTitle: "Resumo das notícias",
     newsArchiveTitle: "Arquivo",
     introPageTitle: "Introdução",
-    introPageDesc: "Uma visao rapida sobre o proposito do Solaris Archive e sobre o universo de Wuthering Waves.",
-    introPurposeTitle: "Uma wiki para consulta rapida",
-    introPurposeText: "O Solaris Archive centraliza informacoes uteis para jogadores de Wuthering Waves: personagens, builds, ecos, armas, codigos, banners, eventos e guias essenciais. A ideia e reduzir o tempo procurando dados espalhados e deixar a tomada de decisao mais simples.",
+    introPageDesc: "Uma visão rápida sobre o propósito do Solaris Archive e sobre o universo de Wuthering Waves.",
+    introPurposeTitle: "Uma wiki para consulta rápida",
+    introPurposeText: "O Solaris Archive centraliza informações úteis para jogadores de Wuthering Waves: personagens, equipamentos, Echoes, armas, códigos, banners, eventos e guias essenciais. A ideia é reduzir o tempo procurando dados espalhados e deixar a tomada de decisão mais simples.",
     introObjectiveTitle: "Objetivo da Wiki",
-    introObjectiveText: "Organizar dados de jogo em paginas claras, atualizaveis e faceis de navegar, com prioridade para legibilidade, filtros praticos e contexto suficiente para jogadores novos ou experientes.",
+    introObjectiveText: "Organizar dados de jogo em páginas claras, atualizáveis e fáceis de navegar, com prioridade para legibilidade, filtros práticos e contexto suficiente para jogadores novos ou experientes.",
     introGameTitle: "Sobre Wuthering Waves",
-    introGameText: "Wuthering Waves e um RPG de acao em mundo aberto desenvolvido pela Kuro Games. O jogador assume o papel de Rover, um protagonista sem memoria que viaja por Solaris-3 ao lado dos Resonators em busca de respostas e de um novo caminho para o mundo.",
-    introLoreTitle: "Universo e historia",
-    introLoreText: "Solaris-3 e um mundo marcado pelo Lament, uma serie de catastrofes que transformou civilizacoes, criaturas e as proprias leis do ambiente. A humanidade sobreviveu entre ruinas, tecnologia e ecos de um passado quebrado, enquanto novos conflitos e regioes revelam pouco a pouco os misterios por tras do desastre.",
-    introResourcesTitle: "Recursos disponiveis",
-    introResourcesText: "A Wiki oferece banco de personagens, tier list, ecos, armas, itens, codigos, builder de builds, guias e um hub de eventos com dados mockados prontos para integracao real.",
+    introGameText: "Wuthering Waves é um RPG de ação em mundo aberto desenvolvido pela Kuro Games. O jogador assume o papel de Rover, um protagonista sem memória que viaja por Solaris-3 ao lado dos personagens em busca de respostas e de um novo caminho para o mundo.",
+    introLoreTitle: "Universo e história",
+    introLoreText: "Solaris-3 é um mundo marcado pelo Lament, uma série de catástrofes que transformou civilizações, criaturas e as próprias leis do ambiente. A humanidade sobreviveu entre ruínas, tecnologia e ecos de um passado quebrado, enquanto novos conflitos e regiões revelam pouco a pouco os mistérios por trás do desastre.",
+    introResourcesTitle: "Recursos disponíveis",
+    introResourcesText: "Consulte personagens, classificações, Echoes, armas, itens, códigos, equipamentos, guias e eventos.",
     introSummaryTitle: "Como usar",
-    introSummaryText: "Use a busca inicial para encontrar rapidamente qualquer topico ou navegue pelas abas para comparar dados, acompanhar eventos e planejar builds.",
-    showcaseKicker: "Resonators",
-    showcaseTitle: "Showcase por papel de equipe",
-    showcaseDesc: "Abas para comparar funcoes de dano, suporte, ataques coordenados e controle de campo.",
-    tierPreviewTitle: "DPS meta atual",
-    tierPreviewDesc: "DPS em destaque na Tower of Adversity. Referência: Prydwen, patch 3.7.",
-    recentNewsTitle: "Patch notes e anuncios recentes",
-    recentNewsDesc: "Cards de feed preparados para receber RSS, CDN do launcher ou CMS.",
-    conveneSpotlightTitle: "Banners de Convene ativos",
-    conveneSpotlightDesc: "Fonte separada de /api/events, com arte oficial, destaque, periodo e contagem regressiva.",
+    introSummaryText: "Use a busca inicial para encontrar rapidamente qualquer tópico ou navegue pelas abas para comparar dados, acompanhar eventos e planejar equipamentos.",
+    showcaseKicker: "Personagens",
+    showcaseTitle: "Personagens por função na equipe",
+    showcaseDesc: "Abas para comparar funções de dano, suporte, ataques coordenados e controle de campo.",
+    tierPreviewTitle: "Atacantes em destaque",
+    tierPreviewDesc: "Atacantes em destaque na Torre da Adversidade. Referência: Prydwen, versão 3.7.",
+    recentNewsTitle: "Atualizações e anúncios recentes",
+    recentNewsDesc: "Acompanhe as notícias e novidades do Solaris Archive.",
+    conveneSpotlightTitle: "Convocações em destaque",
+    conveneSpotlightDesc: "Imagens oficiais, destaques, horários e contagem regressiva.",
     redeemTitle: "Resgate em um clique",
-    redeemDesc: "Codigos ativos, recompensas e validade quando divulgada.",
+    redeemDesc: "Códigos ativos, recompensas e validade quando divulgada.",
     echoes: "Ecos",
-    mainStats: "Stats principais",
-    team: "Time",
+    mainStats: "Atributos principais",
+    team: "Equipe",
     skills: "Habilidades",
     weaponAffinity: "Afinidade com armas",
-    substat: "Substat",
+    substat: "Atributo secundário",
     users: "Uso",
     type: "Tipo",
     days: "Dias",
     item: "Item",
     category: "Categoria",
     listedItems: "itens listados nesta categoria.",
-    farmPriorities: "Prioridades de farm",
-    farmPrioritiesDesc: "Uma visao rapida para organizar ascensao, boss mats, XP e moeda sem perder eficiencia semanal.",
+    farmPriorities: "Prioridades de recursos",
+    farmPrioritiesDesc: "Organize materiais de ascensão, chefes, experiência e moedas para aproveitar melhor a semana.",
     catalogedItems: "Itens catalogados",
     resourceTypes: "Tipos de recurso",
     universalUse: "Uso universal",
     limitedTime: "Tempo limitado",
-    weeklyCalendar: "Calendario semanal",
+    weeklyCalendar: "Calendário semanal",
     guideBasics: "Fundamentos essenciais",
-    quickChecklist: "Checklist rapido",
+    quickChecklist: "Lista rápida",
     readings: "Leituras",
     detailedGuides: "Guias detalhados",
-    detailedGuidesDesc: "Textos curtos para consulta rapida e para dar contexto ao portal como wiki.",
+    detailedGuidesDesc: "Textos curtos para consulta rápida e para dar contexto ao portal como wiki.",
     term: "Termo",
     searchCharacter: "Buscar personagem",
     searchWeapon: "Buscar arma",
     searchEcho: "Buscar echo",
     builderEmpty: "Nada encontrado nesse filtro.",
-    options: "opcoes",
-    level: "Nivel",
+    options: "opções",
+    level: "Nível",
   },
   en: {
     navHome: "Home",
@@ -289,7 +291,7 @@ const copy = {
     navItems: "Items",
     navGuide: "Guide",
     navCodes: "Codes",
-    navBuilder: "Builder",
+    navBuilder: "Build planner",
     navGacha: "Convenes",
     navEvents: "Events",
     navNews: "News",
@@ -307,7 +309,7 @@ const copy = {
     emptyConvenes: "No active convenes right now.",
     convenesUnavailable: "Unable to refresh convenes. We will retry shortly.",
     convenePageTitle: "Character and weapon banners",
-    convenePageDesc: "Convenes synced from their own endpoint, independent from in-game events.",
+    convenePageDesc: "Convenes with official images, featured items, schedules and countdowns.",
     categoryOverview: "Category overview",
     activeNow: "Active now",
     nextEnd: "Next ending",
@@ -332,7 +334,7 @@ const copy = {
     emptyEvents: "No active events right now.",
     all: "All",
     banners: "Banners",
-    inGame: "In-game",
+    inGame: "In-game events",
     webEvents: "Web events",
     tower: "Tower of Adversity",
     codes: "Codes",
@@ -360,8 +362,8 @@ const copy = {
     reward: "Rewards",
     status: "Status",
     routeNotFound: "Page not found",
-    routeNotFoundText: "The requested route does not exist in this prototype.",
-    noAffiliation: "Fan project not affiliated with, endorsed by, or published by Kuro Games/Guangzhou Kuro Technology.",
+    routeNotFoundText: "The requested page does not exist.",
+    noAffiliation: "Fan project not affiliated with, endorsed by or published by Kuro Games/Guangzhou Kuro Technology.",
     language: "Language",
     menu: "Menu",
     hideShowcase: "Close",
@@ -372,9 +374,9 @@ const copy = {
     primaryActions: "Primary actions",
     baseSummary: "Database summary",
     officialSite: "Official site",
-    heroEyebrow: "Fan wiki PT-BR - i18n - live events",
-    heroCopy: "Wuthering Waves wiki portal with builds, echoes, weapons, codes, and event schedule in one browsable database.",
-    characterSearchPlaceholder: "Search by name, element, or tag",
+    heroEyebrow: "Fan wiki · Live events",
+    heroCopy: "Wuthering Waves wiki with characters, Echoes, weapons, codes and an event calendar.",
+    characterSearchPlaceholder: "Search by name, element or tag",
     characterFiltersLabel: "Character filters",
     noCharacterFoundTitle: "No character found",
     noCharacterFoundText: "Try changing the search or clearing a filter.",
@@ -383,22 +385,22 @@ const copy = {
     apiFallback: "API unavailable, using local cache",
     sourceLabel: "Source",
     updatedLabel: "Updated",
-    pageCharactersDesc: "Resonator list with role, element, weapon, builds, and individual pages.",
+    pageCharactersDesc: "Characters with roles, elements, weapons, builds and individual pages.",
     pageTierDesc: "Ratings by game mode and role, with clear criteria and verified Prydwen data.",
-    pageEchoesDesc: "Sonatas, set effects, and source monsters for farming plans.",
+    pageEchoesDesc: "Echoes, Sonatas and set effects to plan your builds.",
     pageWeaponsDesc: "Weapons by type, rarity, secondary stat, and recommended users.",
-    pageItemsDesc: "Ascension materials, farming sources, and weekly calendar.",
+    pageItemsDesc: "Ascension materials, resource sources and weekly calendar.",
     pageGuideTitle: "Game guide",
     pageGuideDesc: "Core mechanics, rotations, and progression routes.",
     pageCodesTitle: "Redeem codes",
     pageCodesDesc: "Active codes checked against sources, rewards, and one-click copy.",
-    pageBuilderDesc: "Demo calculator to compare character, weapon, echo, and level.",
+    pageBuilderDesc: "Plan a character’s equipment with weapons, Echoes and attributes.",
     pageEventsTitle: "Current events",
     pageEventsDesc: "Active events with official banners, schedule, time, and live countdown.",
-    pageNewsDesc: "Announcement feed, patch notes, and editorial updates.",
+    pageNewsDesc: "News, patch notes and site updates.",
     emptyNewsText: "No news available right now.",
     newsFeaturedTitle: "Editorial spotlight",
-    newsSummaryTitle: "Feed summary",
+    newsSummaryTitle: "News summary",
     newsArchiveTitle: "Archive",
     introPageTitle: "Introduction",
     introPageDesc: "A quick overview of the Solaris Archive purpose and the world of Wuthering Waves.",
@@ -411,18 +413,18 @@ const copy = {
     introLoreTitle: "World and story",
     introLoreText: "Solaris-3 is shaped by the Lament, a series of catastrophes that changed civilizations, creatures, and the laws of the environment. Humanity survives among ruins, technology, and echoes of a broken past as new regions reveal the disaster's mysteries.",
     introResourcesTitle: "Available resources",
-    introResourcesText: "The Wiki offers characters, tier list, echoes, weapons, items, codes, a build builder, guides, and an events hub with mock data ready for real integration.",
+    introResourcesText: "Browse characters, ratings, Echoes, weapons, items, codes, builds, guides and events.",
     introSummaryTitle: "How to use it",
     introSummaryText: "Use the home search to find topics quickly or browse the tabs to compare data, track events, and plan builds.",
-    showcaseKicker: "Resonators",
-    showcaseTitle: "Team-role showcase",
+    showcaseKicker: "Characters",
+    showcaseTitle: "Characters by team role",
     showcaseDesc: "Tabs to compare damage, support, coordinated attacks, and field control roles.",
-    tierPreviewTitle: "Current DPS meta",
-    tierPreviewDesc: "Featured Tower of Adversity DPS. Reference: Prydwen, patch 3.7.",
-    recentNewsTitle: "Recent patch notes and announcements",
-    recentNewsDesc: "Feed cards ready to receive RSS, launcher CDN, or CMS data.",
-    conveneSpotlightTitle: "Active Convene banners",
-    conveneSpotlightDesc: "Separate source from /api/events, with official art, featured item, schedule, and countdown.",
+    tierPreviewTitle: "Featured damage dealers",
+    tierPreviewDesc: "Featured Tower of Adversity damage dealers. Reference: Prydwen, version 3.7.",
+    recentNewsTitle: "Recent updates and announcements",
+    recentNewsDesc: "Follow Solaris Archive news and updates.",
+    conveneSpotlightTitle: "Featured convenes",
+    conveneSpotlightDesc: "Official images, featured items, schedules and countdowns.",
     redeemTitle: "One-click redeem",
     redeemDesc: "Active codes, rewards, and expiration dates when announced.",
     echoes: "Echoes",
@@ -430,15 +432,15 @@ const copy = {
     team: "Team",
     skills: "Skills",
     weaponAffinity: "Weapon affinity",
-    substat: "Substat",
+    substat: "Secondary stat",
     users: "Users",
     type: "Type",
     days: "Days",
     item: "Item",
     category: "Category",
     listedItems: "items listed in this category.",
-    farmPriorities: "Farm priorities",
-    farmPrioritiesDesc: "A quick view to organize ascension, boss mats, XP, and currency without wasting weekly efficiency.",
+    farmPriorities: "Resource priorities",
+    farmPrioritiesDesc: "Organize ascension materials, bosses, experience and currency to make the most of your week.",
     catalogedItems: "Cataloged items",
     resourceTypes: "Resource types",
     universalUse: "Universal use",
@@ -461,14 +463,14 @@ const copy = {
     navHome: "Inicio",
     navIntro: "Introducción",
     navCharacters: "Personajes",
-    navTier: "Tier List",
-    navEchoes: "Echoes",
+    navTier: "Clasificación",
+    navEchoes: "Ecos",
     navSonatas: "Sonatas",
     navWeapons: "Armas",
     navItems: "Objetos",
-    navGuide: "Guia",
-    navCodes: "Codigos",
-    navBuilder: "Builder",
+    navGuide: "Guía",
+    navCodes: "Códigos",
+    navBuilder: "Planificar equipamiento",
     navGacha: "Convocatorias",
     navEvents: "Eventos",
     navNews: "Noticias",
@@ -486,11 +488,11 @@ const copy = {
     emptyConvenes: "No hay convocatorias activas ahora.",
     convenesUnavailable: "No se pudieron actualizar las convocatorias. Lo intentaremos de nuevo en breve.",
     convenePageTitle: "Banners de personaje y arma",
-    convenePageDesc: "Convocatorias sincronizadas desde su propio endpoint, independientes de los eventos in-game.",
-    categoryOverview: "Resumen por categoria",
+    convenePageDesc: "Convocatorias con imágenes oficiales, destacados, horarios y cuenta regresiva.",
+    categoryOverview: "Resumen por categoría",
     activeNow: "Activos ahora",
-    nextEnd: "Proximo final",
-    noActiveItems: "Sin items activos",
+    nextEnd: "Próximo final",
+    noActiveItems: "Sin objetos activos",
     featuredItem: "Destacado",
     conveneType: "Tipo",
     updated: "Actualizado",
@@ -511,15 +513,15 @@ const copy = {
     emptyEvents: "No hay eventos activos ahora.",
     all: "Todos",
     banners: "Convocatorias",
-    inGame: "Eventos in-game",
+    inGame: "Eventos del juego",
     webEvents: "Eventos web",
     tower: "Torre de Adversidad",
-    codes: "Codigos",
-    damage: "Dano",
+    codes: "Códigos",
+    damage: "Daño",
     support: "Soporte",
-    exploration: "Exploracion",
-    mainDps: "Dano principal",
-    subDps: "Sub-DPS",
+    exploration: "Exploración",
+    mainDps: "Daño principal",
+    subDps: "Daño secundario",
     healer: "Soporte",
     controller: "Control",
     back: "Volver",
@@ -527,108 +529,108 @@ const copy = {
     element: "Elemento",
     weapon: "Arma",
     role: "Rol",
-    recommendedBuild: "Build recomendada",
-    statTargets: "Metas de stats",
+    recommendedBuild: "Equipamiento recomendado",
+    statTargets: "Metas de atributos",
     statTargetsDesc: "Indicador sugerido para jugar este personaje con buena consistencia.",
     priorityStats: "Prioridad",
     suggestedEnergy: "Recarga sugerida",
     targetReached: "Ok",
     targetMissing: "Ajustar",
-    stats: "Stats",
+    stats: "Atributos",
     source: "Fuente",
     reward: "Recompensas",
     status: "Estado",
-    routeNotFound: "Pagina no encontrada",
-    routeNotFoundText: "La ruta solicitada no existe en este prototipo.",
-    noAffiliation: "Proyecto de fan no afiliado, respaldado ni publicado por Kuro Games/Guangzhou Kuro Technology.",
+    routeNotFound: "Página no encontrada",
+    routeNotFoundText: "La página solicitada no existe.",
+    noAffiliation: "Proyecto de aficionados sin afiliación, respaldo ni publicación de Kuro Games/Guangzhou Kuro Technology.",
     language: "Idioma",
-    menu: "Menu",
+    menu: "Menú",
     hideShowcase: "Cerrar",
     showShowcase: "Mostrar",
     charactersHidden: "Personajes ocultos",
-    search: "Busqueda",
+    search: "Búsqueda",
     searchButton: "Buscar",
     primaryActions: "Acciones principales",
     baseSummary: "Resumen de la base",
     officialSite: "Sitio oficial",
-    heroEyebrow: "Fan wiki PT-BR - i18n - eventos en vivo",
-    heroCopy: "Portal wiki de Wuthering Waves con builds, ecos, armas, codigos y agenda de eventos en una sola base navegable.",
+    heroEyebrow: "Wiki de aficionados · Eventos en vivo",
+    heroCopy: "Wiki de Wuthering Waves con personajes, Ecos, armas, códigos y calendario de eventos.",
     characterSearchPlaceholder: "Buscar por nombre, elemento o etiqueta",
     characterFiltersLabel: "Filtros de personajes",
-    noCharacterFoundTitle: "No se encontro ningun personaje",
-    noCharacterFoundText: "Prueba cambiar la busqueda o limpiar algun filtro.",
+    noCharacterFoundTitle: "No se encontró ningún personaje",
+    noCharacterFoundText: "Prueba cambiar la búsqueda o limpiar algún filtro.",
     syncingCharacters: "Sincronizando personajes...",
     characterCount: "personajes",
-    apiFallback: "API no disponible, usando cache local",
+    apiFallback: "API no disponible, usando caché local",
     sourceLabel: "Fuente",
     updatedLabel: "Actualizado",
-    pageCharactersDesc: "Lista de Resonators con rol, elemento, arma, builds y pagina individual.",
+    pageCharactersDesc: "Personajes con rol, elemento, arma, equipamiento y página individual.",
     pageTierDesc: "Evaluaciones por modo y función, con criterios claros y datos verificados de Prydwen.",
-    pageEchoesDesc: "Sonatas, efectos de conjunto y monstruos de origen para planear farmeo.",
+    pageEchoesDesc: "Ecos, Sonatas y efectos de conjunto para planificar tu equipamiento.",
     pageWeaponsDesc: "Armas por tipo, rareza, atributo secundario y usuarios recomendados.",
-    pageItemsDesc: "Materiales de ascension, fuentes de farmeo y calendario semanal.",
-    pageGuideTitle: "Guia del juego",
-    pageGuideDesc: "Mecanicas centrales, rotaciones y rutas de progresion.",
-    pageCodesTitle: "Codigos de canje",
-    pageCodesDesc: "Codigos activos comprobados en las fuentes, recompensas y copia en un clic.",
-    pageBuilderDesc: "Calculadora demo para comparar personaje, arma, eco y nivel.",
+    pageItemsDesc: "Materiales de ascensión, fuentes de recursos y calendario semanal.",
+    pageGuideTitle: "Guía del juego",
+    pageGuideDesc: "Mecánicas centrales, rotaciones y rutas de progresión.",
+    pageCodesTitle: "Códigos de canje",
+    pageCodesDesc: "Códigos activos comprobados en las fuentes, recompensas y copia en un clic.",
+    pageBuilderDesc: "Planifica el equipamiento de un personaje con armas, Ecos y atributos.",
     pageEventsTitle: "Eventos actuales",
-    pageEventsDesc: "Eventos activos con banner oficial, periodo, horario y cuenta regresiva en tiempo real.",
-    pageNewsDesc: "Feed de anuncios, patch notes y actualizaciones editoriales.",
+    pageEventsDesc: "Eventos activos con banner oficial, período, horario y cuenta regresiva en tiempo real.",
+    pageNewsDesc: "Noticias, notas de actualización y novedades del sitio.",
     emptyNewsText: "No hay noticias disponibles ahora.",
     newsFeaturedTitle: "Destacado editorial",
-    newsSummaryTitle: "Resumen del feed",
+    newsSummaryTitle: "Resumen de noticias",
     newsArchiveTitle: "Archivo",
     introPageTitle: "Introducción",
-    introPageDesc: "Una vista rapida del proposito de Solaris Archive y del universo de Wuthering Waves.",
-    introPurposeTitle: "Una wiki para consulta rapida",
-    introPurposeText: "Solaris Archive centraliza informacion util de Wuthering Waves: personajes, builds, ecos, armas, codigos, banners, eventos y guias esenciales. El objetivo es reducir busquedas dispersas y facilitar decisiones.",
+    introPageDesc: "Una vista rápida del propósito de Solaris Archive y del universo de Wuthering Waves.",
+    introPurposeTitle: "Una wiki para consulta rápida",
+    introPurposeText: "Solaris Archive centraliza información útil de Wuthering Waves: personajes, equipamientos, ecos, armas, códigos, banners, eventos y guías esenciales. El objetivo es reducir búsquedas dispersas y facilitar decisiones.",
     introObjectiveTitle: "Objetivo de la Wiki",
-    introObjectiveText: "Organizar datos del juego en paginas claras, actualizables y faciles de navegar, con prioridad en legibilidad, filtros practicos y contexto para jugadores nuevos o expertos.",
+    introObjectiveText: "Organizar datos del juego en páginas claras, actualizables y fáciles de navegar, con prioridad en legibilidad, filtros prácticos y contexto para jugadores nuevos o expertos.",
     introGameTitle: "Sobre Wuthering Waves",
-    introGameText: "Wuthering Waves es un RPG de accion en mundo abierto de Kuro Games. El jugador asume el papel de Rover, protagonista sin memoria que viaja por Solaris-3 junto a Resonators en busca de respuestas y de un nuevo futuro.",
+    introGameText: "Wuthering Waves es un RPG de acción en mundo abierto de Kuro Games. El jugador asume el papel de Rover, protagonista sin memoria que viaja por Solaris-3 junto a personajes en busca de respuestas y de un nuevo futuro.",
     introLoreTitle: "Universo e historia",
-    introLoreText: "Solaris-3 es un mundo marcado por el Lament, una serie de catastrofes que transformo civilizaciones, criaturas y las leyes del ambiente. La humanidad sobrevive entre ruinas, tecnologia y ecos de un pasado roto mientras nuevas regiones revelan sus misterios.",
+    introLoreText: "Solaris-3 es un mundo marcado por el Lament, una serie de catástrofes que transformó civilizaciones, criaturas y las leyes del ambiente. La humanidad sobrevive entre ruinas, tecnología y ecos de un pasado roto mientras nuevas regiones revelan sus misterios.",
     introResourcesTitle: "Recursos disponibles",
-    introResourcesText: "La Wiki ofrece personajes, tier list, ecos, armas, objetos, codigos, builder de builds, guias y un hub de eventos con datos mock listos para integracion real.",
-    introSummaryTitle: "Como usar",
-    introSummaryText: "Usa la busqueda inicial para encontrar temas rapidamente o navega por las pestanas para comparar datos, seguir eventos y planear builds.",
-    showcaseKicker: "Resonators",
-    showcaseTitle: "Showcase por rol de equipo",
-    showcaseDesc: "Pestanas para comparar funciones de dano, soporte, ataques coordinados y control de campo.",
-    tierPreviewTitle: "Meta DPS actual",
-    tierPreviewDesc: "DPS destacados en Tower of Adversity. Referencia: Prydwen, parche 3.7.",
-    recentNewsTitle: "Patch notes y anuncios recientes",
-    recentNewsDesc: "Cards de feed preparados para recibir RSS, CDN del launcher o CMS.",
-    conveneSpotlightTitle: "Banners de Convene activos",
-    conveneSpotlightDesc: "Fuente separada de /api/events, con arte oficial, destacado, periodo y cuenta regresiva.",
+    introResourcesText: "Consulta personajes, clasificaciones, Ecos, armas, objetos, códigos, equipamiento, guías y eventos.",
+    introSummaryTitle: "Cómo usar",
+    introSummaryText: "Usa la búsqueda inicial para encontrar temas rápidamente o navega por las pestañas para comparar datos, seguir eventos y planear equipamientos.",
+    showcaseKicker: "Personajes",
+    showcaseTitle: "Personajes por rol en el equipo",
+    showcaseDesc: "Pestañas para comparar funciones de daño, soporte, ataques coordinados y control de campo.",
+    tierPreviewTitle: "Atacantes destacados",
+    tierPreviewDesc: "Atacantes destacados en la Torre de Adversidad. Referencia: Prydwen, versión 3.7.",
+    recentNewsTitle: "Actualizaciones y anuncios recientes",
+    recentNewsDesc: "Sigue las noticias y novedades de Solaris Archive.",
+    conveneSpotlightTitle: "Convocatorias destacadas",
+    conveneSpotlightDesc: "Imágenes oficiales, destacados, horarios y cuenta regresiva.",
     redeemTitle: "Canje en un clic",
-    redeemDesc: "Codigos activos, recompensas y vencimiento cuando se anuncie.",
+    redeemDesc: "Códigos activos, recompensas y vencimiento cuando se anuncie.",
     echoes: "Ecos",
-    mainStats: "Stats principales",
+    mainStats: "Atributos principales",
     team: "Equipo",
     skills: "Habilidades",
     weaponAffinity: "Afinidad con armas",
-    substat: "Substat",
+    substat: "Atributo secundario",
     users: "Uso",
     type: "Tipo",
-    days: "Dias",
-    item: "Item",
-    category: "Categoria",
-    listedItems: "items listados en esta categoria.",
-    farmPriorities: "Prioridades de farmeo",
-    farmPrioritiesDesc: "Una vista rapida para organizar ascension, boss mats, XP y moneda sin perder eficiencia semanal.",
-    catalogedItems: "Items catalogados",
+    days: "Días",
+    item: "Objeto",
+    category: "Categoría",
+    listedItems: "objetos listados en esta categoría.",
+    farmPriorities: "Prioridades de recursos",
+    farmPrioritiesDesc: "Organiza materiales de ascensión, jefes, experiencia y monedas para aprovechar la semana.",
+    catalogedItems: "Objetos catalogados",
     resourceTypes: "Tipos de recurso",
     universalUse: "Uso universal",
     limitedTime: "Tiempo limitado",
     weeklyCalendar: "Calendario semanal",
     guideBasics: "Fundamentos esenciales",
-    quickChecklist: "Checklist rapido",
+    quickChecklist: "Lista rápida",
     readings: "Lecturas",
-    detailedGuides: "Guias detalladas",
-    detailedGuidesDesc: "Textos cortos para consulta rapida y contexto de wiki.",
-    term: "Termino",
+    detailedGuides: "Guías detalladas",
+    detailedGuidesDesc: "Textos cortos para consulta rápida y contexto de wiki.",
+    term: "Término",
     searchCharacter: "Buscar personaje",
     searchWeapon: "Buscar arma",
     searchEcho: "Buscar eco",
@@ -1174,20 +1176,20 @@ const builderMainStats = {
 const builderSubStats = ["hpPercent", "hp", "atkPercent", "atk", "defPercent", "def", "critRate", "critDamage", "energy", "basic", "heavy", "skill", "liberation"];
 const builderText = {
   "pt-BR": {
-    title: "Monte sua próxima build.", description: "Um personagem. Cinco Echoes. Cada detalhe no seu lugar.",
-    catalogLoading: "Carregando catálogo de Echoes…", catalogError: "Não foi possível carregar os Echoes. Sua build salva foi preservada.", catalogStale: "Exibindo o catálogo em cache. Não foi possível atualizar agora.", retry: "Tentar novamente",
-    restored: "Build salva recuperada", makeMain: "Tornar principal",
+    title: "Monte seus próximos equipamentos.", description: "Um personagem. Cinco Echoes. Cada detalhe no seu lugar.",
+    catalogLoading: "Carregando catálogo de Echoes…", catalogError: "Não foi possível carregar os Echoes. Seus equipamentos salvos foram preservados.", catalogStale: "Exibindo o catálogo em cache. Não foi possível atualizar agora.", retry: "Tentar novamente",
+    restored: "Equipamentos salvos recuperados", makeMain: "Tornar principal",
     setup: "Configuração", equipment: "Personagem & arma", change: "Trocar", select: "Selecionar", close: "Fechar",
     echoLoadout: "Seus cinco Echoes", echoHint: "O primeiro Echo é o principal. Combine os custos dentro do limite de 12.",
     main: "Principal", cost: "Custo", totalCost: "Custo total", equipped: "equipados", empty: "Adicionar Echo", remove: "Remover Echo",
     mainStat: "Atributo principal", secondary: "Atributo fixo", substats: "Subatributos", value: "Valor", set: "Sonata",
     bonuses: "Bônus dos Echoes", bonusesHint: "Soma dos valores preenchidos. Não inclui atributos base, arma ou efeitos condicionais de Sonata.",
     setTitle: "Combinações de Sonata", setHint: "Conjuntos do catálogo. Echoes repetidos contam uma vez por conjunto.", noSets: "Equipe Echoes para acompanhar os conjuntos.",
-    name: "Nome da build", namePlaceholder: "Minha build de Jinhsi", save: "Salvar build", saved: "Salva neste navegador", unsaved: "Alterações não salvas", saveError: "Não foi possível salvar neste navegador",
-    reset: "Recomeçar", resetPrompt: "Limpar a build atual? A versão salva permanece disponível até você salvar novamente.",
+    name: "Nome dos equipamentos", namePlaceholder: "Meus equipamentos de Jinhsi", save: "Salvar equipamentos", saved: "Salvos neste navegador", unsaved: "Alterações não salvas", saveError: "Não foi possível salvar neste navegador",
+    reset: "Recomeçar", resetPrompt: "Limpar os equipamentos atuais? A versão salva permanece disponível até você salvar novamente.",
     level: "Nível", rank: "Sintonia", available: "disponíveis", capacity: "Limite de custo", slots: "Posições", selected: "Selecionado",
-    detailHint: "Preencha os valores exibidos no jogo. O nível não calcula atributos automaticamente.", catalog: "Referência do catálogo", weaponAtk: "ATK base no catálogo", locked: "Disponível no nível", noEcho: "Escolha um Echo para editar seus atributos.",
-    filter: "Filtrar", preview: "Resumo da build", pieces: "peças", skillPlan: "Prioridade de atributos"
+    detailHint: "Preencha os valores exibidos no jogo. O nível não calcula atributos automaticamente.", catalog: "Referência do catálogo", weaponAtk: "ATQ base no catálogo", locked: "Disponível no nível", noEcho: "Escolha um Echo para editar seus atributos.",
+    filter: "Filtrar", preview: "Resumo dos equipamentos", pieces: "peças", skillPlan: "Prioridade de atributos"
   },
   en: {
     title: "Build your next adventure.", description: "One resonator. Five Echoes. Every detail in its place.", setup: "Setup", equipment: "Resonator & weapon", change: "Change", select: "Select", close: "Close",
@@ -1198,12 +1200,12 @@ const builderText = {
     name: "Build name", namePlaceholder: "My Jinhsi build", save: "Save build", saved: "Saved in this browser", unsaved: "Unsaved changes", saveError: "Unable to save in this browser", reset: "Start over", resetPrompt: "Clear this build? The saved version stays available until you save again.", level: "Level", rank: "Syntonization", available: "available", capacity: "Cost limit", slots: "Slots", selected: "Selected", detailHint: "Enter the values shown in game. Level does not calculate attributes automatically.", catalog: "Catalog reference", weaponAtk: "Catalog base ATK", locked: "Available at level", noEcho: "Select an Echo to edit its attributes.", filter: "Filter", preview: "Build overview", pieces: "pieces", skillPlan: "Attribute priority"
   },
   es: {
-    title: "Prepara tu próxima build.", description: "Un personaje. Cinco Ecos. Cada detalle en su lugar.", setup: "Configuración", equipment: "Personaje y arma", change: "Cambiar", select: "Seleccionar", close: "Cerrar",
-    catalogLoading: "Cargando catálogo de Ecos…", catalogError: "No se pudieron cargar los Ecos. Tu build guardada se conserva.", catalogStale: "Mostrando catálogo en caché. No se pudo actualizar.", retry: "Reintentar",
-    restored: "Build guardada recuperada", makeMain: "Usar como principal",
+    title: "Prepara tu próximo equipamiento.", description: "Un personaje. Cinco Ecos. Cada detalle en su lugar.", setup: "Configuración", equipment: "Personaje y arma", change: "Cambiar", select: "Seleccionar", close: "Cerrar",
+    catalogLoading: "Cargando catálogo de Ecos…", catalogError: "No se pudieron cargar los Ecos. Tu equipamiento guardado se conserva.", catalogStale: "Mostrando catálogo en caché. No se pudo actualizar.", retry: "Reintentar",
+    restored: "Equipamiento guardado recuperado", makeMain: "Usar como principal",
     echoLoadout: "Tus cinco Ecos", echoHint: "El primer Eco es el principal. Mantén el coste total dentro de 12.", main: "Principal", cost: "Coste", totalCost: "Coste total", equipped: "equipados", empty: "Añadir Eco", remove: "Quitar Eco",
     mainStat: "Atributo principal", secondary: "Atributo fijo", substats: "Subatributos", value: "Valor", set: "Sonata", bonuses: "Bonificaciones de Ecos", bonusesHint: "Suma de los valores introducidos. No incluye atributos base, arma o efectos condicionales de Sonata.", setTitle: "Combinaciones de Sonata", setHint: "Conjuntos del catálogo. Ecos repetidos cuentan una vez por conjunto.", noSets: "Equipa Ecos para ver los conjuntos.",
-    name: "Nombre de la build", namePlaceholder: "Mi build de Jinhsi", save: "Guardar build", saved: "Guardada en este navegador", unsaved: "Cambios sin guardar", saveError: "No se pudo guardar en este navegador", reset: "Reiniciar", resetPrompt: "¿Limpiar la build actual? La versión guardada permanece hasta que vuelvas a guardar.", level: "Nivel", rank: "Sintonía", available: "disponibles", capacity: "Límite de coste", slots: "Posiciones", selected: "Seleccionado", detailHint: "Introduce los valores del juego. El nivel no calcula atributos automáticamente.", catalog: "Referencia del catálogo", weaponAtk: "ATK base del catálogo", locked: "Disponible al nivel", noEcho: "Selecciona un Eco para editar sus atributos.", filter: "Filtrar", preview: "Resumen de la build", pieces: "piezas", skillPlan: "Prioridad de atributos"
+    name: "Nombre del equipamiento", namePlaceholder: "Mi equipamiento de Jinhsi", save: "Guardar equipamiento", saved: "Guardado en este navegador", unsaved: "Cambios sin guardar", saveError: "No se pudo guardar en este navegador", reset: "Reiniciar", resetPrompt: "¿Borrar el equipamiento actual? La versión guardada permanece hasta que vuelvas a guardar.", level: "Nivel", rank: "Sintonía", available: "disponibles", capacity: "Límite de coste", slots: "Posiciones", selected: "Seleccionado", detailHint: "Introduce los valores del juego. El nivel no calcula atributos automáticamente.", catalog: "Referencia del catálogo", weaponAtk: "ATQ base del catálogo", locked: "Disponible al nivel", noEcho: "Selecciona un Eco para editar sus atributos.", filter: "Filtrar", preview: "Resumen del equipamiento", pieces: "piezas", skillPlan: "Prioridad de atributos"
   }
 };
 function bt(key) { return builderText[state.lang]?.[key] || builderText["pt-BR"][key] || key; }
@@ -1683,6 +1685,53 @@ const routePanels = new Map();
 const preloadedImageUrls = new Set();
 let favoriteCache = null;
 
+const ct = value => contentText(value,state.lang);
+const mt = value => metadataText(value,state.lang);
+const sourceName = value => /^(fallback-local\b|erro ao sincronizar)/.test(value || '') ? t('apiFallback') : value;
+let sourceLocaleRevision=0;
+const localeJobs=new Map();
+function queueLocaleJob(key,work) {
+  if((localeJobs.get(key) || 0)>Date.now())return;
+  localeJobs.set(key,Infinity);
+  work().then(()=>localeJobs.set(key,Date.now()+ECHO_CACHE_TTL)).catch(()=>localeJobs.set(key,Date.now()+60000)).finally(()=>{sourceLocaleRevision++;scheduleRender();});
+}
+function ensureSourceTranslations() {
+  if(state.lang==='en')return;
+  const lang=state.lang;
+  if((state.route==='sonatas' || state.route==='echoes' && state.detail || state.route==='builder' && state.builder.echoes.some(slot=>slot.slug)) && builderSonatas.length)queueLocaleJob(lang+':sonatas',()=>loadEchoSourceText(lang,builderSonatas));
+  const character=state.route==='characters' && state.detail?characters.find(c=>c.slug===state.detail):null;
+  if(character?.encoreId)queueLocaleJob(lang+':character:'+character.encoreId,()=>loadSourceText(lang,'character',character.encoreId));
+  const weapon=state.route==='weapons' && state.detail?weapons.find(w=>w.slug===state.detail):state.route==='builder'?weapons.find(w=>w.slug===state.builder.weapon):null;
+  if(weapon?.id)queueLocaleJob(lang+':weapon:'+weapon.id,()=>loadSourceText(lang,'weapon',weapon.id));
+}
+function sourceTranslationNotice(kind,id='') {
+  return sourceTextFailed(state.lang,kind,id)?label('Tradução indisponível no momento. Consulte a fonte.','Translation currently unavailable. See the source.','Traducción no disponible por el momento. Consulta la fuente.'):label('Carregando tradução…','Loading translation…','Cargando traducción…');
+}
+function localizedSourceField(kind,id,field,original) {
+  if(state.lang==='en')return kind==='weapon' && field==='Desc'?legacyWeaponSummary({...weapons.find(weapon=>Number(weapon.id)===Number(id)),passive:original}):original || '';
+  const data=getSourceText(state.lang,kind,id);
+  const value=field==='introduction'?data?.Introduction?.Content:data?.[field];
+  return value?sourcePlainText(value):data?label('Tradução indisponível no momento. Consulte a fonte.','Translation currently unavailable. See the source.','Traducción no disponible por el momento. Consulta la fuente.'):sourceTranslationNotice(kind,id);
+}
+function localizedSonataEffect(set,bonus) {
+  if(state.lang==='en')return bonus.description;
+  return getSourceText(state.lang,'sonatas')?.[set.id]?.[set.bonuses.indexOf(bonus)] || sourceTranslationNotice('sonatas');
+}
+function localizedEchoDescription(echo) {
+  if(state.lang==='en')return echo.description;
+  const description=getSourceText(state.lang,'echo')?.Echo?.find(item=>Number(item.Id)===Number(echo.id))?.Attributes;
+  const translated=ct(echo.description);
+  return description || (translated!==echo.description?translated:sourceTranslationNotice('sonatas'));
+}
+function legacyWeaponSummary(weapon) {
+  if(/como atributo secundario;/.test(weapon.passive || ''))return label(mt(weapon.stat)+' como atributo secundário; use em equipamentos que valorizam '+mt(weapon.type)+' e rotações consistentes.',mt(weapon.stat)+' as a secondary stat; use in builds that benefit from '+mt(weapon.type)+' and consistent rotations.',mt(weapon.stat)+' como atributo secundario; úsalo con '+mt(weapon.type)+' y rotaciones consistentes.');
+  return ct(weapon.passive);
+}
+function localizedCharacterSkills(detail) {
+  if(state.lang==='en')return detail.skills;
+  const source=getSourceText(state.lang,'character',detail.id);
+  return source?.Skills?.map(skill=>({name:sourcePlainText(skill.SkillName),type:sourcePlainText(skill.SkillType),description:sourcePlainText(skill.SkillDescribe)})) || [{name:sourceTranslationNotice('character',detail.id),type:'',description:''}];
+}
 function t(key) {
   return copy[state.lang]?.[key] || copy[DEFAULT_LANG][key] || key;
 }
@@ -1850,45 +1899,45 @@ function searchIndex() {
     ...routes.filter((route) => route.id !== "home").map((route) => ({
       label: t(route.labelKey),
       title: t(route.labelKey),
-      meta: "Pagina",
+      meta: label("Página","Page","Página"),
       route: route.id
     })),
     ...characters.map((character) => ({
-      label: `${character.name} ${character.element} ${character.weapon}`,
+      label: `${character.name} ${character.element} ${character.weapon} ${mt(character.element)} ${mt(character.weapon)}`,
       title: character.name,
-      meta: `${character.element} • ${character.weapon}`,
+      meta: `${mt(character.element)} • ${mt(character.weapon)}`,
       route: "characters",
       detail: character.slug
     })),
     ...weapons.map((weapon) => ({
-      label: `${weapon.name} ${weapon.type}`,
+      label: `${weapon.name} ${weapon.type} ${mt(weapon.type)}`,
       title: weapon.name,
-      meta: weapon.type,
+      meta: mt(weapon.type),
       route: "weapons"
     })),
     ...wikiEchoes.map((echo) => ({
-      label: `${echo.name} ${echo.element}`,
+      label: `${echo.name} ${echo.element} ${mt(echo.element)}`,
       title: echo.name,
-      meta: echo.element,
+      meta: mt(echo.element),
       detail: echo.slug,
       route: "echoes"
     })),
     ...items.map((item) => ({
-      label: `${item.name} ${item.type} ${item.source}`,
+      label: `${item.name} ${ct(item.type)} ${ct(item.source)}`,
       title: item.name,
-      meta: item.type,
+      meta: ct(item.type),
       route: "items"
     })),
     ...guides.map((guide) => ({
-      label: `${guide.title} ${guide.tag}`,
-      title: guide.title,
-      meta: guide.tag,
+      label: `${ct(guide.title)} ${ct(guide.tag)}`,
+      title: ct(guide.title),
+      meta: ct(guide.tag),
       route: "guide"
     })),
     ...news.map((article) => ({
-      label: `${article.title} ${article.category}`,
-      title: article.title,
-      meta: article.category,
+      label: `${ct(article.title)} ${ct(article.category)}`,
+      title: ct(article.title),
+      meta: ct(article.category),
       route: "news"
     })),
     ...activeCodes().map((code) => ({
@@ -1898,8 +1947,8 @@ function searchIndex() {
       route: "codes"
     })),
     ...state.events.map((event) => ({
-      label: `${event.title} ${event.category}`,
-      title: event.title,
+      label: `${ct(event.title)} ${mt(event.category)}`,
+      title: ct(event.title),
       meta: t(categoryLabels[event.category]),
       route: "events"
     }))
@@ -1962,7 +2011,7 @@ function updateSearchSuggestions(input) {
       data-route="${item.route}"
       data-detail="${escapeHtml(item.detail || "")}"
     >
-      <strong>${escapeHtml(item.title)}</strong>
+      <strong>${escapeHtml(ct(item.title))}</strong>
       <span>${escapeHtml(item.meta)}</span>
     </button>
   `).join("");
@@ -2000,7 +2049,7 @@ function renderTopbar() {
         <label class="sr-only" for="language-select">${t("language")}</label>
         <select id="language-select" class="language-select" data-language-select>
           ${SUPPORTED_LANGS.map((lang) => `
-            <option value="${lang}" ${lang === state.lang ? "selected" : ""}>${lang}</option>
+            <option value="${lang}" ${lang === state.lang ? "selected" : ""}>${({"pt-BR":"Português",en:"English",es:"Español"})[lang]}</option>
           `).join("")}
         </select>
         <button class="menu-button" type="button" data-menu-toggle aria-label="${t("menu")}" aria-expanded="false" aria-controls="mobile-navigation">☰</button>
@@ -2045,7 +2094,7 @@ function renderLiveTicker() {
           ${events.length ? events.map((event) => `
             <a href="${pathFor("events")}" data-link class="ticker-item">
               <span class="status-dot status-dot--${getEventStatus(event)}"></span>
-              <strong>${escapeHtml(event.title)}</strong>
+              <strong>${escapeHtml(ct(event.title))}</strong>
               <span data-countdown data-start="${event.startAt}" data-end="${event.endAt}">${countdownLabel(event)}</span>
             </a>
           `).join("") : `<span class="ticker-empty">${t("emptyEvents")}</span>`}
@@ -2079,7 +2128,7 @@ function renderHero() {
         </div>
       </div>
       <div class="hero-metrics" aria-label="${t("baseSummary")}">
-        <span><strong>${characters.length}</strong> Resonators</span>
+        <span><strong>${characters.length}</strong> ${t("navCharacters")}</span>
         <span><strong>${echoes.length}</strong> ${t("echoes")}</span>
         <span><strong>${weapons.length}</strong> ${t("navWeapons")}</span>
       </div>
@@ -2168,7 +2217,7 @@ function renderCharacterCard(character) {
   return `
     <article class="data-card character-card">
       <div class="card-topline">
-        <span class="pill pill--${character.element.toLowerCase()}">${character.element}</span>
+        <span class="pill pill--${character.element.toLowerCase()}">${mt(character.element)}</span>
         <button class="icon-button ${favorite ? "is-on" : ""}" type="button" data-fav="${character.slug}" aria-label="${t("favorites")}">
           ${favorite ? "★" : "☆"}
         </button>
@@ -2178,9 +2227,9 @@ function renderCharacterCard(character) {
       </a>
       <div class="card-body">
         <h3><a href="${pathFor("characters", state.lang, character.slug)}" data-link>${character.name}</a></h3>
-        <p>${stars(character.rarity)} • ${character.weapon} • ${t(roleLabels[character.role])}</p>
+        <p>${stars(character.rarity)} • ${mt(character.weapon)} • ${t(roleLabels[character.role])}</p>
         <div class="tag-row">
-          ${character.tags.map((tag) => `<span>${tag}</span>`).join("")}
+          ${character.tags.map((tag) => `<span>${ct(tag)===tag?mt(tag):ct(tag)}</span>`).join("")}
         </div>
       </div>
     </article>
@@ -2216,7 +2265,7 @@ function renderSelectOptions(options, current, allLabel) {
   return `
     <option value="all">${allLabel}</option>
     ${options.map((option) => `
-      <option value="${escapeHtml(option)}" ${String(current) === String(option) ? "selected" : ""}>
+      <option value="${escapeHtml(mt(option))}" ${String(current) === String(option) ? "selected" : ""}>
         ${escapeHtml(option)}
       </option>
     `).join("")}
@@ -2228,6 +2277,7 @@ function getFilteredCharacters() {
 
   const filtered = characters.filter((character) => {
     const searchable = [
+      mt(character.element),mt(character.weapon),...(character.tags || []).map(mt),
       character.name,
       character.originalName,
       character.element,
@@ -2353,7 +2403,7 @@ function renderCharacterShowcase() {
             <a class="home-featured-card" href="${pathFor("characters", state.lang, character.slug)}" data-link>
               ${renderCharacterAvatar(character, "icon")}
               <strong>${escapeHtml(character.name)}</strong>
-              <small>${[isNew ? label("Novo", "New", "Nuevo") : "", onBanner ? label("Banner ativo", "Active banner", "Banner activo") : ""].filter(Boolean).join(" · ") || escapeHtml(character.element)}</small>
+              <small>${[isNew ? label("Novo", "New", "Nuevo") : "", onBanner ? label("Banner ativo", "Active banner", "Banner activo") : ""].filter(Boolean).join(" · ") || escapeHtml(mt(character.element))}</small>
             </a>
           `).join("")}
         </div>
@@ -2391,7 +2441,7 @@ function renderTierPreview() {
       <div class="container split-layout">
         <div>
           ${renderSectionHeader(
-            "Tier list",
+            t("navTier"),
             t("tierPreviewTitle"),
             t("tierPreviewDesc"),
             `<a class="text-link" href="${pathFor("tier")}" data-link>${t("navTier")}</a>`
@@ -2437,10 +2487,10 @@ function renderNewsCard(item, featured = false) {
     <article class="data-card news-card ${featured ? "news-card--featured" : ""}">
       <img ${eventImageAttributes(item.image)} alt="" loading="lazy" decoding="async">
       <div class="card-body">
-        <span class="pill">${escapeHtml(item.category || t("navNews"))}</span>
-        <h3>${escapeHtml(item.title)}</h3>
+        <span class="pill">${escapeHtml(ct(item.category) || t("navNews"))}</span>
+        <h3>${escapeHtml(ct(item.title))}</h3>
         <time datetime="${escapeHtml(item.date)}">${formatNewsDate(item.date)}</time>
-        <p>${escapeHtml(item.summary || "")}</p>
+        <p>${escapeHtml(ct(item.summary || ""))}</p>
       </div>
     </article>
   `;
@@ -2475,8 +2525,8 @@ function renderNewsDigest(items) {
       ${list.map((item) => `
         <li>
           <time datetime="${escapeHtml(item.date)}">${formatNewsDate(item.date)}</time>
-          <strong>${escapeHtml(item.title)}</strong>
-          <p>${escapeHtml(item.summary || "")}</p>
+          <strong>${escapeHtml(ct(item.title))}</strong>
+          <p>${escapeHtml(ct(item.summary || ""))}</p>
         </li>
       `).join("")}
     </ol>
@@ -2486,20 +2536,20 @@ function renderNewsDigest(items) {
 function renderCodesWidget(full = false) {
   const current = activeCodes();
   const list = full ? current : current.slice(0, 3);
-  if (!list.length) return '<p class="notice">' + label('Nenhum codigo ativo confirmado nas fontes.', 'No active codes confirmed by sources.', 'Ningun codigo activo confirmado en las fuentes.') + '</p>';
+  if (!list.length) return '<p class="notice">' + label('Nenhum código ativo confirmado nas fontes.', 'No active codes confirmed by sources.', 'Ningún código activo confirmado en las fuentes.') + '</p>';
 
   return `
     <div class="codes-widget">
       ${list.map((code) => {
         const endingSoon = code.expiresAt && Date.parse(code.expiresAt) - Date.now() <= 72 * 60 * 60 * 1000;
         const validity = code.expiresAt
-          ? label('Valido ate: ', 'Valid until: ', 'Valido hasta: ') + formatDate(code.expiresAt)
-          : label('Validade nao divulgada', 'Expiration not announced', 'Vencimiento no anunciado');
+          ? label('Válido até: ', 'Valid until: ', 'Válido hasta: ') + formatDate(code.expiresAt)
+          : label('Validade não divulgada', 'Expiration not announced', 'Vencimiento no anunciado');
         return `
         <article class="code-row">
           <div>
             <strong>${code.code}</strong>
-            <span>${code.rewards.join(" • ")}</span>
+            <span>${code.rewards.map(mt).join(" • ")}</span>
           </div>
           <div>
             <small>${endingSoon ? label('Vence em breve', 'Expires soon', 'Vence pronto') : label('Ativo', 'Active', 'Activo')} · ${validity}</small>
@@ -2586,7 +2636,7 @@ function renderIntroductionPage() {
           </div>
         </article>
         <figure class="intro-visual">
-          <img ${imageAttributes(['/assets/home-hero-1600.webp','/assets/home-hero-wuwa.jpg'], {srcset:'/assets/home-hero-960.webp 960w, /assets/home-hero-1600.webp 1600w, /assets/home-hero-2560.webp 2560w, /assets/home-hero-3840.webp 3840w', sizes:'(max-width: 1060px) calc(100vw - 32px), 50vw', width:1600, height:900})} alt="Paisagem inspirada em Solaris-3" loading="lazy" decoding="async">
+          <img ${imageAttributes(['/assets/home-hero-1600.webp','/assets/home-hero-wuwa.jpg'], {srcset:'/assets/home-hero-960.webp 960w, /assets/home-hero-1600.webp 1600w, /assets/home-hero-2560.webp 2560w, /assets/home-hero-3840.webp 3840w', sizes:'(max-width: 1060px) calc(100vw - 32px), 50vw', width:1600, height:900})} alt="${label("Paisagem inspirada em Solaris-3","Landscape inspired by Solaris-3","Paisaje inspirado en Solaris-3")}" loading="lazy" decoding="async">
           <figcaption>${t("introSummaryText")}</figcaption>
         </figure>
       </div>
@@ -2635,7 +2685,7 @@ function renderCharactersPage() {
       <div class="container characters-catalog">
         <div class="module-status">
           <span data-character-count>${state.charactersLoading ? t("syncingCharacters") : `${filtered.length} / ${characters.length} ${t("characterCount")}`}</span>
-          <span>${t("sourceLabel")}: ${state.charactersSource}</span>
+          <span>${t("sourceLabel")}: ${sourceName(state.charactersSource)}</span>
           <span>${state.charactersApiError ? t("apiFallback") : `${t("updatedLabel")} ${timeAgo(state.charactersUpdatedAt)}`}</span>
         </div>
         ${renderCharacterFilters()}
@@ -2656,7 +2706,7 @@ function renderCharacterDetail(slug) {
   const detailFailed = (characterDetailFailures.get(String(character.encoreId)) || 0) > Date.now();
 
   return `
-    ${renderPageHero(character.name, `${character.element} • ${character.weapon} • ${t(roleLabels[character.role])}`, "Resonator")}
+    ${renderPageHero(character.name, `${mt(character.element)} • ${mt(character.weapon)} • ${t(roleLabels[character.role])}`, t("navCharacters"))}
     <section class="page-band">
       <div class="container detail-layout">
         <aside class="detail-aside">
@@ -2667,12 +2717,12 @@ function renderCharacterDetail(slug) {
           <a class="text-link" href="${pathFor("characters")}" data-link>${t("back")}</a>
         </aside>
         <div class="detail-main">
-          ${details?.introduction ? `<article class="panel"><h2>${label('Perfil','Profile','Perfil')}</h2><p>${escapeHtml(details.introduction)}</p><a class="text-link" href="${escapeHtml(details.sourceUrl)}" target="_blank" rel="noreferrer">Encore · ${label('Fonte dos dados','Data source','Fuente de datos')}</a></article>` : ""}
-          ${character.apiOnly ? `<article class="panel"><h2>${label('Atributos','Attributes','Atributos')} ${details?.maxLevel ? `· Lv. ${details.maxLevel}` : ""}</h2>${details ? `<div class="stat-grid">${Object.entries(details.stats).map(([name,value]) => `<div class="stat-tile"><span>${escapeHtml(name)}</span><strong>${escapeHtml(value)}</strong></div>`).join('')}</div>` : `<p role="status">${detailFailed ? label('Não foi possível carregar os dados agora.','Unable to load data right now.','No se pudieron cargar los datos ahora.') : label('Carregando informações da API…','Loading API information…','Cargando información de la API…')}</p>${detailFailed ? `<button type="button" class="favorite-wide" data-character-retry="${Number(character.encoreId)}">${label('Tentar novamente','Try again','Reintentar')}</button>` : ""}`}</article>` : `
+          ${details?.introduction ? `<article class="panel"><h2>${label('Perfil','Profile','Perfil')}</h2><p>${escapeHtml(localizedSourceField('character',character.encoreId,'introduction',details.introduction))}</p><a class="text-link" href="${escapeHtml(details.sourceUrl)}" target="_blank" rel="noreferrer">Encore · ${label('Fonte dos dados','Data source','Fuente de datos')}</a></article>` : ""}
+          ${character.apiOnly ? `<article class="panel"><h2>${label('Atributos','Attributes','Atributos')} ${details?.maxLevel ? `· ${t("level")} ${details.maxLevel}` : ""}</h2>${details ? `<div class="stat-grid">${Object.entries(details.stats).map(([name,value]) => `<div class="stat-tile"><span>${escapeHtml(mt(name))}</span><strong>${escapeHtml(value)}</strong></div>`).join('')}</div>` : `<p role="status">${detailFailed ? label('Não foi possível carregar os dados agora.','Unable to load data right now.','No se pudieron cargar los datos ahora.') : label('Carregando informações da API…','Loading API information…','Cargando información de la API…')}</p>${detailFailed ? `<button type="button" class="favorite-wide" data-character-retry="${Number(character.encoreId)}">${label('Tentar novamente','Try again','Reintentar')}</button>` : ""}`}</article>` : `
           <div class="stat-grid">
             ${Object.entries(character.stats).map(([label, value]) => `
               <div class="stat-tile">
-                <span>${label.toUpperCase()}</span>
+                <span>${mt(({hp:"HP",atk:"ATK",def:"DEF",crit:"CRIT Rate",critDmg:"CRIT DMG"})[label] || label.toUpperCase())}</span>
                 <strong>${value}</strong>
               </div>
             `).join("")}
@@ -2682,25 +2732,25 @@ function renderCharacterDetail(slug) {
             <div class="build-grid">
               <div><span>${t("weapon")}</span><strong>${character.build.weapon}</strong></div>
               <div><span>${t("echoes")}</span><strong>${character.build.echoes}</strong></div>
-              <div><span>${t("mainStats")}</span><strong>${character.build.mainStats.join(" / ")}</strong></div>
-              <div><span>${t("team")}</span><strong>${character.build.team.join(" • ")}</strong></div>
+              <div><span>${t("mainStats")}</span><strong>${character.build.mainStats.map(mt).join(" / ")}</strong></div>
+              <div><span>${t("team")}</span><strong>${character.build.team.map(ct).join(" • ")}</strong></div>
             </div>
-            <p>${character.build.rotation}</p>
+            <p>${mt(ct(character.build.rotation))}</p>
           </article>
           ${renderCharacterStatTargetSummary(character)}
           `}
           ${character.signatureWeapon ? `<article class="panel"><h2>${label('Arma associada','Associated weapon','Arma asociada')}</h2><a class="text-link" data-link href="${pathFor('weapons',state.lang,character.signatureWeapon.slug)}">${escapeHtml(character.signatureWeapon.name)} ↗</a>${character.signatureWeaponSource ? `<p><a class="text-link" href="${escapeHtml(character.signatureWeaponSource)}" target="_blank" rel="noreferrer">${label('Guia oficial','Official guide','Guía oficial')}</a></p>` : ""}</article>` : ""}
-          ${trailer ? renderOfficialVideo(trailer, `${character.name} — Resonator Showcase`) : ""}
+          ${trailer ? renderOfficialVideo(trailer, `${character.name} — ${label("Apresentação do personagem","Character showcase","Presentación del personaje")}`) : ""}
           <article class="panel">
             <h2>${t("skills")}</h2>
             <div class="skill-tree">
-              ${(details?.skills || []).length && character.apiOnly ? details.skills.map(skill => `<details class="character-skill"><summary>${escapeHtml(skill.name)} · ${escapeHtml(skill.type)}</summary><p>${escapeHtml(skill.description)}</p></details>`).join('') : (character.apiOnly ? [] : character.skills).map((skill) => `<span>${escapeHtml(skill)}</span>`).join("")}
+              ${(details?.skills || []).length && character.apiOnly ? localizedCharacterSkills(details).map(skill => `<details class="character-skill"><summary>${escapeHtml(skill.name)} · ${escapeHtml(mt(skill.type))}</summary><p>${escapeHtml(skill.description)}</p></details>`).join('') : (character.apiOnly ? [] : character.skills).map((skill) => `<span>${escapeHtml(mt(skill))}</span>`).join("")}
             </div>
           </article>
           ${character.apiOnly ? "" : `<article class="panel">
             <h2>${t("weaponAffinity")}</h2>
             <ol class="ranked-list">
-              ${character.affinity.map((weapon, index) => `<li><span>${index + 1}</span>${weapon}</li>`).join("")}
+              ${character.affinity.map((weapon, index) => `<li><span>${index + 1}</span>${ct(weapon)}</li>`).join("")}
             </ol>
           </article>`}
         </div>
@@ -2815,9 +2865,9 @@ async function ensureTierData() {
   });
   return tierDataRequest;
 }
-const tierRoleLabel = role => ({dps:'DPS',hybrid:'Hybrid',support:'Support'})[role];
+const tierRoleLabel = role => ({dps:t('damage'),hybrid:mt('Hybrid'),support:t('support')})[role];
 function tierFilterSelect(name, title, values) {
-  return '<label><span>'+title+'</span><select data-tier-filter="'+name+'">'+[['all',t('all')],...values.map(value=>[value,name==='role'?tierRoleLabel(value):name==='rarity'?value+'★':value])].map(([value,text])=>'<option value="'+escapeHtml(value)+'" '+(state.tierFilters[name]===String(value)?'selected':'')+'>'+escapeHtml(text)+'</option>').join('')+'</select></label>';
+  return '<label><span>'+title+'</span><select data-tier-filter="'+name+'">'+[['all',t('all')],...values.map(value=>[value,name==='role'?tierRoleLabel(value):name==='rarity'?value+'★':mt(value)])].map(([value,text])=>'<option value="'+escapeHtml(value)+'" '+(state.tierFilters[name]===String(value)?'selected':'')+'>'+escapeHtml(text)+'</option>').join('')+'</select></label>';
 }
 function renderTierCharacter(entry) {
   const {character,role,tier,sequence,sourceUrl}=entry;
@@ -2826,12 +2876,12 @@ function renderTierCharacter(entry) {
   const avatarCharacter = roverIcon ? {...character,imageUrl:roverIcon,iconUrl:roverIcon} : character;
   return '<article class="tier-resonator" data-tier-character="'+escapeHtml(tierProfileSlug(character))+'" data-tier-role="'+(role || 'unrated')+'" data-tier-grade="'+(tier || 'unrated')+'">'+
     '<a class="tier-character-link" href="'+pathFor('characters',state.lang,tierProfileSlug(character))+'" data-link>'+renderCharacterAvatar(avatarCharacter, 'icon')+'<strong>'+escapeHtml(character.name)+'</strong></a>'+
-    '<div class="tier-card-meta"><span class="pill pill--'+escapeHtml(character.element.toLowerCase())+'">'+escapeHtml(character.element)+'</span><span>'+character.rarity+'★'+(sequence?' · '+sequence:'')+'</span></div>'+
+    '<div class="tier-card-meta"><span class="pill pill--'+escapeHtml(character.element.toLowerCase())+'">'+escapeHtml(mt(character.element))+'</span><span>'+character.rarity+'★'+(sequence?' · '+sequence:'')+'</span></div>'+
     (sourceUrl?'<a class="tier-review-link" href="'+escapeHtml(sourceUrl)+'" target="_blank" rel="noreferrer" aria-label="'+escapeHtml(label('Ver avaliação de ','Read review for ','Ver evaluación de ')+character.name+' · '+tierRoleLabel(role))+'">'+label('Avaliação ↗','Review ↗','Evaluación ↗')+'</a>':'')+'</article>';
 }
 function renderTierResults() {
   const data=getTierSnapshot();
-  if (!data) return '<div class="empty-state" role="status"><h2>'+label('Avaliações da Tier List','Tier List ratings','Evaluaciones de la Tier List')+'</h2><p>'+(tierDataError?label('Não foi possível carregar as avaliações.','Unable to load ratings.','No se pudieron cargar las evaluaciones.'):label('Carregando dados verificados…','Loading verified data…','Cargando datos verificados…'))+'</p>'+(tierDataError?'<button type="button" class="favorite-wide" data-tier-retry>'+label('Tentar novamente','Try again','Reintentar')+'</button>':'')+'</div>';
+  if (!data) return '<div class="empty-state" role="status"><h2>'+label('Avaliações da classificação','Tier List ratings','Evaluaciones de la clasificación')+'</h2><p>'+(tierDataError?label('Não foi possível carregar as avaliações.','Unable to load ratings.','No se pudieron cargar las evaluaciones.'):label('Carregando dados verificados…','Loading verified data…','Cargando datos verificados…'))+'</p>'+(tierDataError?'<button type="button" class="favorite-wide" data-tier-retry>'+label('Tentar novamente','Try again','Reintentar')+'</button>':'')+'</div>';
   const entries=selectTierEntries(characters,data,{...state.tierFilters,mode:state.tierMode});
   const count=new Set(entries.map(entry=>tierCharacterKey(entry.character))).size;
   const total=new Set(characters.map(tierCharacterKey)).size;
@@ -2839,15 +2889,15 @@ function renderTierResults() {
   const rated=entries.filter(entry=>entry.tier),unrated=entries.filter(entry=>!entry.tier);
   const heading=state.tierMode==='ww'?'Whimpering Wastes':'Tower of Adversity';
   return '<div class="tier-results-summary"><div><p class="eyebrow">'+label('MODO DE JOGO','GAME MODE','MODO DE JUEGO')+'</p><h2>'+heading+'</h2></div><p data-tier-count role="status" aria-live="polite">'+count+' / '+total+' '+label('personagens','characters','personajes')+' · '+rated.length+' '+label('avaliações','ratings','evaluaciones')+'</p></div>'+
-    '<p class="tier-order-note">'+label('Compare dentro da mesma função. A ordem dos personagens em cada tier é alfabética.','Compare within the same role. Characters within each tier are sorted alphabetically.','Compara dentro de la misma función. Los personajes de cada tier están en orden alfabético.')+'</p>'+
-    (rated.length?'<div class="tier-matrix" style="--tier-columns:'+roles.length+'"><div class="tier-matrix-head"><span>Tier</span>'+roles.map(role=>'<strong>'+tierRoleLabel(role)+'</strong>').join('')+'</div>'+TIER_ORDER.map(tier=>{
+    '<p class="tier-order-note">'+label('Compare dentro da mesma função. A ordem dos personagens em cada nível é alfabética.','Compare within the same role. Characters within each tier are sorted alphabetically.','Compara dentro de la misma función. Los personajes de cada tier están en orden alfabético.')+'</p>'+
+    (rated.length?'<div class="tier-matrix" style="--tier-columns:'+roles.length+'"><div class="tier-matrix-head"><span>'+mt('Tier')+'</span>'+roles.map(role=>'<strong>'+tierRoleLabel(role)+'</strong>').join('')+'</div>'+TIER_ORDER.map(tier=>{
       const tierEntries=rated.filter(entry=>entry.tier===tier);if(!tierEntries.length)return '';
       return '<section class="tier-matrix-row" data-tier-row="'+tier+'"><h3 class="tier-rank-label">'+tier+'</h3>'+roles.map(role=>{
         const cell=tierEntries.filter(entry=>entry.role===role);
-        return '<div class="tier-role-cell"><h4>'+tierRoleLabel(role)+'</h4><div class="tier-cell-cards">'+(cell.map(renderTierCharacter).join('') || '<span class="tier-cell-empty" aria-label="'+label('Sem personagens nesta função e tier','No characters in this role and tier','Sin personajes en esta función y tier')+'">—</span>')+'</div></div>';
+        return '<div class="tier-role-cell"><h4>'+tierRoleLabel(role)+'</h4><div class="tier-cell-cards">'+(cell.map(renderTierCharacter).join('') || '<span class="tier-cell-empty" aria-label="'+label('Sem personagens nesta função e nível','No characters in this role and tier','Sin personajes en esta función y nivel')+'">—</span>')+'</div></div>';
       }).join('')+'</section>';
     }).join('')+'</div>':'')+
-    (unrated.length?'<section class="tier-unrated"><h3>'+label('Sem avaliação','Unrated','Sin evaluación')+'</h3><p>'+label('Estes personagens estão no catálogo, mas não têm avaliação neste snapshot da Prydwen. Não atribuímos notas estimadas.','These characters are in the catalog but have no rating in this Prydwen snapshot. No estimated tiers are assigned.','Estos personajes están en el catálogo, pero no tienen evaluación en este snapshot de Prydwen. No se asignan tiers estimados.')+'</p><div class="tier-unrated-grid">'+unrated.map(renderTierCharacter).join('')+'</div></section>':'')+
+    (unrated.length?'<section class="tier-unrated"><h3>'+label('Sem avaliação','Unrated','Sin evaluación')+'</h3><p>'+label('Estes personagens estão no catálogo, mas não têm avaliação nesta referência da Prydwen. Não atribuímos notas estimadas.','These characters are in the catalog but have no rating in this Prydwen snapshot. No estimated tiers are assigned.','Estos personajes están en el catálogo, pero no tienen evaluación en esta referencia de Prydwen. No se asignan tiers estimados.')+'</p><div class="tier-unrated-grid">'+unrated.map(renderTierCharacter).join('')+'</div></section>':'')+
     (!entries.length?'<div class="empty-state"><h3>'+label('Nenhum personagem encontrado','No characters found','No se encontraron personajes')+'</h3><p>'+label('Ajuste a pesquisa ou limpe os filtros.','Adjust your search or reset the filters.','Ajusta la búsqueda o limpia los filtros.')+'</p><button type="button" class="favorite-wide" data-tier-reset>'+label('Limpar filtros','Reset filters','Limpiar filtros')+'</button></div>':'');
 }
 function updateTierResults() {
@@ -2861,10 +2911,10 @@ function tierReferenceDate(value) {
 }
 function renderTierPage() {
   const data=getTierSnapshot();
-  return renderPageHero(t('navTier'),t('pageTierDesc'),'ENDGAME / META')+
+  return renderPageHero(t('navTier'),t('pageTierDesc'),label('CONTEÚDO AVANÇADO / CLASSIFICAÇÃO','ENDGAME / RATINGS','CONTENIDO AVANZADO / CLASIFICACIÓN'))+
     '<section class="page-band"><div class="container tier-catalog">'+
-    '<div class="tier-reference"><div><p class="eyebrow">'+label('REFERÊNCIA VERIFICADA','VERIFIED REFERENCE','REFERENCIA VERIFICADA')+'</p><strong>Prydwen · '+label('Patch','Patch','Parche')+' '+(data?.patch || '—')+'</strong><p>'+(data ? label('Referência atualizada em ','Source updated ','Referencia actualizada el ')+tierReferenceDate(data.sourceUpdatedAt)+' · '+label('Conferida em ','Verified ','Verificada el ')+tierReferenceDate(data.verifiedAt) : label('Carregando referência…','Loading reference…','Cargando referencia…'))+'</p></div><a class="text-link" href="'+TIER_SOURCE+'" target="_blank" rel="noreferrer">'+label('Consultar referência ↗','View reference ↗','Consultar referencia ↗')+'</a></div>'+
-    '<details class="tier-criteria"><summary>'+label('Como ler esta Tier List','How to read this Tier List','Cómo leer esta Tier List')+'</summary><div class="tier-criteria-content"><p>'+label('A avaliação considera o desempenho em equipes e a execução das rotações em cada modo. Uma nota não representa o dano isolado do personagem.','Ratings consider team performance and rotation execution in each mode. A tier does not measure isolated character damage.','La evaluación considera el rendimiento en equipos y la ejecución de rotaciones en cada modo. Un tier no mide el daño aislado del personaje.')+'</p><dl><div><dt>DPS</dt><dd>'+label('Responsável pelo dano principal da composição.','Provides the team’s primary damage.','Aporta el daño principal del equipo.')+'</dd></div><div><dt>Hybrid</dt><dd>'+label('Combina dano próprio com buffs, efeitos ou sinergias para a equipe.','Combines personal damage with buffs, effects or team synergies.','Combina daño propio con buffs, efectos o sinergias para el equipo.')+'</dd></div><div><dt>Support</dt><dd>'+label('Prioriza buffs, sustentação e utilidade para a composição.','Focuses on buffs, sustain and team utility.','Prioriza buffs, sostenimiento y utilidad para el equipo.')+'</dd></div></dl><p>'+label('S0, S2 e S6 indicam a sequência de ressonância usada na avaliação. Personagens com duas funções aparecem em ambas, com notas independentes.','S0, S2 and S6 indicate the Resonance Chain used for the rating. Characters with two roles appear in both, with independent ratings.','S0, S2 y S6 indican la secuencia de resonancia usada en la evaluación. Los personajes con dos funciones aparecen en ambas, con notas independientes.')+'</p><p>'+label('T0 é o topo da escala; T4 é o nível inferior. Usamos a lista de desempenho, sem misturar as avaliações de custo-benefício (Value). A dificuldade de execução, as sinergias e os investimentos podem mudar o resultado da sua equipe.','T0 is the top of the scale; T4 is the lowest tier. We use performance ratings separately from the Value list. Execution difficulty, synergies and investment can change your team’s results.','T0 es el nivel superior; T4 es el inferior. Usamos evaluaciones de rendimiento sin mezclarlas con la lista Value. La dificultad de ejecución, las sinergias y la inversión pueden cambiar los resultados del equipo.')+'</p></div></details>'+
+    '<div class="tier-reference"><div><p class="eyebrow">'+label('REFERÊNCIA VERIFICADA','VERIFIED REFERENCE','REFERENCIA VERIFICADA')+'</p><strong>Prydwen · '+label('Versão','Patch','Parche')+' '+(data?.patch || '—')+'</strong><p>'+(data ? label('Referência atualizada em ','Source updated ','Referencia actualizada el ')+tierReferenceDate(data.sourceUpdatedAt)+' · '+label('Conferida em ','Verified ','Verificada el ')+tierReferenceDate(data.verifiedAt) : label('Carregando referência…','Loading reference…','Cargando referencia…'))+'</p></div><a class="text-link" href="'+TIER_SOURCE+'" target="_blank" rel="noreferrer">'+label('Consultar referência ↗','View reference ↗','Consultar referencia ↗')+'</a></div>'+
+    '<details class="tier-criteria"><summary>'+label('Como ler esta classificação','How to read this Tier List','Cómo leer esta clasificación')+'</summary><div class="tier-criteria-content"><p>'+label('A avaliação considera o desempenho em equipes e a execução das rotações em cada modo. Uma nota não representa o dano isolado do personagem.','Ratings consider team performance and rotation execution in each mode. A tier does not measure isolated character damage.','La evaluación considera el rendimiento en equipos y la ejecución de rotaciones en cada modo. Un tier no mide el daño aislado del personaje.')+'</p><dl><div><dt>' + t('damage') + '</dt><dd>'+label('Responsável pelo dano principal da composição.','Provides the team’s primary damage.','Aporta el daño principal del equipo.')+'</dd></div><div><dt>' + mt('Hybrid') + '</dt><dd>'+label('Combina dano próprio com bônus, efeitos ou sinergias para a equipe.','Combines personal damage with buffs, effects or team synergies.','Combina daño propio con bonificaciones, efectos o sinergias para el equipo.')+'</dd></div><div><dt>' + t('support') + '</dt><dd>'+label('Prioriza bônus, sustentação e utilidade para a composição.','Focuses on buffs, sustain and team utility.','Prioriza bonificaciones, sostenimiento y utilidad para el equipo.')+'</dd></div></dl><p>'+label('S0, S2 e S6 indicam a sequência de ressonância usada na avaliação. Personagens com duas funções aparecem em ambas, com notas independentes.','S0, S2 and S6 indicate the Resonance Chain used for the rating. Characters with two roles appear in both, with independent ratings.','S0, S2 y S6 indican la secuencia de resonancia usada en la evaluación. Los personajes con dos funciones aparecen en ambas, con notas independientes.')+'</p><p>'+label('T0 é o topo da escala; T4 é o nível inferior. Usamos a lista de desempenho, sem misturar as avaliações de custo-benefício (Value). A dificuldade de execução, as sinergias e os investimentos podem mudar o resultado da sua equipe.','T0 is the top of the scale; T4 is the lowest tier. We use performance ratings separately from the Value list. Execution difficulty, synergies and investment can change your team’s results.','T0 es el nivel superior; T4 es el inferior. Usamos evaluaciones de rendimiento sin mezclarlas con la lista Value. La dificultad de ejecución, las sinergias y la inversión pueden cambiar los resultados del equipo.')+'</p></div></details>'+
     '<div class="tier-mode-switch" role="group" aria-label="'+label('Modo de jogo','Game mode','Modo de juego')+'">'+['toa','ww'].map(mode=>'<button type="button" data-tier-mode="'+mode+'" aria-pressed="'+(state.tierMode===mode)+'" class="'+(state.tierMode===mode?'is-active':'')+'">'+(mode==='toa'?'Tower of Adversity':'Whimpering Wastes')+'</button>').join('')+'</div>'+
     '<div class="tier-filters"><label class="tier-search"><span>'+label('Pesquisar personagem','Search character','Buscar personaje')+'</span><input type="search" data-tier-search value="'+escapeHtml(state.tierFilters.query)+'" placeholder="'+label('Nome do personagem…','Character name…','Nombre del personaje…')+'" autocomplete="off"></label>'+
     tierFilterSelect('element',t('element'),[...new Set(characters.map(character=>character.element))].sort())+tierFilterSelect('weapon',t('weapon'),[...new Set(characters.map(character=>character.weapon))].sort())+tierFilterSelect('rarity',label('Raridade','Rarity','Rareza'),['4','5'])+tierFilterSelect('role',label('Função','Role','Función'),TIER_ROLES)+'<button type="button" class="tier-reset" data-tier-reset>'+label('Limpar filtros','Reset filters','Limpiar filtros')+'</button></div>'+
@@ -2883,12 +2933,12 @@ function renderArchiveOption(item, route, meta) {
 }
 
 function renderSonataEffects(set) {
-  return set.bonuses.map(bonus => '<article class="panel"><h2>' + bonus.count + ' ' + bt('pieces') + '</h2><p class="catalog-effect">' + escapeHtml(/\{\d+\}/.test(bonus.description) ? archiveLabel('Efeito completo indisponível no momento. Consulte a referência abaixo.', 'Full effect currently unavailable. See the reference below.', 'Efecto completo no disponible. Consulta la referencia abajo.') : bonus.description) + '</p></article>').join('');
+  return set.bonuses.map(bonus => '<article class="panel"><h2>' + bonus.count + ' ' + bt('pieces') + '</h2><p class="catalog-effect">' + escapeHtml(/\{\d+\}/.test(bonus.description) ? archiveLabel('Efeito completo indisponível no momento. Consulte a referência abaixo.', 'Full effect currently unavailable. See the reference below.', 'Efecto completo no disponible. Consulta la referencia abajo.') : localizedSonataEffect(set,bonus)) + '</p></article>').join('');
 }
 
 const echoClassOrder = ['calamity', 'overlord', 'elite', 'common'];
 function echoClassLabel(classId) {
-  return {common: archiveLabel('Comuns', 'Common', 'Comunes'), elite: archiveLabel('Elites', 'Elite', 'Élite'), overlord: 'Overlord', calamity: archiveLabel('Calamidade', 'Calamity', 'Calamidad')}[classId] || '';
+  return {common: archiveLabel('Comuns', 'Common', 'Comunes'), elite: archiveLabel('Elites', 'Elite', 'Élite'), overlord: archiveLabel('Soberanos', 'Overlord', 'Soberanos'), calamity: archiveLabel('Calamidade', 'Calamity', 'Calamidad')}[classId] || '';
 }
 
 function renderEchoFilters() {
@@ -2898,15 +2948,16 @@ function renderEchoFilters() {
   const funnel = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18l-7 8v6l-4 2v-8Z"/></svg>';
   return '<div class="wiki-filters echo-filters" aria-label="' + archiveLabel('Filtros de Echoes', 'Echo filters', 'Filtros de Ecos') + '"><label class="echo-search"><span>' + archiveLabel('Pesquisar Echoes', 'Search Echoes', 'Buscar Ecos') + '</span><input type="search" data-echo-search value="' + escapeHtml(filters.query) + '" placeholder="' + archiveLabel('Nome, elemento ou Sonata…', 'Name, element or Sonata…', 'Nombre, elemento o Sonata…') + '" autocomplete="off"></label>' +
     select('cost', bt('cost'), [all, ...['1', '3', '4'].map(value => [value, bt('cost') + ' ' + value])], funnel) +
-    select('variant', archiveLabel('Variante', 'Variant', 'Variante'), [all, ['regular', archiveLabel('Regular', 'Regular', 'Regular')], ['nightmare', 'Nightmare'], ['phantom', archiveLabel('Com skins Phantom', 'With Phantom skins', 'Con skins Phantom')]]) +
-    select('element', t('element'), [all, ...[...new Set(wikiEchoes.map(echo => echo.element).filter(Boolean))].sort().map(value => [value, value])]) +
+    select('variant', archiveLabel('Variante', 'Variant', 'Variante'), [all, ['regular', archiveLabel('Regular', 'Regular', 'Regular')], ['nightmare', 'Nightmare'], ['phantom', archiveLabel('Com aparências Phantom', 'With Phantom skins', 'Con aspectos Phantom')]]) +
+    select('element', t('element'), [all, ...[...new Set(wikiEchoes.map(echo => echo.element).filter(Boolean))].sort().map(value => [value, mt(value)])]) +
     select('set', 'Sonata', [all, ...builderSonatas.toSorted((a,b) => a.name.localeCompare(b.name)).map(set => [set.slug, set.name])]) +
     '<button type="button" class="builder-text-button echo-reset" data-echo-reset>' + archiveLabel('Limpar filtros', 'Reset filters', 'Limpiar filtros') + '</button></div>';
 }
 
 function renderEchoResults() {
-  const context = filterEchoCatalog(wikiEchoes, builderSonatas, {...state.echoFilters, class: 'all'});
-  const filtered = filterEchoCatalog(wikiEchoes, builderSonatas, state.echoFilters);
+  const searchCatalog = wikiEchoes.map(echo=>({...echo,aliases:[...(echo.aliases || []),mt(echo.element),echoClassLabel(echo.classId)]}));
+  const context = filterEchoCatalog(searchCatalog, builderSonatas, {...state.echoFilters, class: 'all'});
+  const filtered = filterEchoCatalog(searchCatalog, builderSonatas, state.echoFilters);
   const categories = ['all', ...echoClassOrder].map(classId => {
     const count = classId === 'all' ? context.length : context.filter(echo => echo.classId === classId).length;
     return '<button type="button" class="echo-class-button" data-echo-class="' + classId + '" aria-pressed="' + (state.echoFilters.class === classId) + '">' + (classId === 'all' ? archiveLabel('Todas as classes', 'All classes', 'Todas las clases') : echoClassLabel(classId)) + '<span>' + count + '</span></button>';
@@ -2914,9 +2965,9 @@ function renderEchoResults() {
   const groups = echoClassOrder.map(classId => {
     const members = filtered.filter(echo => echo.classId === classId).toSorted((a,b) => a.name.localeCompare(b.name));
     if (!members.length) return '';
-    return '<section class="echo-class-section" data-echo-group="' + classId + '" aria-labelledby="echo-class-' + classId + '"><div class="echo-class-heading"><h2 id="echo-class-' + classId + '">' + echoClassLabel(classId) + '</h2><span>' + bt('cost') + ' ' + members[0].cost + ' · ' + members.length + ' Echoes</span></div><div class="builder-option-grid">' + members.map(echo => renderArchiveOption(echo, 'echoes', bt('cost') + ' ' + echo.cost + (echo.element ? ' · ' + echo.element : '') + (echo.phantoms.length ? ' · ' + echo.phantoms.length + ' Phantom' : '') + (echo.isNightmare ? ' · Nightmare' : '') + ' · ' + echo.sets.map(slug => builderSonatas.find(set => set.slug === slug)?.name).join(' / '))).join('') + '</div></section>';
+    return '<section class="echo-class-section" data-echo-group="' + classId + '" aria-labelledby="echo-class-' + classId + '"><div class="echo-class-heading"><h2 id="echo-class-' + classId + '">' + echoClassLabel(classId) + '</h2><span>' + bt('cost') + ' ' + members[0].cost + ' · ' + members.length + ' ' + t('navEchoes') + '</span></div><div class="builder-option-grid">' + members.map(echo => renderArchiveOption(echo, 'echoes', bt('cost') + ' ' + echo.cost + (echo.element ? ' · ' + mt(echo.element) : '') + (echo.phantoms.length ? ' · ' + echo.phantoms.length + ' Phantom' : '') + (echo.isNightmare ? ' · Nightmare' : '') + ' · ' + echo.sets.map(slug => builderSonatas.find(set => set.slug === slug)?.name).join(' / '))).join('') + '</div></section>';
   }).join('');
-  return '<div class="echo-class-tabs" role="group" aria-label="' + archiveLabel('Classe do Echo', 'Echo class', 'Clase del Eco') + '">' + categories + '</div><p class="builder-picker-count" role="status" aria-live="polite">' + filtered.length + ' / ' + wikiEchoes.length + ' Echoes</p>' + (groups || (!wikiEchoes.length ? '' : '<div class="empty-state"><h3>' + archiveLabel('Nenhum Echo encontrado', 'No Echoes found', 'No se encontraron Ecos') + '</h3><p>' + archiveLabel('Ajuste a pesquisa ou limpe os filtros para ver mais Echoes.', 'Adjust your search or reset the filters to see more Echoes.', 'Ajusta la búsqueda o limpia los filtros para ver más Ecos.') + '</p></div>'));
+  return '<div class="echo-class-tabs" role="group" aria-label="' + archiveLabel('Classe do Echo', 'Echo class', 'Clase del Eco') + '">' + categories + '</div><p class="builder-picker-count" role="status" aria-live="polite">' + filtered.length + ' / ' + wikiEchoes.length + ' ' + t('navEchoes') + '</p>' + (groups || (!wikiEchoes.length ? '' : '<div class="empty-state"><h3>' + archiveLabel('Nenhum Echo encontrado', 'No Echoes found', 'No se encontraron Ecos') + '</h3><p>' + archiveLabel('Ajuste a pesquisa ou limpe os filtros para ver mais Echoes.', 'Adjust your search or reset the filters to see more Echoes.', 'Ajusta la búsqueda o limpia los filtros para ver más Ecos.') + '</p></div>'));
 }
 
 function updateEchoResults() {
@@ -2931,14 +2982,14 @@ function updateEchoResults() {
 
 function renderEchoAppearances(echo, selected) {
   if (!echo.phantoms.length) return '';
-  return '<section class="panel echo-appearances" aria-labelledby="echo-appearances-title"><h2 id="echo-appearances-title">Phantom Echoes</h2><p>' + archiveLabel('Skins e variações visuais deste Echo. Selecione uma aparência para visualizar sua imagem.', 'Skins and visual variations of this Echo. Select an appearance to preview its image.', 'Skins y variaciones visuales de este Eco. Selecciona una apariencia para ver su imagen.') + '</p><div class="echo-appearance-grid">' + [echo, ...echo.phantoms].map(appearance => '<button type="button" class="echo-appearance-option" data-echo-appearance="' + appearance.slug + '" aria-pressed="' + (selected.slug === appearance.slug) + '">' + renderBuilderItemIcon('echo', appearance) + '<strong>' + escapeHtml(appearance === echo ? archiveLabel('Original', 'Original', 'Original') : appearance.name) + '</strong></button>').join('') + '</div></section>';
+  return '<section class="panel echo-appearances" aria-labelledby="echo-appearances-title"><h2 id="echo-appearances-title">' + label('Aparências Phantom','Phantom appearances','Aspectos Phantom') + '</h2><p>' + archiveLabel('Aparências e variações visuais deste Echo. Selecione uma aparência para visualizar sua imagem.', 'Skins and visual variations of this Echo. Select an appearance to preview its image.', 'Aspectos y variaciones visuales de este Eco. Selecciona una apariencia para ver su imagen.') + '</p><div class="echo-appearance-grid">' + [echo, ...echo.phantoms].map(appearance => '<button type="button" class="echo-appearance-option" data-echo-appearance="' + appearance.slug + '" aria-pressed="' + (selected.slug === appearance.slug) + '">' + renderBuilderItemIcon('echo', appearance) + '<strong>' + escapeHtml(appearance === echo ? archiveLabel('Original', 'Original', 'Original') : appearance.name) + '</strong></button>').join('') + '</div></section>';
 }
 
 function renderEchoesPage() {
   const echo = wikiEchoes.find(item => item.slug === state.detail || item.phantoms.some(skin => skin.slug === state.detail));
   if (state.detail && echo) {
     const selected = echo.phantoms.find(skin => skin.slug === state.echoAppearance) || (state.echoAppearance === echo.slug ? echo : echo.phantoms.find(skin => skin.slug === state.detail)) || echo;
-    return renderPageHero(echo.name, echoClassLabel(echo.classId) + ' · ' + bt('cost') + ' ' + echo.cost + (echo.element ? ' · ' + echo.element : ''), t('navEchoes')) + '<section class="page-band"><div class="container detail-layout"><aside class="detail-aside catalog-detail-icon">' + renderBuilderItemIcon('echo', selected) + '<p data-echo-appearance-label>' + escapeHtml(selected === echo ? archiveLabel('Aparência original', 'Original appearance', 'Apariencia original') : selected.name) + '</p><a class="text-link" data-link href="' + pathFor('echoes') + '">' + t('back') + '</a></aside><div class="detail-main">' + (echo.description ? '<article class="panel"><p>' + escapeHtml(echo.description) + '</p></article>' : '') + renderEchoAppearances(echo, selected) + echo.sets.map(slug => { const set = builderSonatas.find(item => item.slug === slug); return '<a class="text-link" data-link href="' + pathFor('sonatas', state.lang, slug) + '">' + escapeHtml(set.name) + ' ↗</a>' + renderSonataEffects(set); }).join('') + '</div></div></section>';
+    return renderPageHero(echo.name, echoClassLabel(echo.classId) + ' · ' + bt('cost') + ' ' + echo.cost + (echo.element ? ' · ' + mt(echo.element) : ''), t('navEchoes')) + '<section class="page-band"><div class="container detail-layout"><aside class="detail-aside catalog-detail-icon">' + renderBuilderItemIcon('echo', selected) + '<p data-echo-appearance-label>' + escapeHtml(selected === echo ? archiveLabel('Aparência original', 'Original appearance', 'Apariencia original') : selected.name) + '</p><a class="text-link" data-link href="' + pathFor('echoes') + '">' + t('back') + '</a></aside><div class="detail-main">' + (echo.description ? '<article class="panel"><p>' + escapeHtml(localizedEchoDescription(echo)) + '</p></article>' : '') + renderEchoAppearances(echo, selected) + echo.sets.map(slug => { const set = builderSonatas.find(item => item.slug === slug); return '<a class="text-link" data-link href="' + pathFor('sonatas', state.lang, slug) + '">' + escapeHtml(set.name) + ' ↗</a>' + renderSonataEffects(set); }).join('') + '</div></div></section>';
   }
   if (state.detail && builderEchoes.length) return renderNotFound();
   return renderPageHero(t('navEchoes'), archiveLabel('Encontre Echoes por classe, custo, variante e Sonata.', 'Find Echoes by class, cost, variant and Sonata.', 'Encuentra Ecos por clase, coste, variante y Sonata.'), t('database')) + '<section class="page-band"><div class="container archive-catalog echo-archive">' + renderEchoCatalogStatus() + renderEchoFilters() + '<div data-echo-results>' + renderEchoResults() + '</div></div></section>';
@@ -2954,7 +3005,7 @@ function shortCatalogText(value, limit = 140) {
 
 function renderSonataCard(set) {
   const primary = set.bonuses[0], final = set.bonuses.at(-1);
-  const effect = primary ? primary.count + ' ' + bt('pieces') + ': ' + primary.description + (final !== primary ? ' · ' + final.count + ' ' + bt('pieces') + ': ' + final.description : '') : '';
+  const effect = primary ? primary.count + ' ' + bt('pieces') + ': ' + localizedSonataEffect(set,primary) + (final !== primary ? ' · ' + final.count + ' ' + bt('pieces') + ': ' + localizedSonataEffect(set,final) : '') : '';
   return '<a class="builder-option sonata-card" data-link href="' + pathFor('sonatas', state.lang, set.slug) + '">' + renderBuilderItemIcon('sonata', set) + '<span class="builder-option-info"><strong>' + escapeHtml(set.name) + '</strong><small class="sonata-summary">' + escapeHtml(shortCatalogText(effect, 170) || archiveLabel('Ver efeitos do conjunto', 'View set effects', 'Ver efectos del conjunto')) + '</small><span class="catalog-card-action">' + archiveLabel('Ver efeito completo', 'View full effect', 'Ver efecto completo') + ' ↗</span></span></a>';
 }
 
@@ -2969,7 +3020,7 @@ function renderSonatasPage() {
     return renderPageHero(set.name, archiveLabel('Efeitos de conjunto', 'Set effects', 'Efectos de conjunto'), 'Sonata') + '<section class="page-band"><div class="container detail-layout"><aside class="detail-aside catalog-detail-icon">' + renderBuilderItemIcon('sonata', set) + '<a class="text-link" data-link href="' + pathFor('sonatas') + '">' + t('back') + '</a></aside><div class="detail-main"><article class="panel"><h2>' + archiveLabel('Descrição', 'Description', 'Descripción') + '</h2><p>' + sonataExplanation() + '</p></article>' + renderSonataEffects(set) + '<p><a class="text-link" href="' + set.source + '" target="_blank" rel="noreferrer">Wuthering Waves Wiki ↗</a></p><h2>Echoes · ' + members.length + '</h2><div class="archive-catalog"><div class="builder-option-grid">' + members.map(echo => renderArchiveOption(echo, 'echoes', bt('cost') + ' ' + echo.cost)).join('') + '</div></div></div></div></section>';
   }
   if (state.detail && builderSonatas.length) return renderNotFound();
-  return renderPageHero(t('navSonatas'), archiveLabel('Bônus de conjunto para suas builds.', 'Set bonuses for your builds.', 'Bonificaciones de conjunto para tus builds.'), t('database')) + '<section class="page-band"><div class="container archive-catalog"><article class="panel"><p>' + sonataExplanation() + '</p><a class="text-link" href="https://wutheringwaves.fandom.com/wiki/Sonata" target="_blank" rel="noreferrer">Wuthering Waves Wiki ↗</a></article>' + renderEchoCatalogStatus() + '<p class="builder-picker-count">' + builderSonatas.length + ' Sonatas</p><div class="builder-option-grid">' + builderSonatas.map(renderSonataCard).join('') + '</div></div></section>';
+  return renderPageHero(t('navSonatas'), archiveLabel('Bônus de conjunto para seus equipamentos.', 'Set bonuses for your builds.', 'Bonificaciones de conjunto para tu equipamiento.'), t('database')) + '<section class="page-band"><div class="container archive-catalog"><article class="panel"><p>' + sonataExplanation() + '</p><a class="text-link" href="https://wutheringwaves.fandom.com/wiki/Sonata" target="_blank" rel="noreferrer">Wuthering Waves Wiki ↗</a></article>' + renderEchoCatalogStatus() + '<p class="builder-picker-count">' + builderSonatas.length + ' Sonatas</p><div class="builder-option-grid">' + builderSonatas.map(renderSonataCard).join('') + '</div></div></section>';
 }
 
 let weaponsReady = false, weaponRequest, weaponRevision = 0, weaponError = false;
@@ -3011,17 +3062,17 @@ function ensureWeaponDetail() {
 }
 function renderWeaponDetail(slug) {
   const weapon=weapons.find(w=>w.slug===slug);
-  if(!weapon)return weaponsReady?renderNotFound():renderPageHero(t('navWeapons'),'Carregando catálogo…',t('database'));
+  if(!weapon)return weaponsReady?renderNotFound():renderPageHero(t('navWeapons'),label('Carregando catálogo…','Loading catalog…','Cargando catálogo…'),t('database'));
   const detail=weaponDetails.get(weapon.id);
   const label=(pt,en,es)=>state.lang==='en'?en:state.lang==='es'?es:pt;
   const properties=detail?.properties || [];
-  return renderPageHero(weapon.name,weapon.type+' · '+stars(weapon.rarity),t('weapon'))+
+  return renderPageHero(weapon.name,mt(weapon.type)+' · '+stars(weapon.rarity),t('weapon'))+
     '<section class="page-band"><div class="container detail-layout weapon-detail"><aside class="detail-aside">'+renderItemAssetImage('weapon',{...weapon, imageUrl: detail?.imageUrl})+'<a class="text-link" data-link href="'+pathFor('weapons')+'">'+t('back')+'</a></aside><div class="detail-main">'+
     (detail?.loading?'<p role="status">'+label('Carregando detalhes…','Loading details…','Cargando detalles…')+'</p>':'')+
     (detail?.error?'<p role="status">'+label('Não foi possível carregar os detalhes da Encore.','Unable to load Encore details.','No se pudieron cargar los detalles de Encore.')+'</p>':'')+
-    '<article class="panel"><h2>'+label('Atributos','Attributes','Atributos')+'</h2>'+(properties.length?'<div class="weapon-stats-scroll"><table><thead><tr><th>'+label('Nível','Level','Nivel')+'</th>'+properties.map(p=>'<th>'+escapeHtml(p.name)+'</th>').join('')+'</tr></thead><tbody>'+[...new Set(properties.flatMap(p=>p.values.map(v=>v.level)))].sort((a,b)=>a-b).map(level=>'<tr><td>'+level+'</td>'+properties.map(p=>'<td>'+escapeHtml(p.values.find(v=>v.level===level)?.value ?? '—')+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>':'<p>ATK: '+(weapon.baseAtk ?? '—')+' · '+escapeHtml(weapon.stat || '—')+'</p>')+'</article>'+
-    (detail?.passive || weapon.passive?'<article class="panel"><h2>'+escapeHtml(detail?.passiveName || label('Passiva','Passive','Pasiva'))+'</h2><p>'+escapeHtml(detail?.passive || weapon.passive)+'</p><small>'+label('Valores separados por / correspondem às categorias de sintonia da arma.','Slash-separated values correspond to weapon syntonization ranks.','Los valores separados por / corresponden a rangos de sintonización.')+'</small></article>':'')+
-    (detail?.description?'<article class="panel"><h2>'+label('Descrição','Description','Descripción')+'</h2><p>'+escapeHtml(detail.description)+'</p></article>':'')+
+    '<article class="panel"><h2>'+label('Atributos','Attributes','Atributos')+'</h2>'+(properties.length?'<div class="weapon-stats-scroll"><table><thead><tr><th>'+label('Nível','Level','Nivel')+'</th>'+properties.map(p=>'<th>'+escapeHtml(mt(p.name))+'</th>').join('')+'</tr></thead><tbody>'+[...new Set(properties.flatMap(p=>p.values.map(v=>v.level)))].sort((a,b)=>a-b).map(level=>'<tr><td>'+level+'</td>'+properties.map(p=>'<td>'+escapeHtml(p.values.find(v=>v.level===level)?.value ?? '—')+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>':'<p>' + mt('ATK') + ': '+(weapon.baseAtk ?? '—')+' · '+escapeHtml(mt(weapon.stat || '—'))+'</p>')+'</article>'+
+    (detail?.passive || weapon.passive?'<article class="panel"><h2>'+escapeHtml(state.lang==='en'?(detail?.passiveName || 'Passive'):(getSourceText(state.lang,'weapon',weapon.id)?.ResonName || label('Passiva','Passive','Pasiva')))+'</h2><p>'+escapeHtml(weapon.id?localizedSourceField('weapon',weapon.id,'Desc',detail?.passive || weapon.passive):legacyWeaponSummary(weapon))+'</p><small>'+label('Valores separados por / correspondem às categorias de sintonia da arma.','Slash-separated values correspond to weapon syntonization ranks.','Los valores separados por / corresponden a rangos de sintonización.')+'</small></article>':'')+
+    (detail?.description?'<article class="panel"><h2>'+label('Descrição','Description','Descripción')+'</h2><p>'+escapeHtml(localizedSourceField('weapon',weapon.id,'AttributesDescription',detail.description))+'</p></article>':'')+
     (detail?.source?'<a class="text-link" href="'+escapeHtml(detail.source)+'" target="_blank" rel="noreferrer">Encore · '+label('Fonte dos dados','Data source','Fuente de datos')+'</a>':'')+'</div></div></section>';
 }
 function renderWeaponsPage() {
@@ -3042,7 +3093,7 @@ function renderWeaponsPage() {
             <select data-weapon-filter>
               ${types.map((type) => `
                 <option value="${type}" ${state.weaponFilter === type ? "selected" : ""}>
-                  ${type === "all" ? t("all") : type}
+                  ${type === "all" ? t("all") : mt(type)}
                 </option>
               `).join("")}
             </select>
@@ -3053,21 +3104,21 @@ function renderWeaponsPage() {
             <article class="data-card weapon-card">
               ${renderItemAssetImage("weapon", weapon)}
               <div class="card-topline">
-                <span class="pill">${weapon.type}</span>
+                <span class="pill">${mt(weapon.type)}</span>
                 <span>${stars(weapon.rarity)}</span>
               </div>
               <div class="card-body">
                 <h3><a data-link href="${pathFor("weapons",state.lang,weapon.slug)}">${escapeHtml(weapon.name)} ↗</a></h3>
                 <dl class="mini-dl">
                   <div><dt>ATK${weapon.statLevel ? " · Lv. " + weapon.statLevel : ""}</dt><dd>${weapon.baseAtk ?? "—"}</dd></div>
-                  <div><dt>${t("substat")}</dt><dd>${weapon.stat}</dd></div>
+                  <div><dt>${t("substat")}</dt><dd>${mt(weapon.stat)}</dd></div>
                 </dl>
                 ${weaponDetails.get(weapon.id)?.loading && !weapon.statLevel ? '<p role="status">' + archiveLabel('Carregando atributos…', 'Loading attributes…', 'Cargando atributos…') + '</p>' : ''}
                 ${weaponDetails.get(weapon.id)?.error ? '<button type="button" class="builder-text-button" data-weapon-retry="' + weapon.id + '">' + bt('retry') + '</button>' : ''}
                 <p class="weapon-card-summary">${weapon.passiveName ? escapeHtml(archiveLabel("Passiva", "Passive", "Pasiva") + " · " + weapon.passiveName) : escapeHtml(archiveLabel("Efeitos disponíveis na página da arma.", "Effects available on the weapon page.", "Efectos disponibles en la página del arma."))}</p>
                 <a class="catalog-card-action" data-link href="${pathFor("weapons",state.lang,weapon.slug)}">${archiveLabel("Ver detalhes", "View details", "Ver detalles")} ↗</a>
                 <div class="tag-row">
-                  ${weapon.recommended.map((name) => `<span>${name}</span>`).join("")}
+                  ${weapon.recommended.map((name) => `<span>${ct(name)}</span>`).join("")}
                 </div>
               </div>
             </article>
@@ -3085,7 +3136,7 @@ function renderItemsPage() {
   }));
 
   return `
-    ${renderPageHero(t("navItems"), t("pageItemsDesc"), "Farm")}
+    ${renderPageHero(t("navItems"), t("pageItemsDesc"), t("farmPriorities"))}
     <section class="page-band page-band--deep">
       <div class="container split-layout">
         <article class="panel">
@@ -3115,10 +3166,10 @@ function renderItemsPage() {
           <ol class="ranked-list">
             ${weeklyFarmPlan.map((slot) => `
               <li>
-                <span>${slot.day.slice(0, 2)}</span>
+                <span>${ct(slot.day).slice(0, 3)}</span>
                 <div>
-                  <strong>${slot.focus}</strong>
-                  <small>${slot.note}</small>
+                  <strong>${mt(slot.focus)}</strong>
+                  <small>${ct(slot.note)}</small>
                 </div>
               </li>
             `).join("")}
@@ -3133,7 +3184,7 @@ function renderItemsPage() {
             <div class="section-header" style="margin-bottom: 16px;">
               <div>
                 <p class="eyebrow">${t("category")}</p>
-                <h2>${group.type}</h2>
+                <h2>${ct(group.type)}</h2>
                 <p>${group.items.length} ${t("listedItems")}</p>
               </div>
             </div>
@@ -3141,14 +3192,14 @@ function renderItemsPage() {
               ${group.items.map((item) => `
                 <article class="data-card">
                   <div class="card-topline">
-                    <span class="pill">${item.type}</span>
-                    <strong>${item.days}</strong>
+                    <span class="pill">${ct(item.type)}</span>
+                    <strong>${ct(item.days)}</strong>
                   </div>
                   <div class="card-body">
                     <h3>${item.name}</h3>
-                    <p><strong>${t("source")}:</strong> ${item.source}</p>
+                    <p><strong>${t("source")}:</strong> ${ct(item.source)}</p>
                     <div class="tag-row">
-                      ${item.usedBy.map((name) => `<span>${name}</span>`).join("")}
+                      ${item.usedBy.map((name) => `<span>${ct(name)}</span>`).join("")}
                     </div>
                   </div>
                 </article>
@@ -3171,10 +3222,10 @@ function renderItemsPage() {
               ${items.map((item) => `
                 <tr>
                   <td>${item.name}</td>
-                  <td>${item.type}</td>
-                  <td>${item.source}</td>
-                  <td>${item.days}</td>
-                  <td>${item.usedBy.join(" â€¢ ")}</td>
+                  <td>${ct(item.type)}</td>
+                  <td>${ct(item.source)}</td>
+                  <td>${ct(item.days)}</td>
+                  <td>${item.usedBy.map(ct).join(" • ")}</td>
                 </tr>
               `).join("")}
             </tbody>
@@ -3185,7 +3236,7 @@ function renderItemsPage() {
   `;
 
   return `
-    ${renderPageHero(t("navItems"), t("pageItemsDesc"), "Farm")}
+    ${renderPageHero(t("navItems"), t("pageItemsDesc"), t("farmPriorities"))}
     <section class="page-band">
       <div class="container">
         <div class="table-wrap">
@@ -3203,10 +3254,10 @@ function renderItemsPage() {
               ${items.map((item) => `
                 <tr>
                   <td>${item.name}</td>
-                  <td>${item.type}</td>
-                  <td>${item.source}</td>
-                  <td>${item.days}</td>
-                  <td>${item.usedBy.join(" • ")}</td>
+                  <td>${ct(item.type)}</td>
+                  <td>${ct(item.source)}</td>
+                  <td>${ct(item.days)}</td>
+                  <td>${item.usedBy.map(ct).join(" • ")}</td>
                 </tr>
               `).join("")}
             </tbody>
@@ -3251,9 +3302,9 @@ function renderGuidePage() {
             ${foundationCards.map((card) => `
               <article class="data-card">
                 <div class="card-body">
-                  <span class="pill">Core</span>
-                  <h3>${card.title}</h3>
-                  <p>${card.body}</p>
+                  <span class="pill">${label("Fundamentos","Foundations","Fundamentos")}</span>
+                  <h3>${ct(card.title)}</h3>
+                  <p>${ct(card.body)}</p>
                 </div>
               </article>
             `).join("")}
@@ -3266,8 +3317,8 @@ function renderGuidePage() {
               <li>
                 <span>${guide.minutes}</span>
                 <div>
-                  <strong>${guide.title}</strong>
-                  <small>${guide.tag} - ${guide.body}</small>
+                  <strong>${ct(guide.title)}</strong>
+                  <small>${ct(guide.tag)} - ${ct(guide.body)}</small>
                 </div>
               </li>
             `).join("")}
@@ -3288,9 +3339,9 @@ function renderGuidePage() {
           ${guides.map((guide) => `
             <article class="data-card guide-card">
               <div class="card-body">
-                <span class="pill">${guide.tag}</span>
-                <h3>${guide.title}</h3>
-                <p>${guide.body}</p>
+                <span class="pill">${ct(guide.tag)}</span>
+                <h3>${ct(guide.title)}</h3>
+                <p>${ct(guide.body)}</p>
                 <small>${guide.minutes} min</small>
               </div>
             </article>
@@ -3307,8 +3358,8 @@ function renderGuidePage() {
             <tbody>
               ${glossary.map(([term, meaning]) => `
                 <tr>
-                  <td>${term}</td>
-                  <td>${meaning}</td>
+                  <td>${mt(term)}</td>
+                  <td>${ct(meaning)}</td>
                 </tr>
               `).join("")}
             </tbody>
@@ -3325,9 +3376,9 @@ function renderGuidePage() {
         ${guides.map((guide) => `
           <article class="data-card guide-card">
             <div class="card-body">
-              <span class="pill">${guide.tag}</span>
-              <h3>${guide.title}</h3>
-              <p>${guide.body}</p>
+              <span class="pill">${ct(guide.tag)}</span>
+              <h3>${ct(guide.title)}</h3>
+              <p>${ct(guide.body)}</p>
               <small>${guide.minutes} min</small>
             </div>
           </article>
@@ -3339,10 +3390,10 @@ function renderGuidePage() {
 
 function renderCodesPage() {
   return `
-    ${renderPageHero(t("pageCodesTitle"), t("pageCodesDesc"), "Rewards")}
+    ${renderPageHero(t("pageCodesTitle"), t("pageCodesDesc"), t("reward"))}
     <section class="page-band">
       <div class="container compact-section">
-        <p class="notice">${label('Fontes consultadas em', 'Sources reviewed on', 'Fuentes consultadas el')} <time datetime="${codesCheckedAt}">${new Intl.DateTimeFormat(currentLocale(), { dateStyle: 'short', timeZone: 'UTC' }).format(new Date(codesCheckedAt + 'T00:00:00Z'))}</time>. ${label('Resgate uma vez por conta a partir do Nivel de Uniao 2, em Configuracoes → Outras configuracoes → Codigo de resgate. Nao testado no jogo.', 'Redeem once per account from Union Level 2 in Settings → Other Settings → Redemption Code. Not tested in-game.', 'Canjea una vez por cuenta desde el Nivel de Union 2 en Ajustes → Otros ajustes → Codigo de canje. No probado en el juego.')}</p>
+        <p class="notice">${label('Fontes consultadas em', 'Sources reviewed on', 'Fuentes consultadas el')} <time datetime="${codesCheckedAt}">${new Intl.DateTimeFormat(currentLocale(), { dateStyle: 'short', timeZone: 'UTC' }).format(new Date(codesCheckedAt + 'T00:00:00Z'))}</time>. ${label('Resgate uma vez por conta a partir do Nível de União 2, em Configurações → Outras configurações → Código de resgate. Não testado no jogo.', 'Redeem once per account from Union Level 2 in Settings → Other Settings → Redemption Code. Not tested in-game.', 'Canjea una vez por cuenta desde el Nivel de Unión 2 en Ajustes → Otros ajustes → Código de canje. No probado en el juego.')}</p>
         ${renderCodesWidget(true)}
         <p class="notice">${label('Fontes', 'Sources', 'Fuentes')}: ${codeSources.map(source => '<a class="text-link" href="' + source.url + '" target="_blank" rel="noreferrer">' + source.name + '</a>').join(' · ')}</p>
       </div>
@@ -3395,7 +3446,7 @@ function builderFilterValue(kind, item) {
 function builderFilterLabel(kind, value) {
   if (value === "all") return t("all");
   if (kind === "weapon") return stars(Number(value));
-  return kind === "echo" ? `${bt("cost")} ${value}` : value;
+  return kind === "echo" ? `${bt("cost")} ${value}` : mt(value);
 }
 
 function builderFilterOptions(kind) {
@@ -3418,7 +3469,7 @@ function filteredBuilderItems(kind) {
   const filter = effectiveBuilderFilter(kind);
 
   return builderItems(kind).filter((item) => {
-    const matchesSearch = !query || builderSearchText(kind, item).toLowerCase().includes(query);
+    const matchesSearch = !query || [builderSearchText(kind,item),mt(item.element),mt(item.weapon),mt(item.type),mt(item.stat)].join(" ").toLowerCase().includes(query);
     const matchesFilter = filter === "all" || builderFilterValue(kind, item) === filter;
     const matchesSet = kind !== "echo" || !builderUI.set || item.sets.includes(builderUI.set);
     return matchesSearch && matchesFilter && matchesSet;
@@ -3491,9 +3542,9 @@ function renderBuilderStatTargets(character, weapon, echo, stats) {
       <h3>${t("statTargets")}</h3>
       <p>${t("statTargetsDesc")}</p>
       <div class="target-grid">
-        ${renderTargetBar("ATK", stats.atk, targets.atk)}
-        ${renderTargetBar("HP", stats.hp, targets.hp)}
-        ${renderTargetBar("Crit Score", stats.crit, targets.crit)}
+        ${renderTargetBar(mt("ATK"), stats.atk, targets.atk)}
+        ${renderTargetBar(mt("HP"), stats.hp, targets.hp)}
+        ${renderTargetBar(label("Pontuação crítica","Crit score","Puntuación crítica"), stats.crit, targets.crit)}
       </div>
       <dl class="mini-dl">
         <div><dt>${t("suggestedEnergy")}</dt><dd>${targets.energy}</dd></div>
@@ -3514,9 +3565,9 @@ function renderCharacterStatTargetSummary(character) {
       <h2>${t("statTargets")}</h2>
       <p>${t("statTargetsDesc")}</p>
       <div class="target-summary-grid">
-        <div><span>ATK</span><strong>${targets.atk}+</strong></div>
-        <div><span>HP</span><strong>${targets.hp}+</strong></div>
-        <div><span>Crit Score</span><strong>${targets.crit}+</strong></div>
+        <div><span>${mt("ATK")}</span><strong>${targets.atk}+</strong></div>
+        <div><span>${mt("HP")}</span><strong>${targets.hp}+</strong></div>
+        <div><span>${label("Pontuação crítica","Crit score","Puntuación crítica")}</span><strong>${targets.crit}+</strong></div>
         <div><span>${t("suggestedEnergy")}</span><strong>${targets.energy}</strong></div>
       </div>
       <dl class="mini-dl">
@@ -3534,7 +3585,7 @@ function builderCost(except = -1) {
 function renderBuilderOption(kind, item) {
   const selected = item.slug === builderSelectedSlug(kind);
   const disabled = kind === "echo" && builderCost(builderUI.slot) + item.cost > 12;
-  const meta = kind === "character" ? item.element + " · " + item.weapon : kind === "weapon" ? item.type + " · " + item.stat : bt("cost") + " " + item.cost;
+  const meta = kind === "character" ? mt(item.element) + " · " + mt(item.weapon) : kind === "weapon" ? mt(item.type) + " · " + mt(item.stat) : bt("cost") + " " + item.cost;
   return '<button class="builder-option' + (selected ? ' is-active' : '') + '" type="button" data-builder-pick="' + kind + '" data-value="' + item.slug + '" aria-pressed="' + selected + '" ' + (disabled ? 'disabled title="' + bt("capacity") + '"' : '') + '>' +
     (kind === "character" ? renderCharacterAvatar(item, 'icon') : renderBuilderItemIcon(kind, item)) +
     '<span class="builder-option-info"><strong>' + escapeHtml(item.name) + '</strong><small>' + escapeHtml(meta) + '</small><span class="builder-rarity">' + (kind === "echo" ? (disabled ? bt("capacity") : '★★★★★') : stars(item.rarity)) + '</span></span></button>';
@@ -3551,7 +3602,7 @@ function renderBuilderPicker(kind, title, placeholder) {
     '<div class="builder-picker-head"><div><p class="eyebrow">' + bt("select") + '</p><h2 id="builder-dialog-title">' + title + '</h2></div><button type="button" class="builder-icon-button" data-builder-close aria-label="' + bt("close") + '">×</button></div>' +
     '<div class="builder-picker-tools"><input aria-label="' + placeholder + '" type="search" value="' + escapeHtml(state.builderSearch[kind]) + '" placeholder="' + placeholder + '" data-builder-search="' + kind + '">' +
     '<select aria-label="' + bt("filter") + '" data-builder-filter="' + kind + '">' + builderFilterOptions(kind).map((value) => '<option value="' + value + '" ' + (filter === value ? 'selected' : '') + '>' + builderFilterLabel(kind, value) + '</option>').join('') + '</select></div>' +
-    '<p class="builder-picker-count"><span data-builder-count="' + kind + '">' + filteredBuilderItems(kind).length + ' ' + bt("available") + '</span>' + (kind === "echo" ? '<span>' + bt("cost") + ' ' + builderCost(builderUI.slot) + ' / 12 · Echo ' + (builderUI.slot + 1) + '</span>' : '') + '</p>' +
+    '<p class="builder-picker-count"><span data-builder-count="' + kind + '">' + filteredBuilderItems(kind).length + ' ' + bt("available") + '</span>' + (kind === "echo" ? '<span>' + bt("cost") + ' ' + builderCost(builderUI.slot) + ' / 12 · ' + mt('Echo') + ' ' + (builderUI.slot + 1) + '</span>' : '') + '</p>' +
     '<div class="builder-option-grid" data-builder-options="' + kind + '">' + renderBuilderOptions(kind) + '</div></section>';
 }
 
@@ -3601,7 +3652,7 @@ function updateBuilderPicker(kind) {
 }
 
 function builderStatOptions(keys, value, excluded = []) {
-  return '<option value="">— ' + bt("select") + ' —</option>' + keys.map((key) => '<option value="' + key + '" ' + (key === value ? 'selected' : '') + (excluded.includes(key) && key !== value ? ' disabled' : '') + '>' + builderStats[key] + '</option>').join('');
+  return '<option value="">— ' + bt("select") + ' —</option>' + keys.map((key) => '<option value="' + key + '" ' + (key === value ? 'selected' : '') + (excluded.includes(key) && key !== value ? ' disabled' : '') + '>' + mt(builderStats[key]) + '</option>').join('');
 }
 
 function renderBuilderEcho(slot, index) {
@@ -3610,7 +3661,7 @@ function renderBuilderEcho(slot, index) {
   const unlocked = Math.floor(slot.level / 5);
   const numeric = (field, value, max = 99999, extra = '') => '<input type="number" min="0" max="' + max + '" step="' + (field === "level" ? '1' : '0.1') + '" value="' + value + '" data-echo-index="' + index + '" data-echo-field="' + field + '" ' + disabled + ' ' + extra + '>';
   return '<article class="builder-echo-card ' + (item ? 'is-equipped' : 'is-empty') + '" data-echo-card="' + index + '">' +
-    '<header><span class="builder-slot-number">0' + (index + 1) + '</span><strong>Echo ' + (index + 1) + '</strong>' + (index === 0 ? '<span class="builder-main-tag">' + bt("main") + '</span>' : '') +
+    '<header><span class="builder-slot-number">0' + (index + 1) + '</span><strong>' + mt('Echo') + ' ' + (index + 1) + '</strong>' + (index === 0 ? '<span class="builder-main-tag">' + bt("main") + '</span>' : '') +
     '<button type="button" class="builder-icon-button" data-builder-remove="' + index + '" aria-label="' + bt("remove") + ' ' + (index + 1) + '" ' + disabled + '>×</button></header>' +
     '<button type="button" class="builder-echo-select" data-builder-open="echo" data-slot="' + index + '" aria-label="' + (item ? bt("change") + ' ' + item.name : bt("empty") + ' ' + (index + 1)) + '">' +
     (item ? renderBuilderItemIcon("echo", item) : '<span class="builder-empty-art" aria-hidden="true">◇<i>+</i></span>') +
@@ -3619,7 +3670,7 @@ function renderBuilderEcho(slot, index) {
     '<label><span>' + bt("set") + '</span><select data-echo-index="' + index + '" data-echo-field="set" ' + disabled + '>' + (item ? item.sets.map((slug) => '<option value="' + slug + '" ' + (slug === slot.set ? 'selected' : '') + '>' + escapeHtml(builderSonatas.find((e) => e.slug === slug)?.name) + '</option>').join('') : '<option>—</option>') + '</select></label>' +
     '<label><span>' + bt("mainStat") + '</span><select data-echo-index="' + index + '" data-echo-field="mainStat" ' + disabled + '>' + builderStatOptions(builderMainStats[item?.cost] || [], slot.mainStat) + '</select></label>' +
     '<label class="builder-stat-value"><span>' + bt("value") + '</span>' + numeric("mainValue", slot.mainValue, 99999, slot.mainStat ? '' : 'disabled') + '</label>' +
-    '<label class="builder-stat-value"><span>' + bt("secondary") + ' · ' + (item?.cost === 1 ? 'HP' : 'ATK') + '</span>' + numeric("secondaryValue", slot.secondaryValue) + '</label>' +
+    '<label class="builder-stat-value"><span>' + bt("secondary") + ' · ' + mt(item?.cost === 1 ? 'HP' : 'ATK') + '</span>' + numeric("secondaryValue", slot.secondaryValue) + '</label>' +
     (item && index > 0 ? '<button type="button" class="builder-text-button builder-promote" data-builder-main="' + index + '">' + bt("makeMain") + ' ↑</button>' : '') +
     '<details class="builder-substats"><summary>' + bt("substats") + ' <span>' + unlocked + ' / 5</span></summary>' + slot.substats.map((sub, i) => {
       const locked = !item || i >= unlocked;
@@ -3644,8 +3695,8 @@ function renderBuilderBonuses() {
   const totals = builderTotals();
   const main = ["atkPercent", "critRate", "critDamage", "energy"];
   const value = (key) => '+' + Number(totals[key].toFixed(1)).toLocaleString(currentLocale()) + (["atk", "hp", "def"].includes(key) ? '' : '%');
-  return '<div class="builder-bonus-grid">' + main.map((key) => '<div><span>' + builderStats[key] + '</span><strong>' + value(key) + '</strong></div>').join('') + '</div>' +
-    '<dl class="builder-bonus-list">' + Object.keys(totals).filter((key) => !main.includes(key) && (totals[key] || ["hp", "atk", "def"].includes(key))).map((key) => '<div><dt>' + builderStats[key] + '</dt><dd>' + value(key) + '</dd></div>').join('') + '</dl>';
+  return '<div class="builder-bonus-grid">' + main.map((key) => '<div><span>' + mt(builderStats[key]) + '</span><strong>' + value(key) + '</strong></div>').join('') + '</div>' +
+    '<dl class="builder-bonus-list">' + Object.keys(totals).filter((key) => !main.includes(key) && (totals[key] || ["hp", "atk", "def"].includes(key))).map((key) => '<div><dt>' + mt(builderStats[key]) + '</dt><dd>' + value(key) + '</dd></div>').join('') + '</dl>';
 }
 
 function renderBuilderSonatas() {
@@ -3660,7 +3711,7 @@ function renderBuilderSonatas() {
     const set = builderSonatas.find((e) => e.slug === slug);
     if (!set) return '';
     const maximum = Math.max(1, ...set.bonuses.map((bonus) => bonus.count));
-    return '<div class="builder-sonata"><div><strong>' + escapeHtml(set.name) + '</strong><span>' + members.size + ' / ' + maximum + '</span></div><div class="builder-set-progress">' + Array.from({ length: maximum }, (_, i) => '<i class="' + (i < members.size ? 'is-active' : '') + '"></i>').join('') + '</div>' + set.bonuses.map((bonus) => '<p>' + (members.size >= bonus.count ? '✓ ' : '') + bonus.count + ' ' + bt("pieces") + ': ' + escapeHtml(/\{\d+\}/.test(bonus.description) ? archiveLabel('Efeito indisponível no momento.', 'Effect currently unavailable.', 'Efecto no disponible.') : bonus.description) + '</p>').join('') + '</div>';
+    return '<div class="builder-sonata"><div><strong>' + escapeHtml(set.name) + '</strong><span>' + members.size + ' / ' + maximum + '</span></div><div class="builder-set-progress">' + Array.from({ length: maximum }, (_, i) => '<i class="' + (i < members.size ? 'is-active' : '') + '"></i>').join('') + '</div>' + set.bonuses.map((bonus) => '<p>' + (members.size >= bonus.count ? '✓ ' : '') + bonus.count + ' ' + bt("pieces") + ': ' + escapeHtml(/\{\d+\}/.test(bonus.description) ? archiveLabel('Efeito indisponível no momento.', 'Effect currently unavailable.', 'Efecto no disponible.') : localizedSonataEffect(set,bonus)) + '</p>').join('') + '</div>';
   }).join('');
 }
 
@@ -3679,14 +3730,14 @@ function renderBuilderPage() {
   const used = state.builder.echoes.filter((e) => e.slug).length;
   const numberField = (field, label, value, max) => '<label class="builder-number-field"><span>' + label + '</span><div><input aria-label="' + label + '" type="number" min="1" max="' + max + '" step="1" data-builder-field="' + field + '" value="' + value + '"><small>/ ' + max + '</small></div></label>';
   return '<section class="builder-workspace"><div class="container builder-shell">' +
-    '<header class="builder-heading"><div><p class="eyebrow">SOLARIS ARCHIVE / BUILD LAB</p><h1>' + bt("title") + '</h1><p>' + bt("description") + '</p></div><span class="builder-heading-mark" aria-hidden="true">◇</span></header>' +
+    '<header class="builder-heading"><div><p class="eyebrow">SOLARIS ARCHIVE / ' + label('MONTAGEM DE EQUIPAMENTOS','BUILD PLANNER','PLANIFICADOR DE EQUIPAMIENTO') + '</p><h1>' + bt("title") + '</h1><p>' + bt("description") + '</p></div><span class="builder-heading-mark" aria-hidden="true">◇</span></header>' +
     (builderCatalogError ? '<p role="status" class="builder-input-hint">' + bt("catalogStale") + ' <button type="button" class="builder-text-button" data-builder-retry>' + bt("retry") + '</button></p>' : '') +
     '<div class="builder-toolbar"><label><span class="sr-only">' + bt("name") + '</span><input type="text" maxlength="80" data-builder-field="name" value="' + escapeHtml(state.builder.name) + '" placeholder="' + bt("namePlaceholder") + '"></label><span class="builder-save-status" data-builder-message role="status">' + bt(state.builderMessage || "unsaved") + '</span><button type="button" class="builder-button builder-button--primary" data-builder-save>' + bt("save") + '</button><button type="button" class="builder-button" data-builder-reset>' + bt("reset") + '</button></div>' +
-    '<div class="builder-equipment"><article class="builder-resonator"><div class="builder-resonator-art">' + renderCharacterAvatar(character, "detail") + '</div><div class="builder-resonator-info"><p class="eyebrow">01 / RESONATOR</p><span class="builder-rarity">' + stars(character.rarity) + '</span><h2>' + escapeHtml(character.name) + '</h2><p class="builder-muted">' + escapeHtml(character.element) + ' · ' + escapeHtml(character.weapon) + '</p>' + numberField("level", bt("level"), state.builder.level, 90) + '<button type="button" class="builder-button" data-builder-open="character">' + bt("change") + ' ↗</button></div></article>' +
-    '<article class="builder-weapon"><div class="builder-section-line"><p class="eyebrow">02 / ' + t("weapon") + '</p><button type="button" class="builder-text-button" data-builder-open="weapon">' + bt("change") + ' ↗</button></div><div class="builder-weapon-info">' + renderBuilderItemIcon("weapon", weapon) + '<div><span class="builder-rarity">' + stars(weapon.rarity) + '</span><h2>' + escapeHtml(weapon.name) + '</h2><p>' + weapon.type + ' · ' + weapon.stat + '</p></div></div><div class="builder-weapon-controls">' + numberField("weaponLevel", bt("level"), state.builder.weaponLevel, 90) + numberField("rank", bt("rank"), state.builder.rank, 5) + '</div><p class="builder-weapon-passive">' + escapeHtml(weapon.passive) + '</p><small class="builder-muted">' + bt("weaponAtk") + ': ' + weapon.baseAtk + '</small></article>' +
-    '<aside class="builder-overview"><p class="eyebrow">' + bt("preview") + '</p><div class="builder-cost-number"><strong>' + builderCost() + '</strong><span>/ 12</span></div><p>' + bt("totalCost") + '</p><div class="builder-cost-track"><i style="width:' + (builderCost() / 12 * 100) + '%"></i></div><div class="builder-overview-bottom"><span>' + bt("slots") + '</span><strong>' + used + ' / 5</strong></div><small class="builder-muted">' + bt("skillPlan") + '</small><p class="builder-priority">' + escapeHtml(character.build.mainStats.join(' · ')) + '</p></aside></div>' +
-    '<section class="builder-echo-section" aria-labelledby="builder-echo-title"><div class="builder-echo-heading"><div><p class="eyebrow">03 / ECHO LOADOUT</p><h2 id="builder-echo-title">' + bt("echoLoadout") + '</h2><p>' + bt("echoHint") + '</p></div><span class="builder-equipped-count">' + used + ' / 5 ' + bt("equipped") + '</span></div><div class="builder-five-echoes">' + state.builder.echoes.map(renderBuilderEcho).join('') + '</div><p class="builder-input-hint">' + bt("detailHint") + '</p></section>' +
-    '<div class="builder-bottom"><section class="builder-summary"><p class="eyebrow">04 / ATTRIBUTES</p><h2>' + bt("bonuses") + '</h2><div data-builder-bonuses>' + renderBuilderBonuses() + '</div><p class="builder-input-hint">' + bt("bonusesHint") + '</p></section><section class="builder-summary"><p class="eyebrow">SONATA EFFECTS</p><h2>' + bt("setTitle") + '</h2><div data-builder-sonatas>' + renderBuilderSonatas() + '</div><p class="builder-input-hint">' + bt("setHint") + '</p></section></div></div></section>';
+    '<div class="builder-equipment"><article class="builder-resonator"><div class="builder-resonator-art">' + renderCharacterAvatar(character, "detail") + '</div><div class="builder-resonator-info"><p class="eyebrow">01 / ' + t("navCharacters") + '</p><span class="builder-rarity">' + stars(character.rarity) + '</span><h2>' + escapeHtml(character.name) + '</h2><p class="builder-muted">' + escapeHtml(mt(character.element)) + ' · ' + escapeHtml(mt(character.weapon)) + '</p>' + numberField("level", bt("level"), state.builder.level, 90) + '<button type="button" class="builder-button" data-builder-open="character">' + bt("change") + ' ↗</button></div></article>' +
+    '<article class="builder-weapon"><div class="builder-section-line"><p class="eyebrow">02 / ' + t("weapon") + '</p><button type="button" class="builder-text-button" data-builder-open="weapon">' + bt("change") + ' ↗</button></div><div class="builder-weapon-info">' + renderBuilderItemIcon("weapon", weapon) + '<div><span class="builder-rarity">' + stars(weapon.rarity) + '</span><h2>' + escapeHtml(weapon.name) + '</h2><p>' + mt(weapon.type) + ' · ' + mt(weapon.stat) + '</p></div></div><div class="builder-weapon-controls">' + numberField("weaponLevel", bt("level"), state.builder.weaponLevel, 90) + numberField("rank", bt("rank"), state.builder.rank, 5) + '</div><p class="builder-weapon-passive">' + escapeHtml(weapon.id?localizedSourceField('weapon',weapon.id,'Desc',weapon.passive):legacyWeaponSummary(weapon)) + '</p><small class="builder-muted">' + bt("weaponAtk") + ': ' + weapon.baseAtk + '</small></article>' +
+    '<aside class="builder-overview"><p class="eyebrow">' + bt("preview") + '</p><div class="builder-cost-number"><strong>' + builderCost() + '</strong><span>/ 12</span></div><p>' + bt("totalCost") + '</p><div class="builder-cost-track"><i style="width:' + (builderCost() / 12 * 100) + '%"></i></div><div class="builder-overview-bottom"><span>' + bt("slots") + '</span><strong>' + used + ' / 5</strong></div><small class="builder-muted">' + bt("skillPlan") + '</small><p class="builder-priority">' + escapeHtml(character.build.mainStats.map(mt).join(' · ')) + '</p></aside></div>' +
+    '<section class="builder-echo-section" aria-labelledby="builder-echo-title"><div class="builder-echo-heading"><div><p class="eyebrow">03 / ' + bt('echoLoadout') + '</p><h2 id="builder-echo-title">' + bt("echoLoadout") + '</h2><p>' + bt("echoHint") + '</p></div><span class="builder-equipped-count">' + used + ' / 5 ' + bt("equipped") + '</span></div><div class="builder-five-echoes">' + state.builder.echoes.map(renderBuilderEcho).join('') + '</div><p class="builder-input-hint">' + bt("detailHint") + '</p></section>' +
+    '<div class="builder-bottom"><section class="builder-summary"><p class="eyebrow">04 / ' + t('stats') + '</p><h2>' + bt("bonuses") + '</h2><div data-builder-bonuses>' + renderBuilderBonuses() + '</div><p class="builder-input-hint">' + bt("bonusesHint") + '</p></section><section class="builder-summary"><p class="eyebrow">' + label('EFEITOS DE SONATA','SONATA EFFECTS','EFECTOS DE SONATA') + '</p><h2>' + bt("setTitle") + '</h2><div data-builder-sonatas>' + renderBuilderSonatas() + '</div><p class="builder-input-hint">' + bt("setHint") + '</p></section></div></div></section>';
 }
 
 function handleBuilderField(event) {
@@ -3779,9 +3830,9 @@ function renderEventCategoryOverview(filters, events, convenes) {
 }
 
 function eventSourceLabel(filter) {
-  if (filter === "banner") return state.conveneSource;
-  if (filter === "all") return `${state.eventSource} + ${state.conveneSource}`;
-  return state.eventSource;
+  if (filter === "banner") return sourceName(state.conveneSource);
+  if (filter === "all") return `${sourceName(state.eventSource)} + ${sourceName(state.conveneSource)}`;
+  return sourceName(state.eventSource);
 }
 
 function eventUpdatedAt(filter) {
@@ -3837,7 +3888,7 @@ function renderEventsPage() {
     : currentEvents.filter((event) => event.category === state.eventFilter);
 
   return `
-    ${renderPageHero(t("pageEventsTitle"), t("pageEventsDesc"), "Live API")}
+    ${renderPageHero(t("pageEventsTitle"), t("pageEventsDesc"), t("activeEvents"))}
     <section class="page-band">
       <div class="container">
         <div class="module-status">
@@ -3881,7 +3932,7 @@ function renderConvenesSection() {
           <span>${convenes.length} ${t("currentConvenes").toLowerCase()}</span>
           <span>${t("updated")} ${timeAgo(state.convenesUpdatedAt)}</span>
           <span>${t("syncEvery")} ${state.conveneSyncIntervalMinutes} min</span>
-          <span>${t("sourceLabel")}: ${state.conveneSource}</span>
+          <span>${t("sourceLabel")}: ${sourceName(state.conveneSource)}</span>
         </div>
         ${convenes.length ? `
           <div class="banner-grid">
@@ -3913,38 +3964,38 @@ function bannerImageOptions(source) {
 function renderConveneCard(convene, compact = false) {
   const status = getEventStatus(convene);
   const imageUrl = conveneImageUrl(convene);
-  const featured = [convene.featuredName, convene.featuredDetail].filter(Boolean).join(" - ");
+  const featured = [convene.featuredName, mt(convene.featuredDetail)].filter(Boolean).join(" - ");
 
   return `
     <article class="data-card event-card convene-card ${compact ? "event-card--compact" : ""}">
       <img
         ${imageAttributes([imageUrl, EVENT_FALLBACK_IMAGE], bannerImageOptions(imageUrl))}
-        alt="${escapeHtml(convene.title)}"
+        alt="${escapeHtml(bannerText(convene.title,state.lang))}"
         loading="lazy"
         decoding="async"
       >
       <div class="card-body">
         <div class="card-topline">
           <span class="pill pill--${status}">${statusLabel(status)}</span>
-          <span>${escapeHtml(convene.type || "convene")}</span>
+          <span>${escapeHtml(mt(convene.type || "Convene"))}</span>
         </div>
-        <h3>${escapeHtml(convene.title)}</h3>
+        <h3>${escapeHtml(bannerText(convene.title,state.lang))}</h3>
         <dl class="mini-dl">
           <div><dt>${t("featuredItem")}</dt><dd>${escapeHtml(featured || "--")}</dd></div>
-          <div><dt>${t("conveneType")}</dt><dd>${escapeHtml(convene.type || "--")}</dd></div>
+          <div><dt>${t("conveneType")}</dt><dd>${escapeHtml(mt(convene.type || "--"))}</dd></div>
         </dl>
         <p class="event-count" aria-label="${t("eventEndsIn")}">
           <small>${t("eventEndsIn")}</small>
           <span data-countdown data-start="${convene.startAt}" data-end="${convene.endAt}">${countdownLabel(convene)}</span>
         </p>
         <dl class="event-times">
-          <div><dt>${t("eventStartDate")}</dt><dd>${convene.startLabel || formatEventDate(convene.startAt)}</dd></div>
+          <div><dt>${t("eventStartDate")}</dt><dd>${mt(convene.startLabel) || formatEventDate(convene.startAt)}</dd></div>
           <div><dt>${t("eventStartTime")}</dt><dd>${convene.startTimeLabel || (convene.estimatedStart ? "--" : formatEventTime(convene.startAt))}</dd></div>
           <div><dt>${t("eventEndDate")}</dt><dd>${formatEventDate(convene.endAt)}</dd></div>
           <div><dt>${t("eventEndTime")}</dt><dd>${formatEventTime(convene.endAt)}</dd></div>
         </dl>
         <div class="tag-row">
-          ${(convene.highlights || []).map((highlight) => `<span>${escapeHtml(highlight)}</span>`).join("")}
+          ${(convene.highlights || []).map((highlight) => `<span>${escapeHtml(highlightText(highlight,state.lang))}</span>`).join("")}
         </div>
         <a class="text-link" href="${convene.sourceUrl}" target="_blank" rel="noreferrer">${t("details")}</a>
       </div>
@@ -3958,7 +4009,7 @@ function renderEventCard(event, compact = false) {
     <article class="data-card event-card ${compact ? "event-card--compact" : ""}">
       <img
         ${eventImageAttributes(event.imageUrl)}
-        alt="${escapeHtml(event.title)}"
+        alt="${escapeHtml(ct(event.title))}"
         loading="lazy"
         decoding="async"
       >
@@ -3967,7 +4018,7 @@ function renderEventCard(event, compact = false) {
           <span class="pill pill--${status}">${statusLabel(status)}</span>
           <span>${t(categoryLabels[event.category])}</span>
         </div>
-        <h3>${escapeHtml(event.title)}</h3>
+        <h3>${escapeHtml(ct(event.title))}</h3>
         <p class="event-count" aria-label="${status === "em_breve" ? t("eventStartsIn") : t("eventEndsIn")}">
           <small>${status === "em_breve" ? t("eventStartsIn") : t("eventEndsIn")}</small>
           <span data-countdown data-start="${event.startAt}" data-end="${event.endAt}">${countdownLabel(event)}</span>
@@ -3979,7 +4030,7 @@ function renderEventCard(event, compact = false) {
           <div><dt>${t("eventEndTime")}</dt><dd>${formatEventTime(event.endAt)}</dd></div>
         </dl>
         <div class="tag-row">
-          ${(event.rewards || []).map((reward) => `<span>${escapeHtml(reward)}</span>`).join("")}
+          ${(event.rewards || []).map((reward) => `<span>${escapeHtml(mt(reward))}</span>`).join("")}
         </div>
         <a class="text-link" href="${event.sourceUrl}" target="_blank" rel="noreferrer">${t("details")}</a>
       </div>
@@ -3992,7 +4043,7 @@ function renderNewsPage() {
 
   if (!archive.length) {
     return `
-      ${renderPageHero(t("navNews"), t("pageNewsDesc"), "Feed")}
+      ${renderPageHero(t("navNews"), t("pageNewsDesc"), t("navNews"))}
       <section class="page-band">
         <div class="container">
           ${renderNewsGrid(news.length)}
@@ -4005,7 +4056,7 @@ function renderNewsPage() {
   const archiveItems = rest.length ? rest : archive;
 
   return `
-    ${renderPageHero(t("navNews"), t("pageNewsDesc"), "Feed")}
+    ${renderPageHero(t("navNews"), t("pageNewsDesc"), t("navNews"))}
     <section class="page-band page-band--deep">
       <div class="container news-page-layout">
         ${renderNewsCard(featured, true)}
@@ -4131,7 +4182,7 @@ function collectionSignature(items, fields = ["id", "slug", "title", "name", "up
 function routeSignature(routeId = state.route, detail = state.detail) {
   const timedStatus = ["home", "events", "gacha"].includes(routeId)
     ? [...state.events, ...state.convenes].map(getEventStatus).join(",") : "";
-  const base = [state.lang, routeId, detail || "", timedStatus,
+  const base = [sourceLocaleRevision,state.lang, routeId, detail || "", timedStatus,
     routeId === "characters" ? state.characterSort : "",
     ["home", "events", "gacha"].includes(routeId) ? state.conveneError : ""
   ].join("|");
@@ -4255,10 +4306,10 @@ function preloadAppAssets() {
 
 function updateSeo() {
   const route = routeById.get(state.route);
-  const label = route ? t(route.labelKey) : t("routeNotFound");
+  const pageLabel = route ? t(route.labelKey) : t("routeNotFound");
   const title = state.route === "home"
-    ? "Solaris Archive - Portal Wiki de Wuthering Waves"
-    : `${label} - Solaris Archive`;
+    ? label("Solaris Archive — Wiki de Wuthering Waves","Solaris Archive — Wuthering Waves Wiki","Solaris Archive — Wiki de Wuthering Waves")
+    : `${pageLabel} - Solaris Archive`;
   document.title = title;
   document.documentElement.lang = state.lang;
 
@@ -4266,9 +4317,11 @@ function updateSeo() {
   if (meta) {
     meta.setAttribute(
       "content",
-      `${label}: wiki fan-made de Wuthering Waves com dados de exemplo, i18n e modulo de eventos.`
+      `${pageLabel}: ${state.lang === "en" ? "Wuthering Waves fan wiki with characters, equipment and events." : state.lang === "es" ? "Wiki de aficionados de Wuthering Waves con personajes, equipamiento y eventos." : "Wiki de fãs de Wuthering Waves com personagens, equipamentos e eventos."}`
     );
   }
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content',title);
+  document.querySelector('meta[property="og:description"]')?.setAttribute('content',meta?.content || '');
 
   const oldJsonLd = document.querySelector("#json-ld");
   if (oldJsonLd) oldJsonLd.remove();
@@ -4290,6 +4343,7 @@ function updateSeo() {
 }
 
 function render() {
+  ensureSourceTranslations();
   updateSeo();
   ensureAppShell();
   const topbar = app.querySelector("[data-app-topbar]");
