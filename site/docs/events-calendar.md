@@ -7,7 +7,9 @@ A página reutiliza a navegação, os cards, o relógio, os controles, as tradu�
 - `https://raw.githubusercontent.com/TheLovinator1/wutheringwaves/master/articles_latest.xml`
 - `https://raw.githubusercontent.com/TheLovinator1/wutheringwaves/master/articles_all.xml`, arquivo da mesma fonte.
 
-O leitor reconhece eventos individuais e seções de eventos nas notas de atualização. Não limita o resultado aos primeiros 12 eventos ativos. São preservados nomes, identidades, períodos, descrições, recompensas publicadas e imagens oficiais. Artigos de convocações continuam excluídos; a extração, a fonte e `/api/convenes` permanecem independentes.
+O leitor reconhece eventos individuais e seções de eventos nas notas de atualização. Não limita o resultado aos primeiros 12 eventos ativos. São preservados nomes, identidades, períodos, descrições, recompensas publicadas e imagens oficiais. Artigos de convocações continuam excluídos da API de eventos; a extração, a fonte e `/api/convenes` permanecem independentes.
+
+A interface de Eventos também exibe as convocações ativas na visão geral e em uma aba própria. Reutiliza integralmente `renderConvenesSection`, `renderConveneCard`, `activeConvenes` e `loadConvenes`, com o mesmo estado, pedido compartilhado e ciclo de atualização usados nas seções existentes. O botão de atualização consulta esse carregador existente. Não há nova API nem cópia de registros de banners para os dados de eventos; banners futuros e encerrados ficam fora dessa exibição.
 
 ## Datas, imagens e histórico
 

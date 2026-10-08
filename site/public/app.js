@@ -3828,7 +3828,7 @@ function renderEventsPage() {
   groups.active.sort((a,b)=>(Date.parse(a.endAt || a.endDate) || Infinity)-(Date.parse(b.endAt || b.endDate) || Infinity));
   groups.upcoming.sort((a,b)=>(Date.parse(a.startAt || a.startDate) || Infinity)-(Date.parse(b.startAt || b.startDate) || Infinity));
   groups.history.sort((a,b)=>Date.parse(b.endAt || b.endDate || b.publishedAt)-Date.parse(a.endAt || a.endDate || a.publishedAt));
-  const titles={active:ct('Active events'),upcoming:ct('Upcoming events'),history:ct('Event archive'),codes:ct('Active codes'),all:ct('Overview')};
+  const titles={active:ct('Active events'),upcoming:ct('Upcoming events'),history:ct('Event archive'),codes:ct('Active codes'),banners:t('currentConvenes'),all:ct('Overview')};
   const match=event=>(state.eventCategory==='all' || event.category===state.eventCategory) && (!state.eventQuery || [ct(event.title),event.title,ct(event.description),eventCategoryLabel(event.category)].join(' ').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().includes(state.eventQuery.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()));
   const section=key=>{
     const filtered=groups[key].filter(match),visible=key==='history'?filtered.slice(0,state.eventLimit):filtered;
@@ -3841,9 +3841,9 @@ function renderEventsPage() {
     '<div class="events-hub-sync"><p>'+ct('Last update')+' · '+(state.updatedAt?formatDate(state.updatedAt):ct('Loading events…'))+'</p><button type="button" class="builder-text-button" data-events-refresh '+(state.eventsLoading || state.codesLoading?'disabled':'')+'>'+ct('Refresh')+' ↻</button></div>'+
     (state.eventError?'<p class="notice" role="status">'+ct('Unable to update events. Previously loaded events remain available.')+'</p>':state.eventPartial?'<p class="notice" role="status">'+ct('Some announcements are temporarily unavailable. Preserved events remain available.')+'</p>':'')+
     '<nav class="events-hub-tabs" aria-label="'+ct('Event sections')+'">'+filters.map(key=>'<button type="button" data-event-filter="'+key+'" aria-pressed="'+(state.eventFilter===key)+'">'+titles[key]+'</button>').join('')+'</nav>'+
-    (state.eventFilter!=='codes'?'<div class="events-hub-toolbar"><label class="events-hub-search"><span>'+ct('Search events')+'</span><input type="search" data-event-search value="'+escapeHtml(state.eventQuery)+'" placeholder="'+ct('Event name or description…')+'"></label><label><span>'+t('category')+'</span><select data-event-category>'+['all','evento_in_game','evento_web','torre_adversidade','comunidade'].map(key=>'<option value="'+key+'" '+(state.eventCategory===key?'selected':'')+'>'+(key==='all'?t('all'):eventCategoryLabel(key))+'</option>').join('')+'</select></label><div class="segmented" aria-label="'+ct('Time zone')+'">'+['local','server'].map(mode=>'<button type="button" data-time-mode="'+mode+'" aria-pressed="'+(state.timeMode===mode)+'" class="'+(state.timeMode===mode?'is-active':'')+'">'+t(mode==='local'?'localTime':'serverTime')+'</button>').join('')+'</div></div>':'')+
-    (state.eventFilter==='all'?section('active')+section('upcoming')+renderEventCodes()+'<details class="events-archive"><summary>'+titles.history+' <span>'+groups.history.length+'</span></summary>'+section('history')+'</details>':state.eventFilter==='codes'?renderEventCodes():section(state.eventFilter))+
-    '<p class="events-source-note">'+ct('Event information and artwork come from official Kuro Games announcements. Server events use UTC+8, with a local-time option. Other time zones and date-only schedules are identified on each card.')+' <a class="text-link" href="https://wutheringwaves.kurogames.com/en/main/news" target="_blank" rel="noreferrer">'+ct('Official announcements')+' ↗</a></p></div></section>';
+    (!['codes','banners'].includes(state.eventFilter)?'<div class="events-hub-toolbar"><label class="events-hub-search"><span>'+ct('Search events')+'</span><input type="search" data-event-search value="'+escapeHtml(state.eventQuery)+'" placeholder="'+ct('Event name or description…')+'"></label><label><span>'+t('category')+'</span><select data-event-category>'+['all','evento_in_game','evento_web','torre_adversidade','comunidade'].map(key=>'<option value="'+key+'" '+(state.eventCategory===key?'selected':'')+'>'+(key==='all'?t('all'):eventCategoryLabel(key))+'</option>').join('')+'</select></label><div class="segmented" aria-label="'+ct('Time zone')+'">'+['local','server'].map(mode=>'<button type="button" data-time-mode="'+mode+'" aria-pressed="'+(state.timeMode===mode)+'" class="'+(state.timeMode===mode?'is-active':'')+'">'+t(mode==='local'?'localTime':'serverTime')+'</button>').join('')+'</div></div>':'')+
+    (state.eventFilter==='all'?section('active')+section('upcoming')+renderEventCodes()+'<details class="events-archive"><summary>'+titles.history+' <span>'+groups.history.length+'</span></summary>'+section('history')+'</details>':state.eventFilter==='codes'?renderEventCodes():state.eventFilter==='banners'?'':section(state.eventFilter))+
+    '<p class="events-source-note">'+ct('Event information and artwork come from official Kuro Games announcements. Server events use UTC+8, with a local-time option. Other time zones and date-only schedules are identified on each card.')+' <a class="text-link" href="https://wutheringwaves.kurogames.com/en/main/news" target="_blank" rel="noreferrer">'+ct('Official announcements')+' ↗</a></p></div></section>'+(['all','banners'].includes(state.eventFilter)?renderConvenesSection():'');
 }
 
 function renderConvenesSection() {
@@ -4115,11 +4115,11 @@ function collectionSignature(items, fields = ["id", "slug", "title", "name", "up
 
 function routeSignature(routeId = state.route, detail = state.detail) {
   const timedStatus = ["home", "events", "gacha"].includes(routeId)
-    ? [...state.events, ...(routeId==='events'?[]:state.convenes)].map(getEventStatus).join(",") : "";
+    ? [...state.events, ...state.convenes].map(getEventStatus).join(",") : "";
   const base = [sourceLocaleRevision,state.lang, routeId, detail || "", timedStatus,
     ['home','events','codes'].includes(routeId)?[codesCheckedAt,state.codesLoading,state.codesError,state.codesPartial,activeCodes().map(code=>code.code).join(',')].join(':'):'',
     routeId === "characters" ? state.characterSort : "",
-    ["home", "gacha"].includes(routeId) ? state.conveneError : ""
+    ["home", "events", "gacha"].includes(routeId) ? state.conveneError : ""
   ].join("|");
   const favorites = getFavorites().join(",");
 
@@ -4141,7 +4141,7 @@ function routeSignature(routeId = state.route, detail = state.detail) {
     case "builder":
       return [base, JSON.stringify(state.builder), state.builderMessage, builderEchoes.length, builderCatalogError, builderCatalogLoading, JSON.stringify(state.builderSearch), JSON.stringify(state.builderFilter), collectionSignature(characters, ["slug", "name", "imageUrl"])].join("|");
     case "events":
-      return [base, state.eventFilter, state.eventCategory, state.eventQuery,state.eventLimit,state.timeMode, state.updatedAt,state.eventError,state.eventPartial,state.eventsLoading,collectionSignature(state.events,['id','title','description','imageUrl','startAt','endAt','permanent'])].join("|");
+      return [base, state.eventFilter, state.eventCategory, state.eventQuery,state.eventLimit,state.timeMode, state.updatedAt,state.eventError,state.eventPartial,state.eventsLoading,collectionSignature(state.events,['id','title','description','imageUrl','startAt','endAt','permanent']),state.convenesUpdatedAt,collectionSignature(state.convenes)].join("|");
     case "news":
       return [base, collectionSignature(news, ["title", "date", "category", "summary", "image"])].join("|");
     case "intro":
@@ -4473,7 +4473,7 @@ function preloadAppData() {
   if (["builder", "echoes", "sonatas"].includes(state.route) && (!builderCatalogLoaded || Date.now() >= builderCatalogExpiresAt)) loadBuilderEchoes();
   // The ticker needs events everywhere. Other catalogs load on first use.
   if (!dataRequests.eventsLoaded) loadEvents();
-  if (["home", "gacha"].includes(state.route) && !dataRequests.convenesLoaded) loadConvenes();
+  if (["home", "events", "gacha"].includes(state.route) && !dataRequests.convenesLoaded) loadConvenes();
   if (["home", "events", "codes"].includes(state.route) && !dataRequests.codesLoaded) loadCodes();
   if (["home", "intro", "characters", "tier", "builder", "gacha"].includes(state.route) && !dataRequests.charactersLoaded) loadCharacters();
   if (state.route === 'characters' && dataRequests.charactersLoaded) {
@@ -4712,7 +4712,7 @@ app.addEventListener("click", (event) => {
     return;
   }
   if(event.target.closest('[data-events-more]')){state.eventLimit+=12;render();return;}
-  if(event.target.closest('[data-events-refresh]')){loadEvents({force:true});loadCodes({force:true});return;}
+  if(event.target.closest('[data-events-refresh]')){loadEvents({force:true});loadCodes({force:true});loadConvenes({force:true});return;}
 
   const timeButton = event.target.closest("[data-time-mode]");
   if (timeButton) {

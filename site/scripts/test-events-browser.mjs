@@ -16,7 +16,12 @@ try{
       const key=String(url);window.testCalls.push(key);
       if(key==='/api/events')return window.eventSourceFailed?Promise.reject(Error('Offline')):Promise.resolve(new Response(JSON.stringify({events:records,updatedAt:new Date().toISOString(),source:'Official Kuro Games announcements',syncIntervalMinutes:30})));
       if(key==='/api/codes')return Promise.resolve(new Response(JSON.stringify({codes:window.codeSourceFailed?[]:[{code:'WUTHERINGGIFT',status:'active',rewards:['Astrite x50','Shell Credit x10000'],expiresAt:null},{code:'DVME2MOHOQJT',status:'active',rewards:['Astrite x20','Shell Credit x20000'],expiresAt:null},{code:'FINDSENTINEL',status:'expired',rewards:[],expiresAt:'2026-09-19T00:00:00Z'}],updatedAt:new Date().toISOString(),externalError:window.codeSourceFailed})));
-      if(key==='/api/convenes')return Promise.resolve(new Response(JSON.stringify({convenes:[]})));
+      if(key==='/api/convenes')return Promise.resolve(new Response(JSON.stringify({convenes:[
+        {id:'test-character',title:'Featured Resonator Convene',type:'Resonator Convene',featuredName:'Hsin',featuredDetail:'5-Star Resonator',imageUrl:'/assets/banners/hsin-3.7.webp',startAt:'2026-09-30T03:00:00Z',endAt:'2026-10-28T03:59:00Z',sourceUrl:'https://wutheringwaves.kurogames.com/en/main/news',highlights:[]},
+        {id:'test-weapon',title:'Featured Weapon Convene',type:'Weapon Convene',featuredName:'Blooming Jadehaven',featuredDetail:'5-Star Weapon',imageUrl:'/assets/banners/blooming-jadehaven-3.7.webp',startAt:'2026-09-30T03:00:00Z',endAt:'2026-10-28T03:59:00Z',sourceUrl:'https://wutheringwaves.kurogames.com/en/main/news',highlights:[]},
+        {id:'test-expired',title:'Expired banner',startAt:'2026-09-01T00:00:00Z',endAt:'2026-09-29T00:00:00Z'},
+        {id:'test-future',title:'Future banner',startAt:'2026-11-01T00:00:00Z',endAt:'2026-11-29T00:00:00Z'}
+      ],updatedAt:new Date().toISOString(),source:'Existing banner API',syncIntervalMinutes:30})));
       return originalFetch(url,options);
     };`});
   for(const lang of ['pt-BR','en','es']){
@@ -25,7 +30,22 @@ try{
     const body=await browser.evaluate(`document.querySelector('${active}').innerText`);
     assert(body.includes(labels[lang].codes));assert(body.includes(labels[lang].upcoming));assert(body.includes(labels[lang].search));
     assert(!body.includes('WAVEBUILDER'));assert(!body.includes('FINDSENTINEL'));
-    assert(!await browser.evaluate("window.testCalls.includes('/api/convenes')"),'Events must not request banners');
+    await waitFor(`document.querySelectorAll('${active} .convene-card').length===2`);
+    assert.equal(await browser.evaluate("window.testCalls.filter(url=>url==='/api/convenes').length"),1,'Events must share the existing banner request');
+    assert(!body.includes('Expired banner'));assert(!body.includes('Future banner'));
+    assert(await browser.evaluate(`[...document.querySelectorAll('${active} .convene-card')].every(card=>card.querySelector('[data-countdown][data-start][data-end]') && card.querySelectorAll('.event-times dd').length===4)`));
+    assert(await browser.evaluate(`document.querySelector('${active} .convene-card img').getAttribute('src').includes('hsin-3.7')`));
+    await browser.click(active+' [data-event-filter="banners"]');
+    assert.equal(await browser.evaluate(`document.querySelectorAll('${active} .convene-card').length`),2);
+    assert.equal(await browser.evaluate(`document.querySelectorAll('${active} [data-event-id]').length`),0);
+    assert(await browser.evaluate(`document.querySelector('${active} .banner-grid').innerText.includes('Blooming Jadehaven')`));
+    await browser.click('a.brand[data-link]');
+    await waitFor(`location.pathname==='/${lang}/' && document.querySelectorAll('${active} .convene-card').length>=2`);
+    assert.equal(await browser.evaluate("window.testCalls.filter(url=>url==='/api/convenes').length"),1,'The existing section must reuse the same banner data');
+    await browser.click(`a[data-link][href="/${lang}/eventos"]`);
+    await waitFor(`document.querySelectorAll('${active} .convene-card').length===2`);
+    assert.equal(await browser.evaluate("window.testCalls.filter(url=>url==='/api/convenes').length"),1,'Returning to Events must not duplicate banner requests');
+    await browser.click(active+' [data-event-filter="all"]');
     assert(await browser.evaluate(`[...document.querySelectorAll('${active} [data-events-section="active"] [data-event-id]')].every(card=>card.dataset.eventStatus==='ao_vivo')`));
     assert(await browser.evaluate(`!!document.querySelector('${active} [data-events-section="upcoming"] [data-event-id="official-5571-echoerase"]')`));
     assert(await browser.evaluate(`!!document.querySelector('${active} [data-events-section="history"] [data-event-id="official-5129"]')`));
@@ -55,10 +75,11 @@ try{
     await browser.evaluate(`(()=>{const select=document.querySelector('${active} [data-event-category]');select.value='all';select.dispatchEvent(new Event('change',{bubbles:true}));const input=document.querySelector('${active} [data-event-search]');input.value='';input.dispatchEvent(new Event('input',{bubbles:true}));})()`);await delay(300);
     assert(await browser.evaluate(`document.querySelectorAll('${active} [data-event-id]').length>10`),'Source failure must preserve prior events');
     await browser.evaluate("window.testNow=Date.parse('2026-10-28T12:00:00Z')");await delay(1200);
+    assert.equal(await browser.evaluate(`document.querySelectorAll('${active} .convene-card').length`),0,'Expired banners must disappear automatically');
     assert(!await browser.evaluate(`!!document.querySelector('${active} [data-events-section="active"] [data-event-id="official-5571-artisanssearch"]')`));
     assert(await browser.evaluate(`!!document.querySelector('${active} [data-events-section="history"] [data-event-id="official-5571-artisanssearch"]')`));
     requests.push(...await browser.evaluate('window.testCalls'));
   }
   assert.equal(browser.errors.length,0,JSON.stringify(browser.errors));
-  console.log('PASS: event sections, preserved archive, future/permanent events, search/category, copy code, expiration, source outages, independent APIs; pt-BR/en/es; 320/390/768/1440 px; no JS errors.');
+  console.log('PASS: event sections, shared active banners, banner images/featured items/dates/countdowns/expiration, preserved archive, search/category, codes, source outages; pt-BR/en/es; 320/390/768/1440 px; no JS errors.');
 }finally{browser.close();}
