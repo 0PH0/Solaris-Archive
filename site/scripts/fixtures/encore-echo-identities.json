@@ -1,0 +1,1163 @@
+{
+  "Echo": [
+    {
+      "Id": 6000070,
+      "Name": "Lottie Lost",
+      "Rarity": 0,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods/T_IconMonsterGoods_071_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_071_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_071_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 5,
+        "Name": "Spectro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementLight1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 8,
+          "Name": "Moonlit Clouds",
+          "Fetters": [
+            {
+              "Id": 15,
+              "Key": 2,
+              "Name": "Moonlit Clouds",
+              "EffectDescription": "Energy Regen + {0}."
+            },
+            {
+              "Id": 16,
+              "Key": 5,
+              "Name": "Moonlit Clouds",
+              "EffectDescription": "Upon using Outro Skill, increases the ATK of the next Resonator by 22.5% for 15s."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriCloud.webp"
+        },
+        {
+          "Id": 9,
+          "Name": "Lingering Tunes",
+          "Fetters": [
+            {
+              "Id": 17,
+              "Key": 2,
+              "Name": "Lingering Tunes",
+              "EffectDescription": "ATK +10%"
+            },
+            {
+              "Id": 18,
+              "Key": 5,
+              "Name": "Lingering Tunes",
+              "EffectDescription": "While on the field, ATK increases by 5% every 1.5s. This effect stacks up to 4 times. Outro Skill DMG + 60%."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriAttack.webp"
+        },
+        {
+          "Id": 5,
+          "Name": "Celestial Light",
+          "Fetters": [
+            {
+              "Id": 9,
+              "Key": 2,
+              "Name": "Celestial Light",
+              "EffectDescription": "Spectro DMG + 10%."
+            },
+            {
+              "Id": 10,
+              "Key": 5,
+              "Name": "Celestial Light",
+              "EffectDescription": "Spectro DMG + 30% for 15s after releasing Intro Skill."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriLight.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6000081,
+      "Name": "Cuddle Wuddle",
+      "Rarity": 1,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods/T_IconMonsterGoods_121_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_121_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_121_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 2,
+          "Name": "Molten Rift",
+          "Fetters": [
+            {
+              "Id": 3,
+              "Key": 2,
+              "Name": "Molten Rift",
+              "EffectDescription": "Fusion DMG + 10%."
+            },
+            {
+              "Id": 4,
+              "Key": 5,
+              "Name": "Molten Rift",
+              "EffectDescription": "Fusion DMG + 30% for 15s after releasing Resonance Skill."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriFire.webp"
+        },
+        {
+          "Id": 3,
+          "Name": "Void Thunder",
+          "Fetters": [
+            {
+              "Id": 5,
+              "Key": 2,
+              "Name": "Void Thunder",
+              "EffectDescription": "Electro DMG + 10%."
+            },
+            {
+              "Id": 6,
+              "Key": 5,
+              "Name": "Void Thunder",
+              "EffectDescription": "Electro DMG + 15% after releasing Heavy Attack or Resonance Skill. This effect stacks up to 2 times, each stack lasts 15s."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriThunder.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6000083,
+      "Name": "Sentry Construct",
+      "Rarity": 2,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_33012_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_33012_UI.webp",
+      "PhantomType": 1,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6000193,
+      "Name": "Kronablight",
+      "Rarity": 1,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_32059_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_32059_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_32059_UI.webp",
+      "PhantomType": 1,
+      "Element": {
+        "Id": 5,
+        "Name": "Spectro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementLight1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 27,
+          "Name": "Trailblazing Star",
+          "Fetters": [
+            {
+              "Id": 272,
+              "Key": 2,
+              "Name": "Trailblazing Star",
+              "EffectDescription": "Fusion DMG + {0}"
+            },
+            {
+              "Id": 275,
+              "Key": 5,
+              "Name": "Trailblazing Star",
+              "EffectDescription": "Inflicting Fusion Burst or Tune Rupture - Shifting increases the Resonator's Crit. Rate by {0} and grants {1} Fusion DMG Bonus for {2}s."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriFireA1.webp"
+        },
+        {
+          "Id": 28,
+          "Name": "Chromatic Foam",
+          "Fetters": [
+            {
+              "Id": 282,
+              "Key": 2,
+              "Name": "Chromatic Foam",
+              "EffectDescription": "Fusion DMG + {0}"
+            },
+            {
+              "Id": 285,
+              "Key": 5,
+              "Name": "Chromatic Foam",
+              "EffectDescription": "When the Resonator inflicts Fusion Burst on the enemies, they gain the following effects: Gain {0} Fusion DMG Bonus for {1} s. While this effect is active, casting an Outro Skill grants the incoming Resonator {2} Fusion DMG Bonus for {3}s."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriFireA2.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6000200,
+      "Name": "Reminiscence: Denia",
+      "Rarity": 3,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_34028_1_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_34028_1_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_34028_1_UI.webp",
+      "PhantomType": 1,
+      "Element": {
+        "Id": 5,
+        "Name": "Spectro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementLight1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 28,
+          "Name": "Chromatic Foam",
+          "Fetters": [
+            {
+              "Id": 282,
+              "Key": 2,
+              "Name": "Chromatic Foam",
+              "EffectDescription": "Fusion DMG + {0}"
+            },
+            {
+              "Id": 285,
+              "Key": 5,
+              "Name": "Chromatic Foam",
+              "EffectDescription": "When the Resonator inflicts Fusion Burst on the enemies, they gain the following effects: Gain {0} Fusion DMG Bonus for {1} s. While this effect is active, casting an Outro Skill grants the incoming Resonator {2} Fusion DMG Bonus for {3}s."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriFireA2.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6010081,
+      "Name": "Phantom: Cuddle Wuddle",
+      "Rarity": 1,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods/T_IconMonsterGoods_SG_32030_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_SG_32030_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_SG_32030_UI.webp",
+      "PhantomType": 1,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Phantom Appearance",
+      "Attributes": "Unlocks the Phantom Appearance of the corresponding Echo.",
+      "FetterGroups": [
+        {
+          "Id": 12,
+          "Name": "Midnight Veil",
+          "Fetters": [
+            {
+              "Id": 122,
+              "Key": 2,
+              "Name": "Midnight Veil",
+              "EffectDescription": "Havoc DMG + {0}"
+            },
+            {
+              "Id": 125,
+              "Key": 5,
+              "Name": "Midnight Veil",
+              "EffectDescription": "When Outro Skill is triggered, deal additional {0} Havoc DMG to surrounding enemies, considered Outro Skill DMG, and grant the incoming Resonator {1} Havoc DMG Bonus for {2}s."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriDarkAssist.webp"
+        },
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6020024,
+      "Name": "Tick Tack",
+      "Rarity": 0,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_115_1_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_111_1_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_111_1_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 6,
+        "Name": "Havoc",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementDark1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 5,
+          "Name": "Celestial Light",
+          "Fetters": [
+            {
+              "Id": 9,
+              "Key": 2,
+              "Name": "Celestial Light",
+              "EffectDescription": "Spectro DMG + 10%."
+            },
+            {
+              "Id": 10,
+              "Key": 5,
+              "Name": "Celestial Light",
+              "EffectDescription": "Spectro DMG + 30% for 15s after releasing Intro Skill."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriLight.webp"
+        },
+        {
+          "Id": 1,
+          "Name": "Freezing Frost",
+          "Fetters": [
+            {
+              "Id": 1,
+              "Key": 2,
+              "Name": "Freezing Frost",
+              "EffectDescription": "Glacio DMG + 10%."
+            },
+            {
+              "Id": 2,
+              "Key": 5,
+              "Name": "Freezing Frost",
+              "EffectDescription": "Glacio DMG + 10% after releasing Basic Attack or Heavy Attack. This effect stacks up to 3 times, each stack lasts 15s."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIce.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6030010,
+      "Name": "Jinhsi",
+      "Rarity": 2,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_33012_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_33012_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6030020,
+      "Name": "Changli",
+      "Rarity": 2,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_33012_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_33012_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6030030,
+      "Name": "Calcharo",
+      "Rarity": 2,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_33012_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_33012_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6030040,
+      "Name": "Shorekeeper",
+      "Rarity": 2,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_33012_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_33012_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6030050,
+      "Name": "Camellya",
+      "Rarity": 2,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_33012_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_33012_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6030060,
+      "Name": "Carlotta",
+      "Rarity": 2,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_33012_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_33012_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6030070,
+      "Name": "Roccia",
+      "Rarity": 2,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_33012_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_33012_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6030080,
+      "Name": "Brant",
+      "Rarity": 2,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_33012_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_33012_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6030090,
+      "Name": "Cantarella",
+      "Rarity": 2,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_33012_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_33012_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6030100,
+      "Name": "Zani",
+      "Rarity": 2,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_33012_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_33012_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6030110,
+      "Name": "Cartethyia",
+      "Rarity": 2,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_33012_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_33012_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 6030120,
+      "Name": "Phoebe",
+      "Rarity": 2,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_33012_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_33012_UI.webp",
+      "PhantomType": 2,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 10,
+          "Name": "Frosty Resolve",
+          "Fetters": [
+            {
+              "Id": 102,
+              "Key": 2,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Resonance Skill DMG + {0}"
+            },
+            {
+              "Id": 105,
+              "Key": 5,
+              "Name": "Frosty Resolve",
+              "EffectDescription": "Casting Resonance Skill grants {0} Glacio DMG Bonus for {1}s and casting Resonance Liberation increases Resonance Skill DMG by {2}, lasting for {3}s. This effect stacks up to {4} times."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriIceUltimateSkill.webp"
+        }
+      ]
+    },
+    {
+      "Id": 390070067,
+      "Name": "Zig Zag",
+      "Rarity": 0,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods/T_IconMonsterGoods_071_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_071_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_071_UI.webp",
+      "PhantomType": 1,
+      "Element": {
+        "Id": 5,
+        "Name": "Spectro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementLight1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 8,
+          "Name": "Moonlit Clouds",
+          "Fetters": [
+            {
+              "Id": 15,
+              "Key": 2,
+              "Name": "Moonlit Clouds",
+              "EffectDescription": "Energy Regen + {0}."
+            },
+            {
+              "Id": 16,
+              "Key": 5,
+              "Name": "Moonlit Clouds",
+              "EffectDescription": "Upon using Outro Skill, increases the ATK of the next Resonator by 22.5% for 15s."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriCloud.webp"
+        },
+        {
+          "Id": 9,
+          "Name": "Lingering Tunes",
+          "Fetters": [
+            {
+              "Id": 17,
+              "Key": 2,
+              "Name": "Lingering Tunes",
+              "EffectDescription": "ATK +10%"
+            },
+            {
+              "Id": 18,
+              "Key": 5,
+              "Name": "Lingering Tunes",
+              "EffectDescription": "While on the field, ATK increases by 5% every 1.5s. This effect stacks up to 4 times. Outro Skill DMG + 60%."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriAttack.webp"
+        },
+        {
+          "Id": 5,
+          "Name": "Celestial Light",
+          "Fetters": [
+            {
+              "Id": 9,
+              "Key": 2,
+              "Name": "Celestial Light",
+              "EffectDescription": "Spectro DMG + 10%."
+            },
+            {
+              "Id": 10,
+              "Key": 5,
+              "Name": "Celestial Light",
+              "EffectDescription": "Spectro DMG + 30% for 15s after releasing Intro Skill."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriLight.webp"
+        }
+      ]
+    },
+    {
+      "Id": 390077004,
+      "Name": "Violet-Feathered Heron",
+      "Rarity": 1,
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods/T_IconMonsterGoods_121_UI.webp",
+      "IconMiddle": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods160/T_IconMonsterGoods160_121_UI.webp",
+      "IconSmall": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods80/T_IconMonsterGoods80_121_UI.webp",
+      "PhantomType": 1,
+      "Element": {
+        "Id": 3,
+        "Name": "Electro",
+        "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementRound/T_IconElementThunder1_UI.webp"
+      },
+      "Type": "Echo",
+      "Attributes": "Equip to gain attributes, active skills, and specific effect bonuses.",
+      "FetterGroups": [
+        {
+          "Id": 2,
+          "Name": "Molten Rift",
+          "Fetters": [
+            {
+              "Id": 3,
+              "Key": 2,
+              "Name": "Molten Rift",
+              "EffectDescription": "Fusion DMG + 10%."
+            },
+            {
+              "Id": 4,
+              "Key": 5,
+              "Name": "Molten Rift",
+              "EffectDescription": "Fusion DMG + 30% for 15s after releasing Resonance Skill."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriFire.webp"
+        },
+        {
+          "Id": 3,
+          "Name": "Void Thunder",
+          "Fetters": [
+            {
+              "Id": 5,
+              "Key": 2,
+              "Name": "Void Thunder",
+              "EffectDescription": "Electro DMG + 10%."
+            },
+            {
+              "Id": 6,
+              "Key": 5,
+              "Name": "Void Thunder",
+              "EffectDescription": "Electro DMG + 15% after releasing Heavy Attack or Resonance Skill. This effect stacks up to 2 times, each stack lasts 15s."
+            }
+          ],
+          "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconElementAttri/T_IconElementAttriThunder.webp"
+        }
+      ]
+    }
+  ],
+  "EchoDetails": {
+    "6000070": {
+      "MonsterId": 6000070,
+      "MonsterName": "Lottie Lost",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/Monster/Ordinary/MO1GAziziMd00501/CommonAnim/Stand2.Stand2",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods/T_IconMonsterGoods_071_UI.webp",
+      "Skill": {
+        "SimplyDescription": "Summon a Lottie Lost to deal Spectro DMG to enemies.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/MstSkill/MstSkil_31046_UI.webp"
+      }
+    },
+    "6000081": {
+      "MonsterId": 6000081,
+      "MonsterName": "Cuddle Wuddle",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/Monster/Elite/ME1JingNiaoMd00301/CommonAnim/Stand2.Stand2",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods/T_IconMonsterGoods_121_UI.webp",
+      "Skill": {
+        "SimplyDescription": "Transform into Cuddle Wuddle and deal consecutive Physical DMG to enemies.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/MstSkill/MstSkil_32030_UI.webp"
+      }
+    },
+    "6000083": {
+      "MonsterId": 6000083,
+      "MonsterName": "Sentry Construct",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/Monster/Lord/ML1ShiXiangGuiMd00201/CommonAnim/Stand3_1.Stand3_1",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "Skill": {
+        "SimplyDescription": "Transform into Sentry Construct and deal Glacio DMG to enemies. Casting Resonance Liberation while equipped with this Echo enhances Strike Capacitor. At max Strike Capacitor, transform into Sentry Construct and deal Glacio DMG to enemies. Equipping this Echo in the main slot grants Glacio DMG Bonus and Resonance Skill Bonus.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/MstSkill/MstSkil_33012_UI.webp"
+      }
+    },
+    "6000193": {
+      "MonsterId": 6000193,
+      "MonsterName": "Kronablight",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/Monster/ElitePro/MP1YingSunMd00301/CommonAnim/Stand2.Stand2",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_32059_UI.webp",
+      "Skill": {
+        "SimplyDescription": "Transform into a Kronablight to attack enemies, dealing Electro DMG.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/MstSkill/T_MstSkil_32059_UI.webp"
+      }
+    },
+    "6000200": {
+      "MonsterId": 6000200,
+      "MonsterName": "Reminiscence: Denia",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/Vision/VM_Boss/VM_MB1Daniya/Md00201/CommonAnim/Stand2_1.Stand2_1",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_34028_1_UI.webp",
+      "Skill": {
+        "SimplyDescription": "Summon \"Trickster\" to deal Fusion DMG to enemies, and increase the Fusion DMG of the incoming Resonator using Intro Skill.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/MstSkill/T_MstSkil_34028_UI.webp"
+      }
+    },
+    "6010081": {
+      "MonsterId": 6010081,
+      "MonsterName": "Phantom: Cuddle Wuddle",
+      "TypeDescription": "Phantom Appearance",
+      "StandAnim": "/Game/Aki/Character/Monster/Elite/ME1DabuouMd00001/CommonAnim/Stand2.Stand2",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterGoods/T_IconMonsterGoods_SG_32030_UI.webp",
+      "Skill": {
+        "SimplyDescription": "Transform into Cuddle Wuddle and deal consecutive Physical DMG to enemies.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/MstSkill/MstSkil_32030_UI.webp"
+      }
+    },
+    "6020024": {
+      "MonsterId": 6020024,
+      "MonsterName": "Tick Tack",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/Monster/Ordinary/MO1GuguhetunMd00201/CommonAnim/Stand2.Stand2",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_115_1_UI.webp",
+      "Skill": {
+        "SimplyDescription": "Summon a Gulpuff that generates a <color=#ffd12f>healing field</color>. All nearby party members within this field recover {0} HP plus HP equal to {1} of the caster's ATK. Resonators affected also gain {2} DMG Reduction. Lasts for {3}s. Cooldown: {4}s.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/MstSkill/T_MstSkil_115_UI.webp"
+      }
+    },
+    "6030010": {
+      "MonsterId": 6030010,
+      "MonsterName": "Jinhsi",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/NPC/Tuanzi/HYtuanzi_jinxi/CommonAnim/Stand01.Stand01",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "Skill": {
+        "SimplyDescription": "<size=40><color=Title>Basic Attack</color></size>\nDeal <color=Light>Spectro DMG</color> equal to {0} of the active Resonator's ATK.\n<size=10> </size>\n<size=40><color=Title>Core Skill</color></size>\nTransform into Jinhsi Cube and cast Light Beam to bombard the front area for {2}s, dealing <color=Light>Spectro DMG</color> equal to {1} of the active Resonator's ATK per second. Skill Cooldown: {6}s.\n- Jinhsi Cube can control the direction of the Light Beam.\n<size=10> </size>\n<size=40><color=Title>Enhanced Effect</color></size>\nSkill Projectiles Level {4}: The number of Light Beam is increased by {5}.\nSkill Duration Level {3}: The skill duration is increased by {9}s.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/ChipIcon256/T_ChipIcon256_Jinxi.webp"
+      }
+    },
+    "6030020": {
+      "MonsterId": 6030020,
+      "MonsterName": "Changli",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/NPC/Tuanzi/HYtuanzi_changli/CommonAnim/Stand01.Stand01",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "Skill": {
+        "SimplyDescription": "<size=40><color=Title>Basic Attack</color></size>\nDeal <color=Fire>Fusion DMG</color> equal to {0} of the active Resonator's ATK.\n<size=10> </size>\n<size=40><color=Title>Core Skill</color></size>\nChangli Cube casts Flaming Sacrifice to attack the target, dealing <color=Fire>Fusion DMG</color> equal to {1} of the active Resonator's ATK and increasing the ATK of all nearby Resonators in the team by {2} for {3}s, stacking up to {5} times. Skill Cooldown: {4}s",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/ChipIcon256/T_ChipIcon256_Changli.webp"
+      }
+    },
+    "6030030": {
+      "MonsterId": 6030030,
+      "MonsterName": "Calcharo",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/NPC/Tuanzi/HYtuanzi_kakaluo/CommonAnim/Stand01.Stand01",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "Skill": {
+        "SimplyDescription": "<size=40><color=Title>Basic Attack</color></size>\nDeal <color=Thunder>Electro DMG</color> equal to {0} of the active Resonator's ATK.\n<size=10> </size>\n<size=40><color=Title>Core Skill</color></size>\nCalcharo Cube casts Death Messenger to attack the target, dealing <color=Thunder>Electro DMG</color> equal to {1} of the active Resonator's ATK. Skill Cooldown: {6}s\n<size=10> </size>\n<size=40><color=Title>Enhanced Effect</color></size>\nSkill Projectiles Level {2}:  Generate {5} more Phantoms to cast Death Messenger that deals DMG equal to {7} of Calcharo Cube's Death Messenger DMG.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/ChipIcon256/T_ChipIcon256_Kakaluo.webp"
+      }
+    },
+    "6030040": {
+      "MonsterId": 6030040,
+      "MonsterName": "Shorekeeper",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/NPC/Tuanzi/HYtuanzi_shouanren/CommonAnim/Stand01.Stand01",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "Skill": {
+        "SimplyDescription": "<size=40><color=Title>Basic Attack</color></size>\nDeal <color=Light>Spectro DMG</color> equal to {0} of the active Resonator's ATK.\n<size=10> </size>\n<size=40><color=Title>Core Skill</color></size>\nShorekeeper Cube generates a Stellarealm that removes the negative effects inflicted upon all Resonators within the range. All Cubes within the Stellarealm have their HP restored by {1} of the caster's Max HP per second, and their Crit. DMG increased by {2}. This effect lasts for {3}s. Skill Cooldown: {9}s\n<size=10> </size>\n<size=40><color=Title>Enhanced Effect</color></size>\nSkill Duration Level {4}: Stellarealm duration is increased by {8}s.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/ChipIcon256/T_ChipIcon256_Shouanren.webp"
+      }
+    },
+    "6030050": {
+      "MonsterId": 6030050,
+      "MonsterName": "Camellya",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/NPC/Tuanzi/HYtuanzi_chun/CommonAnim/Stand01.Stand01",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "Skill": {
+        "SimplyDescription": "<size=40><color=Title>Basic Attack</color></size>\nDeal <color=Dark>Havoc DMG</color> equal to {0} of the active Resonator's ATK.\n<size=10> </size>\n<size=40><color=Title>Core Skill</color></size>\nTransform into Camellya Cube and cast Vining Waltz that attacks targets in a wide range for {2}s, dealing <color=Dark>Havoc DMG</color> equal to {1} of the active Resonator's ATK per second. Skill Cooldown: {3}s",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/ChipIcon256/T_ChipIcon256_Chun.webp"
+      }
+    },
+    "6030060": {
+      "MonsterId": 6030060,
+      "MonsterName": "Carlotta",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/NPC/Tuanzi/HYtuanzi_kelaita/CommonAnim/Stand01.Stand01",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "Skill": {
+        "SimplyDescription": "<size=40><color=Title>Basic Attack</color></size>\nDeal <color=Ice>Glacio DMG</color> equal to {0} of the active Resonator's ATK. \n<size=10></size>\n<size=40><color=Title>Core Skill</color></size>\nCarlotta Cube summons Muskets to shoot the nearby targets, dealing <color=Ice>Glacio DMG</color> equal to {3} of the active Resonator's ATK in total. Skill Cooldown: {8}s\n<size=10> </size>\n<size=40><color=Title>Enhanced Effect</color></size>\nSkill Projectiles Level {4}: The number of Muskets is increased by {7}.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/ChipIcon256/T_ChipIcon256_Kelaita.webp"
+      }
+    },
+    "6030070": {
+      "MonsterId": 6030070,
+      "MonsterName": "Roccia",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/NPC/Tuanzi/HYtuanzi_luokeke/CommonAnim/Stand01.Stand01",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "Skill": {
+        "SimplyDescription": "<size=40><color=Title>Basic Attack</color></size>\nDeal <color=Dark>Havoc DMG</color> equal to {0} of the active Resonator's ATK.\n<size=10></size>\n<size=40><color=Title>Core Skill</color></size>\nRoccia generates Mind Storm that pulls in the nearby targets for {2}s, dealing <color=Dark>Havoc DMG</color> equal to {1} of the active Resonator's ATK per second. Skill Cooldown: {8}s.\n<size=10> </size>\n<size=40><color=Title>Enhanced Effect</color></size>\nSkill Duration Level {3}: Mind Storm duration is increased by {7}s.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/ChipIcon256/T_ChipIcon256_Luokeke.webp"
+      }
+    },
+    "6030080": {
+      "MonsterId": 6030080,
+      "MonsterName": "Brant",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/NPC/Tuanzi/HYtuanzi_bulante/CommonAnim/Stand01.Stand01",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "Skill": {
+        "SimplyDescription": "<size=40><color=Title>Basic Attack</color></size>\nDeal <color=Fire>Fusion DMG</color> equal to {0} of the active Resonator's ATK.\n<size=10></size>\n<size=40><color=Title>Core Skill</color></size>\nBrant Cube summons an anchor to attack, dealing <color=Fire>Fusion DMG</color> equal to {1} of the active Resonator's ATK and generating a few Zesty Oranges when landed. Resonators who pick up the Zesty Oranges will have their ATK increased by {7} and their HP restored by {8} of the caster's Max HP for {2}s, stacking up to {4} times. Skill Cooldown: {6}s.\n<size=10> </size>\n<size=40><color=Title>Enhanced Effect</color></size>\nSkill Projectiles Level {3}: The number of Zesty Orange is increased by {5}.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/ChipIcon256/T_ChipIcon256_Bulante.webp"
+      }
+    },
+    "6030090": {
+      "MonsterId": 6030090,
+      "MonsterName": "Cantarella",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/NPC/Tuanzi/HYtuanzi_kanteleila/CommonAnim/Stand01.Stand01",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "Skill": {
+        "SimplyDescription": "<size=40><color=Title>Basic Attack</color></size>\nDeal <color=Dark>Havoc DMG</color> equal to {0} of the active Resonator's ATK.\n<size=10></size>\n<size=40><color=Title>Core Skill</color></size>\nTransform into Cantarella Cube and Stagnate the targets within a certain range for {2}s, dealing <color=Dark>Havoc DMG</color> equal to {1} of the active Resonator's ATK. Skill Cooldown: {3}s",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/ChipIcon256/T_ChipIcon256_Kanteleila.webp"
+      }
+    },
+    "6030100": {
+      "MonsterId": 6030100,
+      "MonsterName": "Zani",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/NPC/Tuanzi/HYtuanzi_zanni/CommonAnim/Stand01.Stand01",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "Skill": {
+        "SimplyDescription": "<size=40><color=Title>Basic Attack</color></size>\nDeal <color=Light>Spectro DMG</color> equal to {0} of the active Resonator's ATK and occasionally perform slide attack, dealing <color=Light>Spectro DMG</color> equal to {1} of the active Resonator's ATK.\n<size=10></size>\n<size=40><color=Title>Core Skill</color></size>\nZani Cube performs consecutive attacks for {4}s, each attack dealing <color=Light>Spectro DMG</color> equal to {2} of the active Resonator's ATK. Skill Cooldown: {3}s",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/ChipIcon256/T_ChipIcon256_Zanni.webp"
+      }
+    },
+    "6030110": {
+      "MonsterId": 6030110,
+      "MonsterName": "Cartethyia",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/NPC/Tuanzi/HYtuanzi_katixiya/CommonAnim/Stand01.Stand01",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "Skill": {
+        "SimplyDescription": "<size=40><color=Title>Basic Attack</color></size>\nDeal <color=Wind>Aero DMG</color> equal to {0} of the active Resonator's ATK.\n<size=10> </size>\n<size=40><color=Title>Core Skill</color></size>\nCartethyia Cube summons Sword Barrage that constantly strikes the targets for {5}s, dealing <color=Wind>Aero DMG</color> equal to {1} of the active Resonator's ATK per second. Skill Cooldown: {4}s\n<size=10> </size>\n<size=40><color=Title>Enhanced Effect</color></size>\nSkill Projectiles Level {2}: Sword Barrage DMG is increased by {6}.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/ChipIcon256/T_ChipIcon256_Katixiya.webp"
+      }
+    },
+    "6030120": {
+      "MonsterId": 6030120,
+      "MonsterName": "Phoebe",
+      "TypeDescription": "Echo",
+      "StandAnim": "/Game/Aki/Character/NPC/Tuanzi/HYtuanzi_feibi/CommonAnim/Stand01.Stand01",
+      "Icon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/IconMonsterHead/T_IconMonsterHead_33012_UI.webp",
+      "Skill": {
+        "SimplyDescription": "<size=40><color=Title>Basic Attack</color></size>\nDeal <color=Light>Spectro DMG</color> equal to {0} of the active Resonator's ATK.\n<size=10></size>\n<size=40><color=Title>Core Skill</color></size>\nPhoebe Cube prays devoutly to the Sentinel and summons Holy Light that continuously attacks the nearby targets, dealing <color=Light>Spectro DMG</color> equal to {1} of the active Resonator's ATK per second and consistently granting all nearby Resonators in the team a Shield based on {9} of the caster's Max HP. This effect lasts for {2}s. Skill Cooldown: {8}s\n<size=10> </size>\n<size=40><color=Title>Enhanced Effect</color></size>\nSkill Duration Level {3}: Holy Light duration is increased by {7}s.",
+        "BattleViewIcon": "https://api.encore.moe/resource/Data/Game/Aki/UI/UIResources/Common/Image/ChipIcon256/T_ChipIcon256_Feibi.webp"
+      }
+    }
+  }
+}

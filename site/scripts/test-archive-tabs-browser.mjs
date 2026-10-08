@@ -1,14 +1,16 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {openBrowser, delay} from './browser-harness.mjs';
-import {loadEchoCatalog} from '../public/echo-catalog.js';
+import {loadEchoCatalog, normalizeEchoCatalog} from '../public/echo-catalog.js';
 import {loadWeaponDetail} from '../public/weapon-catalog.js';
 const snapshot = async (file, fallback) => {
   try {return JSON.parse(await fs.readFile(file,'utf8'));} catch {return fallback();}
 };
-const catalog = await snapshot('artifacts/current-echo-catalog.json', loadEchoCatalog);
+const cachedCatalog = await snapshot('artifacts/current-echo-catalog.json', loadEchoCatalog);
 const payload = await snapshot('artifacts/current-echo.json', () => fetch('https://api-v2.encore.moe/api/en/echo').then(response=>response.json()));
-payload.SonataDetails = Object.fromEntries(catalog.sets.map(set => [set.name,{EffectKeys:set.bonuses.map(b=>b.count),EffectDescriptions:set.bonuses.map(b=>b.description)}]));
+payload.EchoDetails = JSON.parse(await fs.readFile(new URL('./fixtures/encore-echo-identities.json', import.meta.url),'utf8')).EchoDetails;
+payload.SonataDetails = Object.fromEntries(cachedCatalog.sets.map(set => [set.name,{EffectKeys:set.bonuses.map(b=>b.count),EffectDescriptions:set.bonuses.map(b=>b.description)}]));
+const catalog = normalizeEchoCatalog(payload);
 const weapons = await snapshot('artifacts/current-weapon.json', () => fetch('https://api-v2.encore.moe/api/en/weapon').then(response=>response.json()));
 const details = await snapshot('artifacts/current-weapon-details.json', async () => {
   const entries=[], queue=[...weapons.weapons];
@@ -24,7 +26,7 @@ const active = '.route-panel:not([hidden])';
 try {
   await browser.call('Page.addScriptToEvaluateOnNewDocument',{source:`
     const payload=${JSON.stringify(payload)}, weapons=${JSON.stringify(weapons)}, details=${JSON.stringify(details)};
-    localStorage.setItem('solaris:echo-catalog:v2',JSON.stringify({payload,updatedAt:Date.now()}));
+    localStorage.setItem('solaris:echo-catalog:v3',JSON.stringify({payload,updatedAt:Date.now()}));
     const originalFetch=window.fetch.bind(window);
     window.fetch=(url, options)=>{
       const key=String(url);let value;
@@ -41,6 +43,9 @@ try {
   for(const language of ['pt-BR','en','es']) {
     await browser.go('/'+language+'/ecos');
     await waitFor(`document.querySelectorAll('${active} .archive-catalog .builder-option').length===${catalog.echoes.length}`);
+    const shown = await browser.evaluate(`[...document.querySelectorAll('${active} .archive-catalog .builder-option-info strong')].map(element=>element.textContent)`);
+    for (const name of ['Jinhsi','Changli','Shorekeeper']) assert(!shown.includes(name),name+' must not appear as an Echo');
+    for (const name of ['Lottie Lost','Cuddle Wuddle','Phantom: Dreamless']) assert(shown.includes(name),name+' must remain');
     const nav = await browser.evaluate(`[...document.querySelectorAll('[data-app-topbar] a[data-link]')].map(a=>a.getAttribute('href'))`);
     const echoIndex=nav.indexOf('/'+language+'/ecos');
     assert.equal(nav[echoIndex+1],'/'+language+'/sonatas');

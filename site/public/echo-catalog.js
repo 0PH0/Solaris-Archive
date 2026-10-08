@@ -1,6 +1,6 @@
 // The existing asset repository uses this Encore catalog as its source.
 export const ECHO_SOURCE = 'https://api-v2.encore.moe/api/en/echo';
-const CACHE_KEY = 'solaris:echo-catalog:v2';
+const CACHE_KEY = 'solaris:echo-catalog:v3';
 export const ECHO_CACHE_TTL = 6 * 60 * 60 * 1000;
 let request;
 let memoryCatalog;
@@ -16,10 +16,29 @@ export function normalizeEchoCatalog(payload) {
   // Prefer the standard record over alternate internal records of the same Echo.
   const records = [...payload.Echo].sort((a, b) => (a.PhantomType === 1 ? 0 : 1) - (b.PhantomType === 1 ? 0 : 1) || a.Id - b.Id);
   for (const record of records) {
-    const name = plain(record.Name).trim();
+    let name = plain(record.Name).trim();
     if (!name || /^MonsterInfo_.*_Name$/i.test(name) || !icon(record.Icon)) continue;
+    if (record.Type && !['Echo', 'Phantom Appearance'].includes(record.Type)) continue;
+    if (![0, 1, 2, 3].includes(record.Rarity) || !record.FetterGroups?.length) continue;
+    let image = icon(record.Icon);
+    if (record.PhantomType !== 1) {
+      // PhantomType 2 also contains mode-only copies and Resonator Cubes.
+      // Validate unique entries by their own Echo detail, never by a character
+      // name blacklist or by renaming them after the reused placeholder icon.
+      const detail = payload.EchoDetails?.[record.Id];
+      if (!detail || Number(detail.MonsterId) !== Number(record.Id) || detail.TypeDescription !== 'Echo' || /\/NPC\//i.test(detail.StandAnim || '')) continue;
+      name = plain(detail.MonsterName).trim();
+      const skill = plain(detail.Skill?.SimplyDescription || detail.Skill?.DescriptionEx);
+      if (!name || /^MonsterInfo_.*_Name$/i.test(name) || !skill.toLowerCase().includes(name.replace(/^Phantom:\s*/i, '').toLowerCase())) continue;
+      // Some valid Echoes reuse another monster's item icon. Their skill icon
+      // is an explicit asset in the same API and depicts the correct Echo.
+      const reused = records.some(other => other.PhantomType === 1 && icon(other.Icon) === image && slug(plain(other.Name)) !== slug(name));
+      if (reused) image = icon(detail.Skill?.BattleViewIcon);
+      else image = icon(detail.Icon) || image;
+      if (!image) continue;
+    }
     const key = slug(name);
-    if (!unique.has(key)) unique.set(key, record);
+    if (!unique.has(key)) unique.set(key, {...record, Name: name, Icon: image});
   }
   const sets = new Map();
   const echoes = [...unique].map(([key, record]) => {
@@ -59,6 +78,21 @@ export async function loadEchoCatalog() {
       const response = await fetch(ECHO_SOURCE, {signal: AbortSignal.timeout(20000)});
       if (!response.ok) throw new Error('Echo source unavailable');
       const payload = await response.json();
+      // The list mixes equipable Echoes with internal records. Standard entries
+      // win; only unfamiliar alternate identities need additional validation.
+      const standardNames = new Set(payload.Echo.filter(record => record.PhantomType === 1).map(record => slug(plain(record.Name))));
+      const candidates = payload.Echo.filter(record => record.PhantomType !== 1 && plain(record.Name).trim() && !/^MonsterInfo_.*_Name$/i.test(plain(record.Name)) && !standardNames.has(slug(plain(record.Name))));
+      const identityQueue = [...new Map(candidates.map(record => [record.Name + '|' + record.Icon, record])).values()];
+      payload.EchoDetails = {};
+      await Promise.all(Array.from({length: Math.min(4, identityQueue.length)}, async () => {
+        while (identityQueue.length) {
+          const record = identityQueue.shift();
+          const response = await fetch(ECHO_SOURCE + '/' + record.Id, {signal: AbortSignal.timeout(15000)});
+          if (!response.ok) throw new Error('Echo identity source unavailable');
+          const detail = await response.json();
+          payload.EchoDetails[record.Id] = {MonsterId: detail.MonsterId, MonsterName: detail.MonsterName, TypeDescription: detail.TypeDescription, StandAnim: detail.StandAnim, Icon: detail.Icon, Skill: {SimplyDescription: detail.Skill?.SimplyDescription, DescriptionEx: detail.Skill?.DescriptionEx, BattleViewIcon: detail.Skill?.BattleViewIcon}};
+        }
+      }));
       // The list endpoint contains unresolved {0} parameters. Echo details provide
       // the complete effects for every associated Sonata; share these with Builder.
       payload.SonataDetails = {};

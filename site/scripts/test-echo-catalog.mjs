@@ -1,7 +1,58 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { normalizeEchoCatalog, loadEchoCatalog, readEchoCatalogCache } from '../public/echo-catalog.js';
 const record = (Id, Name, extra = {}) => ({Id, Name, PhantomType: 1, Rarity: 0, Icon: `https://api.encore.moe/resource/${Id}.webp`, FetterGroups: [{Name: 'Test Sonata', Fetters: [{Key: 3, EffectDescription: 'Three pieces'}]}], ...extra});
+test('real source identities exclude Resonator Cubes while preserving boss Echoes and Phantom appearances', () => {
+  const source = JSON.parse(fs.readFileSync(new URL('./fixtures/encore-echo-identities.json', import.meta.url),'utf8'));
+  const catalog = normalizeEchoCatalog(source);
+  const cubeNames = source.Echo.filter(entry => /\/NPC\//.test(source.EchoDetails[entry.Id]?.StandAnim || '')).map(entry=>entry.Name);
+  assert.equal(cubeNames.length,12);
+  for (const name of cubeNames) assert(!catalog.echoes.some(echo=>echo.name===name),name);
+  for (const name of ['Sentry Construct','Phantom: Cuddle Wuddle','Reminiscence: Denia','Kronablight','Lottie Lost','Cuddle Wuddle']) assert(catalog.echoes.some(echo=>echo.name===name),name);
+  assert.equal(catalog.echoes.length,8);
+  assert.equal(catalog.echoes.find(echo=>echo.name==='Sentry Construct').id,6000083);
+  for (const name of ['Lottie Lost','Cuddle Wuddle']) {
+    const original=source.Echo.find(echo=>echo.Name===name);
+    const actual=catalog.echoes.find(echo=>echo.name===name);
+    assert.equal(actual.iconUrl,source.EchoDetails[original.Id].Skill.BattleViewIcon);
+    assert.notEqual(actual.iconUrl,original.Icon);
+  }
+});
+test('alternate records require their own matching identity and malformed entries cannot poison valid Echoes', () => {
+  const valid=record(1,'Valid');
+  const alternate=record(2,'Incorrect label',{PhantomType:2});
+  const source={Echo:[valid,alternate,record(3,'Invalid cost',{Rarity:99}),record(4,'No Sonata',{FetterGroups:[]}),record(5,'Not an Echo',{Type:'Weapon'})],EchoDetails:{2:{MonsterId:2,MonsterName:'Actual Echo',TypeDescription:'Echo',StandAnim:'/Game/Aki/Character/Monster/Stand',Skill:{SimplyDescription:'Summon Actual Echo.'}}}};
+  assert.deepEqual(normalizeEchoCatalog(source).echoes.map(echo=>echo.name),['Actual Echo','Valid']);
+  source.EchoDetails[2].MonsterId=999;
+  assert.deepEqual(normalizeEchoCatalog(source).echoes.map(echo=>echo.name),['Valid']);
+});
+test('live identity checks are shared and old unvalidated caches cannot reintroduce NPC names', async () => {
+  const savedFetch=globalThis.fetch, savedStorage=globalThis.localStorage;
+  const storage=new Map([['solaris:echo-catalog:v2',JSON.stringify({updatedAt:Date.now(),payload:{Echo:[record(9,'Old NPC')]}})]]);
+  const original=record(1,'Original');
+  const alternate=record(2,'Valid Alternate',{PhantomType:2,Icon:original.Icon});
+  const npc=record(3,'Future Resonator',{PhantomType:2,Icon:original.Icon});
+  const calls=[];
+  globalThis.localStorage={getItem:key=>storage.get(key)||null,setItem:(key,value)=>storage.set(key,value)};
+  globalThis.fetch=async url=>{
+    calls.push(String(url));
+    const data=String(url).endsWith('/echo') ? {Echo:[original,alternate,npc]} : String(url).endsWith('/2') ? {MonsterId:2,MonsterName:alternate.Name,TypeDescription:'Echo',StandAnim:'/Game/Aki/Character/Monster/Stand',Skill:{SimplyDescription:'Summon Valid Alternate.',BattleViewIcon:'https://api.encore.moe/resource/alternate.webp'}} : {MonsterId:3,MonsterName:npc.Name,TypeDescription:'Echo',StandAnim:'/Game/Aki/Character/NPC/Cube/Stand',Skill:{SimplyDescription:'Transform into Future Resonator Cube.'}};
+    return {ok:true,json:async()=>data};
+  };
+  try {
+    const module=await import('../public/echo-catalog.js?identity-check-test');
+    assert.equal(module.readEchoCatalogCache(),null);
+    const [first,second]=await Promise.all([module.loadEchoCatalog(),module.loadEchoCatalog()]);
+    assert.equal(first,second);
+    assert.equal(calls.length,3);
+    assert.deepEqual(first.echoes.map(echo=>echo.name),['Original','Valid Alternate']);
+    assert.equal(first.echoes.find(echo=>echo.name===alternate.Name).iconUrl,'https://api.encore.moe/resource/alternate.webp');
+    await module.loadEchoCatalog();
+    assert.equal(calls.length,3);
+    assert(storage.has('solaris:echo-catalog:v3'));
+  } finally {globalThis.fetch=savedFetch;globalThis.localStorage=savedStorage;}
+});
 test('all names are retained without a limit; only duplicate and unresolved names are excluded', () => {
   const entries = Array.from({length: 300}, (_,i)=>record(i,'Echo '+i));
   const catalog = normalizeEchoCatalog({Echo:[...entries, record(500,'Echo 0',{PhantomType:2}),record(501,'MonsterInfo_999_Name')]});
