@@ -1,0 +1,170 @@
+{
+  "6000145": {
+    "MonsterId": 6000145,
+    "ParentMonsterId": 6000045
+  },
+  "6010042": {
+    "MonsterId": 6010042,
+    "ParentMonsterId": 6000042
+  },
+  "6010051": {
+    "MonsterId": 6010051,
+    "ParentMonsterId": 6000051
+  },
+  "6010052": {
+    "MonsterId": 6010052,
+    "ParentMonsterId": 6000052
+  },
+  "6010053": {
+    "MonsterId": 6010053,
+    "ParentMonsterId": 6000053
+  },
+  "6010057": {
+    "MonsterId": 6010057,
+    "ParentMonsterId": 6000057
+  },
+  "6010058": {
+    "MonsterId": 6010058,
+    "ParentMonsterId": 6000058
+  },
+  "6010060": {
+    "MonsterId": 6010060,
+    "ParentMonsterId": 6000060
+  },
+  "6010067": {
+    "MonsterId": 6010067,
+    "ParentMonsterId": 6000067
+  },
+  "6010068": {
+    "MonsterId": 6010068,
+    "ParentMonsterId": 6000068
+  },
+  "6010071": {
+    "MonsterId": 6010071,
+    "ParentMonsterId": 6000071
+  },
+  "6010072": {
+    "MonsterId": 6010072,
+    "ParentMonsterId": 6000072
+  },
+  "6010073": {
+    "MonsterId": 6010073,
+    "ParentMonsterId": 6000073
+  },
+  "6010079": {
+    "MonsterId": 6010079,
+    "ParentMonsterId": 6000079
+  },
+  "6010080": {
+    "MonsterId": 6010080,
+    "ParentMonsterId": 6000080
+  },
+  "6010081": {
+    "MonsterId": 6010081,
+    "ParentMonsterId": 6000081
+  },
+  "6010082": {
+    "MonsterId": 6010082,
+    "ParentMonsterId": 6000082
+  },
+  "6010083": {
+    "MonsterId": 6010083,
+    "ParentMonsterId": 6000083
+  },
+  "6010090": {
+    "MonsterId": 6010090,
+    "ParentMonsterId": 6000090
+  },
+  "6010091": {
+    "MonsterId": 6010091,
+    "ParentMonsterId": 6000091
+  },
+  "6010104": {
+    "MonsterId": 6010104,
+    "ParentMonsterId": 6000104
+  },
+  "6010112": {
+    "MonsterId": 6010112,
+    "ParentMonsterId": 6000112
+  },
+  "6010121": {
+    "MonsterId": 6010121,
+    "ParentMonsterId": 6000121
+  },
+  "6010178": {
+    "MonsterId": 6010178,
+    "ParentMonsterId": 6000178
+  },
+  "6010179": {
+    "MonsterId": 6010179,
+    "ParentMonsterId": 6000179
+  },
+  "6010180": {
+    "MonsterId": 6010180,
+    "ParentMonsterId": 6000180
+  },
+  "6010190": {
+    "MonsterId": 6010190,
+    "ParentMonsterId": 6000190
+  },
+  "6010191": {
+    "MonsterId": 6010191,
+    "ParentMonsterId": 6000191
+  },
+  "6010194": {
+    "MonsterId": 6010194,
+    "ParentMonsterId": 6000194
+  },
+  "6010195": {
+    "MonsterId": 6010195,
+    "ParentMonsterId": 6000195
+  },
+  "6010196": {
+    "MonsterId": 6010196,
+    "ParentMonsterId": 6000196
+  },
+  "6010202": {
+    "MonsterId": 6010202,
+    "ParentMonsterId": 6000202
+  },
+  "6010214": {
+    "MonsterId": 6010214,
+    "ParentMonsterId": 6000214
+  },
+  "6010216": {
+    "MonsterId": 6010216,
+    "ParentMonsterId": 6000216
+  },
+  "6010217": {
+    "MonsterId": 6010217,
+    "ParentMonsterId": 6000217
+  },
+  "6010220": {
+    "MonsterId": 6010220,
+    "ParentMonsterId": 6000220
+  },
+  "390180010": {
+    "MonsterId": 390180010,
+    "ParentMonsterId": 6000043
+  },
+  "391070076": {
+    "MonsterId": 391070076,
+    "ParentMonsterId": 390070076
+  },
+  "391070105": {
+    "MonsterId": 391070105,
+    "ParentMonsterId": 390070105
+  },
+  "391077024": {
+    "MonsterId": 391077024,
+    "ParentMonsterId": 390077024
+  },
+  "391080003": {
+    "MonsterId": 391080003,
+    "ParentMonsterId": 390080003
+  },
+  "391080007": {
+    "MonsterId": 391080007,
+    "ParentMonsterId": 390080007
+  }
+}

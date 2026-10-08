@@ -1,6 +1,6 @@
 // The existing asset repository uses this Encore catalog as its source.
 export const ECHO_SOURCE = 'https://api-v2.encore.moe/api/en/echo';
-const CACHE_KEY = 'solaris:echo-catalog:v3';
+const CACHE_KEY = 'solaris:echo-catalog:v4';
 export const ECHO_CACHE_TTL = 6 * 60 * 60 * 1000;
 let request;
 let memoryCatalog;
@@ -49,10 +49,20 @@ export function normalizeEchoCatalog(payload) {
       sets.set(setKey, {id: group.Id, slug: setKey, name: plain(group.Name), iconUrl: icon(group.Icon), bonuses: bonuses.filter(bonus => bonus.count > 0), source: 'https://wutheringwaves.fandom.com/wiki/' + encodeURIComponent(plain(group.Name).replaceAll(' ', '_'))});
       return setKey;
     });
-    return {id: record.Id, slug: key, name: plain(record.Name), cost: [1, 3, 4, 4][record.Rarity], classId: ['common', 'elite', 'overlord', 'calamity'][record.Rarity], isPhantom: record.Type === 'Phantom Appearance' || /^Phantom:/i.test(record.Name), isNightmare: /\bNightmare\b/i.test(record.Name), element: plain(record.Element?.Name), description: plain(record.Attributes), sets: [...new Set(groups)], iconUrl: icon(record.Icon), aliases: key === 'dwarf-cassowary' ? ['Casuario Enano', 'Casuar-anão'] : []};
+    return {id: record.Id, parentId: Number(payload.EchoDetails?.[record.Id]?.ParentMonsterId || record.ParentMonsterId) || null, slug: key, name: plain(record.Name), cost: [1, 3, 4, 4][record.Rarity], classId: ['common', 'elite', 'overlord', 'calamity'][record.Rarity], isPhantom: record.Type === 'Phantom Appearance' || /^Phantom:/i.test(record.Name), isNightmare: /\bNightmare\b/i.test(record.Name), element: plain(record.Element?.Name), description: plain(record.Attributes), sets: [...new Set(groups)], iconUrl: icon(record.Icon), aliases: key === 'dwarf-cassowary' ? ['Casuario Enano', 'Casuar-anão'] : []};
   });
   if (!echoes.length || echoes.some(echo => !echo.cost || !echo.sets.length)) throw new Error('Incomplete Encore catalog');
   return {echoes: echoes.sort((a,b) => b.cost-a.cost || a.name.localeCompare(b.name)), sets: [...sets.values()], source: ECHO_SOURCE};
+}
+
+export function groupEchoAppearances(echoes) {
+  const originals = echoes.filter(echo => !echo.isPhantom).map(echo => ({...echo, phantoms: []}));
+  const byId = new Map(originals.map(echo => [Number(echo.id), echo]));
+  for (const skin of echoes.filter(echo => echo.isPhantom)) {
+    const parent = byId.get(Number(skin.parentId));
+    if (parent && !parent.phantoms.some(appearance => appearance.id === skin.id)) parent.phantoms.push(skin);
+  }
+  return originals;
 }
 
 export function filterEchoCatalog(echoes, sets, filters = {}) {
@@ -64,10 +74,10 @@ export function filterEchoCatalog(echoes, sets, filters = {}) {
     if (filters.class && filters.class !== 'all' && echo.classId !== filters.class) return false;
     if (filters.element && filters.element !== 'all' && echo.element !== filters.element) return false;
     if (filters.set && filters.set !== 'all' && !echo.sets.includes(filters.set)) return false;
-    if (filters.variant === 'phantom' && !echo.isPhantom) return false;
+    if (filters.variant === 'phantom' && !(echo.isPhantom || echo.phantoms?.length)) return false;
     if (filters.variant === 'nightmare' && !echo.isNightmare) return false;
     if (filters.variant === 'regular' && (echo.isPhantom || echo.isNightmare)) return false;
-    return !query || normalize([echo.name, ...(echo.aliases || []), echo.classId, echo.element, ...echo.sets.map(key => setNames.get(key))].join(' ')).includes(query);
+    return !query || normalize([echo.name, ...(echo.aliases || []), ...(echo.phantoms || []).map(skin => skin.name), echo.classId, echo.element, ...echo.sets.map(key => setNames.get(key))].join(' ')).includes(query);
   });
 }
 
@@ -97,7 +107,7 @@ export async function loadEchoCatalog() {
       // The list mixes equipable Echoes with internal records. Standard entries
       // win; only unfamiliar alternate identities need additional validation.
       const standardNames = new Set(payload.Echo.filter(record => record.PhantomType === 1).map(record => slug(plain(record.Name))));
-      const candidates = payload.Echo.filter(record => record.PhantomType !== 1 && plain(record.Name).trim() && !/^MonsterInfo_.*_Name$/i.test(plain(record.Name)) && !standardNames.has(slug(plain(record.Name))));
+      const candidates = payload.Echo.filter(record => (record.PhantomType !== 1 && plain(record.Name).trim() && !/^MonsterInfo_.*_Name$/i.test(plain(record.Name)) && !standardNames.has(slug(plain(record.Name)))) || record.PhantomType === 1 && (record.Type === 'Phantom Appearance' || /^Phantom:/i.test(record.Name)));
       const identityQueue = [...new Map(candidates.map(record => [record.Name + '|' + record.Icon, record])).values()];
       payload.EchoDetails = {};
       await Promise.all(Array.from({length: Math.min(4, identityQueue.length)}, async () => {
@@ -106,7 +116,7 @@ export async function loadEchoCatalog() {
           const response = await fetch(ECHO_SOURCE + '/' + record.Id, {signal: AbortSignal.timeout(15000)});
           if (!response.ok) throw new Error('Echo identity source unavailable');
           const detail = await response.json();
-          payload.EchoDetails[record.Id] = {MonsterId: detail.MonsterId, MonsterName: detail.MonsterName, TypeDescription: detail.TypeDescription, StandAnim: detail.StandAnim, Icon: detail.Icon, Skill: {SimplyDescription: detail.Skill?.SimplyDescription, DescriptionEx: detail.Skill?.DescriptionEx, BattleViewIcon: detail.Skill?.BattleViewIcon}};
+          payload.EchoDetails[record.Id] = {MonsterId: detail.MonsterId, ParentMonsterId: detail.ParentMonsterId, MonsterName: detail.MonsterName, TypeDescription: detail.TypeDescription, StandAnim: detail.StandAnim, Icon: detail.Icon, Skill: {SimplyDescription: detail.Skill?.SimplyDescription, DescriptionEx: detail.Skill?.DescriptionEx, BattleViewIcon: detail.Skill?.BattleViewIcon}};
         }
       }));
       // The list endpoint contains unresolved {0} parameters. Echo details provide

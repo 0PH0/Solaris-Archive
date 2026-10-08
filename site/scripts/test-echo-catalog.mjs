@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { normalizeEchoCatalog, loadEchoCatalog, readEchoCatalogCache, filterEchoCatalog } from '../public/echo-catalog.js';
+import { normalizeEchoCatalog, loadEchoCatalog, readEchoCatalogCache, filterEchoCatalog, groupEchoAppearances } from '../public/echo-catalog.js';
 const record = (Id, Name, extra = {}) => ({Id, Name, PhantomType: 1, Rarity: 0, Icon: `https://api.encore.moe/resource/${Id}.webp`, FetterGroups: [{Name: 'Test Sonata', Fetters: [{Key: 3, EffectDescription: 'Three pieces'}]}], ...extra});
 test('real source identities exclude Resonator Cubes while preserving boss Echoes and Phantom appearances', () => {
   const source = JSON.parse(fs.readFileSync(new URL('./fixtures/encore-echo-identities.json', import.meta.url),'utf8'));
@@ -50,8 +50,19 @@ test('live identity checks are shared and old unvalidated caches cannot reintrod
     assert.equal(first.echoes.find(echo=>echo.name===alternate.Name).iconUrl,'https://api.encore.moe/resource/alternate.webp');
     await module.loadEchoCatalog();
     assert.equal(calls.length,3);
-    assert(storage.has('solaris:echo-catalog:v3'));
+    assert(storage.has('solaris:echo-catalog:v4'));
   } finally {globalThis.fetch=savedFetch;globalThis.localStorage=savedStorage;}
+});
+test('Phantom skins belong to source parent IDs, including differently named and Nightmare originals', () => {
+  const source={Echo:[record(10,'Reminiscence: Kronaclaw'),record(20,'Nightmare: Crownless'),record(30,'Phantom: Kronaclaw'),record(40,'Phantom: Nightmare Crownless')],EchoDetails:{30:{ParentMonsterId:10},40:{ParentMonsterId:20}}};
+  const catalog=normalizeEchoCatalog(source);
+  const originals=groupEchoAppearances(catalog.echoes);
+  assert.equal(originals.length,2);
+  assert.equal(originals.find(e=>e.id===10).phantoms[0].id,30);
+  assert.equal(originals.find(e=>e.id===20).phantoms[0].id,40);
+  assert.equal(catalog.echoes.length,4,'Builder retains its existing source records');
+  assert.equal(filterEchoCatalog(originals,catalog.sets,{variant:'phantom',query:'Phantom: Kronaclaw'})[0].id,10);
+  assert.equal(groupEchoAppearances([...catalog.echoes,catalog.echoes.find(e=>e.id===30)]).find(e=>e.id===10).phantoms.length,1);
 });
 test('all names are retained without a limit; only duplicate and unresolved names are excluded', () => {
   const entries = Array.from({length: 300}, (_,i)=>record(i,'Echo '+i));

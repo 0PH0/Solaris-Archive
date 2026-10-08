@@ -44,7 +44,7 @@ export const reducedMotion = () => preferences.motion || matchMedia('(prefers-re
 export const captionParameters = lang => preferences.captions ? '&cc_load_policy=1&cc_lang_pref=' + encodeURIComponent(lang) : '';
 export function settingsButton(lang) {
   const title = lang === 'en' ? 'Settings' : lang === 'es' ? 'Configuración' : 'Configurações';
-  return `<button type="button" class="settings-button" data-settings-open aria-haspopup="dialog" aria-label="${title}" title="${title}"><span aria-hidden="true">⚙</span><span>${title}</span></button>`;
+  return `<button type="button" class="settings-button" data-settings-open aria-haspopup="dialog" aria-label="${title}" title="${title}"><svg class="settings-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 3-.5 2.4-2 .9-2.1-.7-2 3.4L4 10.6v2.8l-1.6 1.6 2 3.4 2.1-.7 2 .9L9 21h6l.5-2.4 2-.9 2.1.7 2-3.4-1.6-1.6v-2.8l1.6-1.6-2-3.4-2.1.7-2-.9L15 3Z"/><circle cx="12" cy="12" r="3"/></svg><span>${title}</span></button>`;
 }
 const messages = {
   loading:['Carregando Echoes…','Loading Echoes…','Cargando Ecos…'], loaded:['Echoes carregados.','Echoes loaded.','Ecos cargados.'],

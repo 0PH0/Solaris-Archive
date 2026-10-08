@@ -1,6 +1,14 @@
 /* Settings owns all optional accessibility presentation. */
 .settings-button { display:inline-flex; align-items:center; gap:6px; min-height:38px; padding:6px 10px; border:1px solid var(--line); border-radius:7px; background:var(--panel); color:var(--text); font:inherit; cursor:pointer; }
 .settings-button span:last-child { font-size:.75rem; }
+.settings-button .settings-icon { display:block; width:20px; height:20px; flex:0 0 20px; }
+.settings-button { justify-content:center; min-height:44px; gap:8px; transition:border-color 180ms ease, background-color 180ms ease; }
+.settings-button:hover { border-color:var(--teal); background:rgba(65,241,213,.06); }
+.settings-button:focus-visible { outline:2px solid var(--teal); outline-offset:3px; }
+.footer-links { align-items:center; }
+.footer-links .settings-button { padding:10px 12px; border-radius:9px; }
+@media(prefers-reduced-motion:reduce) { .settings-button { transition:none; } }
+.access-motion .settings-button { transition:none; }
 .settings-dialog,.access-image-dialog { box-sizing:border-box; width:min(680px,calc(100% - 24px)); max-height:88dvh; overflow:auto; padding:24px; border:1px solid var(--line); border-radius:12px; color:var(--text); background:var(--bg,#14191e); }
 dialog::backdrop { background:#020609cc; }
 .settings-dialog header,.access-image-dialog header { display:flex; align-items:center; justify-content:space-between; gap:12px; }

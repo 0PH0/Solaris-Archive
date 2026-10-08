@@ -3,7 +3,7 @@ import {imageAttributes, setImageSources, installImageFallbacks} from './image-u
 import {loadCharacterDetail, getCharacterDetail} from './character-catalog.js';
 import {selectHomeFeatured} from './home-featured.js';
 import {loadTierSnapshot, getTierSnapshot, selectTierEntries, tierCharacterKey, tierProfileSlug, TIER_ORDER, TIER_ROLES, TIER_SOURCE} from './tier-list.js';
-import { readEchoCatalogCache, loadEchoCatalog, filterEchoCatalog, ECHO_CACHE_TTL } from "./echo-catalog.js";
+import { readEchoCatalogCache, loadEchoCatalog, filterEchoCatalog, groupEchoAppearances, ECHO_CACHE_TTL } from "./echo-catalog.js";
 import { settingsButton, applyAccessibility, notifyAccessibility, captionParameters, reducedMotion } from "./settings-accessibility.js";
 const app = document.querySelector("#app");
 installImageFallbacks();
@@ -1124,6 +1124,7 @@ echoes.push(
 const cachedEchoCatalog = readEchoCatalogCache();
 let builderEchoes = cachedEchoCatalog?.echoes || [];
 let builderSonatas = cachedEchoCatalog?.sets || [];
+let wikiEchoes = groupEchoAppearances(builderEchoes);
 let echoCatalogRevision = 0;
 let builderCatalogLoaded = false;
 let builderCatalogLoading = false;
@@ -1140,6 +1141,7 @@ async function loadBuilderEchoes() {
     const catalog = await loadEchoCatalog();
     const restore = !builderEchoes.length;
     builderEchoes = catalog.echoes;
+    wikiEchoes = groupEchoAppearances(builderEchoes);
     builderSonatas = catalog.sets;
     builderCatalogError = Boolean(catalog.stale);
     builderCatalogExpiresAt = catalog.stale ? Date.now() + 60000 : catalog.updatedAt + ECHO_CACHE_TTL;
@@ -1647,6 +1649,7 @@ const state = {
   tierFilters: {query: "", element: "all", weapon: "all", rarity: "all", role: "all"},
   elementFilter: "all",
   weaponFilter: "all",
+  echoAppearance: '',
   echoFilters: {query: '', cost: 'all', class: 'all', variant: 'all', element: 'all', set: 'all'},
   builder: readBuilder(),
   builderMessage: builderRestored ? "restored" : "",
@@ -1863,7 +1866,7 @@ function searchIndex() {
       meta: weapon.type,
       route: "weapons"
     })),
-    ...builderEchoes.map((echo) => ({
+    ...wikiEchoes.map((echo) => ({
       label: `${echo.name} ${echo.element}`,
       title: echo.name,
       meta: echo.element,
@@ -2017,6 +2020,7 @@ function renderFooter() {
       <div>
         <strong>Solaris Archive</strong>
         <p>${t("noAffiliation")}</p>
+        <p class="footer-ai-note">${archiveLabel("Desenvolvido com auxílio de inteligência artificial.", "Developed with assistance from artificial intelligence.", "Desarrollado con ayuda de inteligencia artificial.")}</p>
       </div>
       <div class="footer-links">
         ${settingsButton(state.lang)}
@@ -2894,15 +2898,15 @@ function renderEchoFilters() {
   const funnel = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18l-7 8v6l-4 2v-8Z"/></svg>';
   return '<div class="wiki-filters echo-filters" aria-label="' + archiveLabel('Filtros de Echoes', 'Echo filters', 'Filtros de Ecos') + '"><label class="echo-search"><span>' + archiveLabel('Pesquisar Echoes', 'Search Echoes', 'Buscar Ecos') + '</span><input type="search" data-echo-search value="' + escapeHtml(filters.query) + '" placeholder="' + archiveLabel('Nome, elemento ou Sonata…', 'Name, element or Sonata…', 'Nombre, elemento o Sonata…') + '" autocomplete="off"></label>' +
     select('cost', bt('cost'), [all, ...['1', '3', '4'].map(value => [value, bt('cost') + ' ' + value])], funnel) +
-    select('variant', archiveLabel('Variante', 'Variant', 'Variante'), [all, ['regular', archiveLabel('Regular', 'Regular', 'Regular')], ['nightmare', 'Nightmare'], ['phantom', 'Phantom']]) +
-    select('element', t('element'), [all, ...[...new Set(builderEchoes.map(echo => echo.element).filter(Boolean))].sort().map(value => [value, value])]) +
+    select('variant', archiveLabel('Variante', 'Variant', 'Variante'), [all, ['regular', archiveLabel('Regular', 'Regular', 'Regular')], ['nightmare', 'Nightmare'], ['phantom', archiveLabel('Com skins Phantom', 'With Phantom skins', 'Con skins Phantom')]]) +
+    select('element', t('element'), [all, ...[...new Set(wikiEchoes.map(echo => echo.element).filter(Boolean))].sort().map(value => [value, value])]) +
     select('set', 'Sonata', [all, ...builderSonatas.toSorted((a,b) => a.name.localeCompare(b.name)).map(set => [set.slug, set.name])]) +
     '<button type="button" class="builder-text-button echo-reset" data-echo-reset>' + archiveLabel('Limpar filtros', 'Reset filters', 'Limpiar filtros') + '</button></div>';
 }
 
 function renderEchoResults() {
-  const context = filterEchoCatalog(builderEchoes, builderSonatas, {...state.echoFilters, class: 'all'});
-  const filtered = filterEchoCatalog(builderEchoes, builderSonatas, state.echoFilters);
+  const context = filterEchoCatalog(wikiEchoes, builderSonatas, {...state.echoFilters, class: 'all'});
+  const filtered = filterEchoCatalog(wikiEchoes, builderSonatas, state.echoFilters);
   const categories = ['all', ...echoClassOrder].map(classId => {
     const count = classId === 'all' ? context.length : context.filter(echo => echo.classId === classId).length;
     return '<button type="button" class="echo-class-button" data-echo-class="' + classId + '" aria-pressed="' + (state.echoFilters.class === classId) + '">' + (classId === 'all' ? archiveLabel('Todas as classes', 'All classes', 'Todas las clases') : echoClassLabel(classId)) + '<span>' + count + '</span></button>';
@@ -2910,9 +2914,9 @@ function renderEchoResults() {
   const groups = echoClassOrder.map(classId => {
     const members = filtered.filter(echo => echo.classId === classId).toSorted((a,b) => a.name.localeCompare(b.name));
     if (!members.length) return '';
-    return '<section class="echo-class-section" data-echo-group="' + classId + '" aria-labelledby="echo-class-' + classId + '"><div class="echo-class-heading"><h2 id="echo-class-' + classId + '">' + echoClassLabel(classId) + '</h2><span>' + bt('cost') + ' ' + members[0].cost + ' · ' + members.length + ' Echoes</span></div><div class="builder-option-grid">' + members.map(echo => renderArchiveOption(echo, 'echoes', bt('cost') + ' ' + echo.cost + (echo.element ? ' · ' + echo.element : '') + (echo.isPhantom ? ' · Phantom' : '') + (echo.isNightmare ? ' · Nightmare' : '') + ' · ' + echo.sets.map(slug => builderSonatas.find(set => set.slug === slug)?.name).join(' / '))).join('') + '</div></section>';
+    return '<section class="echo-class-section" data-echo-group="' + classId + '" aria-labelledby="echo-class-' + classId + '"><div class="echo-class-heading"><h2 id="echo-class-' + classId + '">' + echoClassLabel(classId) + '</h2><span>' + bt('cost') + ' ' + members[0].cost + ' · ' + members.length + ' Echoes</span></div><div class="builder-option-grid">' + members.map(echo => renderArchiveOption(echo, 'echoes', bt('cost') + ' ' + echo.cost + (echo.element ? ' · ' + echo.element : '') + (echo.phantoms.length ? ' · ' + echo.phantoms.length + ' Phantom' : '') + (echo.isNightmare ? ' · Nightmare' : '') + ' · ' + echo.sets.map(slug => builderSonatas.find(set => set.slug === slug)?.name).join(' / '))).join('') + '</div></section>';
   }).join('');
-  return '<div class="echo-class-tabs" role="group" aria-label="' + archiveLabel('Classe do Echo', 'Echo class', 'Clase del Eco') + '">' + categories + '</div><p class="builder-picker-count" role="status" aria-live="polite">' + filtered.length + ' / ' + builderEchoes.length + ' Echoes</p>' + (groups || (!builderEchoes.length ? '' : '<div class="empty-state"><h3>' + archiveLabel('Nenhum Echo encontrado', 'No Echoes found', 'No se encontraron Ecos') + '</h3><p>' + archiveLabel('Ajuste a pesquisa ou limpe os filtros para ver mais Echoes.', 'Adjust your search or reset the filters to see more Echoes.', 'Ajusta la búsqueda o limpia los filtros para ver más Ecos.') + '</p></div>'));
+  return '<div class="echo-class-tabs" role="group" aria-label="' + archiveLabel('Classe do Echo', 'Echo class', 'Clase del Eco') + '">' + categories + '</div><p class="builder-picker-count" role="status" aria-live="polite">' + filtered.length + ' / ' + wikiEchoes.length + ' Echoes</p>' + (groups || (!wikiEchoes.length ? '' : '<div class="empty-state"><h3>' + archiveLabel('Nenhum Echo encontrado', 'No Echoes found', 'No se encontraron Ecos') + '</h3><p>' + archiveLabel('Ajuste a pesquisa ou limpe os filtros para ver mais Echoes.', 'Adjust your search or reset the filters to see more Echoes.', 'Ajusta la búsqueda o limpia los filtros para ver más Ecos.') + '</p></div>'));
 }
 
 function updateEchoResults() {
@@ -2925,11 +2929,33 @@ function updateEchoResults() {
   panel.dataset.signature = routeSignature();
 }
 
+function renderEchoAppearances(echo, selected) {
+  if (!echo.phantoms.length) return '';
+  return '<section class="panel echo-appearances" aria-labelledby="echo-appearances-title"><h2 id="echo-appearances-title">Phantom Echoes</h2><p>' + archiveLabel('Skins e variações visuais deste Echo. Selecione uma aparência para visualizar sua imagem.', 'Skins and visual variations of this Echo. Select an appearance to preview its image.', 'Skins y variaciones visuales de este Eco. Selecciona una apariencia para ver su imagen.') + '</p><div class="echo-appearance-grid">' + [echo, ...echo.phantoms].map(appearance => '<button type="button" class="echo-appearance-option" data-echo-appearance="' + appearance.slug + '" aria-pressed="' + (selected.slug === appearance.slug) + '">' + renderBuilderItemIcon('echo', appearance) + '<strong>' + escapeHtml(appearance === echo ? archiveLabel('Original', 'Original', 'Original') : appearance.name) + '</strong></button>').join('') + '</div></section>';
+}
+
 function renderEchoesPage() {
-  const echo = builderEchoes.find(item => item.slug === state.detail);
-  if (state.detail && echo) return renderPageHero(echo.name, bt('cost') + ' ' + echo.cost + (echo.element ? ' · ' + echo.element : ''), t('navEchoes')) + '<section class="page-band"><div class="container detail-layout"><aside class="detail-aside catalog-detail-icon">' + renderBuilderItemIcon('echo', echo) + '<a class="text-link" data-link href="' + pathFor('echoes') + '">' + t('back') + '</a></aside><div class="detail-main">' + (echo.description ? '<article class="panel"><p>' + escapeHtml(echo.description) + '</p></article>' : '') + echo.sets.map(slug => { const set = builderSonatas.find(item => item.slug === slug); return '<a class="text-link" data-link href="' + pathFor('sonatas', state.lang, slug) + '">' + escapeHtml(set.name) + ' ↗</a>' + renderSonataEffects(set); }).join('') + '</div></div></section>';
+  const echo = wikiEchoes.find(item => item.slug === state.detail || item.phantoms.some(skin => skin.slug === state.detail));
+  if (state.detail && echo) {
+    const selected = echo.phantoms.find(skin => skin.slug === state.echoAppearance) || (state.echoAppearance === echo.slug ? echo : echo.phantoms.find(skin => skin.slug === state.detail)) || echo;
+    return renderPageHero(echo.name, echoClassLabel(echo.classId) + ' · ' + bt('cost') + ' ' + echo.cost + (echo.element ? ' · ' + echo.element : ''), t('navEchoes')) + '<section class="page-band"><div class="container detail-layout"><aside class="detail-aside catalog-detail-icon">' + renderBuilderItemIcon('echo', selected) + '<p data-echo-appearance-label>' + escapeHtml(selected === echo ? archiveLabel('Aparência original', 'Original appearance', 'Apariencia original') : selected.name) + '</p><a class="text-link" data-link href="' + pathFor('echoes') + '">' + t('back') + '</a></aside><div class="detail-main">' + (echo.description ? '<article class="panel"><p>' + escapeHtml(echo.description) + '</p></article>' : '') + renderEchoAppearances(echo, selected) + echo.sets.map(slug => { const set = builderSonatas.find(item => item.slug === slug); return '<a class="text-link" data-link href="' + pathFor('sonatas', state.lang, slug) + '">' + escapeHtml(set.name) + ' ↗</a>' + renderSonataEffects(set); }).join('') + '</div></div></section>';
+  }
   if (state.detail && builderEchoes.length) return renderNotFound();
   return renderPageHero(t('navEchoes'), archiveLabel('Encontre Echoes por classe, custo, variante e Sonata.', 'Find Echoes by class, cost, variant and Sonata.', 'Encuentra Ecos por clase, coste, variante y Sonata.'), t('database')) + '<section class="page-band"><div class="container archive-catalog echo-archive">' + renderEchoCatalogStatus() + renderEchoFilters() + '<div data-echo-results>' + renderEchoResults() + '</div></div></section>';
+}
+
+function shortCatalogText(value, limit = 140) {
+  const text = String(value || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+  if (!text || /\{\d+\}/.test(text)) return '';
+  if (text.length <= limit) return text;
+  const shortened = text.slice(0, limit - 1);
+  return shortened.slice(0, shortened.lastIndexOf(' ') > 0 ? shortened.lastIndexOf(' ') : shortened.length) + '…';
+}
+
+function renderSonataCard(set) {
+  const primary = set.bonuses[0], final = set.bonuses.at(-1);
+  const effect = primary ? primary.count + ' ' + bt('pieces') + ': ' + primary.description + (final !== primary ? ' · ' + final.count + ' ' + bt('pieces') + ': ' + final.description : '') : '';
+  return '<a class="builder-option sonata-card" data-link href="' + pathFor('sonatas', state.lang, set.slug) + '">' + renderBuilderItemIcon('sonata', set) + '<span class="builder-option-info"><strong>' + escapeHtml(set.name) + '</strong><small class="sonata-summary">' + escapeHtml(shortCatalogText(effect, 170) || archiveLabel('Ver efeitos do conjunto', 'View set effects', 'Ver efectos del conjunto')) + '</small><span class="catalog-card-action">' + archiveLabel('Ver efeito completo', 'View full effect', 'Ver efecto completo') + ' ↗</span></span></a>';
 }
 
 function sonataExplanation() {
@@ -2939,11 +2965,11 @@ function sonataExplanation() {
 function renderSonatasPage() {
   const set = builderSonatas.find(item => item.slug === state.detail);
   if (state.detail && set) {
-    const members = builderEchoes.filter(echo => echo.sets.includes(set.slug));
+    const members = wikiEchoes.filter(echo => echo.sets.includes(set.slug));
     return renderPageHero(set.name, archiveLabel('Efeitos de conjunto', 'Set effects', 'Efectos de conjunto'), 'Sonata') + '<section class="page-band"><div class="container detail-layout"><aside class="detail-aside catalog-detail-icon">' + renderBuilderItemIcon('sonata', set) + '<a class="text-link" data-link href="' + pathFor('sonatas') + '">' + t('back') + '</a></aside><div class="detail-main"><article class="panel"><h2>' + archiveLabel('Descrição', 'Description', 'Descripción') + '</h2><p>' + sonataExplanation() + '</p></article>' + renderSonataEffects(set) + '<p><a class="text-link" href="' + set.source + '" target="_blank" rel="noreferrer">Wuthering Waves Wiki ↗</a></p><h2>Echoes · ' + members.length + '</h2><div class="archive-catalog"><div class="builder-option-grid">' + members.map(echo => renderArchiveOption(echo, 'echoes', bt('cost') + ' ' + echo.cost)).join('') + '</div></div></div></div></section>';
   }
   if (state.detail && builderSonatas.length) return renderNotFound();
-  return renderPageHero(t('navSonatas'), archiveLabel('Bônus de conjunto para suas builds.', 'Set bonuses for your builds.', 'Bonificaciones de conjunto para tus builds.'), t('database')) + '<section class="page-band"><div class="container archive-catalog"><article class="panel"><p>' + sonataExplanation() + '</p><a class="text-link" href="https://wutheringwaves.fandom.com/wiki/Sonata" target="_blank" rel="noreferrer">Wuthering Waves Wiki ↗</a></article>' + renderEchoCatalogStatus() + '<p class="builder-picker-count">' + builderSonatas.length + ' Sonatas</p><div class="builder-option-grid">' + builderSonatas.map(set => renderArchiveOption(set, 'sonatas', set.bonuses.map(bonus => bonus.count + ' ' + bt('pieces')).join(' / '))).join('') + '</div></div></section>';
+  return renderPageHero(t('navSonatas'), archiveLabel('Bônus de conjunto para suas builds.', 'Set bonuses for your builds.', 'Bonificaciones de conjunto para tus builds.'), t('database')) + '<section class="page-band"><div class="container archive-catalog"><article class="panel"><p>' + sonataExplanation() + '</p><a class="text-link" href="https://wutheringwaves.fandom.com/wiki/Sonata" target="_blank" rel="noreferrer">Wuthering Waves Wiki ↗</a></article>' + renderEchoCatalogStatus() + '<p class="builder-picker-count">' + builderSonatas.length + ' Sonatas</p><div class="builder-option-grid">' + builderSonatas.map(renderSonataCard).join('') + '</div></div></section>';
 }
 
 let weaponsReady = false, weaponRequest, weaponRevision = 0, weaponError = false;
@@ -2974,7 +3000,7 @@ async function fetchWeaponDetail(weapon) {
   try {
     const data = await loadWeaponDetail(weapon.id);
     weaponDetails.set(weapon.id, data);
-    Object.assign(weapon, data.summary, {passive: data.passive || weapon.passive});
+    Object.assign(weapon, data.summary, {passive: data.passive || weapon.passive, passiveName: data.passiveName});
   } catch { weaponDetails.set(weapon.id, {error: true}); }
   finally { weaponRevision++; scheduleRender(); }
 }
@@ -3009,8 +3035,9 @@ function renderWeaponsPage() {
     ${renderPageHero(t("navWeapons"), t("pageWeaponsDesc"), t("database"))}
     <section class="page-band">
       <div class="container">
-        <div class="toolbar">
-          <label>
+        <div class="toolbar weapon-filters">
+          <div class="weapon-filter-heading"><span class="weapon-filter-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18l-7 8v6l-4 2v-8Z"/></svg></span><div><strong>${archiveLabel("Filtrar armas", "Filter weapons", "Filtrar armas")}</strong><p>${archiveLabel("Encontre a arma pelo tipo de equipamento.", "Find a weapon by equipment type.", "Encuentra un arma por tipo de equipo.")}</p></div><span class="weapon-result-count" role="status">${filtered.length} / ${weapons.length}</span></div>
+          <label class="weapon-filter-control">
             <span>${t("weapon")}</span>
             <select data-weapon-filter>
               ${types.map((type) => `
@@ -3037,7 +3064,8 @@ function renderWeaponsPage() {
                 </dl>
                 ${weaponDetails.get(weapon.id)?.loading && !weapon.statLevel ? '<p role="status">' + archiveLabel('Carregando atributos…', 'Loading attributes…', 'Cargando atributos…') + '</p>' : ''}
                 ${weaponDetails.get(weapon.id)?.error ? '<button type="button" class="builder-text-button" data-weapon-retry="' + weapon.id + '">' + bt('retry') + '</button>' : ''}
-                <p>${weapon.passive}</p>
+                <p class="weapon-card-summary">${weapon.passiveName ? escapeHtml(archiveLabel("Passiva", "Passive", "Pasiva") + " · " + weapon.passiveName) : escapeHtml(archiveLabel("Efeitos disponíveis na página da arma.", "Effects available on the weapon page.", "Efectos disponibles en la página del arma."))}</p>
+                <a class="catalog-card-action" data-link href="${pathFor("weapons",state.lang,weapon.slug)}">${archiveLabel("Ver detalhes", "View details", "Ver detalles")} ↗</a>
                 <div class="tag-row">
                   ${weapon.recommended.map((name) => `<span>${name}</span>`).join("")}
                 </div>
@@ -4117,7 +4145,7 @@ function routeSignature(routeId = state.route, detail = state.detail) {
     case "tier":
       return [base, state.tierMode, JSON.stringify(state.tierFilters), tierDataRevision, state.charactersLoading, collectionSignature(characters, ["slug", "name", "element", "weapon", "rarity"])].join("|");
     case "echoes":
-      return [base, echoCatalogRevision, builderCatalogError, builderCatalogLoading, JSON.stringify(state.echoFilters)].join("|");
+      return [base, echoCatalogRevision, builderCatalogError, builderCatalogLoading, JSON.stringify(state.echoFilters), state.echoAppearance].join("|");
     case "sonatas":
       return [base, echoCatalogRevision, builderCatalogError, builderCatalogLoading].join("|");
     case "weapons":
@@ -4542,6 +4570,22 @@ app.addEventListener("click", (event) => {
   }
 
   if (event.target.closest("[data-builder-retry]")) { loadBuilderEchoes(); return; }
+  const echoAppearance = event.target.closest('[data-echo-appearance]');
+  if (echoAppearance) {
+    const echo = wikiEchoes.find(item => item.slug === state.detail || item.phantoms.some(skin => skin.slug === state.detail));
+    const appearance = [echo, ...(echo?.phantoms || [])].find(item => item?.slug === echoAppearance.dataset.echoAppearance);
+    const panel = routePanels.get(routeCacheKey());
+    if (appearance && panel) {
+      state.echoAppearance = appearance.slug;
+      const image = panel.querySelector('.catalog-detail-icon .builder-option-icon img');
+      image.alt = appearance.name;
+      setImageSources(image, [appearance.iconUrl, ITEM_FALLBACK_IMAGE]);
+      panel.querySelector('[data-echo-appearance-label]').textContent = appearance === echo ? archiveLabel('Aparência original', 'Original appearance', 'Apariencia original') : appearance.name;
+      panel.querySelectorAll('[data-echo-appearance]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.echoAppearance === appearance.slug)));
+      panel.dataset.signature = routeSignature();
+    }
+    return;
+  }
   const echoClass = event.target.closest('[data-echo-class]');
   if (echoClass) {
     cancelPendingSearch();
