@@ -28,6 +28,7 @@ try {
  window.fetch=(url,options)=>{const key=String(url);let data;
  if(['pt','es'].some(locale=>key==='https://api-v2.encore.moe/api/'+locale+'/weapon/21010015'))return Promise.resolve(new Response('{}',{status:503}));
  if(key==='/api/events')data={events:[{title:'Forja do Eco: Desafio de Sonatas',category:'evento_in_game',startAt:'${startAt}',endAt:'${endAt}',rewards:['Tuneadores','Creditos Shell'],sourceUrl:'https://wutheringwaves.kurogames.com',imageUrl:'/assets/event-forge.png'}],source:'fallback-local: fetch failed'};
+ else if(key==='/api/codes')data={codes:[{code:'WUTHERINGGIFT',status:'active',rewards:['Astrite x50','Shell Credit x10000'],expiresAt:null}],updatedAt:new Date().toISOString()};
  else if(key==='/api/convenes')data={convenes:banners};
  else if(key==='/api/characters')data={characters:[]};
  else if(key==='/api/characters/1311')data=detail;

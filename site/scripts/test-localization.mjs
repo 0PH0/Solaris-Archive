@@ -13,7 +13,7 @@ test('main and Builder dictionaries have complete and separate entries for all t
       assert(Object.values(tables[lang]).every(text=>typeof text==='string' && text.trim()));
     }
   }
-  for(const entry of contentTranslationEntries)assert.equal(entry.length,4);
+  for(const entry of contentTranslationEntries){assert.equal(entry.length,4);assert(entry.every(text=>typeof text==='string' && text.trim()),'Translations cannot have empty keys or values');}
 });
 test('metadata labels translate without changing values and banner names remain official',()=>{
   assert.equal(metadataText('Crit. Rate 24.30%','pt-BR'),'Taxa crítica 24.30%');

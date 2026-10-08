@@ -1580,19 +1580,15 @@ const news = [
   }
 ];
 
-// Source review: 2026-10-02 (UTC). This is not an in-game redemption test.
-// Pocket Tactics (2026-09-30) and Beebom (2026-10-01) agree on this active code.
-// No published expiry: null must never become a generated deadline.
-const codesCheckedAt = "2026-10-02";
-const codes = [
-  { code: "WUTHERINGGIFT", status: "active", rewards: ["Astrite x50", "Premium Resonance Potion x2", "Medium Revival Inhaler x2", "Medium Energy Bag x2", "Shell Credit x10000"], expiresAt: null }
-];
+// Codes have their own source and refresh cycle; never derive them from banners/events.
+let codesCheckedAt = "", codes = [];
 const codeSources = [
   { name: "Pocket Tactics", url: "https://www.pockettactics.com/wuthering-waves/codes" },
   { name: "Beebom", url: "https://beebom.com/wuthering-waves-redeem-codes/" }
 ];
 
 function activeCodes(now = Date.now()) {
+  if(!codesCheckedAt || now-Date.parse(codesCheckedAt)>60*60*1000)return [];
   return codes.filter(code => code.status === "active" &&
     (!code.expiresAt || Date.parse(code.expiresAt) > now));
 }
@@ -1620,6 +1616,10 @@ function readShowcaseCollapsed() {
   }
 }
 
+function readEventArchive() {
+  try{const records=JSON.parse(localStorage.getItem('solaris:event-archive:v1'));return Array.isArray(records)?records.filter(event=>event.id && event.title && !['banner','codigo'].includes(event.category)):[];}catch{return [];}
+}
+
 const state = {
   lang: DEFAULT_LANG,
   route: "home",
@@ -1628,8 +1628,13 @@ const state = {
   charactersUpdatedAt: "",
   charactersSource: "fallback-local",
   charactersApiError: false,
-  events: [],
+  events: readEventArchive(),
   eventError: false,
+  eventPartial: false,
+  eventsLoading: false,
+  codesLoading: false,
+  codesError: false,
+  codesPartial: false,
   eventSource: "fallback-local",
   convenes: [],
   conveneError: false,
@@ -1639,6 +1644,9 @@ const state = {
   updatedAt: "",
   syncIntervalMinutes: 10,
   eventFilter: "all",
+  eventCategory: "all",
+  eventQuery: "",
+  eventLimit: 12,
   timeMode: "server",
   roleFilter: "all",
   characterQuery: "",
@@ -1670,9 +1678,11 @@ const state = {
 const dataRequests = {
   characters: null,
   events: null,
+  codes: null,
   convenes: null,
   charactersLoaded: false,
   eventsLoaded: false,
+  codesLoaded: false,
   convenesLoaded: false
 };
 
@@ -1839,22 +1849,30 @@ function formatEventTime(iso, mode = state.timeMode) {
 
 function getEventStatus(event) {
   const now = Date.now();
+  if(event.dateOnly){const day=new Intl.DateTimeFormat('sv-SE',{timeZone:event.dateTimezone,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(now));return day<event.startDate?'em_breve':day>event.endDate?'encerrado':'ao_vivo';}
   const start = new Date(event.startAt).getTime();
   const end = new Date(event.endAt).getTime();
 
+  if(event.endedByVersion)return 'encerrado';
+  if(event.ongoingByVersion)return 'ao_vivo';
+  if(event.endAt && Number.isFinite(end) && now>end)return 'encerrado';
+  if(event.schedulePending || !event.startAt)return 'a_confirmar';
   if (now < start) return "em_breve";
+  if(event.permanent)return 'ao_vivo';
+  if(!event.endAt || !Number.isFinite(end))return 'a_confirmar';
   if (now > end) return "encerrado";
   return "ao_vivo";
 }
 
 function statusLabel(status) {
+  if(status==='a_confirmar')return ct('Dates to be confirmed');
   if (status === "ao_vivo") return t("liveNow");
   if (status === "em_breve") return t("comingSoon");
   return t("ended");
 }
 
 function activeEvents() {
-  return state.events.filter((event) => getEventStatus(event) === "ao_vivo");
+  return state.events.filter((event) => !['banner','codigo'].includes(event.category) && getEventStatus(event) === "ao_vivo");
 }
 
 function activeConvenes() {
@@ -1863,6 +1881,11 @@ function activeConvenes() {
 
 function countdownLabel(event) {
   const status = getEventStatus(event);
+  if(event.dateOnly)return status==='encerrado'?t('ended'):ct('Dates only; exact times not announced');
+  if(event.permanent && status==='ao_vivo')return ct('Permanently available');
+  if(status==='a_confirmar')return ct('Dates to be confirmed');
+  if(status==='encerrado')return t('ended');
+  if(event.ongoingByVersion)return ct('End of version')+' '+event.endVersion;
   const target = status === "em_breve" ? new Date(event.startAt) : new Date(event.endAt);
   const diff = target.getTime() - Date.now();
 
@@ -1949,7 +1972,7 @@ function searchIndex() {
     ...state.events.map((event) => ({
       label: `${ct(event.title)} ${mt(event.category)}`,
       title: ct(event.title),
-      meta: t(categoryLabels[event.category]),
+      meta: eventCategoryLabel(event.category),
       route: "events"
     }))
   ];
@@ -2095,7 +2118,7 @@ function renderLiveTicker() {
             <a href="${pathFor("events")}" data-link class="ticker-item">
               <span class="status-dot status-dot--${getEventStatus(event)}"></span>
               <strong>${escapeHtml(ct(event.title))}</strong>
-              <span data-countdown data-start="${event.startAt}" data-end="${event.endAt}">${countdownLabel(event)}</span>
+              <span ${event.startAt && event.endAt?'data-countdown data-start="'+event.startAt+'" data-end="'+event.endAt+'"':''}>${countdownLabel(event)}</span>
             </a>
           `).join("") : `<span class="ticker-empty">${t("emptyEvents")}</span>`}
         </div>
@@ -2536,7 +2559,7 @@ function renderNewsDigest(items) {
 function renderCodesWidget(full = false) {
   const current = activeCodes();
   const list = full ? current : current.slice(0, 3);
-  if (!list.length) return '<p class="notice">' + label('Nenhum código ativo confirmado nas fontes.', 'No active codes confirmed by sources.', 'Ningún código activo confirmado en las fuentes.') + '</p>';
+  if (!list.length) return '<p class="notice" role="status">' + (state.codesLoading || !dataRequests.codesLoaded?ct('Checking active codes…'):state.codesError?ct('Code sources are unavailable. Try again later.'):label('Nenhum código ativo confirmado nas fontes.', 'No active codes confirmed by sources.', 'Ningún código activo confirmado en las fuentes.')) + '</p>';
 
   return `
     <div class="codes-widget">
@@ -2548,12 +2571,12 @@ function renderCodesWidget(full = false) {
         return `
         <article class="code-row">
           <div>
-            <strong>${code.code}</strong>
-            <span>${code.rewards.map(mt).join(" • ")}</span>
+            <strong>${escapeHtml(code.code)}</strong>
+            <span>${code.rewards.map(reward=>escapeHtml(mt(reward))).join(" • ") || ct('Rewards not announced')}</span>
           </div>
           <div>
             <small>${endingSoon ? label('Vence em breve', 'Expires soon', 'Vence pronto') : label('Ativo', 'Active', 'Activo')} · ${validity}</small>
-            <button type="button" data-copy="${code.code}">${t("copyCode")}</button>
+            <button type="button" data-copy="${escapeHtml(code.code)}">${t("copyCode")}</button>
           </div>
         </article>
       `;
@@ -3389,16 +3412,7 @@ function renderGuidePage() {
 }
 
 function renderCodesPage() {
-  return `
-    ${renderPageHero(t("pageCodesTitle"), t("pageCodesDesc"), t("reward"))}
-    <section class="page-band">
-      <div class="container compact-section">
-        <p class="notice">${label('Fontes consultadas em', 'Sources reviewed on', 'Fuentes consultadas el')} <time datetime="${codesCheckedAt}">${new Intl.DateTimeFormat(currentLocale(), { dateStyle: 'short', timeZone: 'UTC' }).format(new Date(codesCheckedAt + 'T00:00:00Z'))}</time>. ${label('Resgate uma vez por conta a partir do Nível de União 2, em Configurações → Outras configurações → Código de resgate. Não testado no jogo.', 'Redeem once per account from Union Level 2 in Settings → Other Settings → Redemption Code. Not tested in-game.', 'Canjea una vez por cuenta desde el Nivel de Unión 2 en Ajustes → Otros ajustes → Código de canje. No probado en el juego.')}</p>
-        ${renderCodesWidget(true)}
-        <p class="notice">${label('Fontes', 'Sources', 'Fuentes')}: ${codeSources.map(source => '<a class="text-link" href="' + source.url + '" target="_blank" rel="noreferrer">' + source.name + '</a>').join(' · ')}</p>
-      </div>
-    </section>
-  `;
+  return renderPageHero(t('pageCodesTitle'),t('pageCodesDesc'),t('reward'))+'<section class="page-band"><div class="container compact-section">'+renderEventCodes()+'</div></section>';
 }
 
 function selectedBuilderCharacter() {
@@ -3795,126 +3809,41 @@ function renderBar(label, value, max) {
   `;
 }
 
-function nextEndingLabel(items) {
-  const upcomingEnd = items
-    .map((item) => new Date(item.endAt).getTime())
-    .filter((time) => Number.isFinite(time) && time >= Date.now())
-    .sort((a, b) => a - b)[0];
-
-  return upcomingEnd ? formatDate(new Date(upcomingEnd).toISOString()) : t("noActiveItems");
-}
-
-function eventCategoryItems(category, events, convenes) {
-  if (category === "convenes") return convenes;
-  if (category === "all") return [...convenes, ...events];
-  return events.filter((event) => event.category === category);
-}
-
-function renderEventCategoryOverview(filters, events, convenes) {
-  return `
-    <section class="event-overview" aria-label="${t("categoryOverview")}">
-      ${filters.map((filter) => {
-        const category = filter === "banner" ? "convenes" : filter;
-        const items = eventCategoryItems(category, events, convenes);
-
-        return `
-          <button type="button" class="event-overview-card ${state.eventFilter === filter ? "is-active" : ""}" data-event-filter="${filter}">
-            <span>${t(categoryLabels[filter])}</span>
-            <strong>${items.length}</strong>
-            <small>${t("nextEnd")}: ${nextEndingLabel(items)}</small>
-          </button>
-        `;
-      }).join("")}
-    </section>
-  `;
-}
-
-function eventSourceLabel(filter) {
-  if (filter === "banner") return sourceName(state.conveneSource);
-  if (filter === "all") return `${sourceName(state.eventSource)} + ${sourceName(state.conveneSource)}`;
-  return sourceName(state.eventSource);
-}
-
-function eventUpdatedAt(filter) {
-  return filter === "banner" ? state.convenesUpdatedAt : state.updatedAt;
-}
-
-function eventSyncMinutes(filter) {
-  return filter === "banner" ? state.conveneSyncIntervalMinutes : state.syncIntervalMinutes;
+function eventCategoryLabel(category) {
+  return category==='comunidade'?ct('Community events'):t(categoryLabels[category] || 'inGame');
 }
 
 function renderEventGroup(title, cards, className) {
-  if (!cards.length) return "";
-
-  return `
-    <section class="event-group">
-      <h2>${title}</h2>
-      <div class="${className}">
-        ${cards.join("")}
-      </div>
-    </section>
-  `;
+  return '<section class="event-group"><h2>'+title+'</h2><div class="'+className+'">'+cards.join('')+'</div></section>';
 }
 
-function renderFilteredEventContent(filter, events, convenes) {
-  if (filter === "banner") {
-    return convenes.length
-      ? renderEventGroup(t("currentConvenes"), convenes.map((convene) => renderConveneCard(convene)), "banner-grid")
-      : `<div class="empty-state">${t(state.conveneError ? "convenesUnavailable" : "emptyConvenes")}</div>`;
-  }
-
-  if (filter === "all") {
-    const content = [
-      renderEventGroup(t("currentConvenes"), convenes.map((convene) => renderConveneCard(convene)), "banner-grid"),
-      renderEventGroup(t("activeEvents"), events.map((event) => renderEventCard(event)), "events-grid")
-    ].filter(Boolean).join("");
-
-    return content || `<div class="empty-state">${t("emptyEvents")}</div>`;
-  }
-
-  return events.length
-    ? renderEventGroup(t(categoryLabels[filter]), events.map((event) => renderEventCard(event)), "events-grid")
-    : `<div class="empty-state">${t("emptyEvents")}</div>`;
+function renderEventCodes() {
+  return '<section class="events-codes panel" id="event-codes"><div class="events-section-heading"><div><p class="eyebrow">'+ct('Redeem rewards')+'</p><h2>'+ct('Active codes')+'</h2></div><span class="pill">'+activeCodes().length+'</span></div><p class="builder-muted">'+ct('Redeem once per account from Union Level 2: Settings → Other Settings → Redemption Code.')+'</p>'+renderCodesWidget(true)+'<p class="events-source-note">'+(codesCheckedAt?ct('Sources checked')+' · '+formatDate(codesCheckedAt):ct('Checking active codes…'))+' · '+codeSources.map(source=>'<a class="text-link" href="'+source.url+'" target="_blank" rel="noreferrer">'+source.name+' ↗</a>').join(' · ')+'</p>'+(state.codesPartial?'<p class="notice">'+ct('Some code sources are temporarily unavailable.')+'</p>':'')+'</section>';
 }
 
 function renderEventsPage() {
-  const filters = ["all", "banner", "evento_in_game", "evento_web", "torre_adversidade", "codigo"];
-  const currentEvents = activeEvents();
-  const currentConvenes = activeConvenes();
-  const events = state.eventFilter === "all"
-    ? currentEvents
-    : state.eventFilter === "banner"
-      ? []
-    : currentEvents.filter((event) => event.category === state.eventFilter);
-
-  return `
-    ${renderPageHero(t("pageEventsTitle"), t("pageEventsDesc"), t("activeEvents"))}
-    <section class="page-band">
-      <div class="container">
-        <div class="module-status">
-          <span>${eventCategoryItems(state.eventFilter === "banner" ? "convenes" : state.eventFilter, currentEvents, currentConvenes).length} ${t("activeNow").toLowerCase()}</span>
-          <span>${t("updated")} ${timeAgo(eventUpdatedAt(state.eventFilter))}</span>
-          <span>${t("syncEvery")} ${eventSyncMinutes(state.eventFilter)} min</span>
-          <span>${t("sourceLabel")}: ${eventSourceLabel(state.eventFilter)}</span>
-        </div>
-        ${renderEventCategoryOverview(filters, currentEvents, currentConvenes)}
-        <div class="toolbar">
-          <div class="segmented segmented--wrap">
-            ${filters.map((filter) => `
-              <button type="button" data-event-filter="${filter}" class="${state.eventFilter === filter ? "is-active" : ""}">
-                ${t(categoryLabels[filter])}
-              </button>
-            `).join("")}
-          </div>
-          <div class="segmented">
-            <button type="button" data-time-mode="local" class="${state.timeMode === "local" ? "is-active" : ""}">${t("localTime")}</button>
-            <button type="button" data-time-mode="server" class="${state.timeMode === "server" ? "is-active" : ""}">${t("serverTime")}</button>
-          </div>
-        </div>
-        ${renderFilteredEventContent(state.eventFilter, events, currentConvenes)}
-      </div>
-    </section>
-  `;
+  const records=state.events.filter(event=>!['banner','codigo'].includes(event.category));
+  const group=status=>records.filter(event=>getEventStatus(event)===status);
+  const groups={active:group('ao_vivo'),upcoming:[...group('em_breve'),...group('a_confirmar')],history:group('encerrado')};
+  groups.active.sort((a,b)=>(Date.parse(a.endAt || a.endDate) || Infinity)-(Date.parse(b.endAt || b.endDate) || Infinity));
+  groups.upcoming.sort((a,b)=>(Date.parse(a.startAt || a.startDate) || Infinity)-(Date.parse(b.startAt || b.startDate) || Infinity));
+  groups.history.sort((a,b)=>Date.parse(b.endAt || b.endDate || b.publishedAt)-Date.parse(a.endAt || a.endDate || a.publishedAt));
+  const titles={active:ct('Active events'),upcoming:ct('Upcoming events'),history:ct('Event archive'),codes:ct('Active codes'),all:ct('Overview')};
+  const match=event=>(state.eventCategory==='all' || event.category===state.eventCategory) && (!state.eventQuery || [ct(event.title),event.title,ct(event.description),eventCategoryLabel(event.category)].join(' ').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().includes(state.eventQuery.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()));
+  const section=key=>{
+    const filtered=groups[key].filter(match),visible=key==='history'?filtered.slice(0,state.eventLimit):filtered;
+    const empty=state.eventsLoading?ct('Loading events…'):ct('No events in this section.');
+    return '<section class="events-hub-section" data-events-section="'+key+'"><div class="events-section-heading"><h2>'+titles[key]+'</h2><span>'+filtered.length+'</span></div>'+(visible.length?'<div class="events-grid">'+visible.map(event=>renderEventCard(event)).join('')+'</div>':'<p class="events-empty" role="status">'+empty+'</p>')+(visible.length<filtered.length?'<button type="button" class="builder-button events-more" data-events-more>'+ct('Show more events')+'</button>':'')+'</section>';
+  };
+  const filters=Object.keys(titles);
+  return renderPageHero(t('navEvents'),ct('Your event calendar: current activities, upcoming events and redeem codes.'),ct('Stay up to date'))+'<section class="page-band"><div class="container events-hub">'+
+    '<div class="events-hub-summary">'+['active','upcoming','codes','history'].map(key=>'<button type="button" data-event-filter="'+key+'" aria-pressed="'+(state.eventFilter===key)+'"><span>'+titles[key]+'</span><strong>'+(key==='codes'?activeCodes().length:groups[key].length)+'</strong></button>').join('')+'</div>'+
+    '<div class="events-hub-sync"><p>'+ct('Last update')+' · '+(state.updatedAt?formatDate(state.updatedAt):ct('Loading events…'))+'</p><button type="button" class="builder-text-button" data-events-refresh '+(state.eventsLoading || state.codesLoading?'disabled':'')+'>'+ct('Refresh')+' ↻</button></div>'+
+    (state.eventError?'<p class="notice" role="status">'+ct('Unable to update events. Previously loaded events remain available.')+'</p>':state.eventPartial?'<p class="notice" role="status">'+ct('Some announcements are temporarily unavailable. Preserved events remain available.')+'</p>':'')+
+    '<nav class="events-hub-tabs" aria-label="'+ct('Event sections')+'">'+filters.map(key=>'<button type="button" data-event-filter="'+key+'" aria-pressed="'+(state.eventFilter===key)+'">'+titles[key]+'</button>').join('')+'</nav>'+
+    (state.eventFilter!=='codes'?'<div class="events-hub-toolbar"><label class="events-hub-search"><span>'+ct('Search events')+'</span><input type="search" data-event-search value="'+escapeHtml(state.eventQuery)+'" placeholder="'+ct('Event name or description…')+'"></label><label><span>'+t('category')+'</span><select data-event-category>'+['all','evento_in_game','evento_web','torre_adversidade','comunidade'].map(key=>'<option value="'+key+'" '+(state.eventCategory===key?'selected':'')+'>'+(key==='all'?t('all'):eventCategoryLabel(key))+'</option>').join('')+'</select></label><div class="segmented" aria-label="'+ct('Time zone')+'">'+['local','server'].map(mode=>'<button type="button" data-time-mode="'+mode+'" aria-pressed="'+(state.timeMode===mode)+'" class="'+(state.timeMode===mode?'is-active':'')+'">'+t(mode==='local'?'localTime':'serverTime')+'</button>').join('')+'</div></div>':'')+
+    (state.eventFilter==='all'?section('active')+section('upcoming')+renderEventCodes()+'<details class="events-archive"><summary>'+titles.history+' <span>'+groups.history.length+'</span></summary>'+section('history')+'</details>':state.eventFilter==='codes'?renderEventCodes():section(state.eventFilter))+
+    '<p class="events-source-note">'+ct('Event information and artwork come from official Kuro Games announcements. Server events use UTC+8, with a local-time option. Other time zones and date-only schedules are identified on each card.')+' <a class="text-link" href="https://wutheringwaves.kurogames.com/en/main/news" target="_blank" rel="noreferrer">'+ct('Official announcements')+' ↗</a></p></div></section>';
 }
 
 function renderConvenesSection() {
@@ -4005,34 +3934,39 @@ function renderConveneCard(convene, compact = false) {
 
 function renderEventCard(event, compact = false) {
   const status = getEventStatus(event);
+  const translated=ct(event.description || '');
+  const description=state.lang==='en' || translated!==event.description?translated:ct('Full event details are available in the official announcement.');
   return `
-    <article class="data-card event-card ${compact ? "event-card--compact" : ""}">
-      <img
+    <article class="data-card event-card ${compact ? "event-card--compact" : ""}" data-event-id="${escapeHtml(event.id)}" data-event-status="${status}">
+      ${event.imageUrl?`<img
         ${eventImageAttributes(event.imageUrl)}
         alt="${escapeHtml(ct(event.title))}"
         loading="lazy"
         decoding="async"
-      >
+      >`:'<div class="event-art-placeholder" role="img" aria-label="'+ct('Event artwork not available')+'"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="5" y="8" width="38" height="32" rx="4"/><circle cx="32" cy="18" r="4"/><path d="m5 34 12-12 12 12 6-6 8 8"/></svg><span>'+ct('Event artwork not available')+'</span></div>'}
+      ${event.imageScope==='notice'?'<small class="event-art-caption">'+ct('Official announcement artwork')+'</small>':''}
       <div class="card-body">
         <div class="card-topline">
           <span class="pill pill--${status}">${statusLabel(status)}</span>
-          <span>${t(categoryLabels[event.category])}</span>
+          <span>${eventCategoryLabel(event.category)}</span>
         </div>
         <h3>${escapeHtml(ct(event.title))}</h3>
-        <p class="event-count" aria-label="${status === "em_breve" ? t("eventStartsIn") : t("eventEndsIn")}">
-          <small>${status === "em_breve" ? t("eventStartsIn") : t("eventEndsIn")}</small>
-          <span data-countdown data-start="${event.startAt}" data-end="${event.endAt}">${countdownLabel(event)}</span>
+        ${description?'<p class="event-description">'+escapeHtml(description)+'</p>':''}
+        <p class="event-count">
+          <small>${status==='encerrado'?t('ended'):event.dateOnly?ct('Schedule'):event.permanent?ct('Availability'):status==='a_confirmar'?ct('Schedule'):status === "em_breve" ? t("eventStartsIn") : t("eventEndsIn")}</small>
+          <span ${event.startAt && event.endAt?'data-countdown data-start="'+event.startAt+'" data-end="'+event.endAt+'"':''}>${countdownLabel(event)}</span>
         </p>
         <dl class="event-times">
-          <div><dt>${t("eventStartDate")}</dt><dd>${formatEventDate(event.startAt)}</dd></div>
-          <div><dt>${t("eventStartTime")}</dt><dd>${formatEventTime(event.startAt)}</dd></div>
-          <div><dt>${t("eventEndDate")}</dt><dd>${formatEventDate(event.endAt)}</dd></div>
-          <div><dt>${t("eventEndTime")}</dt><dd>${formatEventTime(event.endAt)}</dd></div>
+          <div><dt>${t("eventStartDate")}</dt><dd>${event.dateOnly?formatEventDate(event.startDate+'T12:00:00Z','server')+' ('+escapeHtml(event.sourceTimezone)+')':event.estimatedStart?mt(event.startLabel):event.startAt?formatEventDate(event.startAt):ct('Not announced')}</dd></div>
+          <div><dt>${t("eventStartTime")}</dt><dd>${event.estimatedStart?'—':event.startAt?formatEventTime(event.startAt):'—'}</dd></div>
+          <div><dt>${t("eventEndDate")}</dt><dd>${event.dateOnly?formatEventDate(event.endDate+'T12:00:00Z','server')+' ('+escapeHtml(event.sourceTimezone)+')':event.permanent?ct('No end date'):event.endVersion?ct('End of version')+' '+event.endVersion:event.endAt?formatEventDate(event.endAt):ct('Not announced')}</dd></div>
+          <div><dt>${t("eventEndTime")}</dt><dd>${event.endAt?formatEventTime(event.endAt):'—'}</dd></div>
         </dl>
         <div class="tag-row">
+          ${event.eventKind && (state.lang==='en' || ct(event.eventKind)!==event.eventKind)?'<span>'+escapeHtml(ct(event.eventKind))+'</span>':''}
           ${(event.rewards || []).map((reward) => `<span>${escapeHtml(mt(reward))}</span>`).join("")}
         </div>
-        <a class="text-link" href="${event.sourceUrl}" target="_blank" rel="noreferrer">${t("details")}</a>
+        <a class="text-link" href="${escapeHtml(event.sourceUrl)}" target="_blank" rel="noreferrer">${ct('Official announcement')} ↗</a>
       </div>
     </article>
   `;
@@ -4181,10 +4115,11 @@ function collectionSignature(items, fields = ["id", "slug", "title", "name", "up
 
 function routeSignature(routeId = state.route, detail = state.detail) {
   const timedStatus = ["home", "events", "gacha"].includes(routeId)
-    ? [...state.events, ...state.convenes].map(getEventStatus).join(",") : "";
+    ? [...state.events, ...(routeId==='events'?[]:state.convenes)].map(getEventStatus).join(",") : "";
   const base = [sourceLocaleRevision,state.lang, routeId, detail || "", timedStatus,
+    ['home','events','codes'].includes(routeId)?[codesCheckedAt,state.codesLoading,state.codesError,state.codesPartial,activeCodes().map(code=>code.code).join(',')].join(':'):'',
     routeId === "characters" ? state.characterSort : "",
-    ["home", "events", "gacha"].includes(routeId) ? state.conveneError : ""
+    ["home", "gacha"].includes(routeId) ? state.conveneError : ""
   ].join("|");
   const favorites = getFavorites().join(",");
 
@@ -4206,7 +4141,7 @@ function routeSignature(routeId = state.route, detail = state.detail) {
     case "builder":
       return [base, JSON.stringify(state.builder), state.builderMessage, builderEchoes.length, builderCatalogError, builderCatalogLoading, JSON.stringify(state.builderSearch), JSON.stringify(state.builderFilter), collectionSignature(characters, ["slug", "name", "imageUrl"])].join("|");
     case "events":
-      return [base, state.eventFilter, state.timeMode, state.updatedAt, state.convenesUpdatedAt, state.eventSource, state.conveneSource, collectionSignature(state.events), collectionSignature(state.convenes, ["id", "title", "updatedAt", "imageUrl"])].join("|");
+      return [base, state.eventFilter, state.eventCategory, state.eventQuery,state.eventLimit,state.timeMode, state.updatedAt,state.eventError,state.eventPartial,state.eventsLoading,collectionSignature(state.events,['id','title','description','imageUrl','startAt','endAt','permanent'])].join("|");
     case "news":
       return [base, collectionSignature(news, ["title", "date", "category", "summary", "image"])].join("|");
     case "intro":
@@ -4426,21 +4361,32 @@ async function loadEvents({ force = false } = {}) {
   if (dataRequests.events) return dataRequests.events;
   if (dataRequests.eventsLoaded && !force) return state.events;
 
+  state.eventsLoading=true;scheduleRender();
   dataRequests.events = (async () => {
     try {
       const response = await fetch("/api/events", { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(20000) });
       const payload = await response.json();
       if (!response.ok || !Array.isArray(payload.events)) throw new Error("Invalid events response");
-      state.events = Array.isArray(payload.events) ? payload.events : [];
+      const records=new Map(state.events.map(event=>[event.id,event]));
+      if(!payload.externalError || !String(payload.source).includes('fallback-local'))for(const event of payload.events){
+        if(!event.id || !event.title || ['banner','codigo'].includes(event.category))continue;
+        const previous=event.permanent?[...records.values()].find(old=>old.permanent && (old.eventName || old.title)===(event.eventName || event.title)):records.get(event.id);
+        const id=previous?.id || event.id;
+        records.set(id,{...previous,...event,id,imageUrl:event.imageUrl || previous?.imageUrl || '',imageScope:event.imageUrl?event.imageScope:previous?.imageScope || event.imageScope,description:event.description || previous?.description || '',rewards:event.rewards?.length?event.rewards:previous?.rewards || []});
+      }
+      state.events=[...records.values()];
+      try{localStorage.setItem('solaris:event-archive:v1',JSON.stringify(state.events));}catch{}
       state.updatedAt = payload.updatedAt || new Date().toISOString();
       state.syncIntervalMinutes = payload.syncIntervalMinutes || 10;
       state.eventSource = payload.imageSource || payload.source || "/api/events";
       state.eventError = Boolean(payload.externalError);
+      state.eventPartial = Boolean(payload.partial);
     } catch {
       state.eventError = true;
       state.eventSource = state.eventSource || "erro ao sincronizar";
     } finally {
       dataRequests.eventsLoaded = true;
+      state.eventsLoading=false;
       dataRequests.events = null;
       preloadAppAssets();
       scheduleRender();
@@ -4450,6 +4396,24 @@ async function loadEvents({ force = false } = {}) {
   })();
 
   return dataRequests.events;
+}
+
+async function loadCodes({force=false}={}) {
+  if(dataRequests.codes)return dataRequests.codes;
+  if(dataRequests.codesLoaded && !force)return codes;
+  state.codesLoading=true;scheduleRender();
+  dataRequests.codes=(async()=>{
+    try{
+      const response=await fetch('/api/codes',{headers:{Accept:'application/json'},signal:AbortSignal.timeout(20000)}),payload=await response.json();
+      if(!response.ok || !Array.isArray(payload.codes))throw Error('Invalid codes response');
+      codes=payload.externalError?[]:payload.codes;
+      codesCheckedAt=payload.updatedAt || new Date().toISOString();
+      state.codesError=Boolean(payload.externalError);state.codesPartial=Boolean(payload.partial);
+    }catch{codes=[];state.codesError=true;}
+    finally{state.codesLoading=false;dataRequests.codesLoaded=true;dataRequests.codes=null;scheduleRender();}
+    return codes;
+  })();
+  return dataRequests.codes;
 }
 
 async function loadCharacters({ force = false } = {}) {
@@ -4509,7 +4473,8 @@ function preloadAppData() {
   if (["builder", "echoes", "sonatas"].includes(state.route) && (!builderCatalogLoaded || Date.now() >= builderCatalogExpiresAt)) loadBuilderEchoes();
   // The ticker needs events everywhere. Other catalogs load on first use.
   if (!dataRequests.eventsLoaded) loadEvents();
-  if (["home", "events", "gacha"].includes(state.route) && !dataRequests.convenesLoaded) loadConvenes();
+  if (["home", "gacha"].includes(state.route) && !dataRequests.convenesLoaded) loadConvenes();
+  if (["home", "events", "codes"].includes(state.route) && !dataRequests.codesLoaded) loadCodes();
   if (["home", "intro", "characters", "tier", "builder", "gacha"].includes(state.route) && !dataRequests.charactersLoaded) loadCharacters();
   if (state.route === 'characters' && dataRequests.charactersLoaded) {
     loadCharacterMedia();
@@ -4742,9 +4707,12 @@ app.addEventListener("click", (event) => {
   const eventButton = event.target.closest("[data-event-filter]");
   if (eventButton) {
     state.eventFilter = eventButton.getAttribute("data-event-filter");
+    state.eventLimit=12;
     render();
     return;
   }
+  if(event.target.closest('[data-events-more]')){state.eventLimit+=12;render();return;}
+  if(event.target.closest('[data-events-refresh]')){loadEvents({force:true});loadCodes({force:true});return;}
 
   const timeButton = event.target.closest("[data-time-mode]");
   if (timeButton) {
@@ -4791,6 +4759,7 @@ app.addEventListener("keydown", (event) => {
 
 app.addEventListener("change", (event) => {
   if (event.target.matches('[data-echo-filter]')) {cancelPendingSearch();state.echoFilters[event.target.dataset.echoFilter] = event.target.value;updateEchoResults();return;}
+  if(event.target.matches('[data-event-category]')){state.eventCategory=event.target.value;state.eventLimit=12;render();return;}
   if (event.target.matches("[data-tier-filter]")) {cancelPendingSearch();state.tierFilters[event.target.dataset.tierFilter]=event.target.value;updateTierResults();return;}
   if (state.route === "gacha" && handleGacha(event, gachaContext())) return;
   if (event.target.matches('[data-builder-set-filter]')) {
@@ -4889,6 +4858,8 @@ app.addEventListener("input", (event) => {
     queueSearch(echoSearch, updateEchoResults);
     return;
   }
+  const eventSearch=event.target.closest('[data-event-search]');
+  if(eventSearch){state.eventQuery=eventSearch.value;state.eventLimit=12;queueSearch(eventSearch,()=>{const position=eventSearch.selectionStart;render();const input=routePanels.get(routeCacheKey())?.querySelector('[data-event-search]');input?.focus({preventScroll:true});if(input && input.type!=='search')input.setSelectionRange(position,position);});return;}
   const tierSearch=event.target.closest("[data-tier-search]");
   if(tierSearch){state.tierFilters.query=tierSearch.value;const panel=routePanels.get(routeCacheKey());if(panel)panel.dataset.signature=routeSignature();queueSearch(tierSearch,updateTierResults);return;}
   if (event.target.tagName !== "SELECT" && handleBuilderField(event)) return;
@@ -4949,6 +4920,7 @@ window.setInterval(() => {
   if (state.route === 'characters') loadCharacterMedia();
   if (dataRequests.convenesLoaded && (state.conveneError || Date.now() - new Date(state.convenesUpdatedAt || 0).getTime() >= state.conveneSyncIntervalMinutes * 60000)) loadConvenes({ force: true });
   if (state.eventError || Date.now() - new Date(state.updatedAt || 0).getTime() >= state.syncIntervalMinutes * 60000) loadEvents({ force: true });
+  if(dataRequests.codesLoaded && (state.codesError || Date.now()-Date.parse(codesCheckedAt || 0)>=60*60*1000))loadCodes({force:true});
 }, 60 * 1000);
 window.addEventListener("storage", (event) => {
   if (event.key === "solaris:favorites" || event.key === null) {

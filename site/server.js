@@ -35,8 +35,13 @@ const verifiedConveneAdditions = [
   { id: "convene-5529-bloomingjadehaven", title: "[Blooming Jadehaven] Featured Weapon Convene", type: "weapon", featuredName: "Blooming Jadehaven", featuredDetail: "Rectifier", imageUrl: "/assets/banners/blooming-jadehaven-3.7.webp", highlights: ["5-Star Weapon: Blooming Jadehaven; 4-Star Weapons: Fusion Accretion, Commando of Conviction, Dauntless Evernight"] }
 ].map(record => ({ ...record, startAt: "2026-09-30T03:00:00Z", endAt: "2026-10-22T01:59:00Z", startLabel: "Version 3.7 update", estimatedStart: true, serverTimezone: "UTC+8", sourceUrl: "https://wutheringwaves.kurogames.com/en/main/news/detail/5529" }));
 const eventFeedUrl = "https://raw.githubusercontent.com/TheLovinator1/wutheringwaves/master/articles_latest.xml";
+const eventArchiveUrl = "https://raw.githubusercontent.com/TheLovinator1/wutheringwaves/master/articles_all.xml";
 const eventCacheTtlMs = 30 * 60 * 1000;
 let eventCache = null;
+let eventRequest = null;
+const codeSourceUrls = ["https://www.pockettactics.com/wuthering-waves/codes", "https://beebom.com/wuthering-waves-redeem-codes/"];
+const codeCacheTtlMs = 60 * 60 * 1000;
+let codeCache = null, codeRequest = null;
 const conveneFeedUrl = eventFeedUrl;
 const conveneCacheTtlMs = 5 * 60 * 1000;
 let conveneCache = null;
@@ -141,7 +146,7 @@ async function fetchJson(url) {
   try { return await pending; } finally { jsonRequests.delete(url); }
 }
 
-async function fetchText(url) {
+async function fetchText(url, ttl = eventCacheTtlMs) {
   const cached = textCache.get(url);
   if (cached?.expiresAt > Date.now()) return cached.text;
   if (textRequests.has(url)) return textRequests.get(url);
@@ -160,7 +165,7 @@ async function fetchText(url) {
 
     const text = await response.text();
     if (!/<feed[\s>]/i.test(text)) throw new Error("Invalid article feed");
-    textCache.set(url, { text, expiresAt: Date.now() + eventCacheTtlMs });
+    textCache.set(url, { text, expiresAt: Date.now() + ttl });
     return text;
   })();
   textRequests.set(url, pending);
@@ -256,6 +261,7 @@ function extractRewards(content = "") {
 
 function categorizeOfficialEvent(title = "") {
   const lower = title.toLowerCase();
+  if(/fan creation|battle rush|photo challenge|photography/i.test(title))return 'comunidade';
   if (lower.includes("convene") || lower.includes("resonator") || lower.includes("weapon")) return "banner";
   if (lower.includes("web")) return "evento_web";
   if (lower.includes("tower") || lower.includes("endstate") || lower.includes("adversity")) return "torre_adversidade";
@@ -290,31 +296,132 @@ function extractConveneHighlights(content = "") {
   return match ? [match[1].trim()] : [];
 }
 
+function eventName(title) {
+  const brackets = [...title.matchAll(/\[([^\]]+)\]/g)];
+  return brackets.at(-1)?.[1] || title;
+}
+
+function compareEventVersions(a,b) {const left=a.split('.').map(Number),right=b.split('.').map(Number);return left[0]-right[0] || left[1]-right[1];}
+
+function eventSchedule(content, releases, releasedVersion='0.0') {
+  const exact = extractEventDates(content);
+  if (exact) return exact;
+  const text = stripTags(content);
+  const calendar=text.match(/(\d{4})\/(\d{2})\/(\d{2})\s*-\s*(\d{4})\/(\d{2})\/(\d{2})\s*\((PT|UTC\+8|server time)\)/i);
+  if(calendar)return {startAt:null,endAt:null,startDate:calendar.slice(1,4).join('-'),endDate:calendar.slice(4,7).join('-'),dateOnly:true,dateTimezone:calendar[7]==='PT'?'America/Los_Angeles':'Asia/Shanghai',sourceTimezone:calendar[7]};
+  const range=text.match(/Start of Version\s+(\d+\.\d+)\s*-\s*End of Version\s+(\d+\.\d+)/i);
+  if(range)return {startAt:releases.get(range[1]) || null,endAt:null,startLabel:`Version ${range[1]} update`,estimatedStart:true,endVersion:range[2],
+    endedByVersion:compareEventVersions(releasedVersion,range[2])>0,
+    ongoingByVersion:compareEventVersions(releasedVersion,range[1])>=0 && compareEventVersions(releasedVersion,range[2])<=0};
+  const version = text.match(/Version\s+(\d+\.\d+)\s+update/i)?.[1];
+  const end = text.match(/Version\s+\d+\.\d+\s+update\s*[-–~]\s*(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2})\s*\((?:server time|UTC\+8)\)/i);
+  if (version && (end || /permanently available after|Duration:\s*After the Version\s+\d+\.\d+\s+update/i.test(text)))return {
+    startAt: releases.get(version) || null, endAt: end ? parseServerTime(end[1]) : null,
+    startLabel: `Version ${version} update`, estimatedStart: true,
+    permanent: !end, schedulePending: !releases.has(version)
+  };
+  // Publication time is not an event's start time.
+  return {startAt:null,endAt:null,schedulePending:true};
+}
+
+function eventDescription(content) {
+  return [...content.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
+    .filter(([, paragraph])=>!/<strong/i.test(paragraph))
+    .map(([, paragraph])=>stripTags(paragraph.replace(/<img\b[^>]*>/gi,'')))
+    .filter(text=>text && !/^(?:✦|Duration:|Eligibility|Rewards|Notes|Dear Rovers|\d{4}-\d{2}-\d{2})/i.test(text))
+    .slice(0,2).join(' ').slice(0,700);
+}
+
+function eventRewards(content) {
+  // Only extract named, quantified rewards from this event's own section.
+  const text=stripTags(content);
+  const rewards=[...new Set([...text.matchAll(/(?:Astrites?|Shell Credits?|Radiant Tide|Lustrous Tide|Premium Tuners?|Advanced Sealed Tubes?|Crystal Solvent)\s*[x×]\s*[\d,]+/gi)].map(match=>match[0]))];
+  return rewards.length?rewards:extractRewards(content);
+}
+
 function parseOfficialEventFeed(xml) {
-  return [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)]
-    .map(([, block]) => {
-      const title = extractTag(block, "title");
-      const content = extractTag(block, "content");
-      if (isConveneArticle(title, content)) return null;
+  const entries=[...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].map(([,block])=>({
+    id:extractTag(block,'id').replace('urn:article:',''), title:extractTag(block,'title'), content:extractTag(block,'content'),
+    publishedAt:extractTag(block,'published'), sourceUrl:extractAttr(block,'href')
+  }));
+  const releases=new Map(), artwork=new Map();
+  const latestVersion=entries.map(entry=>entry.title.match(/Version\s+(\d+\.\d+)/i)?.[1]).filter(Boolean).sort((a,b)=>compareEventVersions(b,a))[0];
+  for(const entry of entries){
+    const version=entry.title.match(/Version\s+(\d+\.\d+)/i)?.[1];
+    const maintenance=stripTags(entry.content).match(/Maintenance Time:\s*(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2})\s*-\s*(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2})/i);
+    if(version && maintenance)releases.set(version,parseServerTime(maintenance[2]));
+    if(/Event Preview|Event Notice|\]\s+.*Event/i.test(entry.title) && !isConveneArticle(entry.title,'')){
+      const image=extractOfficialImage(entry.content);
+      if(image)artwork.set(normalizeKey(eventName(entry.title)),image);
+    }
+  }
+  const records=[];
+  const releasedVersion=[...releases.keys()].filter(version=>Date.parse(releases.get(version))<=Date.now()).sort((a,b)=>compareEventVersions(b,a))[0] || '0.0';
+  for(const entry of entries){
+    if(isStandaloneConveneArticle(entry.title) || /Featured.*Convene|Resonator\/Weapon Convene/i.test(entry.title))continue;
+    const headings=[...entry.content.matchAll(/<p>\s*<strong>([^<]+)<\/strong>\s*<\/p>/gi)].map(match=>({index:match.index,end:match.index+match[0].length,text:stripTags(match[1])}));
+    const candidates=headings.filter((heading,index)=>/\]\s+[^\[\]]*Event$/i.test(heading.text) || headings[index-1]?.text==='[New Permanent Event]' && !/^\[/.test(heading.text));
+    const build=(title,content,id,kind='',section=false)=>{
+      const schedule=eventSchedule(content,releases,releasedVersion), name=eventName(title);
+      const ownImage=extractOfficialImage(content), previewImage=artwork.get(normalizeKey(name));
+      const imageUrl=ownImage || previewImage || (section?extractOfficialImage(entry.content):'');
+      const category=categorizeOfficialEvent(title);
+      // A combat event mentioning weapons is not a Convene.
+      records.push({id,category:category==='banner'?'evento_in_game':category,title:section?name:title,eventName:name,
+        ...schedule,imageUrl,imageScope:ownImage || previewImage?'event':imageUrl?'notice':'none',
+        description:eventDescription(content),eventKind:kind,
+        rewards:eventRewards(content),sourceUrl:entry.sourceUrl,publishedAt:entry.publishedAt,serverTimezone:'UTC+8'});
+    };
+    if(candidates.length){
+      for(const heading of candidates){
+        const next=headings.find(other=>other.index>heading.index && (candidates.includes(other) || /^\[(?:Web Events|New Permanent Event|Version Special Login Event|Special Events)\]$/.test(other.text)));
+        const nextSection=entry.content.slice(heading.end).search(/<h1>\s*(?:New Merch|Other New Content|Features|Adjustments)/i);
+        const end=Math.min(next?.index ?? entry.content.length,nextSection<0?entry.content.length:heading.end+nextSection);
+        const section=entry.content.slice(heading.end,end);
+        if(!/Duration:/i.test(stripTags(section)))continue;
+        const kind=heading.text.match(/\]\s+(.*Event)$/i)?.[1] || 'Permanent Event';
+        build(heading.text,section,`official-${entry.id}-${normalizeKey(eventName(heading.text))}`,kind,true);
+      }
+      continue;
+    }
+    if(isConveneArticle(entry.title,entry.content))continue;
+    const announcedName=stripTags(entry.content).match(/limited-time event ["“]([^"”]+)["”]/i)?.[1];
+    const announcedVersion=entry.title.match(/Version\s+(\d+\.\d+)/i)?.[1];
+    if(announcedName && announcedVersion===latestVersion){build(announcedName,entry.content,`official-${entry.id}`, 'Limited-Time Event');continue;}
+    if(!/event|challenge|battle rush|campaign/i.test(entry.title) || /winners|results|concluded/i.test(entry.title))continue;
+    const dates=eventSchedule(entry.content,releases,releasedVersion);
+    // Art-only previews enrich announced events, but don't create duplicate cards.
+    if(!dates.startAt && !dates.dateOnly)continue;
+    build(entry.title,entry.content,`official-${entry.id}`);
+  }
+  return mergeEventRecords([],records);
+}
 
-      const dates = extractEventDates(content);
-      const imageUrl = extractOfficialImage(content);
-      if (!title || !dates || !imageUrl) return null;
+function mergeEventRecords(previous, incoming) {
+  const records=new Map(previous.filter(record=>record.id?.startsWith('official-') && record.category!=='banner').map(record=>[record.id,record]));
+  for(const record of incoming){
+    const duplicate=[...records.values()].find(old=>normalizeKey(old.eventName || eventName(old.title))===normalizeKey(record.eventName || eventName(record.title)) && (old.permanent && record.permanent || old.endAt===record.endAt && old.startAt===record.startAt && old.startDate===record.startDate && old.endDate===record.endDate && old.endVersion===record.endVersion));
+    const id=duplicate?.id || record.id;
+    const existing=records.get(id);
+    const merged={...existing,...record,id};
+    if(existing?.permanent && record.permanent && Date.parse(existing.publishedAt)>Date.parse(record.publishedAt))Object.assign(merged,existing,{id});
+    for(const field of ['imageUrl','description'])if(!record[field] && existing?.[field])merged[field]=existing[field];
+    if(!record.imageUrl && existing?.imageUrl)merged.imageScope=existing.imageScope;
+    if(!record.rewards?.length && existing?.rewards?.length)merged.rewards=existing.rewards;
+    records.set(id,merged);
+  }
+  return [...records.values()];
+}
 
-      const id = extractTag(block, "id").replace("urn:article:", "") || normalizeKey(title);
-      return {
-        id: `official-${id}`,
-        category: categorizeOfficialEvent(title),
-        title,
-        imageUrl,
-        startAt: dates.startAt,
-        endAt: dates.endAt,
-        serverTimezone: "UTC+8",
-        rewards: extractRewards(content),
-        sourceUrl: extractAttr(block, "href")
-      };
-    })
-    .filter(Boolean);
+function currentEventStatus(event, now=Date.now()) {
+  if(event.dateOnly){const day=new Intl.DateTimeFormat('sv-SE',{timeZone:event.dateTimezone,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(now));return day<event.startDate?'em_breve':day>event.endDate?'encerrado':'ao_vivo';}
+  if(event.endedByVersion || event.endAt && Date.parse(event.endAt)<now)return 'encerrado';
+  if(event.ongoingByVersion)return 'ao_vivo';
+  if(event.schedulePending || !event.startAt)return 'a_confirmar';
+  if(now<Date.parse(event.startAt))return 'em_breve';
+  if(event.permanent)return 'ao_vivo';
+  if(!event.endAt)return 'a_confirmar';
+  return getStatus(event.startAt,event.endAt,new Date(now));
 }
 
 function parseOfficialConveneFeed(xml) {
@@ -696,31 +803,35 @@ async function fetchConveneFeed() {
 }
 
 async function createEventsPayload() {
+  if(eventRequest)return eventRequest;
+  eventRequest=buildEventsPayload();
+  try{return await eventRequest;}finally{eventRequest=null;}
+}
+
+async function buildEventsPayload() {
   const now = Date.now();
 
   if (eventCache && eventCache.expiresAt > now) {
     return {
       ...eventCache.payload,
+      events:eventCache.payload.events.map(event=>({...event,status:currentEventStatus(event,now)})),
       cached: true
     };
   }
 
   try {
-    const xml = await fetchText(eventFeedUrl);
-    const activeEvents = parseOfficialEventFeed(xml)
-      .filter((event) => getStatus(event.startAt, event.endAt, new Date(now)) === "ao_vivo")
-      .slice(0, 12)
-      .map((event) => ({
-        ...event,
-        status: "ao_vivo"
-      }));
+    const feeds=await Promise.allSettled([fetchText(eventFeedUrl),fetchText(eventArchiveUrl,6*60*60*1000)]);
+    if(feeds.every(result=>result.status==='rejected'))throw Error('Event sources unavailable');
+    const incoming=mergeEventRecords([],feeds.toReversed().flatMap(result=>result.status==='fulfilled'?parseOfficialEventFeed(result.value):[]));
+    const events=mergeEventRecords(eventCache?.payload.events || [],incoming).map(event=>({...event,status:currentEventStatus(event,now)}));
 
     const payload = {
       updatedAt: new Date(now).toISOString(),
       syncIntervalMinutes: Math.round(eventCacheTtlMs / 60000),
       source: eventFeedUrl,
       imageSource: "Kuro Games CDN via TheLovinator1/wutheringwaves",
-      events: activeEvents
+      partial: feeds.some(result=>result.status==='rejected'),
+      events
     };
 
     eventCache = {
@@ -734,12 +845,59 @@ async function createEventsPayload() {
     };
   } catch (error) {
     if (eventCache?.payload && !eventCache.payload.externalError) {
-      return { ...eventCache.payload, cached: true, stale: true, externalError: true, message: error.message };
+      return { ...eventCache.payload, events:eventCache.payload.events.map(event=>({...event,status:currentEventStatus(event,now)})),cached: true, stale: true, externalError: true, message: error.message };
     }
-    const payload = createDemoEventsPayload(error);
+    // Never advertise demo events or generated codes as current game content.
+    const payload = {updatedAt:new Date(now).toISOString(),syncIntervalMinutes:2,source:eventFeedUrl,externalError:true,events:[]};
     eventCache = { payload, expiresAt: now + 2 * 60 * 1000 };
     return payload;
   }
+}
+
+function parseCodeSource(html, sourceUrl) {
+  const pocket=sourceUrl.includes('pockettactics');
+  const expiredMarkup=html.replace(/<\/?(?:strong|b|i|span)\b[^>]*>/gi,'');
+  const activeSection=pocket?html.match(/Here are all the active WuWa codes:[\s\S]*?<ul\b[^>]*>([\s\S]*?)<\/ul>/i)?.[1]:html.match(/id="h-all-new-wuthering-waves-codes"[\s\S]*?<ul\b[^>]*>([\s\S]*?)<\/ul>/i)?.[1];
+  const expiredSection=pocket?expiredMarkup.match(/Expired codes:[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>/i)?.[1]:html.match(/id="h-all-expired-wuthering-waves-codes"[\s\S]*?<ul\b[^>]*>([\s\S]*?)<\/ul>/i)?.[1];
+  if(activeSection===undefined || expiredSection===undefined)throw Error('Code source format unavailable');
+  const expired=new Set(stripTags(expiredSection).split(/[|\s,]+/).filter(code=>/^[A-Z0-9]{5,32}$/.test(code)));
+  const codes=[...activeSection.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi)].flatMap(([,row])=>{
+    const code=row.match(/<strong>\s*([A-Z0-9]{5,32})\s*<\/strong>/)?.[1];
+    if(!code || expired.has(code))return [];
+    const text=stripTags(row.replace(/<button\b[\s\S]*?<\/button>/gi,''));
+    const words={one:1,two:2,three:3,four:4,five:5};
+    const normalized=text.replace(/\b(one|two|three|four|five)\b/gi,word=>words[word.toLowerCase()]).replace(/(\d+)k\b/gi,(_,number)=>Number(number)*1000);
+    const rewards=[...normalized.matchAll(/(\d[\d,]*)\s+(Astrites?|(?:Premium|Advanced|Medium|Basic) Resonance Potions?|(?:Medium|Advanced|Basic) Revival Inhalers?|(?:Medium|Advanced|Basic) Energy Bags?|Shell Credits?|(?:Advanced|Medium|Basic) Energy Cores?|(?:Medium|Advanced) Nutrient Blocks?|Advanced Enclosure Tank II)/gi)].map(match=>match[2].replace(/s$/i,'').replace(/\b[a-z]/g,char=>char.toUpperCase())+' x'+match[1].replaceAll(',',''));
+    const expiry=normalized.match(/(?:expires?|valid until|ends?)\s*(?:on|at|:)?\s*(\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}(?::\d{2})?(?:Z|[+-]\d{2}:\d{2}))/i)?.[1];
+    return [{code,status:'active',rewards,expiresAt:expiry && Number.isFinite(Date.parse(expiry))?new Date(expiry).toISOString():null,sourceUrl}];
+  });
+  return {codes,expired:[...expired]};
+}
+
+async function createCodesPayload() {
+  const now=Date.now();
+  if(codeCache?.expiresAt>now)return {...codeCache.payload,cached:true};
+  if(codeRequest)return codeRequest;
+  codeRequest=(async()=>{
+    const results=await Promise.allSettled(codeSourceUrls.map(async url=>{
+      const response=await fetch(url,{signal:AbortSignal.timeout(15000),headers:{'User-Agent':'Solaris-Archive-WuWa-Wiki',Accept:'text/html'}});
+      if(!response.ok)throw Error('Code source unavailable');
+      return {...parseCodeSource(await response.text(),url),url};
+    }));
+    const successful=results.filter(result=>result.status==='fulfilled').map(result=>result.value);
+    const expired=new Set(successful.flatMap(source=>source.expired));
+    const records=new Map();
+    for(const source of successful)for(const code of source.codes){
+      if(expired.has(code.code) || code.expiresAt && Date.parse(code.expiresAt)<=now)continue;
+      const previous=records.get(code.code);
+      records.set(code.code,{...code,rewards:previous?.rewards.length?previous.rewards:code.rewards,sources:[...(previous?.sources || []),source.url]});
+    }
+    const payload={codes:[...records.values()],updatedAt:new Date(now).toISOString(),syncIntervalMinutes:60,
+      sources:successful.map(source=>source.url),partial:successful.length>0 && successful.length<codeSourceUrls.length,externalError:!successful.length};
+    codeCache={payload,expiresAt:now+(payload.externalError?2*60000:codeCacheTtlMs)};
+    return payload;
+  })();
+  try{return await codeRequest;}finally{codeRequest=null;}
 }
 
 async function createConvenesPayload() {
@@ -912,6 +1070,11 @@ const server = http.createServer(async (request, response) => {
     if (request.method === "GET" && url.pathname === "/api/events") {
       const payload = await createEventsPayload();
       await sendJson(request, response, 200, payload, 'public, max-age=120');
+      return;
+    }
+
+    if (request.method === "GET" && url.pathname === "/api/codes") {
+      await sendJson(request,response,200,await createCodesPayload(),'public, max-age=120');
       return;
     }
 
