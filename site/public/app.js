@@ -3,7 +3,7 @@ import {imageAttributes, setImageSources, installImageFallbacks} from './image-u
 import {loadCharacterDetail, getCharacterDetail} from './character-catalog.js';
 import {selectHomeFeatured} from './home-featured.js';
 import {loadTierSnapshot, getTierSnapshot, selectTierEntries, tierCharacterKey, tierProfileSlug, TIER_ORDER, TIER_ROLES, TIER_SOURCE} from './tier-list.js';
-import { readEchoCatalogCache, loadEchoCatalog, ECHO_CACHE_TTL } from "./echo-catalog.js";
+import { readEchoCatalogCache, loadEchoCatalog, filterEchoCatalog, ECHO_CACHE_TTL } from "./echo-catalog.js";
 import { settingsButton, applyAccessibility, notifyAccessibility, captionParameters, reducedMotion } from "./settings-accessibility.js";
 const app = document.querySelector("#app");
 installImageFallbacks();
@@ -1647,6 +1647,7 @@ const state = {
   tierFilters: {query: "", element: "all", weapon: "all", rarity: "all", role: "all"},
   elementFilter: "all",
   weaponFilter: "all",
+  echoFilters: {query: '', cost: 'all', class: 'all', variant: 'all', element: 'all', set: 'all'},
   builder: readBuilder(),
   builderMessage: builderRestored ? "restored" : "",
   builderSearch: {
@@ -2881,11 +2882,54 @@ function renderSonataEffects(set) {
   return set.bonuses.map(bonus => '<article class="panel"><h2>' + bonus.count + ' ' + bt('pieces') + '</h2><p class="catalog-effect">' + escapeHtml(/\{\d+\}/.test(bonus.description) ? archiveLabel('Efeito completo indisponível no momento. Consulte a referência abaixo.', 'Full effect currently unavailable. See the reference below.', 'Efecto completo no disponible. Consulta la referencia abajo.') : bonus.description) + '</p></article>').join('');
 }
 
+const echoClassOrder = ['calamity', 'overlord', 'elite', 'common'];
+function echoClassLabel(classId) {
+  return {common: archiveLabel('Comuns', 'Common', 'Comunes'), elite: archiveLabel('Elites', 'Elite', 'Élite'), overlord: 'Overlord', calamity: archiveLabel('Calamidade', 'Calamity', 'Calamidad')}[classId] || '';
+}
+
+function renderEchoFilters() {
+  const filters = state.echoFilters;
+  const select = (key, title, choices, funnel = '') => '<label class="echo-filter-field ' + (funnel ? 'echo-cost-filter ' : '') + (filters[key] !== 'all' ? 'is-active' : '') + '"><span>' + title + '</span><div>' + funnel + '<select data-echo-filter="' + key + '">' + choices.map(([value, text]) => '<option value="' + escapeHtml(value) + '" ' + (filters[key] === value ? 'selected' : '') + '>' + escapeHtml(text) + '</option>').join('') + '</select></div></label>';
+  const all = ['all', t('all')];
+  const funnel = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18l-7 8v6l-4 2v-8Z"/></svg>';
+  return '<div class="wiki-filters echo-filters" aria-label="' + archiveLabel('Filtros de Echoes', 'Echo filters', 'Filtros de Ecos') + '"><label class="echo-search"><span>' + archiveLabel('Pesquisar Echoes', 'Search Echoes', 'Buscar Ecos') + '</span><input type="search" data-echo-search value="' + escapeHtml(filters.query) + '" placeholder="' + archiveLabel('Nome, elemento ou Sonata…', 'Name, element or Sonata…', 'Nombre, elemento o Sonata…') + '" autocomplete="off"></label>' +
+    select('cost', bt('cost'), [all, ...['1', '3', '4'].map(value => [value, bt('cost') + ' ' + value])], funnel) +
+    select('variant', archiveLabel('Variante', 'Variant', 'Variante'), [all, ['regular', archiveLabel('Regular', 'Regular', 'Regular')], ['nightmare', 'Nightmare'], ['phantom', 'Phantom']]) +
+    select('element', t('element'), [all, ...[...new Set(builderEchoes.map(echo => echo.element).filter(Boolean))].sort().map(value => [value, value])]) +
+    select('set', 'Sonata', [all, ...builderSonatas.toSorted((a,b) => a.name.localeCompare(b.name)).map(set => [set.slug, set.name])]) +
+    '<button type="button" class="builder-text-button echo-reset" data-echo-reset>' + archiveLabel('Limpar filtros', 'Reset filters', 'Limpiar filtros') + '</button></div>';
+}
+
+function renderEchoResults() {
+  const context = filterEchoCatalog(builderEchoes, builderSonatas, {...state.echoFilters, class: 'all'});
+  const filtered = filterEchoCatalog(builderEchoes, builderSonatas, state.echoFilters);
+  const categories = ['all', ...echoClassOrder].map(classId => {
+    const count = classId === 'all' ? context.length : context.filter(echo => echo.classId === classId).length;
+    return '<button type="button" class="echo-class-button" data-echo-class="' + classId + '" aria-pressed="' + (state.echoFilters.class === classId) + '">' + (classId === 'all' ? archiveLabel('Todas as classes', 'All classes', 'Todas las clases') : echoClassLabel(classId)) + '<span>' + count + '</span></button>';
+  }).join('');
+  const groups = echoClassOrder.map(classId => {
+    const members = filtered.filter(echo => echo.classId === classId).toSorted((a,b) => a.name.localeCompare(b.name));
+    if (!members.length) return '';
+    return '<section class="echo-class-section" data-echo-group="' + classId + '" aria-labelledby="echo-class-' + classId + '"><div class="echo-class-heading"><h2 id="echo-class-' + classId + '">' + echoClassLabel(classId) + '</h2><span>' + bt('cost') + ' ' + members[0].cost + ' · ' + members.length + ' Echoes</span></div><div class="builder-option-grid">' + members.map(echo => renderArchiveOption(echo, 'echoes', bt('cost') + ' ' + echo.cost + (echo.element ? ' · ' + echo.element : '') + (echo.isPhantom ? ' · Phantom' : '') + (echo.isNightmare ? ' · Nightmare' : '') + ' · ' + echo.sets.map(slug => builderSonatas.find(set => set.slug === slug)?.name).join(' / '))).join('') + '</div></section>';
+  }).join('');
+  return '<div class="echo-class-tabs" role="group" aria-label="' + archiveLabel('Classe do Echo', 'Echo class', 'Clase del Eco') + '">' + categories + '</div><p class="builder-picker-count" role="status" aria-live="polite">' + filtered.length + ' / ' + builderEchoes.length + ' Echoes</p>' + (groups || (!builderEchoes.length ? '' : '<div class="empty-state"><h3>' + archiveLabel('Nenhum Echo encontrado', 'No Echoes found', 'No se encontraron Ecos') + '</h3><p>' + archiveLabel('Ajuste a pesquisa ou limpe os filtros para ver mais Echoes.', 'Adjust your search or reset the filters to see more Echoes.', 'Ajusta la búsqueda o limpia los filtros para ver más Ecos.') + '</p></div>'));
+}
+
+function updateEchoResults() {
+  const panel = routePanels.get(routeCacheKey());
+  const results = panel?.querySelector('[data-echo-results]');
+  if (!results) return;
+  results.innerHTML = renderEchoResults();
+  applyAccessibility(results, state.lang);
+  panel.querySelectorAll('[data-echo-filter]').forEach(select => select.closest('label').classList.toggle('is-active', state.echoFilters[select.dataset.echoFilter] !== 'all'));
+  panel.dataset.signature = routeSignature();
+}
+
 function renderEchoesPage() {
   const echo = builderEchoes.find(item => item.slug === state.detail);
   if (state.detail && echo) return renderPageHero(echo.name, bt('cost') + ' ' + echo.cost + (echo.element ? ' · ' + echo.element : ''), t('navEchoes')) + '<section class="page-band"><div class="container detail-layout"><aside class="detail-aside catalog-detail-icon">' + renderBuilderItemIcon('echo', echo) + '<a class="text-link" data-link href="' + pathFor('echoes') + '">' + t('back') + '</a></aside><div class="detail-main">' + (echo.description ? '<article class="panel"><p>' + escapeHtml(echo.description) + '</p></article>' : '') + echo.sets.map(slug => { const set = builderSonatas.find(item => item.slug === slug); return '<a class="text-link" data-link href="' + pathFor('sonatas', state.lang, slug) + '">' + escapeHtml(set.name) + ' ↗</a>' + renderSonataEffects(set); }).join('') + '</div></div></section>';
   if (state.detail && builderEchoes.length) return renderNotFound();
-  return renderPageHero(t('navEchoes'), archiveLabel('Explore os Echoes, seus custos, elementos e Sonatas.', 'Explore Echoes, their costs, elements and Sonatas.', 'Explora los Ecos, sus costes, elementos y Sonatas.'), t('database')) + '<section class="page-band"><div class="container archive-catalog">' + renderEchoCatalogStatus() + '<p class="builder-picker-count">' + builderEchoes.length + ' Echoes</p><div class="builder-option-grid">' + builderEchoes.map(echo => renderArchiveOption(echo, 'echoes', bt('cost') + ' ' + echo.cost + (echo.element ? ' · ' + echo.element : '') + ' · ' + echo.sets.map(slug => builderSonatas.find(set => set.slug === slug)?.name).join(' / '))).join('') + '</div></div></section>';
+  return renderPageHero(t('navEchoes'), archiveLabel('Encontre Echoes por classe, custo, variante e Sonata.', 'Find Echoes by class, cost, variant and Sonata.', 'Encuentra Ecos por clase, coste, variante y Sonata.'), t('database')) + '<section class="page-band"><div class="container archive-catalog echo-archive">' + renderEchoCatalogStatus() + renderEchoFilters() + '<div data-echo-results>' + renderEchoResults() + '</div></div></section>';
 }
 
 function sonataExplanation() {
@@ -4073,6 +4117,7 @@ function routeSignature(routeId = state.route, detail = state.detail) {
     case "tier":
       return [base, state.tierMode, JSON.stringify(state.tierFilters), tierDataRevision, state.charactersLoading, collectionSignature(characters, ["slug", "name", "element", "weapon", "rarity"])].join("|");
     case "echoes":
+      return [base, echoCatalogRevision, builderCatalogError, builderCatalogLoading, JSON.stringify(state.echoFilters)].join("|");
     case "sonatas":
       return [base, echoCatalogRevision, builderCatalogError, builderCatalogLoading].join("|");
     case "weapons":
@@ -4497,6 +4542,23 @@ app.addEventListener("click", (event) => {
   }
 
   if (event.target.closest("[data-builder-retry]")) { loadBuilderEchoes(); return; }
+  const echoClass = event.target.closest('[data-echo-class]');
+  if (echoClass) {
+    cancelPendingSearch();
+    state.echoFilters.class = echoClass.dataset.echoClass;
+    updateEchoResults();
+    routePanels.get(routeCacheKey())?.querySelector('[data-echo-class="' + state.echoFilters.class + '"]')?.focus({preventScroll: true});
+    return;
+  }
+  if (event.target.closest('[data-echo-reset]')) {
+    cancelPendingSearch();
+    state.echoFilters = {query: '', cost: 'all', class: 'all', variant: 'all', element: 'all', set: 'all'};
+    const panel = routePanels.get(routeCacheKey());
+    panel.querySelector('[data-echo-search]').value = '';
+    panel.querySelectorAll('[data-echo-filter]').forEach(select => {select.value = 'all';});
+    updateEchoResults();
+    return;
+  }
   const weaponRetry = event.target.closest('[data-weapon-retry]');
   if (weaponRetry) {
     const weapon = weapons.find(item => String(item.id) === weaponRetry.dataset.weaponRetry);
@@ -4630,6 +4692,7 @@ app.addEventListener("keydown", (event) => {
 });
 
 app.addEventListener("change", (event) => {
+  if (event.target.matches('[data-echo-filter]')) {cancelPendingSearch();state.echoFilters[event.target.dataset.echoFilter] = event.target.value;updateEchoResults();return;}
   if (event.target.matches("[data-tier-filter]")) {cancelPendingSearch();state.tierFilters[event.target.dataset.tierFilter]=event.target.value;updateTierResults();return;}
   if (state.route === "gacha" && handleGacha(event, gachaContext())) return;
   if (event.target.matches('[data-builder-set-filter]')) {
@@ -4720,6 +4783,14 @@ app.addEventListener("change", (event) => {
 
 app.addEventListener("input", (event) => {
   if (event.isComposing) return;
+  const echoSearch = event.target.closest('[data-echo-search]');
+  if (echoSearch) {
+    state.echoFilters.query = echoSearch.value;
+    const panel = routePanels.get(routeCacheKey());
+    if (panel) panel.dataset.signature = routeSignature();
+    queueSearch(echoSearch, updateEchoResults);
+    return;
+  }
   const tierSearch=event.target.closest("[data-tier-search]");
   if(tierSearch){state.tierFilters.query=tierSearch.value;const panel=routePanels.get(routeCacheKey());if(panel)panel.dataset.signature=routeSignature();queueSearch(tierSearch,updateTierResults);return;}
   if (event.target.tagName !== "SELECT" && handleBuilderField(event)) return;

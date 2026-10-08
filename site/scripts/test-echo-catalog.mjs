@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { normalizeEchoCatalog, loadEchoCatalog, readEchoCatalogCache } from '../public/echo-catalog.js';
+import { normalizeEchoCatalog, loadEchoCatalog, readEchoCatalogCache, filterEchoCatalog } from '../public/echo-catalog.js';
 const record = (Id, Name, extra = {}) => ({Id, Name, PhantomType: 1, Rarity: 0, Icon: `https://api.encore.moe/resource/${Id}.webp`, FetterGroups: [{Name: 'Test Sonata', Fetters: [{Key: 3, EffectDescription: 'Three pieces'}]}], ...extra});
 test('real source identities exclude Resonator Cubes while preserving boss Echoes and Phantom appearances', () => {
   const source = JSON.parse(fs.readFileSync(new URL('./fixtures/encore-echo-identities.json', import.meta.url),'utf8'));
@@ -66,6 +66,18 @@ test('cost, icon and variants come from the source; named Phantom variants are d
   assert.equal(catalog.echoes.length,5);
   assert.deepEqual(Object.fromEntries(catalog.echoes.map(e=>[e.name,e.cost])),{'Boss':4,'Calamity':4,'Elite':3,'Clang Bang':1,'Phantom: Clang Bang':1});
   assert.equal(catalog.echoes.find(e=>e.id===2).iconUrl,'https://api.encore.moe/resource/2.webp');
+  assert.deepEqual(Object.fromEntries(catalog.echoes.map(e=>[e.name,e.classId])),{'Boss':'overlord','Calamity':'calamity','Elite':'elite','Clang Bang':'common','Phantom: Clang Bang':'common'});
+});
+test('search, class, cost, element, Sonata and variant filters combine without dropping valid variants', () => {
+  const catalog=normalizeEchoCatalog({Echo:[record(1,'Jué',{Rarity:3,Element:{Name:'Spectro'}}),record(2,'Regular Elite',{Rarity:1,Element:{Name:'Aero'}}),record(3,'Nightmare: Elite',{Rarity:1,Element:{Name:'Aero'}}),record(4,'Phantom: Nightmare Elite',{Rarity:1,Element:{Name:'Aero'}}),record(5,'Overlord',{Rarity:2})]});
+  const select=filters=>filterEchoCatalog(catalog.echoes,catalog.sets,filters).map(e=>e.name);
+  assert.deepEqual(select({query:'  JUE  ',cost:'4',class:'calamity'}),['Jué']);
+  assert.deepEqual(select({query:'TEST SONATA',cost:'3',class:'elite',variant:'nightmare',element:'Aero',set:'test-sonata'}),['Nightmare: Elite','Phantom: Nightmare Elite']);
+  assert.deepEqual(select({cost:'3',variant:'phantom'}),['Phantom: Nightmare Elite']);
+  assert.deepEqual(select({cost:'3',variant:'regular'}),['Regular Elite']);
+  assert.deepEqual(select({cost:'1',class:'elite'}),[]);
+  assert.deepEqual(select({cost:'4',class:'overlord'}),['Overlord']);
+  assert.equal(select({}).length,catalog.echoes.length);
 });
 test('Sonata effects resolve from source details and retain icons, line breaks and piece counts', () => {
   const catalog = normalizeEchoCatalog({Echo:[record(1,'Echo',{Element:{Name:'Aero'},Attributes:'Source description',FetterGroups:[{Id:4,Name:'Test Sonata',Icon:'https://api.encore.moe/resource/set.webp',Fetters:[{Key:3,EffectDescription:'Bonus {0}'}]}]})],SonataDetails:{'Test Sonata':{EffectKeys:[3],EffectDescriptions:['Bonus 30%.<br>Lasts 4s.']}}});

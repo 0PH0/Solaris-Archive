@@ -49,10 +49,26 @@ export function normalizeEchoCatalog(payload) {
       sets.set(setKey, {id: group.Id, slug: setKey, name: plain(group.Name), iconUrl: icon(group.Icon), bonuses: bonuses.filter(bonus => bonus.count > 0), source: 'https://wutheringwaves.fandom.com/wiki/' + encodeURIComponent(plain(group.Name).replaceAll(' ', '_'))});
       return setKey;
     });
-    return {id: record.Id, slug: key, name: plain(record.Name), cost: [1, 3, 4, 4][record.Rarity], element: plain(record.Element?.Name), description: plain(record.Attributes), sets: [...new Set(groups)], iconUrl: icon(record.Icon), aliases: key === 'dwarf-cassowary' ? ['Casuario Enano', 'Casuar-anão'] : []};
+    return {id: record.Id, slug: key, name: plain(record.Name), cost: [1, 3, 4, 4][record.Rarity], classId: ['common', 'elite', 'overlord', 'calamity'][record.Rarity], isPhantom: record.Type === 'Phantom Appearance' || /^Phantom:/i.test(record.Name), isNightmare: /\bNightmare\b/i.test(record.Name), element: plain(record.Element?.Name), description: plain(record.Attributes), sets: [...new Set(groups)], iconUrl: icon(record.Icon), aliases: key === 'dwarf-cassowary' ? ['Casuario Enano', 'Casuar-anão'] : []};
   });
   if (!echoes.length || echoes.some(echo => !echo.cost || !echo.sets.length)) throw new Error('Incomplete Encore catalog');
   return {echoes: echoes.sort((a,b) => b.cost-a.cost || a.name.localeCompare(b.name)), sets: [...sets.values()], source: ECHO_SOURCE};
+}
+
+export function filterEchoCatalog(echoes, sets, filters = {}) {
+  const normalize = value => String(value || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
+  const query = normalize(filters.query);
+  const setNames = new Map(sets.map(set => [set.slug, set.name]));
+  return echoes.filter(echo => {
+    if (filters.cost && filters.cost !== 'all' && String(echo.cost) !== String(filters.cost)) return false;
+    if (filters.class && filters.class !== 'all' && echo.classId !== filters.class) return false;
+    if (filters.element && filters.element !== 'all' && echo.element !== filters.element) return false;
+    if (filters.set && filters.set !== 'all' && !echo.sets.includes(filters.set)) return false;
+    if (filters.variant === 'phantom' && !echo.isPhantom) return false;
+    if (filters.variant === 'nightmare' && !echo.isNightmare) return false;
+    if (filters.variant === 'regular' && (echo.isPhantom || echo.isNightmare)) return false;
+    return !query || normalize([echo.name, ...(echo.aliases || []), echo.classId, echo.element, ...echo.sets.map(key => setNames.get(key))].join(' ')).includes(query);
+  });
 }
 
 export function readEchoCatalogCache() {

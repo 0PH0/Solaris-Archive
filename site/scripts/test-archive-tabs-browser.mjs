@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {openBrowser, delay} from './browser-harness.mjs';
-import {loadEchoCatalog, normalizeEchoCatalog} from '../public/echo-catalog.js';
+import {loadEchoCatalog, normalizeEchoCatalog, filterEchoCatalog} from '../public/echo-catalog.js';
 import {loadWeaponDetail} from '../public/weapon-catalog.js';
 const snapshot = async (file, fallback) => {
   try {return JSON.parse(await fs.readFile(file,'utf8'));} catch {return fallback();}
@@ -23,6 +23,9 @@ const waitFor = async expression => {
   throw Error('Timed out: '+expression);
 };
 const active = '.route-panel:not([hidden])';
+const changeEchoFilter = (key, value) => browser.evaluate(`(()=>{const input=document.querySelector('${active} [data-echo-filter="${key}"]');input.value=${JSON.stringify(value)};input.dispatchEvent(new Event('change',{bubbles:true}));})()`);
+const searchEchoes = value => browser.evaluate(`(()=>{const input=document.querySelector('${active} [data-echo-search]');input.focus();input.value=${JSON.stringify(value)};input.dispatchEvent(new Event('input',{bubbles:true}));})()`);
+const shownEchoNames = () => browser.evaluate(`[...document.querySelectorAll('${active} .echo-class-section .builder-option-info strong')].map(element=>element.textContent).sort()`);
 try {
   await browser.call('Page.addScriptToEvaluateOnNewDocument',{source:`
     const payload=${JSON.stringify(payload)}, weapons=${JSON.stringify(weapons)}, details=${JSON.stringify(details)};
@@ -46,6 +49,34 @@ try {
     const shown = await browser.evaluate(`[...document.querySelectorAll('${active} .archive-catalog .builder-option-info strong')].map(element=>element.textContent)`);
     for (const name of ['Jinhsi','Changli','Shorekeeper']) assert(!shown.includes(name),name+' must not appear as an Echo');
     for (const name of ['Lottie Lost','Cuddle Wuddle','Phantom: Dreamless']) assert(shown.includes(name),name+' must remain');
+    assert.equal(await browser.evaluate(`document.querySelectorAll('${active} [data-echo-group]').length`),4);
+    assert(await browser.evaluate(`!!document.querySelector('${active} .echo-cost-filter svg')`),'Cost filter must have a funnel');
+    for (const cost of ['1','3','4']) {
+      await changeEchoFilter('cost',cost);
+      assert.deepEqual(await shownEchoNames(),filterEchoCatalog(catalog.echoes,catalog.sets,{cost}).map(e=>e.name).sort());
+    }
+    await browser.click(`${active} [data-echo-class="calamity"]`);
+    assert.deepEqual(await shownEchoNames(),filterEchoCatalog(catalog.echoes,catalog.sets,{cost:'4',class:'calamity'}).map(e=>e.name).sort());
+    await browser.click(`${active} [data-echo-reset]`);
+    const target=catalog.echoes.find(e=>e.classId==='elite' && e.isNightmare && e.element && e.sets.length);
+    const combination={cost:'3',class:'elite',variant:'nightmare',element:target.element,set:target.sets[0]};
+    for (const key of ['cost','variant','element','set']) await changeEchoFilter(key,combination[key]);
+    await browser.click(`${active} [data-echo-class="elite"]`);
+    assert.deepEqual(await shownEchoNames(),filterEchoCatalog(catalog.echoes,catalog.sets,combination).map(e=>e.name).sort());
+    await searchEchoes(target.name);
+    await waitFor(`document.querySelectorAll('${active} .echo-class-section .builder-option').length===1`);
+    assert.deepEqual(await shownEchoNames(),[target.name]);
+    assert(await browser.evaluate(`document.activeElement.matches('[data-echo-search]')`),'Search keeps focus during results updates');
+    await browser.click(`${active} .echo-class-section .builder-option`);
+    await browser.click(`${active} .detail-aside a[data-link]`);
+    assert.deepEqual(await shownEchoNames(),[target.name],'SPA navigation preserves combined Echo filters');
+    await searchEchoes('no-echo-matches-this-query');
+    await waitFor(`!!document.querySelector('${active} [data-echo-results] .empty-state')`);
+    await browser.click(`${active} [data-echo-reset]`);
+    assert.equal((await shownEchoNames()).length,catalog.echoes.length,'Reset restores every valid Echo');
+    await searchEchoes('jue');
+    await waitFor(`document.querySelector('${active} [data-echo-search]')?.value==='jue' && [...document.querySelectorAll('${active} .echo-class-section .builder-option-info strong')].some(e=>e.textContent==='Jué')`);
+    await browser.click(`${active} [data-echo-reset]`);
     const nav = await browser.evaluate(`[...document.querySelectorAll('[data-app-topbar] a[data-link]')].map(a=>a.getAttribute('href'))`);
     const echoIndex=nav.indexOf('/'+language+'/ecos');
     assert.equal(nav[echoIndex+1],'/'+language+'/sonatas');
@@ -71,5 +102,5 @@ try {
     }
   }
   assert.equal(browser.errors.length,0,JSON.stringify(browser.errors));
-  console.log('PASS:',catalog.echoes.length,'Echoes,',catalog.sets.length,'Sonatas, 124 weapon statistics, navigation adjacency, complete effects, 3 languages, 4 viewport widths, no JS errors.');
+  console.log('PASS:',catalog.echoes.length,'Echoes; source class groups, funnel costs 1/3/4, combined search/class/variant/element/Sonata filters, focus, reset, empty results, SPA navigation; existing Sonata/weapon pages; 3 languages, 4 viewport widths, no JS errors.');
 } finally {browser.close();}
