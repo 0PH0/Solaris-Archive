@@ -4,7 +4,7 @@ const TTL = 6 * 60 * 60 * 1000;
 const pending = new Map();
 const memory = new Map();
 export const weaponSlug = name => String(name).normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-const plain = text => String(text || '').replace(/<[^>]*>/g,'');
+const plain = text => String(text ?? '').replace(/<[^>]*>/g,'');
 async function cached(key, url) {
   if(pending.has(key))return pending.get(key);
   const task=(async()=>{
@@ -36,5 +36,17 @@ export async function loadWeaponCatalog(){
 }
 export async function loadWeaponDetail(id){
   const data=await cached('solaris:weapon-detail:v1:'+id,SOURCE+'/'+encodeURIComponent(id));
-  return {imageUrl:encoreImageUrl(data.IconBig) || encoreImageUrl(data.Icon),passive:plain(data.Desc),passiveName:plain(data.ResonName),description:plain(data.AttributesDescription || data.BgDescription),properties:(data.Properties || []).map(p=>({name:plain(p.Name),values:(p.GrowthValues || []).filter(v=>[1,20,40,60,80,90].includes(v.Level)).map(v=>({level:v.Level,value:plain(v.Value)}))})),source:SOURCE+'/'+id};
+  const properties=(data.Properties || []).map(p=>({name:plain(p.Name),values:(p.GrowthValues || []).filter(v=>Number.isFinite(Number(v.Level)) && v.Value != null).map(v=>({level:Number(v.Level),value:plain(v.Value)}))}));
+  return {imageUrl:encoreImageUrl(data.IconBig) || encoreImageUrl(data.Icon),passive:plain(data.Desc),passiveName:plain(data.ResonName),description:plain(data.AttributesDescription || data.BgDescription),properties,summary:weaponStatSummary(properties),source:SOURCE+'/'+id};
+}
+
+export function weaponStatSummary(properties) {
+  const attack = properties.find(property => property.name === 'ATK');
+  const latest = attack?.values.at(-1);
+  if (!latest) return {};
+  const secondary = properties.filter(property => property !== attack).flatMap(property => {
+    const value = property.values.find(value => value.level === latest.level);
+    return value ? [property.name + ' ' + value.value] : [];
+  });
+  return {baseAtk: latest.value, stat: secondary.join(' · ') || '—', statLevel: latest.level};
 }

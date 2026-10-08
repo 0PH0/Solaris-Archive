@@ -2823,19 +2823,19 @@ th {
 .builder-dialog .eyebrow { font-size: .65rem; margin-bottom: 6px; }
 .builder-dialog .builder-picker-tools { grid-template-columns: minmax(0,1fr) 170px; }
 .builder-picker-count { display: flex; justify-content: space-between; color: var(--muted); font-size: .75rem; margin: 0; gap: 12px; }
-.builder-dialog .builder-option-grid { grid-template-columns: repeat(6,minmax(0,1fr)); max-height: 490px; gap: 10px; padding: 2px 6px 5px 2px; }
-.builder-dialog .builder-option { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 0; min-height: 175px; overflow: hidden; border-radius: 8px; background: #172027; }
-.builder-dialog .builder-option.is-active { outline: 1px solid var(--teal); }
-.builder-dialog .builder-option .avatar { height: 110px; min-height: 110px; border-radius: 0; width: 100%; aspect-ratio: auto; border: 0; }
-.builder-dialog .builder-option .avatar img { height: 100%; width: 100%; object-fit: contain; object-position: center; }
-.builder-dialog .builder-option .avatar > span { display: none; }
-.builder-dialog .builder-option-icon { width: 100%; height: 110px; border: 0; border-radius: 0; background: radial-gradient(circle at center, rgba(199,164,90,.11), transparent); }
-.builder-dialog .builder-option-icon::after { display: none; }
-.builder-dialog .builder-option-icon img { height: 90%; width: 90%; }
-.builder-dialog .builder-option-info { display: block; padding: 10px 8px; text-align: center; }
-.builder-dialog .builder-option strong { white-space: normal; font-size: .73rem; line-height: 1.4; }
-.builder-dialog .builder-option small { font-size: .61rem; white-space: normal; line-height: 1.35; }
-.builder-dialog .builder-option-info > .builder-rarity { display: block; margin-top: 7px; font-size: .6rem; }
+:is(.builder-dialog, .archive-catalog) .builder-option-grid { grid-template-columns: repeat(6,minmax(0,1fr)); max-height: 490px; gap: 10px; padding: 2px 6px 5px 2px; }
+:is(.builder-dialog, .archive-catalog) .builder-option { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 0; min-height: 175px; overflow: hidden; border-radius: 8px; background: #172027; }
+:is(.builder-dialog, .archive-catalog) .builder-option.is-active { outline: 1px solid var(--teal); }
+:is(.builder-dialog, .archive-catalog) .builder-option .avatar { height: 110px; min-height: 110px; border-radius: 0; width: 100%; aspect-ratio: auto; border: 0; }
+:is(.builder-dialog, .archive-catalog) .builder-option .avatar img { height: 100%; width: 100%; object-fit: contain; object-position: center; }
+:is(.builder-dialog, .archive-catalog) .builder-option .avatar > span { display: none; }
+:is(.builder-dialog, .archive-catalog) .builder-option-icon { width: 100%; height: 110px; border: 0; border-radius: 0; background: radial-gradient(circle at center, rgba(199,164,90,.11), transparent); }
+:is(.builder-dialog, .archive-catalog) .builder-option-icon::after { display: none; }
+:is(.builder-dialog, .archive-catalog) .builder-option-icon img { height: 90%; width: 90%; }
+:is(.builder-dialog, .archive-catalog) .builder-option-info { display: block; padding: 10px 8px; text-align: center; }
+:is(.builder-dialog, .archive-catalog) .builder-option strong { white-space: normal; font-size: .73rem; line-height: 1.4; }
+:is(.builder-dialog, .archive-catalog) .builder-option small { font-size: .61rem; white-space: normal; line-height: 1.35; }
+:is(.builder-dialog, .archive-catalog) .builder-option-info > .builder-rarity { display: block; margin-top: 7px; font-size: .6rem; }
 .builder-dialog .builder-empty { grid-column: 1 / -1; }
 @media (max-width: 1150px) {
   .builder-equipment { grid-template-columns: 1.2fr 1fr; }
@@ -2848,7 +2848,7 @@ th {
   .builder-overview-bottom { border: 0; margin: 0; padding: 0; gap: 12px; }
   .builder-overview > .builder-muted, .builder-overview > .builder-priority { display: none; }
   .builder-five-echoes { grid-template-columns: repeat(3,minmax(0,1fr)); }
-  .builder-dialog .builder-option-grid { grid-template-columns: repeat(5,minmax(0,1fr)); }
+  :is(.builder-dialog, .archive-catalog) .builder-option-grid { grid-template-columns: repeat(5,minmax(0,1fr)); }
 }
 @media (max-width: 760px) {
   .builder-workspace { padding-top: 26px; }
@@ -2882,18 +2882,18 @@ th {
   .builder-dialog .builder-picker-tools { grid-template-columns: 1fr; }
   .builder-dialog .builder-picker-tools:has([data-builder-set-filter]) { grid-template-columns: 1fr 1fr; }
   .builder-dialog .builder-picker-tools:has([data-builder-set-filter]) input { grid-column: 1 / -1; }
-  .builder-dialog .builder-option-grid { grid-template-columns: repeat(3,minmax(0,1fr)); max-height: 55dvh; }
-  .builder-dialog .builder-option .avatar, .builder-dialog .builder-option-icon { min-height: 84px; height: 84px; }
-  .builder-dialog .builder-option { min-height: 155px; }
-  .builder-dialog .builder-option-info { padding: 8px 5px; }
+  :is(.builder-dialog, .archive-catalog) .builder-option-grid { grid-template-columns: repeat(3,minmax(0,1fr)); max-height: 55dvh; }
+  :is(.builder-dialog, .archive-catalog) .builder-option .avatar, :is(.builder-dialog, .archive-catalog) .builder-option-icon { min-height: 84px; height: 84px; }
+  :is(.builder-dialog, .archive-catalog) .builder-option { min-height: 155px; }
+  :is(.builder-dialog, .archive-catalog) .builder-option-info { padding: 8px 5px; }
   .builder-substat-row { grid-template-columns: minmax(0,1fr); }
 }
 @media (max-width: 360px) {
   .builder-five-echoes { grid-template-columns: 1fr; }
-  .builder-dialog .builder-option-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  :is(.builder-dialog, .archive-catalog) .builder-option-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .builder-dialog .builder-option { transition: none; }
+  :is(.builder-dialog, .archive-catalog) .builder-option { transition: none; }
 }
 
 /* Keep the existing grids; constrain intrinsic text and controls instead of
@@ -2961,7 +2961,7 @@ html { scroll-padding-top: 88px; }
   .gacha-tabs button { flex: 1; }
   .convene-credit { max-width: calc(100% - 32px); }
   .builder-dialog .builder-picker { gap: 12px; }
-  .builder-dialog .builder-option-grid { max-height: min(55dvh, 420px); }
+  :is(.builder-dialog, .archive-catalog) .builder-option-grid { max-height: min(55dvh, 420px); }
 }
 @media (max-width: 360px) {
   .topbar { gap: 6px; padding-inline: 8px; }
@@ -2972,5 +2972,15 @@ html { scroll-padding-top: 88px; }
 }
 @media (max-height: 600px) and (max-width: 1060px) {
   .detail-aside { position: static; }
-  .builder-dialog .builder-option-grid { max-height: 40dvh; }
+  :is(.builder-dialog, .archive-catalog) .builder-option-grid { max-height: 40dvh; }
 }
+
+/* The Wiki shares the Builder icon and name presentation. */
+.archive-catalog .builder-option-grid { max-height: none; overflow: visible; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); padding: 0; margin-top: 20px; }
+.archive-catalog .builder-option { text-decoration: none; color: var(--text); }
+.archive-catalog .builder-option:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.archive-catalog .panel { margin-bottom: 24px; }
+.catalog-effect { white-space: pre-line; }
+.catalog-detail-icon .builder-option-icon { width: 100%; height: 220px; }
+.catalog-detail-icon .builder-option-icon img { width: 100%; height: 100%; object-fit: contain; }
+@media (max-width: 480px) { .archive-catalog .builder-option-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

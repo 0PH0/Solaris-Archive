@@ -104,7 +104,8 @@ const copy = {
     navIntro: "Introdução",
     navCharacters: "Personagens",
     navTier: "Tier List",
-    navEchoes: "Ecos",
+    navEchoes: "Echoes",
+    navSonatas: "Sonatas",
     navWeapons: "Armas",
     navItems: "Itens",
     navGuide: "Guia",
@@ -283,6 +284,7 @@ const copy = {
     navCharacters: "Characters",
     navTier: "Tier List",
     navEchoes: "Echoes",
+    navSonatas: "Sonatas",
     navWeapons: "Weapons",
     navItems: "Items",
     navGuide: "Guide",
@@ -460,7 +462,8 @@ const copy = {
     navIntro: "Introducción",
     navCharacters: "Personajes",
     navTier: "Tier List",
-    navEchoes: "Ecos",
+    navEchoes: "Echoes",
+    navSonatas: "Sonatas",
     navWeapons: "Armas",
     navItems: "Objetos",
     navGuide: "Guia",
@@ -641,6 +644,7 @@ const routes = [
   { id: "characters", slug: "personagens", labelKey: "navCharacters", nav: true },
   { id: "tier", slug: "tier-list", labelKey: "navTier", nav: true },
   { id: "echoes", slug: "ecos", labelKey: "navEchoes", nav: true },
+  { id: "sonatas", slug: "sonatas", labelKey: "navSonatas", nav: true },
   { id: "weapons", slug: "armas", labelKey: "navWeapons", nav: true },
   { id: "items", slug: "itens", labelKey: "navItems", nav: false },
   { id: "guide", slug: "guia", labelKey: "navGuide", nav: false },
@@ -1116,10 +1120,11 @@ echoes.push(
 );
 
 
-// Keep the Builder catalog independent of the Wiki's recommendation lists.
+// Share the live Echo and Sonata catalog between the Wiki and Builder.
 const cachedEchoCatalog = readEchoCatalogCache();
 let builderEchoes = cachedEchoCatalog?.echoes || [];
 let builderSonatas = cachedEchoCatalog?.sets || [];
+let echoCatalogRevision = 0;
 let builderCatalogLoaded = false;
 let builderCatalogLoading = false;
 let builderCatalogError = false;
@@ -1146,6 +1151,7 @@ async function loadBuilderEchoes() {
   } catch { builderCatalogError = true; builderCatalogExpiresAt = Date.now() + 60000; }
   finally {
     builderCatalogLoading = false;
+    echoCatalogRevision++;
     builderCatalogLoaded = true;
     notifyAccessibility(builderCatalogError ? 'loadError' : 'loaded');
     scheduleRender();
@@ -1856,10 +1862,11 @@ function searchIndex() {
       meta: weapon.type,
       route: "weapons"
     })),
-    ...echoes.map((echo) => ({
+    ...builderEchoes.map((echo) => ({
       label: `${echo.name} ${echo.element}`,
       title: echo.name,
       meta: echo.element,
+      detail: echo.slug,
       route: "echoes"
     })),
     ...items.map((item) => ({
@@ -2859,33 +2866,40 @@ function renderTierPage() {
     '<div data-tier-results>'+renderTierResults()+'</div></div></section>';
 }
 
+function archiveLabel(pt, en, es) { return state.lang === 'en' ? en : state.lang === 'es' ? es : pt; }
+
+function renderEchoCatalogStatus() {
+  if (!builderEchoes.length) return '<div class="empty-state" role="status"><p>' + bt(builderCatalogError ? 'catalogError' : 'catalogLoading') + '</p>' + (builderCatalogError ? '<button type="button" class="builder-button" data-builder-retry>' + bt('retry') + '</button>' : '') + '</div>';
+  return builderCatalogError ? '<p role="status">' + bt('catalogStale') + ' <button type="button" class="builder-text-button" data-builder-retry>' + bt('retry') + '</button></p>' : '';
+}
+
+function renderArchiveOption(item, route, meta) {
+  return '<a class="builder-option" data-link href="' + pathFor(route, state.lang, item.slug) + '">' + renderBuilderItemIcon(route === 'echoes' ? 'echo' : 'sonata', item) + '<span class="builder-option-info"><strong>' + escapeHtml(item.name) + '</strong><small>' + escapeHtml(meta) + '</small></span></a>';
+}
+
+function renderSonataEffects(set) {
+  return set.bonuses.map(bonus => '<article class="panel"><h2>' + bonus.count + ' ' + bt('pieces') + '</h2><p class="catalog-effect">' + escapeHtml(/\{\d+\}/.test(bonus.description) ? archiveLabel('Efeito completo indisponível no momento. Consulte a referência abaixo.', 'Full effect currently unavailable. See the reference below.', 'Efecto completo no disponible. Consulta la referencia abajo.') : bonus.description) + '</p></article>').join('');
+}
+
 function renderEchoesPage() {
-  return `
-    ${renderPageHero(t("navEchoes"), t("pageEchoesDesc"), t("database"))}
-    <section class="page-band">
-      <div class="container">
-        <div class="echo-grid">
-          ${echoes.map((echo) => `
-            <article class="data-card echo-card">
-              ${renderItemAssetImage("echo", echo)}
-              <div class="card-topline">
-                <span class="pill">${echo.element}</span>
-                <strong>${echo.bestFor.join(" • ")}</strong>
-              </div>
-              <div class="card-body">
-                <h3>${echo.name}</h3>
-                <p><strong>2p:</strong> ${echo.effect2}</p>
-                <p><strong>5p:</strong> ${echo.effect5}</p>
-                <div class="tag-row">
-                  ${echo.sources.map((source) => `<span>${source}</span>`).join("")}
-                </div>
-              </div>
-            </article>
-          `).join("")}
-        </div>
-      </div>
-    </section>
-  `;
+  const echo = builderEchoes.find(item => item.slug === state.detail);
+  if (state.detail && echo) return renderPageHero(echo.name, bt('cost') + ' ' + echo.cost + (echo.element ? ' · ' + echo.element : ''), t('navEchoes')) + '<section class="page-band"><div class="container detail-layout"><aside class="detail-aside catalog-detail-icon">' + renderBuilderItemIcon('echo', echo) + '<a class="text-link" data-link href="' + pathFor('echoes') + '">' + t('back') + '</a></aside><div class="detail-main">' + (echo.description ? '<article class="panel"><p>' + escapeHtml(echo.description) + '</p></article>' : '') + echo.sets.map(slug => { const set = builderSonatas.find(item => item.slug === slug); return '<a class="text-link" data-link href="' + pathFor('sonatas', state.lang, slug) + '">' + escapeHtml(set.name) + ' ↗</a>' + renderSonataEffects(set); }).join('') + '</div></div></section>';
+  if (state.detail && builderEchoes.length) return renderNotFound();
+  return renderPageHero(t('navEchoes'), archiveLabel('Explore os Echoes, seus custos, elementos e Sonatas.', 'Explore Echoes, their costs, elements and Sonatas.', 'Explora los Ecos, sus costes, elementos y Sonatas.'), t('database')) + '<section class="page-band"><div class="container archive-catalog">' + renderEchoCatalogStatus() + '<p class="builder-picker-count">' + builderEchoes.length + ' Echoes</p><div class="builder-option-grid">' + builderEchoes.map(echo => renderArchiveOption(echo, 'echoes', bt('cost') + ' ' + echo.cost + (echo.element ? ' · ' + echo.element : '') + ' · ' + echo.sets.map(slug => builderSonatas.find(set => set.slug === slug)?.name).join(' / '))).join('') + '</div></div></section>';
+}
+
+function sonataExplanation() {
+  return archiveLabel('Sonatas são conjuntos de Echoes que dão bônus ao personagem. Equipe Echoes diferentes da mesma Sonata para ativar seus efeitos: normalmente com 2 e 5 peças; alguns conjuntos usam 1 ou 3. Echoes repetidos não contam duas vezes.', 'Sonatas are Echo sets that grant bonuses to a Resonator. Equip different Echoes of the same Sonata to activate its effects: usually at 2 and 5 pieces; some sets use 1 or 3. Duplicate Echoes do not count twice.', 'Las Sonatas son conjuntos de Ecos que otorgan bonificaciones. Equipa Ecos diferentes de la misma Sonata para activar sus efectos: normalmente con 2 y 5 piezas; algunos usan 1 o 3. Los Ecos repetidos no cuentan dos veces.');
+}
+
+function renderSonatasPage() {
+  const set = builderSonatas.find(item => item.slug === state.detail);
+  if (state.detail && set) {
+    const members = builderEchoes.filter(echo => echo.sets.includes(set.slug));
+    return renderPageHero(set.name, archiveLabel('Efeitos de conjunto', 'Set effects', 'Efectos de conjunto'), 'Sonata') + '<section class="page-band"><div class="container detail-layout"><aside class="detail-aside catalog-detail-icon">' + renderBuilderItemIcon('sonata', set) + '<a class="text-link" data-link href="' + pathFor('sonatas') + '">' + t('back') + '</a></aside><div class="detail-main"><article class="panel"><h2>' + archiveLabel('Descrição', 'Description', 'Descripción') + '</h2><p>' + sonataExplanation() + '</p></article>' + renderSonataEffects(set) + '<p><a class="text-link" href="' + set.source + '" target="_blank" rel="noreferrer">Wuthering Waves Wiki ↗</a></p><h2>Echoes · ' + members.length + '</h2><div class="archive-catalog"><div class="builder-option-grid">' + members.map(echo => renderArchiveOption(echo, 'echoes', bt('cost') + ' ' + echo.cost)).join('') + '</div></div></div></div></section>';
+  }
+  if (state.detail && builderSonatas.length) return renderNotFound();
+  return renderPageHero(t('navSonatas'), archiveLabel('Bônus de conjunto para suas builds.', 'Set bonuses for your builds.', 'Bonificaciones de conjunto para tus builds.'), t('database')) + '<section class="page-band"><div class="container archive-catalog"><article class="panel"><p>' + sonataExplanation() + '</p><a class="text-link" href="https://wutheringwaves.fandom.com/wiki/Sonata" target="_blank" rel="noreferrer">Wuthering Waves Wiki ↗</a></article>' + renderEchoCatalogStatus() + '<p class="builder-picker-count">' + builderSonatas.length + ' Sonatas</p><div class="builder-option-grid">' + builderSonatas.map(set => renderArchiveOption(set, 'sonatas', set.bonuses.map(bonus => bonus.count + ' ' + bt('pieces')).join(' / '))).join('') + '</div></div></section>';
 }
 
 let weaponsReady = false, weaponRequest, weaponRevision = 0, weaponError = false;
@@ -2898,11 +2912,32 @@ async function ensureWeapons() {
   }).catch(()=>{weaponError=true;}).finally(()=>{weaponsReady=true;weaponRequest=null;weaponRevision++;scheduleRender();});
   return weaponRequest;
 }
+let weaponStatsRequest;
+async function ensureWeaponStats() {
+  if (weaponStatsRequest) return weaponStatsRequest;
+  const queue = weapons.filter(weapon => weapon.id && !weaponDetails.has(weapon.id));
+  weaponStatsRequest = Promise.all(Array.from({length: Math.min(4, queue.length)}, async () => {
+    while (queue.length) {
+      const weapon = queue.shift();
+      if (weaponDetails.has(weapon.id)) continue;
+      await fetchWeaponDetail(weapon);
+    }
+  }));
+  return weaponStatsRequest;
+}
+async function fetchWeaponDetail(weapon) {
+  weaponDetails.set(weapon.id, {loading: true});
+  try {
+    const data = await loadWeaponDetail(weapon.id);
+    weaponDetails.set(weapon.id, data);
+    Object.assign(weapon, data.summary, {passive: data.passive || weapon.passive});
+  } catch { weaponDetails.set(weapon.id, {error: true}); }
+  finally { weaponRevision++; scheduleRender(); }
+}
 function ensureWeaponDetail() {
   const weapon=weapons.find(w=>w.slug===state.detail);
   if(!weapon?.id || weaponDetails.has(weapon.id))return;
-  weaponDetails.set(weapon.id,{loading:true});
-  loadWeaponDetail(weapon.id).then(data=>weaponDetails.set(weapon.id,data)).catch(()=>weaponDetails.set(weapon.id,{error:true})).finally(()=>{weaponRevision++;scheduleRender();});
+  fetchWeaponDetail(weapon);
 }
 function renderWeaponDetail(slug) {
   const weapon=weapons.find(w=>w.slug===slug);
@@ -2914,7 +2949,7 @@ function renderWeaponDetail(slug) {
     '<section class="page-band"><div class="container detail-layout weapon-detail"><aside class="detail-aside">'+renderItemAssetImage('weapon',{...weapon, imageUrl: detail?.imageUrl})+'<a class="text-link" data-link href="'+pathFor('weapons')+'">'+t('back')+'</a></aside><div class="detail-main">'+
     (detail?.loading?'<p role="status">'+label('Carregando detalhes…','Loading details…','Cargando detalles…')+'</p>':'')+
     (detail?.error?'<p role="status">'+label('Não foi possível carregar os detalhes da Encore.','Unable to load Encore details.','No se pudieron cargar los detalles de Encore.')+'</p>':'')+
-    '<article class="panel"><h2>'+label('Atributos','Attributes','Atributos')+'</h2>'+(properties.length?'<div class="weapon-stats-scroll"><table><thead><tr><th>'+label('Nível','Level','Nivel')+'</th>'+properties.map(p=>'<th>'+escapeHtml(p.name)+'</th>').join('')+'</tr></thead><tbody>'+properties[0].values.map((v,i)=>'<tr><td>'+v.level+'</td>'+properties.map(p=>'<td>'+escapeHtml(p.values[i]?.value || '—')+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>':'<p>ATK: '+(weapon.baseAtk ?? '—')+' · '+escapeHtml(weapon.stat || '—')+'</p>')+'</article>'+
+    '<article class="panel"><h2>'+label('Atributos','Attributes','Atributos')+'</h2>'+(properties.length?'<div class="weapon-stats-scroll"><table><thead><tr><th>'+label('Nível','Level','Nivel')+'</th>'+properties.map(p=>'<th>'+escapeHtml(p.name)+'</th>').join('')+'</tr></thead><tbody>'+[...new Set(properties.flatMap(p=>p.values.map(v=>v.level)))].sort((a,b)=>a-b).map(level=>'<tr><td>'+level+'</td>'+properties.map(p=>'<td>'+escapeHtml(p.values.find(v=>v.level===level)?.value ?? '—')+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>':'<p>ATK: '+(weapon.baseAtk ?? '—')+' · '+escapeHtml(weapon.stat || '—')+'</p>')+'</article>'+
     (detail?.passive || weapon.passive?'<article class="panel"><h2>'+escapeHtml(detail?.passiveName || label('Passiva','Passive','Pasiva'))+'</h2><p>'+escapeHtml(detail?.passive || weapon.passive)+'</p><small>'+label('Valores separados por / correspondem às categorias de sintonia da arma.','Slash-separated values correspond to weapon syntonization ranks.','Los valores separados por / corresponden a rangos de sintonización.')+'</small></article>':'')+
     (detail?.description?'<article class="panel"><h2>'+label('Descrição','Description','Descripción')+'</h2><p>'+escapeHtml(detail.description)+'</p></article>':'')+
     (detail?.source?'<a class="text-link" href="'+escapeHtml(detail.source)+'" target="_blank" rel="noreferrer">Encore · '+label('Fonte dos dados','Data source','Fuente de datos')+'</a>':'')+'</div></div></section>';
@@ -2953,9 +2988,11 @@ function renderWeaponsPage() {
               <div class="card-body">
                 <h3><a data-link href="${pathFor("weapons",state.lang,weapon.slug)}">${escapeHtml(weapon.name)} ↗</a></h3>
                 <dl class="mini-dl">
-                  <div><dt>ATK</dt><dd>${weapon.baseAtk ?? "—"}</dd></div>
+                  <div><dt>ATK${weapon.statLevel ? " · Lv. " + weapon.statLevel : ""}</dt><dd>${weapon.baseAtk ?? "—"}</dd></div>
                   <div><dt>${t("substat")}</dt><dd>${weapon.stat}</dd></div>
                 </dl>
+                ${weaponDetails.get(weapon.id)?.loading && !weapon.statLevel ? '<p role="status">' + archiveLabel('Carregando atributos…', 'Loading attributes…', 'Cargando atributos…') + '</p>' : ''}
+                ${weaponDetails.get(weapon.id)?.error ? '<button type="button" class="builder-text-button" data-weapon-retry="' + weapon.id + '">' + bt('retry') + '</button>' : ''}
                 <p>${weapon.passive}</p>
                 <div class="tag-row">
                   ${weapon.recommended.map((name) => `<span>${name}</span>`).join("")}
@@ -3551,7 +3588,7 @@ function renderBuilderSonatas() {
     const set = builderSonatas.find((e) => e.slug === slug);
     if (!set) return '';
     const maximum = Math.max(1, ...set.bonuses.map((bonus) => bonus.count));
-    return '<div class="builder-sonata"><div><strong>' + escapeHtml(set.name) + '</strong><span>' + members.size + ' / ' + maximum + '</span></div><div class="builder-set-progress">' + Array.from({ length: maximum }, (_, i) => '<i class="' + (i < members.size ? 'is-active' : '') + '"></i>').join('') + '</div>' + set.bonuses.map((bonus) => '<p>' + (members.size >= bonus.count ? '✓ ' : '') + bonus.count + ' ' + bt("pieces") + ': ' + escapeHtml(bonus.description) + '</p>').join('') + '</div>';
+    return '<div class="builder-sonata"><div><strong>' + escapeHtml(set.name) + '</strong><span>' + members.size + ' / ' + maximum + '</span></div><div class="builder-set-progress">' + Array.from({ length: maximum }, (_, i) => '<i class="' + (i < members.size ? 'is-active' : '') + '"></i>').join('') + '</div>' + set.bonuses.map((bonus) => '<p>' + (members.size >= bonus.count ? '✓ ' : '') + bonus.count + ' ' + bt("pieces") + ': ' + escapeHtml(/\{\d+\}/.test(bonus.description) ? archiveLabel('Efeito indisponível no momento.', 'Effect currently unavailable.', 'Efecto no disponible.') : bonus.description) + '</p>').join('') + '</div>';
   }).join('');
 }
 
@@ -3982,6 +4019,8 @@ function renderRoute(routeId = state.route, detail = state.detail) {
         return renderTierPage();
       case "echoes":
         return renderEchoesPage();
+      case "sonatas":
+        return renderSonatasPage();
       case "weapons":
         return renderWeaponsPage();
       case "items":
@@ -4033,6 +4072,9 @@ function routeSignature(routeId = state.route, detail = state.detail) {
       return [base, detail ? characterDetailRevision : "", state.charactersLoading, state.characterQuery, state.roleFilter, state.characterElementFilter, state.characterWeaponFilter, state.characterRarityFilter, state.charactersUpdatedAt, state.charactersSource, state.charactersApiError, collectionSignature(characters, ["slug", "name", "imageUrl"]), favorites].join("|");
     case "tier":
       return [base, state.tierMode, JSON.stringify(state.tierFilters), tierDataRevision, state.charactersLoading, collectionSignature(characters, ["slug", "name", "element", "weapon", "rarity"])].join("|");
+    case "echoes":
+    case "sonatas":
+      return [base, echoCatalogRevision, builderCatalogError, builderCatalogLoading].join("|");
     case "weapons":
       return [base, state.weaponFilter, weaponRevision].join("|");
     case "gacha":
@@ -4336,7 +4378,8 @@ function preloadAppData() {
   if (state.route === 'gacha') loadGachaModule();
   if(['gacha','weapons','builder'].includes(state.route) && !weaponsReady)ensureWeapons();
   if(state.route==='weapons' && state.detail && weaponsReady)ensureWeaponDetail();
-  if (state.route === "builder" && (!builderCatalogLoaded || Date.now() >= builderCatalogExpiresAt)) loadBuilderEchoes();
+  if(state.route==='weapons' && weaponsReady && !weaponError)ensureWeaponStats();
+  if (["builder", "echoes", "sonatas"].includes(state.route) && (!builderCatalogLoaded || Date.now() >= builderCatalogExpiresAt)) loadBuilderEchoes();
   // The ticker needs events everywhere. Other catalogs load on first use.
   if (!dataRequests.eventsLoaded) loadEvents();
   if (["home", "events", "gacha"].includes(state.route) && !dataRequests.convenesLoaded) loadConvenes();
@@ -4454,6 +4497,12 @@ app.addEventListener("click", (event) => {
   }
 
   if (event.target.closest("[data-builder-retry]")) { loadBuilderEchoes(); return; }
+  const weaponRetry = event.target.closest('[data-weapon-retry]');
+  if (weaponRetry) {
+    const weapon = weapons.find(item => String(item.id) === weaponRetry.dataset.weaponRetry);
+    if (weapon && !weaponDetails.get(weapon.id)?.loading) fetchWeaponDetail(weapon);
+    return;
+  }
   const builderOpen = event.target.closest("[data-builder-open]");
   if (builderOpen) { openBuilderPicker(builderOpen.dataset.builderOpen, Number(builderOpen.dataset.slot || 0), builderOpen); return; }
   if (event.target.closest("[data-builder-close]")) { closeBuilderPicker(); return; }

@@ -16,6 +16,13 @@ test('cost, icon and variants come from the source; named Phantom variants are d
   assert.deepEqual(Object.fromEntries(catalog.echoes.map(e=>[e.name,e.cost])),{'Boss':4,'Calamity':4,'Elite':3,'Clang Bang':1,'Phantom: Clang Bang':1});
   assert.equal(catalog.echoes.find(e=>e.id===2).iconUrl,'https://api.encore.moe/resource/2.webp');
 });
+test('Sonata effects resolve from source details and retain icons, line breaks and piece counts', () => {
+  const catalog = normalizeEchoCatalog({Echo:[record(1,'Echo',{Element:{Name:'Aero'},Attributes:'Source description',FetterGroups:[{Id:4,Name:'Test Sonata',Icon:'https://api.encore.moe/resource/set.webp',Fetters:[{Key:3,EffectDescription:'Bonus {0}'}]}]})],SonataDetails:{'Test Sonata':{EffectKeys:[3],EffectDescriptions:['Bonus 30%.<br>Lasts 4s.']}}});
+  assert.equal(catalog.sets[0].bonuses[0].description,'Bonus 30%.\nLasts 4s.');
+  assert.equal(catalog.sets[0].iconUrl,'https://api.encore.moe/resource/set.webp');
+  assert.equal(catalog.echoes[0].element,'Aero');
+  assert.equal(catalog.echoes[0].description,'Source description');
+});
 test('parallel requests and fresh cache avoid extra fetches; offline uses stale cache', async () => {
   const savedFetch=globalThis.fetch, savedStorage=globalThis.localStorage;
   const storage=new Map(); let calls=0;
